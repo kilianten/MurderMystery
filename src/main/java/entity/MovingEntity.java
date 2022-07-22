@@ -1,17 +1,13 @@
 package entity;
 
 import controller.Controller;
-import core.CollisionBox;
-import core.Direction;
-import core.Motion;
-import core.Size;
+import core.*;
 import entity.action.Action;
 import entity.effect.Effect;
 import game.state.State;
 import graphics.AnimationManager;
 import graphics.SpriteLibrary;
 
-import javax.swing.text.html.Option;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -63,7 +59,7 @@ public abstract class MovingEntity extends GameObject {
         if(!action.isPresent()){
             motion.update(controller);
         } else {
-            motion.stop();
+            motion.stop(true, true);
         }
     }
 
@@ -106,10 +102,12 @@ public abstract class MovingEntity extends GameObject {
 
     @Override
     public CollisionBox getCollisionBox() {
+        Position positionWithMotion = Position.copyOf(position);
+        positionWithMotion.apply(motion);
         return new CollisionBox(
                 new Rectangle(
-                        position.getIntX(),
-                        position.getIntY(),
+                        positionWithMotion.getIntX(),
+                        positionWithMotion.getIntY(),
                         collisionBoxSize.getWidth(),
                         collisionBoxSize.getHeight()
                 )
@@ -132,5 +130,22 @@ public abstract class MovingEntity extends GameObject {
     public void addEffect(Effect effect){
         effects.add(effect);
     }
+
+    public boolean willCollideX(GameObject other){
+        CollisionBox otherBox = other.getCollisionBox();
+        Position positionWithXApplied = Position.copyOf(position);
+        positionWithXApplied.applyX(motion);
+
+        return CollisionBox.of(positionWithXApplied, collisionBoxSize).collidesWith(otherBox);
+    }
+
+    public boolean willCollideY(GameObject other){
+        CollisionBox otherBox = other.getCollisionBox();
+        Position positionWithYApplied = Position.copyOf(position);
+        positionWithYApplied.applyY(motion);
+
+        return CollisionBox.of(positionWithYApplied, collisionBoxSize).collidesWith(otherBox);
+    }
+
 
 }
