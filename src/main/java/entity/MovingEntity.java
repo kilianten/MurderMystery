@@ -4,6 +4,7 @@ import controller.Controller;
 import core.CollisionBox;
 import core.Direction;
 import core.Motion;
+import core.Size;
 import entity.action.Action;
 import entity.effect.Effect;
 import game.state.State;
@@ -26,6 +27,8 @@ public abstract class MovingEntity extends GameObject {
     protected List<Effect> effects;
     protected Optional<Action> action;
 
+    protected Size collisionBoxSize;
+
     public MovingEntity(Controller controller, SpriteLibrary spriteLibrary){
         super();
         this.controller = controller;
@@ -34,6 +37,7 @@ public abstract class MovingEntity extends GameObject {
         this.direction = Direction.S;
         effects = new ArrayList<>();
         action = Optional.empty();
+        this.collisionBoxSize = new Size(14, 30);
     }
 
     public void update(State state){
@@ -106,8 +110,8 @@ public abstract class MovingEntity extends GameObject {
                 new Rectangle(
                         position.getIntX(),
                         position.getIntY(),
-                        size.getWidth(),
-                        size.getHeight()
+                        collisionBoxSize.getWidth(),
+                        collisionBoxSize.getHeight()
                 )
         );
     }
