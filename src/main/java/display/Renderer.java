@@ -1,11 +1,9 @@
 package display;
 
 import core.Position;
-import entity.GameObject;
 import game.Game;
 import game.state.State;
 import map.GameMap;
-import map.Tile;
 
 import java.awt.*;
 
@@ -14,6 +12,20 @@ public class Renderer {
     public void render(State state, Graphics graphics){
         renderMap(state, graphics);
         Camera camera = state.getCamera();
+        renderGameObjects(state, graphics, camera);
+        renderUI(state, graphics);
+    }
+
+    private void renderUI(State state, Graphics graphics) {
+        state.getUiContainers().forEach(UIContainer -> graphics.drawImage(
+                UIContainer.getSprite(),
+                UIContainer.getPosition().getIntX(),
+                UIContainer.getPosition().getIntY(),
+                null
+        ));
+    }
+
+    private void renderGameObjects(State state, Graphics graphics, Camera camera){
         state.getGameObjects().stream()
                 .filter(gameObject -> camera.isInView(gameObject))
                 .forEach(gameObject -> graphics.drawImage(

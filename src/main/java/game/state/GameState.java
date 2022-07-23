@@ -10,6 +10,7 @@ import entity.NPC.Nolan;
 import entity.Player;
 import input.Input;
 import map.GameMap;
+import ui.UIContainer;
 
 import java.util.Collections;
 
@@ -19,6 +20,7 @@ public class GameState extends State {
         super(windowSize, input);
         gameMap = new GameMap(new Size(50, 50), spriteLibrary);
         initialiseCharacters();
+        initializeUI();
     }
 
     private void initialiseCharacters() {
@@ -36,6 +38,11 @@ public class GameState extends State {
                 new Douglas(new NPCController(), spriteLibrary),
                 new Nolan(new NPCController(), spriteLibrary),
                 new Karl(new NPCController(), spriteLibrary));
+    }
+
+    private void initializeUI(){
+        UIContainer container = new UIContainer();
+        uiContainers.add(container);
     }
 
 }
