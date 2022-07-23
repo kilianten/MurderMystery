@@ -20,7 +20,7 @@ public class GameState extends State {
         super(windowSize, input);
         gameMap = new GameMap(new Size(50, 50), spriteLibrary);
         initialiseCharacters();
-        initializeUI();
+        initializeUI(windowSize);
     }
 
     private void initialiseCharacters() {
@@ -40,9 +40,9 @@ public class GameState extends State {
                 new Karl(new NPCController(), spriteLibrary));
     }
 
-    private void initializeUI() {
-        UIContainer container = new VerticalContainer();
-        container.setPadding(new Spacing(10));
+    private void initializeUI(Size windowSize) {
+        UIContainer container = new VerticalContainer(windowSize);
+        container.setPadding(new Spacing(0));
         container.setBackgroundColor(new Color(0, 0, 0, 0));
 
         container.addUIComponent(new UIText("Roaten Island"));
