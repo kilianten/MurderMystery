@@ -5,13 +5,16 @@ import controller.PlayerController;
 import core.Size;
 import entity.NPC.Douglas;
 import entity.NPC.Karl;
-import entity.NPC.NPC;
 import entity.NPC.Nolan;
 import entity.Player;
 import input.Input;
 import map.GameMap;
+import ui.HorizontalContainer;
+import ui.Spacing;
 import ui.UIContainer;
+import ui.VerticalContainer;
 
+import java.awt.*;
 import java.util.Collections;
 
 public class GameState extends State {
@@ -40,8 +43,14 @@ public class GameState extends State {
                 new Karl(new NPCController(), spriteLibrary));
     }
 
-    private void initializeUI(){
-        UIContainer container = new UIContainer();
+    private void initializeUI() {
+        UIContainer container = new VerticalContainer();
+        container.setPadding(new Spacing(20));
+        container.setBackgroundColor(Color.GRAY);
+
+        container.addUIComponent(new HorizontalContainer());
+        container.addUIComponent(new HorizontalContainer());
+        container.addUIComponent(new HorizontalContainer());
         uiContainers.add(container);
     }
 

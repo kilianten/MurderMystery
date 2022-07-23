@@ -7,25 +7,37 @@ import graphics.ImageUtils;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
+import java.util.List;
 
-public class UIContainer extends UIComponent {
+public abstract class UIContainer extends UIComponent {
 
-    private Color backgroundColor;
+    protected Color backgroundColor;
+
+    protected List<UIComponent> children;
 
     public UIContainer() {
         super();
         backgroundColor = Color.RED;
-
-        calculatePosition();
+        margin = new Spacing(5);
+        children = new ArrayList<>();
         calculateSize();
+        calculatePosition();
     }
 
-    private void calculateSize(){
-        size = new Size(padding.getHorizontal(), padding.getVertical());
+    protected abstract Size calculateContentSize();
+    protected abstract void calculateContentPosition();
+
+    private void calculateSize() {
+        Size calculatedContentSize = calculateContentSize();
+        size = new Size(
+                padding.getHorizontal() + calculatedContentSize.getWidth(),
+                padding.getVertical() + calculatedContentSize.getHeight());
     }
 
-    private void calculatePosition(){
+    private void calculatePosition() {
         position = new Position(margin.getLeft(), margin.getTop());
+        calculateContentPosition();
     }
 
     @Override
@@ -35,13 +47,32 @@ public class UIContainer extends UIComponent {
 
         graphics.setColor(backgroundColor);
         graphics.fillRect(0, 0, size.getWidth(), size.getHeight());
+
+        for(UIComponent uiComponent : children) {
+            graphics.drawImage(
+                    uiComponent.getSprite(),
+                    uiComponent.getPosition().getIntX(),
+                    uiComponent.getPosition().getIntY(),
+                    null
+            );
+        }
+
         graphics.dispose();
         return image;
     }
 
     @Override
     public void update(State state) {
-        calculatePosition();
+        children.forEach(component -> component.update(state));
         calculateSize();
+        calculatePosition();
+    }
+
+    public void addUIComponent(UIComponent uiComponent) {
+        children.add(uiComponent);
+    }
+
+    public void setBackgroundColor(Color color) {
+        backgroundColor = color;
     }
 }

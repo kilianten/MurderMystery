@@ -17,10 +17,10 @@ public class Renderer {
     }
 
     private void renderUI(State state, Graphics graphics) {
-        state.getUiContainers().forEach(UIContainer -> graphics.drawImage(
-                UIContainer.getSprite(),
-                UIContainer.getPosition().getIntX(),
-                UIContainer.getPosition().getIntY(),
+        state.getUiContainers().forEach(uiContainer -> graphics.drawImage(
+                uiContainer.getSprite(),
+                uiContainer.getPosition().getIntX(),
+                uiContainer.getPosition().getIntY(),
                 null
         ));
     }

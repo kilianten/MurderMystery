@@ -41,6 +41,7 @@ public abstract class State {
         for(GameObject gameObject: gameObjects){
             gameObject.update(this);
         }
+        uiContainers.forEach(UIContainer -> UIContainer.update(this));
         camera.update(this);
     }
 

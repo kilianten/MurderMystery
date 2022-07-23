@@ -3,22 +3,22 @@ package ui;
 public class Spacing {
 
     private int top;
-    private int bottom;
     private int right;
+    private int bottom;
     private int left;
 
-    public Spacing(int spacing){
+    public Spacing(int spacing) {
         this(spacing, spacing);
     }
 
-    public Spacing(int horizontal, int vertical){
-        this(horizontal, vertical, vertical, horizontal);
+    public Spacing(int horizontal, int vertical) {
+        this(vertical, horizontal, vertical, horizontal);
     }
 
-    public Spacing(int top, int bottom, int right, int left) {
+    public Spacing(int top, int right, int bottom, int left) {
         this.top = top;
-        this.bottom = bottom;
         this.right = right;
+        this.bottom = bottom;
         this.left = left;
     }
 
@@ -26,23 +26,23 @@ public class Spacing {
         return top;
     }
 
-    public int getBottom() {
-        return bottom;
-    }
-
     public int getRight() {
         return right;
+    }
+
+    public int getBottom() {
+        return bottom;
     }
 
     public int getLeft() {
         return left;
     }
 
-    public int getVertical(){
+    public int getVertical() {
         return top + bottom;
     }
 
-    public int getHorizontal(){
+    public int getHorizontal() {
         return right + left;
     }
 }
