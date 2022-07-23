@@ -9,10 +9,7 @@ import entity.NPC.Nolan;
 import entity.Player;
 import input.Input;
 import map.GameMap;
-import ui.HorizontalContainer;
-import ui.Spacing;
-import ui.UIContainer;
-import ui.VerticalContainer;
+import ui.*;
 
 import java.awt.*;
 import java.util.Collections;
@@ -45,12 +42,10 @@ public class GameState extends State {
 
     private void initializeUI() {
         UIContainer container = new VerticalContainer();
-        container.setPadding(new Spacing(20));
-        container.setBackgroundColor(Color.GRAY);
+        container.setPadding(new Spacing(10));
+        container.setBackgroundColor(new Color(0, 0, 0, 0));
 
-        container.addUIComponent(new HorizontalContainer());
-        container.addUIComponent(new HorizontalContainer());
-        container.addUIComponent(new HorizontalContainer());
+        container.addUIComponent(new UIText("Roaten Island"));
         uiContainers.add(container);
     }
 

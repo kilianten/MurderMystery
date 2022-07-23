@@ -11,7 +11,7 @@ import java.awt.image.BufferStrategy;
 public class Display extends JFrame {
 
     private Canvas canvas;
-    private final String GAME_TITLE = "Roten Island";
+    private final String GAME_TITLE = "Roaten Island";
     private Renderer renderer;
     private DebugRenderer debugRenderer;
 
