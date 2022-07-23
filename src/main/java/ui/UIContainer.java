@@ -23,9 +23,9 @@ public abstract class UIContainer extends UIComponent {
         super();
         this.windowSize = windowSize;
         alignment = new Alignment(Alignment.Position.CENTER, Alignment.Position.START);
-        backgroundColor = Color.RED;
-        margin = new Spacing(0);
-        padding = new Spacing(0);
+        backgroundColor = new Color(0, 0, 0, 0);
+        margin = new Spacing(5);
+        padding = new Spacing(5);
         children = new ArrayList<>();
         calculateSize();
         calculatePosition();

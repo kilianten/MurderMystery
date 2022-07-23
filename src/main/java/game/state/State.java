@@ -4,7 +4,7 @@ import core.Position;
 import core.Size;
 import display.Camera;
 import entity.GameObject;
-import game.Time;
+import game.Clock;
 import graphics.SpriteLibrary;
 import input.Input;
 import map.GameMap;
@@ -23,7 +23,7 @@ public abstract class State {
     protected SpriteLibrary spriteLibrary;
     protected Input input;
     protected Camera camera;
-    protected Time time;
+    protected Clock clock;
 
     protected List<UIContainer> uiContainers;
 
@@ -33,10 +33,11 @@ public abstract class State {
         spriteLibrary = new SpriteLibrary();
         this.input = input;
         this.camera = new Camera(windowSize);
-        time = new Time();
+        clock = new Clock();
     }
 
     public void update(){
+        clock.update();
         sortObjectsByPosition();
         for(GameObject gameObject: gameObjects){
             gameObject.update(this);
@@ -61,8 +62,8 @@ public abstract class State {
         return camera;
     }
 
-    public Time getTime() {
-        return time;
+    public Clock getClock() {
+        return clock;
     }
 
     public Position getRandomPosition(){

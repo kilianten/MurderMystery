@@ -16,7 +16,7 @@ public class Spacing {
     }
 
     public Spacing(int top, int right, int bottom, int left) {
-        this.top = top;
+        this.top = 0;
         this.right = right;
         this.bottom = bottom;
         this.left = left;

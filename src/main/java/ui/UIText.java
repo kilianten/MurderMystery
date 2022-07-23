@@ -26,13 +26,13 @@ public class UIText extends UIComponent {
 
     public UIText(String text) {
         this.text = text;
-        this.fontSize = 45;
+        this.fontSize = 40;
         this.fontStyle = Font.PLAIN;
         this.fontFamily = "chai";
         this.colour = Color.WHITE;
         
         this.dropShadow = true;
-        this.dropShadowOffset = 3;
+        this.dropShadowOffset = 2;
         this.shadowColour = new Color(36, 30, 121);
 
         createFont();
@@ -62,10 +62,15 @@ public class UIText extends UIComponent {
 
     private void calculateSize() {
         FontMetrics fontMetrics = new Canvas().getFontMetrics(font);
-        size = new Size(
-                fontMetrics.stringWidth(text) + padding.getHorizontal() + 6,
-                fontMetrics.getHeight() + padding.getVertical()
-        );
+
+        int width = fontMetrics.stringWidth(text) + padding.getHorizontal() + 6;
+        int height = fontMetrics.getHeight() + padding.getVertical();
+
+        if(dropShadow){
+            width += dropShadowOffset;
+        }
+
+        size = new Size(width, height);
     }
 
     private void createFont() {
@@ -77,5 +82,9 @@ public class UIText extends UIComponent {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public void setText(String text) {
+        this.text = text;
     }
 }

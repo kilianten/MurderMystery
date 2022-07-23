@@ -7,6 +7,7 @@ import entity.NPC.Douglas;
 import entity.NPC.Karl;
 import entity.NPC.Nolan;
 import entity.Player;
+import game.ui.UIGameTime;
 import input.Input;
 import map.GameMap;
 import ui.*;
@@ -41,12 +42,7 @@ public class GameState extends State {
     }
 
     private void initializeUI(Size windowSize) {
-        UIContainer container = new VerticalContainer(windowSize);
-        container.setPadding(new Spacing(0));
-        container.setBackgroundColor(new Color(0, 0, 0, 0));
-
-        container.addUIComponent(new UIText("Roaten Island"));
-        uiContainers.add(container);
+         uiContainers.add(new UIGameTime(windowSize));
     }
 
 }
