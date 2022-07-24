@@ -50,7 +50,7 @@ public abstract class MovingEntity extends GameObject {
     }
 
     private void handleCollisions(State state) {
-        state.getCollidingGameObects(this).forEach(this::handleCollision);
+        state.getCollidingGameObjects(this).forEach(this::handleCollision);
     }
 
     protected abstract void handleCollision(GameObject other);

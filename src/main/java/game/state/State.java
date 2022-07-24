@@ -70,7 +70,7 @@ public abstract class State {
         return gameMap.getRandomPosition();
     }
 
-    public List<GameObject> getCollidingGameObects(GameObject gameObject) {
+    public List<GameObject> getCollidingGameObjects(GameObject gameObject) {
         return gameObjects.stream()
                 .filter(other -> other.collidesWith(gameObject))
                 .collect(Collectors.toList());

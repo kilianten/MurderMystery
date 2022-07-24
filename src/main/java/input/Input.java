@@ -5,14 +5,26 @@ import java.awt.event.KeyListener;
 
 public class Input implements KeyListener {
 
+    private boolean[] currentlyPressed;
     private boolean[] pressed;
 
     public Input(){
         pressed = new boolean[256];
+        currentlyPressed = new boolean[256];
     }
 
-    public boolean isPressed(int keycode){
-        return pressed[keycode];
+    public boolean isPressed(int keyCode){
+
+        if(!pressed[keyCode] && currentlyPressed[keyCode]){
+            System.out.println(keyCode + "ispressed" + "not pressed" + !pressed[keyCode] );
+            pressed[keyCode] = true;
+            return true;
+        }
+        return false;
+    }
+
+    public boolean isCurrentlyPressed(int keycode){
+        return currentlyPressed[keycode];
     }
 
     @Override
@@ -20,11 +32,12 @@ public class Input implements KeyListener {
 
     @Override
     public void keyPressed(KeyEvent e) {
-        pressed[e.getKeyCode()] = true;
+        currentlyPressed[e.getKeyCode()] = true;
     }
 
     @Override
     public void keyReleased(KeyEvent e) {
+        currentlyPressed[e.getKeyCode()] = false;
         pressed[e.getKeyCode()] = false;
     }
 }
