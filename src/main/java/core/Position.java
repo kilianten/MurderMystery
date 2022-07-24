@@ -65,4 +65,9 @@ public class Position {
         x += position.getX();
         y += position.getY();
     }
+
+    public void subtract(Position position) {
+        x -= position.getX();
+        y -= position.getY();
+    }
 }

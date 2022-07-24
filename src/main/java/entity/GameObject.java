@@ -15,6 +15,7 @@ public abstract class GameObject {
 
     protected int renderOrder;
     protected Position renderOffset;
+    protected Position collisionBoxOffset;
 
     protected  GameObject parent;
 
@@ -23,6 +24,7 @@ public abstract class GameObject {
         size = new Size(64, 64);
         renderOffset = new Position(0, 0);
         renderOrder = 5;
+        collisionBoxOffset = new Position(0, 0);
     }
 
     public abstract CollisionBox getCollisionBox();

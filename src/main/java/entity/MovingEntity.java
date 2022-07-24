@@ -35,6 +35,7 @@ public abstract class MovingEntity extends GameObject {
         action = Optional.empty();
         this.collisionBoxSize = new Size(14, 30);
         this.renderOffset = new Position(size.getWidth() / 2, size.getHeight() - 12);
+        this.collisionBoxOffset = new Position(collisionBoxSize.getWidth() / 2, collisionBoxSize.getHeight());
     }
 
     public void update(State state){
@@ -100,10 +101,12 @@ public abstract class MovingEntity extends GameObject {
     public CollisionBox getCollisionBox() {
         Position positionWithMotion = Position.copyOf(getPosition());
         positionWithMotion.apply(motion);
+        positionWithMotion.subtract(collisionBoxOffset);
+
         return new CollisionBox(
                 new Rectangle(
-                        positionWithMotion.getIntX() - collisionBoxSize.getWidth() / 2,
-                        positionWithMotion.getIntY() - collisionBoxSize.getHeight(),
+                        positionWithMotion.getIntX(),
+                        positionWithMotion.getIntY(),
                         collisionBoxSize.getWidth(),
                         collisionBoxSize.getHeight()
                 )
@@ -131,6 +134,7 @@ public abstract class MovingEntity extends GameObject {
         CollisionBox otherBox = other.getCollisionBox();
         Position positionWithXApplied = Position.copyOf(position);
         positionWithXApplied.applyX(motion);
+        positionWithXApplied.subtract(collisionBoxOffset);
 
         return CollisionBox.of(positionWithXApplied, collisionBoxSize).collidesWith(otherBox);
     }
@@ -139,6 +143,7 @@ public abstract class MovingEntity extends GameObject {
         CollisionBox otherBox = other.getCollisionBox();
         Position positionWithYApplied = Position.copyOf(position);
         positionWithYApplied.applyY(motion);
+        positionWithYApplied.subtract(collisionBoxOffset);
 
         return CollisionBox.of(positionWithYApplied, collisionBoxSize).collidesWith(otherBox);
     }
