@@ -79,4 +79,11 @@ public abstract class State {
     public List<UIContainer> getUiContainers() {
         return uiContainers;
     }
+
+    public <T extends GameObject> List<T> getGameObjectsOfClass(Class<T> clazz){
+        return gameObjects.stream()
+                .filter(clazz::isInstance)
+                .map(gameObject -> (T) gameObject)
+                .collect(Collectors.toList());
+    }
 }
