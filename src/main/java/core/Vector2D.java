@@ -32,4 +32,20 @@ public class Vector2D {
     public double getY() {
         return y;
     }
+
+    public static Vector2D copyOf(Vector2D vector){
+        return new Vector2D(vector.getX(), vector.getY());
+    }
+
+    public static Vector2D directionBetweenPositions(Position start, Position end){
+        Vector2D direction = new Vector2D(start.getX() - end.getX(), start.getY() - end.getY());
+        direction.normalize();
+
+        return direction;
+    }
+
+    public static double dotProduct(Vector2D v1, Vector2D v2){
+        return v1.getX() * v2.getX() + v1.getY() + v2.getY();
+    }
+
 }

@@ -26,12 +26,12 @@ public class GameState extends State {
     }
 
     private void initialiseCharacters() {
-        Player player = new Player(new PlayerController(input), spriteLibrary);
+        SelectionCircle selectionCircle = new SelectionCircle();
+
+        Player player = new Player(new PlayerController(input), spriteLibrary, selectionCircle);
         gameObjects.add(player);
         camera.focusOn(player);
 
-        SelectionCircle selectionCircle = new SelectionCircle();
-        selectionCircle.setParent(player);
         gameObjects.add(selectionCircle);
 
         initialiseNPCs();

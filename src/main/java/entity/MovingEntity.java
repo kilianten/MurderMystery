@@ -23,6 +23,8 @@ public abstract class MovingEntity extends GameObject {
     protected List<Effect> effects;
     protected Optional<Action> action;
 
+    protected Vector2D directionVector;
+
     protected Size collisionBoxSize;
 
     public MovingEntity(Controller controller, SpriteLibrary spriteLibrary){
@@ -31,6 +33,7 @@ public abstract class MovingEntity extends GameObject {
         this.motion = new Motion(2);
         this.animationManager = new AnimationManager(spriteLibrary.getUnit("dave", null));
         this.direction = Direction.S;
+        this.directionVector = new Vector2D(0, 0);
         effects = new ArrayList<>();
         action = Optional.empty();
         this.collisionBoxSize = new Size(14, 30);
@@ -94,6 +97,7 @@ public abstract class MovingEntity extends GameObject {
     private void manageDirection(){
         if(motion.isMoving()){
             this.direction = Direction.fromMotion(motion);
+            this.directionVector = motion.getDirection();
         }
     }
 
@@ -148,5 +152,11 @@ public abstract class MovingEntity extends GameObject {
         return CollisionBox.of(positionWithYApplied, collisionBoxSize).collidesWith(otherBox);
     }
 
+    public boolean isFacing(Position other) {
+        Vector2D direction = Vector2D.directionBetweenPositions(other, getPosition());
+        double dotProduct = Vector2D.dotProduct(direction, directionVector);
+
+        return dotProduct > 0;
+    }
 
 }
