@@ -7,6 +7,7 @@ import entity.NPC.Douglas;
 import entity.NPC.Karl;
 import entity.NPC.Nolan;
 import entity.Player;
+import entity.SelectionCircle;
 import game.ui.UIGameTime;
 import input.Input;
 import map.GameMap;
@@ -29,7 +30,10 @@ public class GameState extends State {
         gameObjects.add(player);
         camera.focusOn(player);
 
-        
+        SelectionCircle selectionCircle = new SelectionCircle();
+        selectionCircle.setParent(player);
+        gameObjects.add(selectionCircle);
+
         initialiseNPCs();
     }
 
