@@ -1,6 +1,7 @@
 package entity;
 
 import core.CollisionBox;
+import core.Position;
 import core.Size;
 import game.state.State;
 import graphics.ImageUtils;
@@ -14,13 +15,15 @@ public class SelectionCircle  extends GameObject {
     private BufferedImage sprite;
 
     public SelectionCircle() {
-        this.color = Color.PINK;
+        this.color = new Color(255, 255, 255, 150);
         this.size = new Size(32, 10);
+        renderOffset = new Position(size.getWidth() / 2, size.getHeight());
         initialiseSprite();
+        renderOrder = 4;
     }
 
     private void initialiseSprite() {
-        sprite = (BufferedImage) ImageUtils.createCompatibleImage(size, ImageUtils.ALHPA_BIT_MASKED);
+        sprite = (BufferedImage) ImageUtils.createCompatibleImage(size, ImageUtils.ALPHA_BLEND);
         Graphics2D graphics = sprite.createGraphics();
 
         graphics.setColor(color);
@@ -31,7 +34,7 @@ public class SelectionCircle  extends GameObject {
     @Override
     public CollisionBox getCollisionBox() {
         return CollisionBox.of(
-                position, size
+                getPosition(), getSize()
         );
     }
 
