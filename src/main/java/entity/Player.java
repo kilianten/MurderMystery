@@ -26,6 +26,16 @@ public class Player extends Human {
     public void update(State state){
         super.update(state);
         handleTarget(state);
+
+        handleInput();
+    }
+
+    private void handleInput() {
+        if(controller.isRequestingAction()){
+            if(target != null){
+                System.out.println(target);
+            }
+        }
     }
 
     private void handleTarget(State state) {
