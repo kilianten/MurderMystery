@@ -25,12 +25,16 @@ public class UIText extends UIComponent {
     private Font font;
 
     public UIText(String text) {
+        this(text, 40);
+    }
+
+    public UIText(String text, int fontSize) {
         this.text = text;
-        this.fontSize = 40;
+        this.fontSize = fontSize;
         this.fontStyle = Font.PLAIN;
         this.fontFamily = "chai";
         this.colour = Color.WHITE;
-        
+
         this.dropShadow = true;
         this.dropShadowOffset = 2;
         this.shadowColour = new Color(36, 30, 121);

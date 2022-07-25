@@ -57,4 +57,8 @@ public class Motion {
         direction.normalize();
         return direction;
     }
+
+    public void setSpeed(double speed){
+        this.speed = speed;
+    }
 }

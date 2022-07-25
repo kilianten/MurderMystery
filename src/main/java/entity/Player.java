@@ -20,6 +20,7 @@ public class Player extends Human {
         super(controller, spriteLibrary);
         this.selectionCircle = selectionCircle;
         this.targetRange = 2 * Game.SPRITE_SIZE;
+        motion.setSpeed(3);
     }
 
     @Override

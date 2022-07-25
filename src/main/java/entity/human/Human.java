@@ -20,6 +20,8 @@ public abstract class Human extends MovingEntity {
     protected List<Effect> effects;
     protected Optional<Action> action;
 
+    protected String firstName = "";
+
     public Human(Controller controller, SpriteLibrary spriteLibrary) {
         super(controller, spriteLibrary);
         effects = new ArrayList<>();
@@ -81,5 +83,9 @@ public abstract class Human extends MovingEntity {
     @Override
     protected void handleCollision(GameObject other) {
 
+    }
+
+    public String getFirstName() {
+        return firstName;
     }
 }

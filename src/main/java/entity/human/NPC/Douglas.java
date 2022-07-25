@@ -19,5 +19,6 @@ public class Douglas extends NPC {
 
     public Douglas(Controller controller, SpriteLibrary spriteLibrary) {
         super(controller, spriteLibrary, "defaultMan", colourHandler);
+        firstName = "Douglas";
     }
 }
