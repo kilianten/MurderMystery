@@ -1,10 +1,8 @@
-package entity.action;
+package entity.human.action;
 
 import entity.MovingEntity;
 import game.GameLoop;
 import game.state.State;
-
-import java.util.Random;
 
 public class Smoke extends Action {
 

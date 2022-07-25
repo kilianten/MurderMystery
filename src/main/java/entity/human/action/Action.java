@@ -1,9 +1,7 @@
-package entity.action;
+package entity.human.action;
 
 import entity.MovingEntity;
 import game.state.State;
-
-import java.util.Random;
 
 public abstract class Action {
 

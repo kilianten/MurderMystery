@@ -1,8 +1,9 @@
-package entity.NPC;
+package entity.human.NPC;
 
 import controller.Controller;
 import entity.ColourHandler;
-import entity.action.Smoke;
+import entity.NPC;
+import entity.human.action.Smoke;
 import graphics.SpriteLibrary;
 
 public class Karl extends NPC {

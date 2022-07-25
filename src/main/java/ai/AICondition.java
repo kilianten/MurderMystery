@@ -1,6 +1,6 @@
 package ai;
 
-import entity.NPC.NPC;
+import entity.NPC;
 import game.state.State;
 
 public interface AICondition {

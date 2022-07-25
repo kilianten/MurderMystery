@@ -16,7 +16,6 @@ public class Input implements KeyListener {
     public boolean isPressed(int keyCode){
 
         if(!pressed[keyCode] && currentlyPressed[keyCode]){
-            System.out.println(keyCode + "ispressed" + "not pressed" + !pressed[keyCode] );
             pressed[keyCode] = true;
             return true;
         }

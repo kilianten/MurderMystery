@@ -3,7 +3,7 @@ package ai;
 import ai.state.AIState;
 import ai.state.Stand;
 import ai.state.Wander;
-import entity.NPC.NPC;
+import entity.NPC;
 import game.state.State;
 
 public class AIManager {

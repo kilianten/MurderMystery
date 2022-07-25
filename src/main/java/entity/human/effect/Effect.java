@@ -1,4 +1,4 @@
-package entity.effect;
+package entity.human.effect;
 
 import entity.MovingEntity;
 import game.state.State;

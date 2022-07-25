@@ -1,7 +1,7 @@
 package ai.state;
 
 import ai.AITransition;
-import entity.NPC.NPC;
+import entity.NPC;
 import game.state.State;
 
 public abstract class AIState {

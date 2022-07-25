@@ -1,8 +1,7 @@
 package entity;
 
 import controller.Controller;
-import core.Position;
-import entity.NPC.NPC;
+import entity.human.Human;
 import game.Game;
 import game.state.State;
 import graphics.SpriteLibrary;
@@ -11,7 +10,7 @@ import java.util.Comparator;
 import java.util.Optional;
 
 
-public class Player extends MovingEntity {
+public class Player extends Human {
 
     private NPC target;
     private double targetRange;

@@ -3,17 +3,15 @@ package game.state;
 import controller.NPCController;
 import controller.PlayerController;
 import core.Size;
-import entity.NPC.Douglas;
-import entity.NPC.Karl;
-import entity.NPC.Nolan;
+import entity.human.NPC.Douglas;
+import entity.human.NPC.Karl;
+import entity.human.NPC.Nolan;
 import entity.Player;
 import entity.SelectionCircle;
 import game.ui.UIGameTime;
 import input.Input;
 import map.GameMap;
-import ui.*;
 
-import java.awt.*;
 import java.util.Collections;
 
 public class GameState extends State {

@@ -1,17 +1,14 @@
-package entity.NPC;
+package entity;
 
 import ai.AIManager;
 import controller.Controller;
-import entity.ColourHandler;
-import entity.GameObject;
-import entity.MovingEntity;
-import entity.Player;
-import entity.effect.Effect;
+import entity.human.Human;
+import entity.human.effect.Effect;
 import game.state.State;
 import graphics.AnimationManager;
 import graphics.SpriteLibrary;
 
-public abstract class NPC extends MovingEntity {
+public abstract class NPC extends Human {
 
     private AIManager aiManager;
 
@@ -29,7 +26,7 @@ public abstract class NPC extends MovingEntity {
     }
 
     public void addEffect(Effect effect){
-        effects.add(effect);
+        //effects.add(effect);
     }
 
     @Override

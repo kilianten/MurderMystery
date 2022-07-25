@@ -1,7 +1,8 @@
-package entity.NPC;
+package entity.human.NPC;
 
 import controller.Controller;
 import entity.ColourHandler;
+import entity.NPC;
 import graphics.SpriteLibrary;
 
 public class Nolan extends NPC {
