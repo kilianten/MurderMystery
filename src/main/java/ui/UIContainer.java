@@ -43,22 +43,23 @@ public abstract class UIContainer extends UIComponent {
 
     private void calculatePosition() {
         int x = padding.getLeft();
-        if(alignment.getHorizontal().equals(Alignment.Position.CENTER)){
+        if(alignment.getHorizontal().equals(Alignment.Position.CENTER)) {
             x = windowSize.getWidth() / 2 - size.getWidth() / 2;
         }
-        if(alignment.getHorizontal().equals(Alignment.Position.END)){
+        if(alignment.getHorizontal().equals(Alignment.Position.END)) {
             x = windowSize.getWidth() - size.getWidth() - margin.getRight();
         }
 
         int y = padding.getTop();
-        if(alignment.getVertical().equals(Alignment.Position.CENTER)){
+        if(alignment.getVertical().equals(Alignment.Position.CENTER)) {
             y = windowSize.getHeight() / 2 - size.getHeight() / 2;
         }
-        if(alignment.getVertical().equals(Alignment.Position.END)){
+        if(alignment.getVertical().equals(Alignment.Position.END)) {
             y = windowSize.getHeight() - size.getHeight() - margin.getBottom();
         }
 
-        this.position = new Position(x, y);
+        this.relativePosition = new Position(x, y);
+        this.absolutePosition = new Position(x, y);
         calculateContentPosition();
     }
 
@@ -73,8 +74,8 @@ public abstract class UIContainer extends UIComponent {
         for(UIComponent uiComponent : children) {
             graphics.drawImage(
                     uiComponent.getSprite(),
-                    uiComponent.getPosition().getIntX(),
-                    uiComponent.getPosition().getIntY(),
+                    uiComponent.getRelativePosition().getIntX(),
+                    uiComponent.getRelativePosition().getIntY(),
                     null
             );
         }
@@ -96,5 +97,9 @@ public abstract class UIContainer extends UIComponent {
 
     public void setBackgroundColor(Color color) {
         backgroundColor = color;
+    }
+
+    public void setAlignment(Alignment alignment) {
+        this.alignment = alignment;
     }
 }

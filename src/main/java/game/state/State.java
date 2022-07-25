@@ -44,6 +44,15 @@ public abstract class State {
         }
         uiContainers.forEach(UIContainer -> UIContainer.update(this));
         camera.update(this);
+        handleMouseInput();
+    }
+
+    protected void handleMouseInput(){
+        if(input.isMouseClicked()){
+
+        }
+
+        input.clearMouseClick();
     }
 
     public void sortObjectsByPosition() {
@@ -85,5 +94,9 @@ public abstract class State {
                 .filter(clazz::isInstance)
                 .map(gameObject -> (T) gameObject)
                 .collect(Collectors.toList());
+    }
+
+    public Input getInput() {
+        return input;
     }
 }

@@ -8,27 +8,29 @@ import java.awt.*;
 
 public abstract class UIComponent {
 
-    protected Position position;
+    protected Position relativePosition;
+    protected Position absolutePosition;
     protected Size size;
     protected Spacing margin;
     protected Spacing padding;
 
     public UIComponent() {
-        position = new Position(0, 0);
+        relativePosition = new Position(0, 0);
+        absolutePosition = new Position(0, 0);
         size = new Size(1, 1);
-        margin = new Spacing(0);
-        padding = new Spacing(0);
+        margin = new Spacing(4);
+        padding = new Spacing(2);
     }
 
     public abstract Image getSprite();
     public abstract void update(State state);
 
-    public Position getPosition() {
-        return position;
+    public Position getRelativePosition() {
+        return relativePosition;
     }
 
-    public void setPosition(Position position) {
-        this.position = position;
+    public void setRelativePosition(Position relativePosition) {
+        this.relativePosition = relativePosition;
     }
 
     public Size getSize() {
@@ -53,5 +55,14 @@ public abstract class UIComponent {
 
     public void setPadding(Spacing padding) {
         this.padding = padding;
+    }
+
+
+    public Position getAbsolutePosition() {
+        return absolutePosition;
+    }
+
+    public void setAbsolutePosition(Position absolutePosition) {
+        this.absolutePosition = absolutePosition;
     }
 }

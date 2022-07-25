@@ -29,9 +29,11 @@ public class VerticalContainer extends UIContainer {
     protected void calculateContentPosition() {
         int currentY = padding.getTop();
 
+
         for(UIComponent uiComponent : children) {
             currentY += uiComponent.getMargin().getTop();
-            uiComponent.setPosition(new Position(padding.getLeft(), currentY));
+            uiComponent.setRelativePosition(new Position(padding.getLeft(), currentY));
+            uiComponent.setAbsolutePosition(new Position(padding.getLeft() + absolutePosition.getIntX(), currentY + absolutePosition.getIntY()));
             currentY += uiComponent.getSize().getHeight();
             currentY += uiComponent.getMargin().getBottom();
         }

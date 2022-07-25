@@ -11,10 +11,37 @@ import entity.SelectionCircle;
 import game.ui.UIGameTime;
 import input.Input;
 import map.GameMap;
+import ui.Alignment;
+import ui.VerticalContainer;
+import ui.clickable.UIButton;
 
+import java.awt.*;
+import java.awt.event.KeyEvent;
 import java.util.Collections;
 
 public class GameState extends State {
+
+    private boolean paused;
+
+    @Override
+    protected void handleMouseInput(){
+        super.handleMouseInput();
+
+        if(input.isPressed(KeyEvent.VK_ESCAPE)){
+            pause();
+        }
+    }
+
+    private void pause(){
+        paused = true;
+        VerticalContainer pauseContainer = new VerticalContainer(camera.getSize());
+        pauseContainer.setAlignment(new Alignment(Alignment.Position.CENTER, Alignment.Position.CENTER));
+        pauseContainer.setBackgroundColor(Color.DARK_GRAY);
+        pauseContainer.addUIComponent(new UIButton("Button 1", () -> System.out.println("Button 1 pressed")));
+        pauseContainer.addUIComponent(new UIButton("Button 2", () -> System.out.println("Button 2 pressed")));
+        pauseContainer.addUIComponent(new UIButton("Exit", () -> System.exit(0)));
+        uiContainers.add(pauseContainer);
+    }
 
     public GameState(Size windowSize, Input input) {
         super(windowSize, input);
