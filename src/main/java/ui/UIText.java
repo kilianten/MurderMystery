@@ -1,15 +1,13 @@
 package ui;
 
 import core.Size;
-import game.state.State;
+import state.State;
 import graphics.ImageUtils;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.SocketOption;
 
 public class UIText extends UIComponent {
 

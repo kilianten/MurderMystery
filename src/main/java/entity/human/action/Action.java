@@ -1,7 +1,7 @@
 package entity.human.action;
 
 import entity.MovingEntity;
-import game.state.State;
+import state.State;
 
 public abstract class Action {
 

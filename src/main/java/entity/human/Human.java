@@ -7,7 +7,7 @@ import entity.GameObject;
 import entity.MovingEntity;
 import entity.human.action.Action;
 import entity.human.effect.Effect;
-import game.state.State;
+import state.State;
 import graphics.SpriteLibrary;
 
 import java.util.ArrayList;

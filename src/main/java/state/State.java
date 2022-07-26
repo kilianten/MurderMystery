@@ -1,10 +1,11 @@
-package game.state;
+package state;
 
 import core.Position;
 import core.Size;
 import display.Camera;
 import entity.GameObject;
 import game.Clock;
+import game.Game;
 import graphics.SpriteLibrary;
 import input.Input;
 import map.GameMap;
@@ -25,9 +26,13 @@ public abstract class State {
     protected Camera camera;
     protected Clock clock;
 
+    protected Size windowSize;
+    private State nextState;
+
     protected List<UIContainer> uiContainers;
 
     public State(Size windowSize, Input input) {
+        this.windowSize = windowSize;
         gameObjects = new ArrayList<>();
         uiContainers = new ArrayList<>();
         spriteLibrary = new SpriteLibrary();
@@ -36,15 +41,19 @@ public abstract class State {
         clock = new Clock();
     }
 
-    public void update(){
+    public void update(Game game){
         clock.update();
         sortObjectsByPosition();
         for(GameObject gameObject: gameObjects){
             gameObject.update(this);
         }
-        uiContainers.forEach(UIContainer -> UIContainer.update(this));
+        List.copyOf(uiContainers).forEach(UIContainer -> UIContainer.update(this));
         camera.update(this);
         handleMouseInput();
+
+        if(nextState != null){
+            game.enterState(nextState);
+        }
     }
 
     protected void handleMouseInput(){
@@ -98,5 +107,9 @@ public abstract class State {
 
     public Input getInput() {
         return input;
+    }
+
+    public void setNextState(State nextState) {
+        this.nextState = nextState;
     }
 }

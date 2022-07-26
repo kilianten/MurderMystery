@@ -1,7 +1,7 @@
 package entity.human.effect;
 
 import entity.MovingEntity;
-import game.state.State;
+import state.State;
 
 public class Effect {
 

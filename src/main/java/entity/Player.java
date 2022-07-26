@@ -3,7 +3,7 @@ package entity;
 import controller.Controller;
 import entity.human.Human;
 import game.Game;
-import game.state.State;
+import state.State;
 import graphics.SpriteLibrary;
 
 import java.util.Comparator;

@@ -1,4 +1,4 @@
-package game.state;
+package state.game;
 
 import controller.NPCController;
 import controller.PlayerController;
@@ -8,9 +8,12 @@ import entity.human.NPC.Karl;
 import entity.human.NPC.Nolan;
 import entity.Player;
 import entity.SelectionCircle;
-import game.ui.UIGameTime;
+import state.game.ui.UIGameTime;
 import input.Input;
 import map.GameMap;
+import state.State;
+import state.menu.MenuState;
+import state.menu.ui.UIMainMenu;
 import ui.Alignment;
 import ui.VerticalContainer;
 import ui.clickable.UIButton;
@@ -37,9 +40,9 @@ public class GameState extends State {
         VerticalContainer pauseContainer = new VerticalContainer(camera.getSize());
         pauseContainer.setAlignment(new Alignment(Alignment.Position.CENTER, Alignment.Position.CENTER));
         pauseContainer.setBackgroundColor(Color.DARK_GRAY);
-        pauseContainer.addUIComponent(new UIButton("Button 1", () -> System.out.println("Button 1 pressed")));
-        pauseContainer.addUIComponent(new UIButton("Button 2", () -> System.out.println("Button 2 pressed")));
-        pauseContainer.addUIComponent(new UIButton("Exit", () -> System.exit(0)));
+        pauseContainer.addUIComponent(new UIButton("Menu", (state) -> state.setNextState(new MenuState(windowSize, input))));
+        pauseContainer.addUIComponent(new UIButton("Button 2", (state) -> System.out.println("Button 2 pressed")));
+        pauseContainer.addUIComponent(new UIButton("Exit", (state) -> System.exit(0)));
         uiContainers.add(pauseContainer);
     }
 

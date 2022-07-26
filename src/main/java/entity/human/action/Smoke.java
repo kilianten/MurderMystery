@@ -2,7 +2,7 @@ package entity.human.action;
 
 import entity.MovingEntity;
 import game.GameLoop;
-import game.state.State;
+import state.State;
 
 public class Smoke extends Action {
 

@@ -4,7 +4,7 @@ import ai.AIManager;
 import controller.Controller;
 import entity.human.Human;
 import entity.human.effect.Effect;
-import game.state.State;
+import state.State;
 import graphics.AnimationManager;
 import graphics.SpriteLibrary;
 

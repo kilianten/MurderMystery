@@ -2,7 +2,7 @@ package ui;
 
 import core.Position;
 import core.Size;
-import game.state.State;
+import state.State;
 import graphics.ImageUtils;
 
 import java.awt.*;
@@ -16,6 +16,8 @@ public abstract class UIContainer extends UIComponent {
 
     protected Alignment alignment;
     protected Size windowSize;
+
+    protected Size fixedSize;
 
     protected List<UIComponent> children;
 
@@ -36,7 +38,8 @@ public abstract class UIContainer extends UIComponent {
 
     private void calculateSize() {
         Size calculatedContentSize = calculateContentSize();
-        size = new Size(
+        size =  fixedSize != null ? fixedSize :
+                new Size(
                 padding.getHorizontal() + calculatedContentSize.getWidth(),
                 padding.getVertical() + calculatedContentSize.getHeight());
     }
@@ -97,6 +100,10 @@ public abstract class UIContainer extends UIComponent {
 
     public void setBackgroundColor(Color color) {
         backgroundColor = color;
+    }
+
+    public void setFixedSize(Size fixedSize) {
+        this.fixedSize = fixedSize;
     }
 
     public void setAlignment(Alignment alignment) {

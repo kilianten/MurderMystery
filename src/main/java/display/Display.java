@@ -1,7 +1,7 @@
 package display;
 
 import game.Game;
-import game.state.State;
+import state.State;
 import input.Input;
 
 import javax.swing.*;
@@ -11,12 +11,12 @@ import java.awt.image.BufferStrategy;
 public class Display extends JFrame {
 
     private Canvas canvas;
-    private final String GAME_TITLE = "Roaten Island";
+
     private Renderer renderer;
     private DebugRenderer debugRenderer;
 
     public Display(int width, int height, Input input){
-        setTitle(GAME_TITLE);
+        setTitle(Game.GAME_TITLE);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setResizable(false);
 

@@ -2,7 +2,7 @@ package entity;
 
 import controller.Controller;
 import core.*;
-import game.state.State;
+import state.State;
 import graphics.AnimationManager;
 import graphics.SpriteLibrary;
 
