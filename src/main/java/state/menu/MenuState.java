@@ -13,6 +13,8 @@ public class MenuState extends State {
         gameMap = new GameMap(new Size(50, 50), spriteLibrary);
 
         uiContainers.add(new UIMainMenu(windowSize));
+
+        audioPlayer.playMusic("metal.wav");
     }
 
     public void enterMenu(UIContainer container){

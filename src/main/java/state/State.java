@@ -1,5 +1,6 @@
 package state;
 
+import audio.AudioPlayer;
 import core.Position;
 import core.Size;
 import display.Camera;
@@ -18,6 +19,7 @@ import java.util.stream.Collectors;
 
 public abstract class State {
 
+    protected AudioPlayer audioPlayer;
     protected GameMap gameMap;
     protected List<GameObject> gameObjects;
 
@@ -37,6 +39,7 @@ public abstract class State {
         uiContainers = new ArrayList<>();
         spriteLibrary = new SpriteLibrary();
         this.input = input;
+        audioPlayer = new AudioPlayer();
         this.camera = new Camera(windowSize);
         clock = new Clock();
     }
