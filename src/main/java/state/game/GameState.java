@@ -8,6 +8,7 @@ import entity.human.NPC.Karl;
 import entity.human.NPC.Nolan;
 import entity.Player;
 import entity.SelectionCircle;
+import game.settings.GameSettings;
 import state.game.ui.UIGameTime;
 import input.Input;
 import map.GameMap;
@@ -40,14 +41,14 @@ public class GameState extends State {
         VerticalContainer pauseContainer = new VerticalContainer(camera.getSize());
         pauseContainer.setAlignment(new Alignment(Alignment.Position.CENTER, Alignment.Position.CENTER));
         pauseContainer.setBackgroundColor(Color.DARK_GRAY);
-        pauseContainer.addUIComponent(new UIButton("Menu", (state) -> state.setNextState(new MenuState(windowSize, input))));
+        pauseContainer.addUIComponent(new UIButton("Menu", (state) -> state.setNextState(new MenuState(windowSize, input, settings))));
         pauseContainer.addUIComponent(new UIButton("Button 2", (state) -> System.out.println("Button 2 pressed")));
         pauseContainer.addUIComponent(new UIButton("Exit", (state) -> System.exit(0)));
         uiContainers.add(pauseContainer);
     }
 
-    public GameState(Size windowSize, Input input) {
-        super(windowSize, input);
+    public GameState(Size windowSize, Input input, GameSettings settings) {
+        super(windowSize, input, settings);
         gameMap = new GameMap(new Size(50, 50), spriteLibrary);
         initialiseCharacters();
         initializeUI(windowSize);

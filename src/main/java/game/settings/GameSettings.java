@@ -3,12 +3,10 @@ package game.settings;
 public class GameSettings {
 
     private boolean debugMode;
-    private float musicVolume;
-    private float soundVolume;
+    private AudioSettings audioSettings;
 
     public GameSettings() {
-        musicVolume = 0;
-        soundVolume = 0;
+        this.audioSettings = new AudioSettings();
     }
 
     public boolean isDebugMode() {
@@ -23,19 +21,8 @@ public class GameSettings {
         this.debugMode = debugMode;
     }
 
-    public float getMusicVolume() {
-        return musicVolume;
+    public AudioSettings getAudioSettings() {
+        return audioSettings;
     }
 
-    public void setMusicVolume(float musicVolume) {
-        this.musicVolume = musicVolume;
-    }
-
-    public float getSoundVolume() {
-        return soundVolume;
-    }
-
-    public void setSoundVolume(float soundVolume) {
-        this.soundVolume = soundVolume;
-    }
 }
