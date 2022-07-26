@@ -56,4 +56,9 @@ public class AudioPlayer {
         return null;
     }
 
+    public void clear(){
+        audioClips.forEach(AudioClip::cleanUp);
+        audioClips.clear();
+    }
+
 }

@@ -42,6 +42,7 @@ public class Game {
     }
 
     public void enterState(State nextState) {
+        state.cleanUp();
         state = nextState;
     }
 }

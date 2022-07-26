@@ -123,4 +123,12 @@ public abstract class State {
     public GameSettings getSettings() {
         return settings;
     }
+
+    public AudioPlayer getAudioPlayer() {
+        return audioPlayer;
+    }
+
+    public void cleanUp() {
+        audioPlayer.clear();
+    }
 }
