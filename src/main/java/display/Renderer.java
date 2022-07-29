@@ -23,6 +23,12 @@ public class Renderer {
                 uiContainer.getRelativePosition().getIntY(),
                 null
         ));
+        state.UIElements.forEach(uiElement -> graphics.drawImage(
+                uiElement.getSprite(),
+                uiElement.getRelativePosition().getIntX(),
+                uiElement.getRelativePosition().getIntY(),
+                null
+        ));
     }
 
     private void renderGameObjects(State state, Graphics graphics, Camera camera){
@@ -50,6 +56,14 @@ public class Renderer {
                         y * Game.SPRITE_SIZE - camera.getPosition().getIntY(),
                         null
                         );
+                if(state.getSettings().getRenderSettings().getShouldRenderGrid().getValue()){
+                    graphics.setColor(Color.BLACK);
+                    graphics.drawRect(
+                            x * Game.SPRITE_SIZE - camera.getPosition().getIntX(),
+                            y * Game.SPRITE_SIZE - camera.getPosition().getIntY(),
+                            Game.SPRITE_SIZE,
+                            Game.SPRITE_SIZE);
+                }
             }
         }
     }

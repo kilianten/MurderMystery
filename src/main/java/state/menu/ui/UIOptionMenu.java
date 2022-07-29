@@ -23,10 +23,10 @@ public class UIOptionMenu extends VerticalContainer {
         alignment = new Alignment(Alignment.Position.CENTER, Alignment.Position.CENTER);
 
         musicVolumeSlider = new UISlider(0, 1, settings.getAudioSettings().getMusicVolume());
-        musicVolumeLabel = new UIText("", 30, 30);
+        musicVolumeLabel = new UIText("", 30, 30, true);
 
         soundVolumeSlider = new UISlider(0, 1, settings.getAudioSettings().getSoundVolume());
-        soundVolumeLabel = new UIText("", 30, 30);
+        soundVolumeLabel = new UIText("", 30, 30,false);
 
         addUIComponent(new UIText("OPTIONS"));
 

@@ -21,6 +21,8 @@ public abstract class UIContainer extends UIComponent {
 
     protected List<UIComponent> children;
 
+    protected boolean isRounded;
+
     public UIContainer(Size windowSize) {
         super();
         this.windowSize = windowSize;
@@ -75,7 +77,12 @@ public abstract class UIContainer extends UIComponent {
         Graphics2D graphics = image.createGraphics();
 
         graphics.setColor(backgroundColor);
-        graphics.fillRect(0, 0, size.getWidth(), size.getHeight());
+
+        if(isRounded){
+            graphics.fillRoundRect(0, 0, size.getWidth(), size.getHeight(), 2, 2);
+        } else {
+            graphics.fillRect(0, 0, size.getWidth(), size.getHeight());
+        }
 
         for(UIComponent uiComponent : children) {
             graphics.drawImage(
@@ -112,6 +119,10 @@ public abstract class UIContainer extends UIComponent {
 
     public void setAlignment(Alignment alignment) {
         this.alignment = alignment;
+    }
+
+    public void setRoundedContainer(boolean isRounded){
+        this.isRounded = isRounded;
     }
 
 }

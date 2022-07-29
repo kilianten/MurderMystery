@@ -30,7 +30,7 @@ public class DebugRenderer {
         Camera camera = state.getCamera();
         state.getGameObjectsOfClass(NPC.class).stream()
                 .forEach(npc ->
-                {   UIText nameText = new UIText(npc.getFirstName(), 30, 25);
+                {   UIText nameText = new UIText(npc.getFirstName(), 30, 25, false);
                     nameText.update(state);
                     graphics.drawImage(
                             nameText.getSprite(),

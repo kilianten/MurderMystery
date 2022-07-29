@@ -9,32 +9,40 @@ import entity.human.NPC.Nolan;
 import entity.Player;
 import entity.SelectionCircle;
 import game.settings.GameSettings;
+import state.game.ui.ConversationBox;
 import state.game.ui.UIGameTime;
 import input.Input;
 import map.GameMap;
 import state.State;
 import state.menu.MenuState;
-import state.menu.ui.UIMainMenu;
 import ui.Alignment;
+import ui.UIComponent;
 import ui.VerticalContainer;
 import ui.clickable.UIButton;
 
 import java.awt.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.awt.event.KeyEvent;
 import java.util.Collections;
 
 public class GameState extends State {
 
-    private boolean paused;
-
     @Override
     protected void handleMouseInput(){
         super.handleMouseInput();
+    }
 
+    @Override
+    public void handleKeyInput(){
         if(input.isPressed(KeyEvent.VK_ESCAPE)){
-            pause();
+            paused = !paused;
+            if(paused){
+                pause();
+            }
         }
     }
+
 
     private void pause(){
         paused = true;
@@ -78,4 +86,9 @@ public class GameState extends State {
          uiContainers.add(new UIGameTime(windowSize));
     }
 
+    public void startConversation(){
+        ConversationBox conversationBox = new ConversationBox();
+        conversationBox.setSize(new Size(600, 200));
+        UIElements.add(conversationBox);
+    }
 }

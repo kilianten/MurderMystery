@@ -26,10 +26,10 @@ public class UIText extends UIComponent {
     int displaySize;
 
     public UIText(String text) {
-        this(text, 40, 25);
+        this(text, 40, 25, true);
     }
 
-    public UIText(String text, int fontSize, int displaySize) {
+    public UIText(String text, int fontSize, int displaySize, boolean dropShadow) {
         this.text = text;
         this.fontSize = fontSize;
         this.fontStyle = Font.PLAIN;
@@ -37,12 +37,11 @@ public class UIText extends UIComponent {
         this.colour = Color.WHITE;
 
 
-        this.dropShadow = true;
+        this.dropShadow = dropShadow;
         this.dropShadowOffset = 2;
-        this.shadowColour = new Color(49, 42, 141);
+        this.shadowColour = new Color(29, 25, 78);
         this.displaySize = displaySize;
         createFont();
-
     }
 
     @Override

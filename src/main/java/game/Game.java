@@ -4,7 +4,6 @@ import controller.GameController;
 import core.Size;
 import display.Display;
 import game.settings.GameSettings;
-import state.game.GameState;
 import state.State;
 import input.Input;
 import state.menu.MenuState;

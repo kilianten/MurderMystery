@@ -5,6 +5,7 @@ import entity.human.Human;
 import game.Game;
 import state.State;
 import graphics.SpriteLibrary;
+import state.game.GameState;
 
 import java.util.Comparator;
 import java.util.Optional;
@@ -28,12 +29,13 @@ public class Player extends Human {
         super.update(state);
         handleTarget(state);
 
-        handleInput();
+        handleInput(state);
     }
 
-    private void handleInput() {
+    private void handleInput(State state) {
         if(controller.isRequestingAction()){
             if(target != null){
+                ((GameState) state).startConversation();
                 System.out.println(target);
             }
         }

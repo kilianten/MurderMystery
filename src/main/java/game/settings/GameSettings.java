@@ -3,10 +3,12 @@ package game.settings;
 public class GameSettings {
 
     private boolean debugMode;
-    private AudioSettings audioSettings;
+    private final AudioSettings audioSettings;
+    private final RenderSettings renderSettings;
 
     public GameSettings() {
         this.audioSettings = new AudioSettings();
+        this.renderSettings = new RenderSettings();
     }
 
     public boolean isDebugMode() {
@@ -25,4 +27,7 @@ public class GameSettings {
         return audioSettings;
     }
 
+    public RenderSettings getRenderSettings() {
+        return renderSettings;
+    }
 }

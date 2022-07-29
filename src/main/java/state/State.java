@@ -11,6 +11,7 @@ import game.settings.GameSettings;
 import graphics.SpriteLibrary;
 import input.Input;
 import map.GameMap;
+import ui.UIComponent;
 import ui.UIContainer;
 
 import java.util.ArrayList;
@@ -34,12 +35,16 @@ public abstract class State {
     private State nextState;
 
     protected List<UIContainer> uiContainers;
+    public List<UIComponent> UIElements;
+
+    protected boolean paused;
 
     public State(Size windowSize, Input input, GameSettings settings) {
         this.settings = settings;
         this.windowSize = windowSize;
         gameObjects = new ArrayList<>();
         uiContainers = new ArrayList<>();
+        UIElements = new ArrayList<>();
         spriteLibrary = new SpriteLibrary();
         this.input = input;
         audioPlayer = new AudioPlayer(settings.getAudioSettings());
@@ -57,6 +62,7 @@ public abstract class State {
         List.copyOf(uiContainers).forEach(UIContainer -> UIContainer.update(this));
         camera.update(this);
         handleMouseInput();
+        handleKeyInput();
 
         if(nextState != null){
             game.enterState(nextState);
@@ -70,6 +76,8 @@ public abstract class State {
 
         input.clearMouseClick();
     }
+
+    public void handleKeyInput(){}
 
     public void sortObjectsByPosition() {
         gameObjects.sort(Comparator.comparing(GameObject::getRenderOrder).thenComparing(gameObject -> gameObject.getPosition().getY()));
@@ -131,4 +139,5 @@ public abstract class State {
     public void cleanUp() {
         audioPlayer.clear();
     }
+
 }
