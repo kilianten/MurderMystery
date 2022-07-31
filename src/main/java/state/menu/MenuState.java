@@ -18,6 +18,11 @@ public class MenuState extends State {
         audioPlayer.playMusic("metal.wav");
     }
 
+    @Override
+    public void setDefaultSettings() {
+        settings.getRenderSettings().getShouldRenderGrid().setValue(false);
+    }
+
     public void enterMenu(UIContainer container){
         uiContainers.clear();
         uiContainers.add(container);

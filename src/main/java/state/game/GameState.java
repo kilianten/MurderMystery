@@ -43,6 +43,11 @@ public class GameState extends State {
         }
     }
 
+    @Override
+    public void setDefaultSettings() {
+        settings.getRenderSettings().getShouldRenderGrid().setValue(false);
+    }
+
 
     private void pause(){
         paused = true;

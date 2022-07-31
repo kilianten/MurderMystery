@@ -50,6 +50,7 @@ public abstract class State {
         audioPlayer = new AudioPlayer(settings.getAudioSettings());
         this.camera = new Camera(windowSize);
         clock = new Clock();
+        setDefaultSettings();
     }
 
     public void update(Game game){
@@ -139,5 +140,7 @@ public abstract class State {
     public void cleanUp() {
         audioPlayer.clear();
     }
+
+    public abstract void setDefaultSettings();
 
 }

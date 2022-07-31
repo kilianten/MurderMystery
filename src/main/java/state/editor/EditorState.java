@@ -11,9 +11,14 @@ import state.editor.ui.UIRenderingSettings;
 public class EditorState extends State {
     public EditorState(Size windowSize, Input input, GameSettings settings) {
         super(windowSize, input, settings);
-        gameMap = new GameMap(new Size(50, 50), spriteLibrary);
+        gameMap = new GameMap(new Size(160, 160), spriteLibrary);
 
         uiContainers.add(new UIEditorMenu(windowSize));
-        uiContainers.add(new UIRenderingSettings(windowSize, settings.getRenderSettings()));
+        uiContainers.add(new UIRenderingSettings(windowSize, settings.getRenderSettings(), gameMap));
+    }
+
+    @Override
+    public void setDefaultSettings() {
+        settings.getRenderSettings().getShouldRenderGrid().setValue(true);
     }
 }

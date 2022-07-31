@@ -12,6 +12,7 @@ import java.util.List;
 
 public abstract class UIContainer extends UIComponent {
 
+    public boolean centerChildren;
     protected Color backgroundColor;
 
     protected Alignment alignment;
@@ -33,6 +34,7 @@ public abstract class UIContainer extends UIComponent {
         children = new ArrayList<>();
         calculateSize();
         calculatePosition();
+        centerChildren = false;
     }
 
     protected abstract Size calculateContentSize();
@@ -123,6 +125,10 @@ public abstract class UIContainer extends UIComponent {
 
     public void setRoundedContainer(boolean isRounded){
         this.isRounded = isRounded;
+    }
+
+    public void setCenterChildren(boolean centerChildren) {
+        this.centerChildren = centerChildren;
     }
 
 }

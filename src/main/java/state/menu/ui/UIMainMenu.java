@@ -17,9 +17,9 @@ public class UIMainMenu extends VerticalContainer {
 
         alignment = new Alignment(Alignment.Position.CENTER, Alignment.Position.CENTER);
 
-        addUIComponent(new UIText(Game.GAME_TITLE, 40, 30, true));
+        addUIComponent(new UIText(Game.GAME_TITLE, 35, 30, true));
         addUIComponent(new UIButton("Play", (state) -> state.setNextState(new GameState(windowSize, state.getInput(), state.getSettings()))));
-        addUIComponent(new UIButton("Level Editor", (state) -> state.setNextState(new EditorState(windowSize, state.getInput(),state.getSettings()))));
+        addUIComponent(new UIButton("Level Edit", (state) -> state.setNextState(new EditorState(windowSize, state.getInput(),state.getSettings()))));
         addUIComponent(new UIButton("Options", (state) -> ((MenuState) state).enterMenu(new UIOptionMenu(windowSize, state.getSettings()))));
         addUIComponent(new UIButton("Exit", (state) -> System.exit(0)));
 
