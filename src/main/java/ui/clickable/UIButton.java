@@ -50,13 +50,15 @@ public class UIButton extends UIClickable {
     }
 
     @Override
-    protected void onDrag(State state) {
+    public void onDrag(State state) {
 
     }
 
     @Override
-    protected void onClick(State state) {
-        clickAction.execute(state);
+    public void onClick(State state) {
+        if(hasFocus){
+            clickAction.execute(state);
+        }
     }
 
     @Override

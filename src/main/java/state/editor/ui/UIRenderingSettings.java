@@ -17,9 +17,7 @@ public class UIRenderingSettings extends VerticalContainer {
         setAlignment(new Alignment(Alignment.Position.END, Alignment.Position.START));
 
         addUIComponent(new UIMiniMap(gameMap));
-        addUIComponent(new UIText("Render Settings"));
         addUIComponent(new UICheckbox("Grid", renderSettings.getShouldRenderGrid()));
-
     }
 
 }

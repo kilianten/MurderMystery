@@ -29,11 +29,6 @@ import java.util.Collections;
 public class GameState extends State {
 
     @Override
-    protected void handleMouseInput(){
-        super.handleMouseInput();
-    }
-
-    @Override
     public void handleKeyInput(){
         if(input.isPressed(KeyEvent.VK_ESCAPE)){
             paused = !paused;

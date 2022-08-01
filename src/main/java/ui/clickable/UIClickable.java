@@ -1,12 +1,13 @@
 package ui.clickable;
 
 import core.Position;
+import input.mouse.MouseConsumer;
 import state.State;
 import ui.UIComponent;
 
 import java.awt.*;
 
-public abstract class UIClickable extends UIComponent {
+public abstract class UIClickable extends UIComponent implements MouseConsumer {
 
     protected boolean hasFocus;
     protected boolean isPressed;
@@ -19,10 +20,6 @@ public abstract class UIClickable extends UIComponent {
         hasFocus = getBounds().contains(mousePosition.getIntX(), mousePosition.getIntY());
         isPressed = hasFocus && state.getInput().isMousePressed();
 
-        if(hasFocus && state.getInput().isMouseClicked()) {
-            onClick(state);
-        }
-
         if(hasFocus && state.getInput().isMousePressed()){
             onDrag(state);
         }
@@ -30,11 +27,13 @@ public abstract class UIClickable extends UIComponent {
         if(!previousFocus && hasFocus){
             onFocus(state);
         }
+
+        if(hasFocus){
+            state.getMouseHandler().setActiveConsumer(this);
+        }
     }
 
     protected abstract void onFocus(State state);
-    protected abstract void onDrag(State state);
-    protected abstract void onClick(State state);
 
     private Rectangle getBounds() {
         return new Rectangle(
