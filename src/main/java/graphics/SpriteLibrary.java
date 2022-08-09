@@ -27,6 +27,7 @@ public class SpriteLibrary {
     public static final int DEFAULT_EXTRA_COLOUR = 0xFFff009c;
 
     private Map<String, SpriteSet> units;
+
     private Map<String, Image> tiles;
 
     public SpriteLibrary(){
@@ -132,6 +133,9 @@ public class SpriteLibrary {
         return convertedSpriteSet;
     }
 
+    public Map<String, Image> getAllTiles() {
+        return tiles;
+    }
 
 
 }

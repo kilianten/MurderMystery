@@ -57,4 +57,13 @@ public class GameMap {
                 Math.min(tiles[0].length, camera.getPosition().getY() / Game.SPRITE_SIZE + camera.getSize().getHeight() / Game.SPRITE_SIZE + SAFETY_SPACE)
         );
     }
+
+    public boolean gridWithinBounds(int gridX, int gridY) {
+        return gridX >= 0 && gridX < tiles.length
+                && gridY >= 0 && gridY < tiles[0].length;
+    }
+
+    public void setTile(int gridX, int gridY, Tile tile) {
+        tiles[gridX][gridY] = tile;
+    }
 }

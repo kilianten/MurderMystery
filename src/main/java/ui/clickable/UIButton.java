@@ -16,13 +16,17 @@ public class UIButton extends UIClickable {
     private ClickAction clickAction;
 
     public UIButton(String label, ClickAction clickAction) {
-        this.label = new UIText(label);
+        this(label, clickAction, new Size(150, 40));
+    }
+
+    public UIButton(String label, ClickAction clickAction, Size size) {
+        this.label = new UIText(label, size.getHeight(), size.getHeight() - 15, true);
         this.clickAction = clickAction;
 
         container = new VerticalContainer(new Size(0, 0));
         container.setCenterChildren(true);
         container.addUIComponent(this.label);
-        container.setFixedSize(new Size(150, 40));
+        container.setFixedSize(size);
     }
 
     @Override
