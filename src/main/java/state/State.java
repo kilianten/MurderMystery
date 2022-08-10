@@ -11,6 +11,7 @@ import game.settings.GameSettings;
 import graphics.SpriteLibrary;
 import input.Input;
 import input.mouse.MouseHandler;
+import io.MapIO;
 import map.GameMap;
 import ui.UIComponent;
 import ui.UIContainer;
@@ -142,6 +143,11 @@ public abstract class State {
     public MouseHandler getMouseHandler() {
         return mouseHandler;
     }
+
+    public void loadGameMap() {
+        gameMap = MapIO.load(spriteLibrary);
+    }
+
 
 
 }
