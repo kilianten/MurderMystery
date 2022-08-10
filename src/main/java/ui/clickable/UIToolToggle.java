@@ -1,6 +1,7 @@
 package ui.clickable;
 
 import graphics.ImageUtils;
+import input.mouse.action.MouseAction;
 import input.mouse.action.TilePlacer;
 import map.Tile;
 import state.State;
@@ -9,24 +10,24 @@ import ui.UIImage;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
-public class UITileToggle extends UIClickable {
+public class UIToolToggle extends UIClickable {
 
     private UIImage image;
     private BufferedImage activeSprite;
-    private TilePlacer tilePlacer;
+    private MouseAction mouseAction;
     private boolean active;
 
-    public UITileToggle(Tile tile) {
-        image = new UIImage(tile.getSprite());
-        tilePlacer = new TilePlacer(tile);
-        size = image.getSize();
+    public UIToolToggle(Image image, MouseAction mouseAction) {
+        this.image = new UIImage(image);
+        this.mouseAction = mouseAction;
+        size = this.image.getSize();
         generateActiveSprite();
     }
 
     @Override
     public void update(State state){
         super.update(state);
-        active = state.getMouseHandler().getPrimaryButtonAction().equals(tilePlacer);
+        active = state.getMouseHandler().getPrimaryButtonAction().equals(mouseAction);
     }
 
     private void generateActiveSprite() {
@@ -44,7 +45,7 @@ public class UITileToggle extends UIClickable {
 
     @Override
     public void onClick(State state) {
-        state.getMouseHandler().setPrimaryButtonAction(tilePlacer);
+        state.getMouseHandler().setPrimaryButtonAction(mouseAction);
     }
 
     @Override

@@ -118,6 +118,10 @@ public abstract class State {
                 .collect(Collectors.toList());
     }
 
+    public void spawn(GameObject gameObject) {
+        gameObjects.add(gameObject);
+    }
+
     public Input getInput() {
         return input;
     }
@@ -147,7 +151,5 @@ public abstract class State {
     public void loadGameMap() {
         gameMap = MapIO.load(spriteLibrary);
     }
-
-
 
 }

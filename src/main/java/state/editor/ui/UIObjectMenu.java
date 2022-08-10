@@ -1,14 +1,18 @@
 package state.editor.ui;
 
+import core.Position;
 import core.Size;
+import entity.Scenery;
+import game.Game;
 import graphics.SpriteLibrary;
+import input.mouse.action.SceneryPlacer;
+import input.mouse.action.TilePlacer;
 import map.Tile;
 import ui.Alignment;
 import ui.HorizontalContainer;
-import ui.UIComponent;
 import ui.VerticalContainer;
 import ui.clickable.UIButton;
-import ui.clickable.UITileToggle;
+import ui.clickable.UIToolToggle;
 
 import java.awt.*;
 
@@ -17,6 +21,7 @@ public class UIObjectMenu extends HorizontalContainer {
     HorizontalContainer tileContainer;
     HorizontalContainer buildingContainer;
     HorizontalContainer currentContainer;
+    HorizontalContainer sceneryContainer;
 
     public UIObjectMenu(Size windowSize, SpriteLibrary spriteLibrary) {
         super(windowSize);
@@ -26,11 +31,13 @@ public class UIObjectMenu extends HorizontalContainer {
         VerticalContainer ObjectTypeMenu = new VerticalContainer(windowSize);
         ObjectTypeMenu.addUIComponent(new UIButton("Tiles", state -> {setCurrentContainer(tileContainer);}, new Size(150, 30)));
         ObjectTypeMenu.addUIComponent(new UIButton("Buildings", state -> {setCurrentContainer(buildingContainer);}, new Size(150, 30)));
+        ObjectTypeMenu.addUIComponent(new UIButton("Scenery", state -> {setCurrentContainer(sceneryContainer);}, new Size(150, 30)));
         addUIComponent(ObjectTypeMenu);
 
 
         buildingContainer = new HorizontalContainer(windowSize);
         createTileContainer(spriteLibrary);
+        createSceneryContainer(spriteLibrary);
         currentContainer = tileContainer;
         addUIComponent(tileContainer);
     }
@@ -43,8 +50,23 @@ public class UIObjectMenu extends HorizontalContainer {
 
     private void createTileContainer(SpriteLibrary spriteLibrary){
         tileContainer = new HorizontalContainer(windowSize);
-        for(String tile: spriteLibrary.getAllTiles().keySet()){
-            tileContainer.addUIComponent(new UITileToggle(new Tile(spriteLibrary, tile)));
+        for(String tileName: spriteLibrary.getAllTiles().keySet()){
+            Tile tile = new Tile(spriteLibrary, tileName);
+            tileContainer.addUIComponent(new UIToolToggle(tile.getSprite(), new TilePlacer(tile)));
         }
+    }
+
+    private void createSceneryContainer(SpriteLibrary spriteLibrary){
+        sceneryContainer = new HorizontalContainer(windowSize);
+        sceneryContainer.addUIComponent(new UIToolToggle(spriteLibrary.getSceneryImage("pinetree").getScaledInstance(Game.SPRITE_SIZE, Game.SPRITE_SIZE, Image.SCALE_SMOOTH),
+                new SceneryPlacer(new Scenery(
+                        "pinetree",
+                        new Size(192, 192),
+                        new Position(96, 128),
+                        new Size(32, 96),
+                        new Position(16, 64),
+                        false,
+                        spriteLibrary
+                ))));
     }
 }

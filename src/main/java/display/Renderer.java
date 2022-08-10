@@ -1,5 +1,6 @@
 package display;
 
+import core.CollisionBox;
 import core.Position;
 import game.Game;
 import state.State;
@@ -40,12 +41,17 @@ public class Renderer {
     private void renderGameObjects(State state, Graphics graphics, Camera camera){
         state.getGameObjects().stream()
                 .filter(gameObject -> camera.isInView(gameObject))
-                .forEach(gameObject -> graphics.drawImage(
-                        gameObject.getSprite(),
-                        gameObject.getRenderPosition(camera).getIntX(),
-                        gameObject.getRenderPosition(camera).getIntY(),
-                        null
-                ));
+                .forEach(gameObject -> {
+                    graphics.drawImage(
+                            gameObject.getSprite(),
+                            gameObject.getRenderPosition(camera).getIntX(),
+                            gameObject.getRenderPosition(camera).getIntY(),
+                            null
+                    );
+                    if(state.getSettings().getRenderSettings().getCollisionBox().getValue()){
+                        drawCollisionBox(gameObject.getCollisionBox(), graphics, camera);
+                    }
+                });
     }
 
     private void renderMap(State state, Graphics graphics) {
@@ -72,5 +78,14 @@ public class Renderer {
                 }
             }
         }
+    }
+
+    public void drawCollisionBox(CollisionBox collisionBox, Graphics graphics, Camera camera){
+        graphics.setColor(Color.RED);
+        graphics.drawRect(
+                (int) collisionBox.getBounds().getX() - camera.getPosition().getIntX(),
+                (int) collisionBox.getBounds().getY() - camera.getPosition().getIntY(),
+                (int) collisionBox.getBounds().getWidth(),
+                (int) collisionBox.getBounds().getHeight());
     }
 }

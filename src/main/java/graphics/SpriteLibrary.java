@@ -27,25 +27,27 @@ public class SpriteLibrary {
     public static final int DEFAULT_EXTRA_COLOUR = 0xFFff009c;
 
     private Map<String, SpriteSet> units;
-
+    private Map<String, Image> sceneryObjects;
     private Map<String, Image> tiles;
 
     public SpriteLibrary(){
         units = new HashMap<>();
         tiles = new HashMap<>();
+        sceneryObjects = new HashMap<>();
         loadSpritesFromDisk();
     }
 
     private void loadSpritesFromDisk() {
         loadUnits("/sprites/units");
-        loadTiles("/sprites/tiles");
+        loadImages("/sprites/tiles", tiles);
+        loadImages("/sprites/scenery", sceneryObjects);
     }
 
-    private void loadTiles(String path) {
+    private void loadImages(String path, Map<String, Image> images) {
         String[] imagesInFolder = getImagesInFolder(path);
 
         for(String fileName: imagesInFolder){
-            tiles.put(
+            images.put(
                     fileName.substring(0, fileName.length() - 4),
                     ImageUtils.loadImage(path + "/" + fileName)
             );
@@ -137,5 +139,8 @@ public class SpriteLibrary {
         return tiles;
     }
 
+    public Image getSceneryImage(String name) {
+        return sceneryObjects.get(name);
+    }
 
 }

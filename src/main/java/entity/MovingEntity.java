@@ -18,8 +18,6 @@ public abstract class MovingEntity extends GameObject {
 
     protected Vector2D directionVector;
 
-    protected Size collisionBoxSize;
-
     public MovingEntity(Controller controller, SpriteLibrary spriteLibrary){
         super();
         this.controller = controller;
