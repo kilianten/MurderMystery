@@ -1,6 +1,8 @@
 package core;
 
-public class Position {
+import io.Persistable;
+
+public class Position implements Persistable {
 
     private double x;
     private double y;
@@ -76,5 +78,17 @@ public class Position {
         double deltaY = this.getY() - other.getY();
 
         return Math.sqrt(deltaX * deltaX + deltaY * deltaY);
+    }
+
+    @Override
+    public String serialise() {
+        return String.format("%d|%d", (int) x, (int) y);
+    }
+
+    @Override
+    public void applySerialisedData(String serializedData) {
+        String[] tokens = serializedData.split("\\|");
+        x = Double.parseDouble(tokens[0]);
+        y = Double.parseDouble(tokens[1]);
     }
 }

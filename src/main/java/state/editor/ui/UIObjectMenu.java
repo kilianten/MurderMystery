@@ -62,9 +62,9 @@ public class UIObjectMenu extends HorizontalContainer {
                 new SceneryPlacer(new Scenery(
                         "pinetree",
                         new Size(192, 192),
-                        new Position(96, 128),
-                        new Size(32, 96),
-                        new Position(16, 64),
+                        new Position(96, 142),
+                        new Size(32, 32),
+                        new Position(16, 16),
                         false,
                         spriteLibrary
                 ))));

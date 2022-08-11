@@ -5,6 +5,7 @@ import core.Position;
 import core.Size;
 import display.Camera;
 import entity.GameObject;
+import entity.Scenery;
 import game.Clock;
 import game.Game;
 import game.settings.GameSettings;
@@ -150,6 +151,12 @@ public abstract class State {
 
     public void loadGameMap() {
         gameMap = MapIO.load(spriteLibrary);
+        gameObjects.addAll(gameMap.getSceneryList());
+    }
+
+    public void saveGameMap() {
+        gameMap.setSceneryList(getGameObjectsOfClass(Scenery.class));
+        MapIO.save(gameMap);
     }
 
 }

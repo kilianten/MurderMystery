@@ -1,7 +1,11 @@
-package entity;
+package entity.human.NPC;
 
 import ai.AIManager;
 import controller.Controller;
+import entity.ColourHandler;
+import entity.GameObject;
+import entity.Player;
+import entity.Scenery;
 import entity.human.Human;
 import entity.human.effect.Effect;
 import state.State;
@@ -12,7 +16,7 @@ public abstract class NPC extends Human {
 
     private AIManager aiManager;
 
-    public NPC(Controller controller, SpriteLibrary spriteLibrary, String spriteSheet,ColourHandler colourHandler) {
+    public NPC(Controller controller, SpriteLibrary spriteLibrary, String spriteSheet, ColourHandler colourHandler) {
         super(controller, spriteLibrary);
         animationManager = new AnimationManager(spriteLibrary.getUnit(spriteSheet, colourHandler));
 
@@ -31,7 +35,8 @@ public abstract class NPC extends Human {
 
     @Override
     protected void handleCollision(GameObject other) {
-        if(other instanceof Player){
+        if(other instanceof Player ||
+                (other instanceof Scenery && !((Scenery) other).isWalkable())){
             motion.stop(willCollideX(other), willCollideY(other));
         }
     }

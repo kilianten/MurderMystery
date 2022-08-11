@@ -2,6 +2,7 @@ package entity;
 
 import controller.Controller;
 import entity.human.Human;
+import entity.human.NPC.NPC;
 import game.Game;
 import state.State;
 import graphics.SpriteLibrary;
@@ -65,6 +66,8 @@ public class Player extends Human {
 
     @Override
     protected void handleCollision(GameObject other) {
-
+        if(other instanceof Scenery && !((Scenery) other).isWalkable()){
+            motion.stop(willCollideX(other), willCollideY(other));
+        }
     }
 }

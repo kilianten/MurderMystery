@@ -1,6 +1,10 @@
 package core;
 
-public class Size {
+import io.Persistable;
+
+import java.io.Serializable;
+
+public class Size implements Persistable {
 
     private int width;
     private int height;
@@ -22,4 +26,15 @@ public class Size {
         return height;
     }
 
+    @Override
+    public String serialise() {
+        return String.format("%d|%d", width, height);
+    }
+
+    @Override
+    public void applySerialisedData(String serializedData) {
+        String[] tokens = serializedData.split("\\|");
+        width = Integer.parseInt(tokens[0]);
+        height = Integer.parseInt(tokens[1]);
+    }
 }

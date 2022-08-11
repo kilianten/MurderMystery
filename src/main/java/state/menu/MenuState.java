@@ -11,7 +11,7 @@ import ui.UIContainer;
 public class MenuState extends State {
     public MenuState(Size windowSize, Input input, GameSettings settings) {
         super(windowSize, input, settings);
-        gameMap = new GameMap(new Size(50, 50), spriteLibrary);
+        loadGameMap();
 
         uiContainers.add(new UIMainMenu(windowSize));
 

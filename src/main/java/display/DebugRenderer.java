@@ -1,6 +1,6 @@
 package display;
 
-import entity.NPC;
+import entity.human.NPC.NPC;
 import state.State;
 import ui.UIText;
 

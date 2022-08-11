@@ -3,23 +3,29 @@ package map;
 import core.Position;
 import core.Size;
 import display.Camera;
+import entity.Scenery;
 import game.Game;
 import graphics.SpriteLibrary;
 import io.Persistable;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class GameMap implements Persistable {
 
     private static final int SAFETY_SPACE = 2;
 
     private Tile[][] tiles;
-    private String name;
+    private List<Scenery> sceneryList;
 
-    public GameMap(){}
+    public GameMap(){
+        sceneryList = new ArrayList<>();
+    }
 
     public GameMap(Size size, SpriteLibrary spriteLibrary) {
         tiles = new Tile[size.getWidth()][size.getHeight()];
+        sceneryList = new ArrayList<>();
         initializeTiles(spriteLibrary);
     }
 
@@ -54,6 +60,7 @@ public class GameMap implements Persistable {
                 tile.reloadGraphics(spriteLibrary);
             }
         }
+        sceneryList.forEach(scenery -> scenery.loadGraphics(spriteLibrary));
     }
 
     public Position getViewableStartingGridPosition(Camera camera) {
@@ -79,6 +86,14 @@ public class GameMap implements Persistable {
         tiles[gridX][gridY] = tile;
     }
 
+    public List<Scenery> getSceneryList() {
+        return sceneryList;
+    }
+
+    public void setSceneryList(List<Scenery> sceneryList) {
+        this.sceneryList = sceneryList;
+    }
+
     @Override
     public String serialise() {
         StringBuilder stringBuilder = new StringBuilder();
@@ -96,15 +111,22 @@ public class GameMap implements Persistable {
             }
             stringBuilder.append(COLUMN_DELIMITER);
         }
+
+        stringBuilder.append(SECTION_DELIMITER);
+        sceneryList.forEach(scenery -> {
+            stringBuilder.append(scenery.serialise());
+            stringBuilder.append(COLUMN_DELIMITER);
+        });
         return stringBuilder.toString();
     }
 
     @Override
     public void applySerialisedData(String serializedData) {
         String[] tokens = serializedData.split(DELIMITER);
+        String[] sections = serializedData.split(SECTION_DELIMITER);
         tiles = new Tile[Integer.parseInt(tokens[1])][Integer.parseInt(tokens[2])];
 
-        String tileSection = serializedData.split(SECTION_DELIMITER)[1];
+        String tileSection = sections[1];
         String[] columns = tileSection.split(COLUMN_DELIMITER);
 
         for(int x = 0; x < tiles.length; x++) {
@@ -114,6 +136,16 @@ public class GameMap implements Persistable {
                 tile.applySerialisedData(serializedTiles[y]);
 
                 tiles[x][y] = tile;
+            }
+        }
+
+        if(sections.length > 2){ //have scenery
+            String scenerySection = sections[2];
+            String[] serializedSceneries = scenerySection.split(COLUMN_DELIMITER);
+            for(String serializedScenery: serializedSceneries){
+                Scenery scenery = new Scenery();
+                scenery.applySerialisedData(serializedScenery);
+                sceneryList.add(scenery);
             }
         }
     }

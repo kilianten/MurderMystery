@@ -27,7 +27,7 @@ public abstract class Human extends MovingEntity {
         effects = new ArrayList<>();
         action = Optional.empty();
 
-        this.collisionBoxSize = new Size(14, 30);
+        this.collisionBoxSize = new Size(14, 16);
         this.renderOffset = new Position(size.getWidth() / 2, size.getHeight() - 12);
         this.collisionBoxOffset = new Position(collisionBoxSize.getWidth() / 2, collisionBoxSize.getHeight());
     }

@@ -57,7 +57,7 @@ public class GameState extends State {
 
     public GameState(Size windowSize, Input input, GameSettings settings) {
         super(windowSize, input, settings);
-        gameMap = new GameMap(new Size(50, 50), spriteLibrary);
+        loadGameMap();
         initialiseCharacters();
         initializeUI(windowSize);
     }

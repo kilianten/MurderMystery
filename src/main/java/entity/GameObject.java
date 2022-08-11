@@ -26,6 +26,7 @@ public abstract class GameObject {
         renderOffset = new Position(0, 0);
         renderOrder = 5;
         collisionBoxOffset = new Position(0, 0);
+        this.collisionBoxSize = new Size(size.getWidth(), size.getHeight());
     }
 
     public abstract CollisionBox getCollisionBox();
