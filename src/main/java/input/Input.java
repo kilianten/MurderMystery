@@ -13,10 +13,31 @@ public class Input implements KeyListener, MouseListener, MouseMotionListener {
     private boolean mouseClicked;
     private boolean mousePressed;
 
+    private boolean rightMouseClicked;
+    private boolean rightMousePressed;
+    private boolean middleMouseClicked;
+    private boolean middleMousePressed;
+
     public Input(){
         pressed = new boolean[256];
         currentlyPressed = new boolean[256];
         mousePosition = new Position(-1, -1);
+    }
+
+    public boolean isRightMouseClicked() {
+        return rightMouseClicked;
+    }
+
+    public boolean isRightMousePressed() {
+        return rightMousePressed;
+    }
+
+    public boolean isMiddleMouseClicked() {
+        return middleMouseClicked;
+    }
+
+    public boolean isMiddleMousePressed() {
+        return middleMousePressed;
     }
 
     public boolean[] getCurrentlyPressed() {
@@ -54,6 +75,8 @@ public class Input implements KeyListener, MouseListener, MouseMotionListener {
 
     public void clearMouseClick(){
         mouseClicked = false;
+        rightMouseClicked = false;
+        middleMouseClicked = false;
     }
 
     @Override
@@ -75,13 +98,25 @@ public class Input implements KeyListener, MouseListener, MouseMotionListener {
 
     @Override
     public void mousePressed(MouseEvent e) {
-        mousePressed = true;
+        mousePressed = e.getButton() == MouseEvent.BUTTON1;
+        rightMousePressed = e.getButton() == MouseEvent.BUTTON3;
+        middleMousePressed = e.getButton() == MouseEvent.BUTTON2;
     }
 
     @Override
     public void mouseReleased(MouseEvent e) {
-        mouseClicked = true;
-        mousePressed = false;
+        if(e.getButton() == MouseEvent.BUTTON1){
+            mouseClicked = true;
+            mousePressed = false;
+        }
+        if(e.getButton() == MouseEvent.BUTTON2){
+            middleMousePressed = true;
+            middleMouseClicked = false;
+        }
+        if(e.getButton() == MouseEvent.BUTTON3){
+            rightMouseClicked = true;
+            rightMousePressed = false;
+        }
     }
 
     @Override

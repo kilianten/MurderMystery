@@ -50,7 +50,6 @@ public class GameState extends State {
         pauseContainer.setAlignment(new Alignment(Alignment.Position.CENTER, Alignment.Position.CENTER));
         pauseContainer.setBackgroundColor(Color.DARK_GRAY);
         pauseContainer.addUIComponent(new UIButton("Menu", (state) -> state.setNextState(new MenuState(windowSize, input, settings))));
-        pauseContainer.addUIComponent(new UIButton("Button 2", (state) -> System.out.println("Button 2 pressed")));
         pauseContainer.addUIComponent(new UIButton("Exit", (state) -> System.exit(0)));
         uiContainers.add(pauseContainer);
     }
@@ -63,13 +62,9 @@ public class GameState extends State {
     }
 
     private void initialiseCharacters() {
-        SelectionCircle selectionCircle = new SelectionCircle();
-
-        Player player = new Player(new PlayerController(input), spriteLibrary, selectionCircle);
+        Player player = new Player(new PlayerController(input), spriteLibrary);
         gameObjects.add(player);
         camera.focusOn(player);
-
-        gameObjects.add(selectionCircle);
 
         initialiseNPCs();
     }

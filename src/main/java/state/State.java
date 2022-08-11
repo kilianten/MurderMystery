@@ -159,4 +159,7 @@ public abstract class State {
         MapIO.save(gameMap);
     }
 
+    public void despawn(GameObject gameObject) {
+        gameObjects.remove(gameObject);
+    }
 }

@@ -18,9 +18,9 @@ public class Player extends Human {
     private double targetRange;
     private SelectionCircle selectionCircle;
 
-    public Player(Controller controller, SpriteLibrary spriteLibrary, SelectionCircle selectionCircle){
+    public Player(Controller controller, SpriteLibrary spriteLibrary){
         super(controller, spriteLibrary);
-        this.selectionCircle = selectionCircle;
+        this.selectionCircle = new SelectionCircle();
         this.targetRange = 2 * Game.SPRITE_SIZE;
         motion.setSpeed(3);
     }
@@ -37,7 +37,6 @@ public class Player extends Human {
         if(controller.isRequestingAction()){
             if(target != null){
                 ((GameState) state).startConversation();
-                System.out.println(target);
             }
         }
     }
@@ -48,12 +47,17 @@ public class Player extends Human {
         if(nearestNPC.isPresent()){
             NPC npc = nearestNPC.get();
             if(!npc.equals(target)){
-                selectionCircle.setParent(npc);
+                if(target != null){
+                    target.detach(selectionCircle);
+                }
+                npc.attach(selectionCircle);
                 target = npc;
             }
         } else {
-            selectionCircle.clearParent();
-            target = null;
+            if(target != null){
+                target.detach(selectionCircle);
+                target = null;
+            }
         }
     }
 

@@ -15,9 +15,13 @@ public class SelectionCircle  extends GameObject {
     private BufferedImage sprite;
 
     public SelectionCircle() {
+        this(1);
+    }
+
+    public SelectionCircle(double scale) {
         this.color = new Color(255, 255, 255, 150);
-        this.size = new Size(32, 10);
-        renderOffset = new Position(size.getWidth() / 2, size.getHeight());
+        this.size = new Size((int) (32 * scale), (int) (10 * scale));
+        renderOffset = new Position(size.getWidth() / 2, size.getHeight() / 2);
         collisionBoxOffset = renderOffset;
         renderOrder = 4;
         initialiseSprite();
@@ -47,6 +51,6 @@ public class SelectionCircle  extends GameObject {
 
     @Override
     public Image getSprite() {
-        return parent != null ? sprite : null;
+        return sprite;
     }
 }

@@ -15,10 +15,7 @@ public class Scenery extends GameObject implements Persistable {
     private String name;
     private boolean walkable;
 
-    public Scenery() {
-        System.out.println(size);
-        System.out.println(collisionBoxSize);
-    }
+    public Scenery() { }
 
     public Scenery(String name,
                    Size size,

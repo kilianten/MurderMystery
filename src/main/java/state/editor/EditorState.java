@@ -3,6 +3,7 @@ package state.editor;
 import core.Size;
 import game.settings.GameSettings;
 import input.Input;
+import input.mouse.action.ClearAction;
 import input.mouse.action.TilePlacer;
 import map.GameMap;
 import map.Tile;
@@ -15,6 +16,7 @@ public class EditorState extends State {
         super(windowSize, input, settings);
         gameMap = new GameMap(new Size(16, 32), spriteLibrary);
         mouseHandler.setPrimaryButtonAction(new TilePlacer(new Tile(spriteLibrary, "pathcenter")));
+        mouseHandler.setRightButtonAction(new ClearAction());
 
         uiContainers.add(new UIEditorMenu(windowSize));
         uiContainers.add(new UIRenderingSettings(windowSize, settings.getRenderSettings(), gameMap));

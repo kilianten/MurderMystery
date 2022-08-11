@@ -7,6 +7,8 @@ import display.Camera;
 import state.State;
 
 import java.awt.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public abstract class GameObject {
 
@@ -20,6 +22,8 @@ public abstract class GameObject {
 
     protected  GameObject parent;
 
+    protected List<GameObject> attachments;
+
     public GameObject(){
         position = new Position(0, 0);
         size = new Size(64, 64);
@@ -27,6 +31,7 @@ public abstract class GameObject {
         renderOrder = 5;
         collisionBoxOffset = new Position(0, 0);
         this.collisionBoxSize = new Size(size.getWidth(), size.getHeight());
+        attachments = new ArrayList<>();
     }
 
     public abstract CollisionBox getCollisionBox();
@@ -74,5 +79,26 @@ public abstract class GameObject {
 
     public void setPosition(Position position) {
         this.position = position;
+    }
+
+    public void attach(GameObject gameObject){
+        gameObject.setPosition(position);
+        attachments.add(gameObject);
+    }
+
+    public void detach(GameObject gameObject){
+        attachments.remove(gameObject);
+    }
+
+    public List<GameObject> getAttachments() {
+        return attachments;
+    }
+
+    public void clearAttachments(){
+        attachments.clear();
+    }
+
+    public void changePositionBy(Position position){
+        this.position.add(position);
     }
 }

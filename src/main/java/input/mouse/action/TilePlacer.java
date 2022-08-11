@@ -48,4 +48,7 @@ public class TilePlacer extends MouseAction {
     public UIImage getSprite() {
         return preview;
     }
+
+    @Override
+    public void cleanup() {}
 }

@@ -11,14 +11,40 @@ public class MouseHandler {
 
     private MouseConsumer activeConsumer;
     private MouseAction primaryButtonAction;
+    private MouseAction rightButtonAction;
+    private MouseAction middleButtonAction;
 
     public void update(State state){
         final Input input = state.getInput();
 
         handlePrimaryButton(state);
+        handleRightButton(state);
+        handleMiddleButton(state);
         handleActiveConsumer(state, input);
 
         cleanUp(input);
+    }
+
+    private void handleMiddleButton(State state) {
+        if(middleButtonAction != null){
+            middleButtonAction.update(state);
+            if(state.getInput().isMiddleMouseClicked()){
+                middleButtonAction.onClick(state);
+            } else if (state.getInput().isMiddleMousePressed()){
+                middleButtonAction.onDrag(state);
+            }
+        }
+    }
+
+    private void handleRightButton(State state) {
+        if(rightButtonAction != null){
+            rightButtonAction.update(state);
+            if(state.getInput().isRightMouseClicked()){
+                rightButtonAction.onClick(state);
+            } else if (state.getInput().isRightMousePressed()){
+                rightButtonAction.onDrag(state);
+            }
+        }
     }
 
     private void handlePrimaryButton(State state) {
@@ -70,5 +96,21 @@ public class MouseHandler {
 
     public MouseAction getPrimaryButtonAction() {
         return primaryButtonAction;
+    }
+
+    public MouseAction getRightButtonAction() {
+        return rightButtonAction;
+    }
+
+    public void setRightButtonAction(MouseAction rightButtonAction) {
+        this.rightButtonAction = rightButtonAction;
+    }
+
+    public MouseAction getMiddleButtonAction() {
+        return middleButtonAction;
+    }
+
+    public void setMiddleButtonAction(MouseAction middleButtonAction) {
+        this.middleButtonAction = middleButtonAction;
     }
 }

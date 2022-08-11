@@ -42,16 +42,21 @@ public class Renderer {
         state.getGameObjects().stream()
                 .filter(gameObject -> camera.isInView(gameObject))
                 .forEach(gameObject -> {
-                    graphics.drawImage(
-                            gameObject.getSprite(),
-                            gameObject.getRenderPosition(camera).getIntX(),
-                            gameObject.getRenderPosition(camera).getIntY(),
-                            null
-                    );
+                    renderGameObject(graphics, camera, gameObject);
                     if(state.getSettings().getRenderSettings().getCollisionBox().getValue()){
                         drawCollisionBox(gameObject.getCollisionBox(), graphics, camera);
                     }
                 });
+    }
+
+    private void renderGameObject(Graphics graphics, Camera camera, entity.GameObject gameObject) {
+        gameObject.getAttachments().forEach(attachment -> renderGameObject(graphics, camera, attachment));
+        graphics.drawImage(
+                gameObject.getSprite(),
+                gameObject.getRenderPosition(camera).getIntX(),
+                gameObject.getRenderPosition(camera).getIntY(),
+                null
+        );
     }
 
     private void renderMap(State state, Graphics graphics) {

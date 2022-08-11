@@ -18,21 +18,8 @@ Tile:grass:0, Tile:grass:0, Tile:grass:0, Tile:grass:0, Tile:grass:0, Tile:grass
 Tile:grass:0, Tile:grass:0, Tile:grass:0, Tile:grass:0, Tile:grass:0, Tile:grass:0, Tile:grass:0, Tile:grass:0, Tile:grass:0, Tile:grass:0, Tile:grass:0, Tile:grass:0, Tile:grass:0, Tile:grass:0, Tile:grass:0, Tile:grass:0, Tile:grass:0, Tile:grass:0, Tile:grass:0, Tile:grass:0, Tile:grass:0, Tile:grass:0, Tile:grass:0, Tile:grass:0, Tile:grass:0, Tile:grass:0, Tile:grass:0, Tile:grass:0, Tile:grass:0, Tile:grass:0, Tile:grass:0, Tile:grass:0, 
 
 ###
+Scenery:pinetree:452|150:192|192:96|142:16|16:32|32:false:
 Scenery:pinetree:242|164:192|192:96|142:16|16:32|32:false:
-Scenery:pinetree:494|171:192|192:96|142:16|16:32|32:false:
-Scenery:pinetree:543|196:192|192:96|142:16|16:32|32:false:
-Scenery:pinetree:602|213:192|192:96|142:16|16:32|32:false:
-Scenery:pinetree:518|234:192|192:96|142:16|16:32|32:false:
-Scenery:pinetree:469|265:192|192:96|142:16|16:32|32:false:
-Scenery:pinetree:526|276:192|192:96|142:16|16:32|32:false:
-Scenery:pinetree:589|290:192|192:96|142:16|16:32|32:false:
-Scenery:pinetree:666|293:192|192:96|142:16|16:32|32:false:
-Scenery:pinetree:490|353:192|192:96|142:16|16:32|32:false:
-Scenery:pinetree:536|353:192|192:96|142:16|16:32|32:false:
-Scenery:pinetree:595|356:192|192:96|142:16|16:32|32:false:
-Scenery:pinetree:648|370:192|192:96|142:16|16:32|32:false:
+Scenery:pinetree:506|230:192|192:96|142:16|16:32|32:false:
+Scenery:pinetree:458|314:192|192:96|142:16|16:32|32:false:
 Scenery:pinetree:225|412:192|192:96|142:16|16:32|32:false:
-Scenery:pinetree:466|419:192|192:96|142:16|16:32|32:false:
-Scenery:pinetree:550|422:192|192:96|142:16|16:32|32:false:
-Scenery:pinetree:614|440:192|192:96|142:16|16:32|32:false:
-Scenery:pinetree:610|443:192|192:96|142:16|16:32|32:false:
