@@ -1,8 +1,6 @@
 package input.mouse.action;
 
 import core.Position;
-import entity.Scenery;
-import input.mouse.action.MouseAction;
 import state.State;
 import ui.UIImage;
 

@@ -17,8 +17,9 @@ public class MouseHandler {
     public void update(State state){
         final Input input = state.getInput();
 
-        handlePrimaryButton(state);
+
         handleRightButton(state);
+        handlePrimaryButton(state);
         handleMiddleButton(state);
         handleActiveConsumer(state, input);
 

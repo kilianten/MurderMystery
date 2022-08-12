@@ -7,16 +7,49 @@ import state.State;
 import ui.UIImage;
 
 import java.awt.event.KeyEvent;
-import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class SceneryTool extends MouseAction {
 
     private Position dragPosition;
-    private List<Scenery> selectedScenery;
+    private Set<Scenery> selectedScenery;
 
     public SceneryTool() {
-        selectedScenery = new ArrayList<>();
+        selectedScenery = new HashSet<>();
+    }
+
+    @Override
+    public void update(State state) {
+        if(state.getInput().isPressed(KeyEvent.VK_DELETE)) {
+            selectedScenery.forEach(state::despawn);
+        }
+        if(state.getInput().isRightMousePressed()){
+            cleanup();
+        }
+    }
+
+    private void select(Scenery scenery) {
+        if(!selectedScenery.contains(scenery)){
+            scenery.attach(new SelectionCircle(4));
+            selectedScenery.add(scenery);
+        }
+    }
+
+    private void deselect(Scenery scenery) {
+        scenery.clearAttachments();
+        selectedScenery.remove(scenery);
+    }
+
+    @Override
+    public UIImage getSprite() {
+        return null;
+    }
+
+    @Override
+    public void cleanup() {
+        List.copyOf(selectedScenery).forEach(this::deselect);
     }
 
     @Override
@@ -26,10 +59,10 @@ public class SceneryTool extends MouseAction {
 
     @Override
     public void onDrag(State state) {
-        if(dragPosition == null){
+        if(dragPosition == null) {
             dragPosition = Position.copyOf(state.getInput().getMousePosition());
 
-            if(!state.getInput().isPressed(KeyEvent.VK_SHIFT)){
+            if(!state.getInput().isCurrentlyPressed(KeyEvent.VK_SHIFT)) {
                 cleanup();
             }
 
@@ -49,32 +82,5 @@ public class SceneryTool extends MouseAction {
     @Override
     public void onRelease(State state) {
         dragPosition = null;
-    }
-
-    @Override
-    public void update(State state) {
-        if(state.getInput().isPressed(KeyEvent.VK_DELETE)){
-            selectedScenery.forEach(state::despawn);
-        }
-    }
-
-    private void select(Scenery scenery){
-        scenery.attach(new SelectionCircle(4));
-        selectedScenery.add(scenery);
-    }
-
-    private void deselect(Scenery scenery){
-        scenery.clearAttachments();
-        selectedScenery.remove(scenery);
-    }
-
-    @Override
-    public UIImage getSprite() {
-        return null;
-    }
-
-    @Override
-    public void cleanup() {
-        List.copyOf(selectedScenery).forEach(this::deselect);
     }
 }
