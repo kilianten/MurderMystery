@@ -3,6 +3,7 @@ package ui.clickable;
 import core.Position;
 import core.Size;
 import display.Camera;
+import entity.GameObject;
 import game.Game;
 import graphics.ImageUtils;
 import map.GameMap;
@@ -10,6 +11,9 @@ import state.State;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class UIMiniMap extends UIClickable {
 
@@ -20,21 +24,25 @@ public class UIMiniMap extends UIClickable {
     private BufferedImage mapImage;
     private Color color;
 
+    private Map<Image, Image> cachedScaledImages;
+
     public UIMiniMap(GameMap gameMap) {
         size = new Size(128, 128);
         cameraViewBounds = new Rectangle(0, 0, 0, 0);
         color = Color.GRAY;
 
         calculateRatio(gameMap);
-        generateMap(gameMap);
+        cachedScaledImages = new HashMap<>();
+        generateMap(gameMap, List.of());
+
     }
 
     @Override
     public void update(State state) {
         super.update(state);
 
-        if(state.getClock().secondsDividableBy(0.25)){
-            generateMap(state.getGameMap());
+        if(state.getClock().secondsDividableBy(0.25)) {
+            generateMap(state.getGameMap(), state.getGameObjects());
         }
 
         Camera camera = state.getCamera();
@@ -51,20 +59,47 @@ public class UIMiniMap extends UIClickable {
         }
     }
 
-    private void generateMap(GameMap gameMap) {
+    private void generateMap(GameMap gameMap, List<GameObject> gameObjects) {
         mapImage = (BufferedImage) ImageUtils.createCompatibleImage(size, ImageUtils.ALPHA_OPAQUE);
         Graphics2D graphics = mapImage.createGraphics();
 
         for(int x = 0; x < gameMap.getTiles().length; x++) {
             for(int y = 0; y < gameMap.getTiles()[0].length; y++) {
                 graphics.drawImage(
-                        gameMap.getTiles()[x][y].getSprite().getScaledInstance(pixelsPerGrid, pixelsPerGrid, 0),
+                        getScaledSprite(gameMap.getTiles()[x][y].getSprite()),
                         x * pixelsPerGrid + pixelOffset.getIntX(),
                         y * pixelsPerGrid + pixelOffset.getIntY(),
                         null
                 );
             }
         }
+
+        gameObjects.forEach(gameObject -> {
+            Position positionWithOffset = Position.copyOf(gameObject.getPosition());
+            positionWithOffset.subtract(gameObject.getRenderOffset());
+
+            graphics.drawImage(
+                    getScaledSprite(gameObject.getSprite()),
+                    (int) Math.round(positionWithOffset.getX() / Game.SPRITE_SIZE * pixelsPerGrid),
+                    (int) Math.round(positionWithOffset.getY() / Game.SPRITE_SIZE * pixelsPerGrid),
+                    null
+            );
+        });
+    }
+
+    private Image getScaledSprite(Image sprite) {
+        if(cachedScaledImages.containsKey(sprite)) {
+            return cachedScaledImages.get(sprite);
+        }
+
+        Size scaledSize = new Size(
+                (sprite.getWidth(null) / Game.SPRITE_SIZE) * pixelsPerGrid,
+                (sprite.getHeight(null) / Game.SPRITE_SIZE) * pixelsPerGrid
+        );
+
+        Image scaledSprite = sprite.getScaledInstance(scaledSize.getWidth(), scaledSize.getHeight(), Image.SCALE_AREA_AVERAGING);
+        cachedScaledImages.put(sprite, scaledSprite);
+        return scaledSprite;
     }
 
     private void calculateRatio(GameMap gameMap) {

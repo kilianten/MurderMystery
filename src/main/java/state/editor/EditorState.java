@@ -15,7 +15,7 @@ public class EditorState extends State {
 
     public EditorState(Size windowSize, Input input, GameSettings settings) {
         super(windowSize, input, settings);
-        gameMap = new GameMap(new Size(16, 32), spriteLibrary);
+        gameMap = new GameMap(new Size(32, 32), spriteLibrary);
         setupMouseActions();
         setupUI(windowSize, settings);
     }

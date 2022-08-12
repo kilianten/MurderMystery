@@ -101,4 +101,8 @@ public abstract class GameObject {
     public void changePositionBy(Position position){
         this.position.add(position);
     }
+
+    public Position getRenderOffset() {
+        return renderOffset;
+    }
 }
