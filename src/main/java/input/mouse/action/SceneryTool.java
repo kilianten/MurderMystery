@@ -28,7 +28,11 @@ public class SceneryTool extends MouseAction {
     public void onDrag(State state) {
         if(dragPosition == null){
             dragPosition = Position.copyOf(state.getInput().getMousePosition());
-            cleanup();
+
+            if(!state.getInput().isPressed(KeyEvent.VK_SHIFT)){
+                cleanup();
+            }
+
             Position mousePosition = Position.copyOf(state.getInput().getMousePosition());
             mousePosition.add(state.getCamera().getPosition());
 
@@ -43,17 +47,14 @@ public class SceneryTool extends MouseAction {
     }
 
     @Override
+    public void onRelease(State state) {
+        dragPosition = null;
+    }
+
+    @Override
     public void update(State state) {
         if(state.getInput().isPressed(KeyEvent.VK_DELETE)){
             selectedScenery.forEach(state::despawn);
-        }
-
-        if(!state.getInput().isMousePressed()){
-            dragPosition = null;
-        }
-
-        if(state.getMouseHandler().getPrimaryButtonAction() != this){
-            cleanup();
         }
     }
 

@@ -101,6 +101,11 @@ public class UIMiniMap extends UIClickable {
     }
 
     @Override
+    public void onRelease(State state) {
+
+    }
+
+    @Override
     public void onClick(State state) {
 
     }

@@ -3,6 +3,7 @@ package state.editor;
 import core.Size;
 import game.settings.GameSettings;
 import input.Input;
+import input.mouse.action.CameraMovement;
 import input.mouse.action.ClearAction;
 import input.mouse.action.TilePlacer;
 import map.GameMap;
@@ -15,13 +16,20 @@ public class EditorState extends State {
     public EditorState(Size windowSize, Input input, GameSettings settings) {
         super(windowSize, input, settings);
         gameMap = new GameMap(new Size(16, 32), spriteLibrary);
-        mouseHandler.setPrimaryButtonAction(new TilePlacer(new Tile(spriteLibrary, "pathcenter")));
-        mouseHandler.setRightButtonAction(new ClearAction());
+        setupMouseActions();
+        setupUI(windowSize, settings);
+    }
 
+    private void setupMouseActions() {
+        mouseHandler.switchPrimaryButtonAction(new TilePlacer(new Tile(spriteLibrary, "pathcenter")));
+        mouseHandler.setRightButtonAction(new ClearAction());
+        mouseHandler.setMiddleButtonAction(new CameraMovement());
+    }
+
+    private void setupUI(Size windowSize, GameSettings settings) {
         uiContainers.add(new UIEditorMenu(windowSize));
         uiContainers.add(new UIRenderingSettings(windowSize, settings.getRenderSettings(), gameMap));
         uiContainers.add(new UIObjectMenu(windowSize, spriteLibrary));
-
     }
 
     @Override

@@ -87,6 +87,11 @@ public class UICheckbox extends UIComponent {
         }
 
         @Override
+        public void onRelease(State state) {
+
+        }
+
+        @Override
         public void onClick(State state) {
             if(hasFocus){
                 setting.setValue(!setting.getValue());

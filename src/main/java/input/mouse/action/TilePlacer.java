@@ -45,6 +45,11 @@ public class TilePlacer extends MouseAction {
     }
 
     @Override
+    public void onRelease(State state) {
+
+    }
+
+    @Override
     public UIImage getSprite() {
         return preview;
     }

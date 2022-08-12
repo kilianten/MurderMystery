@@ -59,6 +59,11 @@ public class UIButton extends UIClickable {
     }
 
     @Override
+    public void onRelease(State state) {
+
+    }
+
+    @Override
     public void onClick(State state) {
         if(hasFocus){
             clickAction.execute(state);

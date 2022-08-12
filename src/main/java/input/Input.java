@@ -12,11 +12,14 @@ public class Input implements KeyListener, MouseListener, MouseMotionListener {
     private Position mousePosition;
     private boolean mouseClicked;
     private boolean mousePressed;
+    private boolean mouseReleased;
 
     private boolean rightMouseClicked;
     private boolean rightMousePressed;
+    private boolean rightMouseReleased;
     private boolean middleMouseClicked;
     private boolean middleMousePressed;
+    private boolean middleMouseReleased;
 
     public Input(){
         pressed = new boolean[256];
@@ -73,10 +76,14 @@ public class Input implements KeyListener, MouseListener, MouseMotionListener {
         return currentlyPressed[keycode];
     }
 
-    public void clearMouseClick(){
+    public void cleanUpMouseEvents(){
         mouseClicked = false;
         rightMouseClicked = false;
         middleMouseClicked = false;
+
+        mouseReleased = false;
+        rightMouseReleased = false;
+        middleMouseReleased = false;
     }
 
     @Override
@@ -108,14 +115,17 @@ public class Input implements KeyListener, MouseListener, MouseMotionListener {
         if(e.getButton() == MouseEvent.BUTTON1){
             mouseClicked = true;
             mousePressed = false;
+            mouseReleased = true;
         }
         if(e.getButton() == MouseEvent.BUTTON2){
-            middleMousePressed = true;
-            middleMouseClicked = false;
+            middleMousePressed = false;
+            middleMouseClicked = true;
+            middleMouseReleased = true;
         }
         if(e.getButton() == MouseEvent.BUTTON3){
             rightMouseClicked = true;
             rightMousePressed = false;
+            rightMouseReleased = true;
         }
     }
 
@@ -133,5 +143,17 @@ public class Input implements KeyListener, MouseListener, MouseMotionListener {
     @Override
     public void mouseMoved(MouseEvent e) {
         mousePosition = new Position(e.getPoint().getX(), e.getPoint().getY());
+    }
+
+    public boolean isMouseReleased() {
+        return mouseReleased;
+    }
+
+    public boolean isRightMouseReleased() {
+        return rightMouseReleased;
+    }
+
+    public boolean isMiddleMouseReleased() {
+        return middleMouseReleased;
     }
 }

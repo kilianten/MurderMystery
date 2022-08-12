@@ -2,8 +2,6 @@ package ui.clickable;
 
 import graphics.ImageUtils;
 import input.mouse.action.MouseAction;
-import input.mouse.action.TilePlacer;
-import map.Tile;
 import state.State;
 import ui.UIImage;
 
@@ -45,11 +43,16 @@ public class UIToolToggle extends UIClickable {
 
     @Override
     public void onClick(State state) {
-        state.getMouseHandler().setPrimaryButtonAction(mouseAction);
+        state.getMouseHandler().switchPrimaryButtonAction(mouseAction);
     }
 
     @Override
     public void onDrag(State state) {
+
+    }
+
+    @Override
+    public void onRelease(State state) {
 
     }
 

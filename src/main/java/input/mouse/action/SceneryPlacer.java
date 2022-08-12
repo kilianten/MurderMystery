@@ -27,6 +27,9 @@ public class SceneryPlacer extends MouseAction {
     public void onDrag(State state) {}
 
     @Override
+    public void onRelease(State state) {}
+
+    @Override
     public void update(State state) {
         Position position = Position.copyOf(state.getInput().getMousePosition());
         position.add(state.getCamera().getPosition());

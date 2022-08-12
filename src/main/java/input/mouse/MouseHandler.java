@@ -30,8 +30,12 @@ public class MouseHandler {
             middleButtonAction.update(state);
             if(state.getInput().isMiddleMouseClicked()){
                 middleButtonAction.onClick(state);
-            } else if (state.getInput().isMiddleMousePressed()){
+            }
+            if (state.getInput().isMiddleMousePressed()){
                 middleButtonAction.onDrag(state);
+            }
+            if(state.getInput().isMiddleMouseReleased()){
+                middleButtonAction.onRelease(state);
             }
         }
     }
@@ -41,8 +45,12 @@ public class MouseHandler {
             rightButtonAction.update(state);
             if(state.getInput().isRightMouseClicked()){
                 rightButtonAction.onClick(state);
-            } else if (state.getInput().isRightMousePressed()){
+            }
+            if (state.getInput().isRightMousePressed()){
                 rightButtonAction.onDrag(state);
+            }
+            if(state.getInput().isRightMouseReleased()){
+                rightButtonAction.onRelease(state);
             }
         }
     }
@@ -59,15 +67,19 @@ public class MouseHandler {
             activeConsumer = null;
         }
 
-        input.clearMouseClick();
+        input.cleanUpMouseEvents();
     }
 
     private void handleActiveConsumer(State state, Input input) {
         if(activeConsumer != null){
             if(input.isMouseClicked()){
                 activeConsumer.onClick(state);
-            } else if (input.isMousePressed()){
+            }
+            if (input.isMousePressed()){
                 activeConsumer.onDrag(state);
+            }
+            if(input.isMouseReleased()){
+                activeConsumer.onRelease(state);
             }
         }
     }
@@ -82,8 +94,11 @@ public class MouseHandler {
         }
     }
 
-    public void setPrimaryButtonAction(MouseAction primaryButtonAction) {
-        this.primaryButtonAction = primaryButtonAction;
+    public void switchPrimaryButtonAction(MouseAction mouseAction) {
+        if(mouseAction != null){
+            mouseAction.cleanup();
+        }
+        this.primaryButtonAction = mouseAction;
     }
 
     public Optional<UIImage> getPrimaryButtonUI(){

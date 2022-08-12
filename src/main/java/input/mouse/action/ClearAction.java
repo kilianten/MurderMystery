@@ -7,11 +7,16 @@ public class ClearAction extends MouseAction {
 
     @Override
     public void onClick(State state) {
-        state.getMouseHandler().setPrimaryButtonAction(new SceneryTool());
+        state.getMouseHandler().switchPrimaryButtonAction(new SceneryTool());
     }
 
     @Override
     public void onDrag(State state) {
+
+    }
+
+    @Override
+    public void onRelease(State state) {
 
     }
 
