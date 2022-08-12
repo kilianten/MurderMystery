@@ -11,14 +11,22 @@ import ui.clickable.UIMiniMap;
 
 public class UIRenderingSettings extends VerticalContainer {
 
+    private UIMiniMap miniMap;
+
     public UIRenderingSettings(Size windowSize, RenderSettings renderSettings, GameMap gameMap) {
         super(windowSize);
 
         setAlignment(new Alignment(Alignment.Position.END, Alignment.Position.START));
-
-        addUIComponent(new UIMiniMap(gameMap));
+        miniMap = new UIMiniMap(gameMap);
+        addUIComponent(miniMap);
         addUIComponent(new UICheckbox("Grid", renderSettings.getShouldRenderGrid()));
         addUIComponent(new UICheckbox("Collision", renderSettings.getCollisionBox()));
+    }
+
+    public void resetMiniMap(GameMap gameMap){
+        children.remove(miniMap);
+        miniMap = new UIMiniMap(gameMap);
+        addUIComponentToFront(miniMap);
     }
 
 }

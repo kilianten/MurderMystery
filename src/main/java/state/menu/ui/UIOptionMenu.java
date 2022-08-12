@@ -28,7 +28,7 @@ public class UIOptionMenu extends VerticalContainer {
         soundVolumeSlider = new UISlider(0, 1, settings.getAudioSettings().getSoundVolume());
         soundVolumeLabel = new UIText("", 30, 30,false);
 
-        addUIComponent(new UIText("OPTIONS"));
+        addUIComponent(new UIText("Options"));
 
         addUIComponent(musicVolumeLabel);
         addUIComponent(musicVolumeSlider);
@@ -36,7 +36,7 @@ public class UIOptionMenu extends VerticalContainer {
         addUIComponent(soundVolumeLabel);
         addUIComponent(soundVolumeSlider);
 
-        addUIComponent(new UIButton("BACK", (state) -> ((MenuState) state).enterMenu(new UIMainMenu(windowSize))));
+        addUIComponent(new UIButton("Back", (state) -> ((MenuState) state).enterMenu(new UIMainMenu(windowSize))));
     }
 
     @Override

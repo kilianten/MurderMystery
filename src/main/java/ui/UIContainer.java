@@ -4,6 +4,7 @@ import core.Position;
 import core.Size;
 import state.State;
 import graphics.ImageUtils;
+import ui.clickable.UIMiniMap;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -108,6 +109,11 @@ public abstract class UIContainer extends UIComponent {
 
     public void addUIComponent(UIComponent uiComponent) {
         children.add(uiComponent);
+        uiComponent.setParent(this);
+    }
+
+    protected void addUIComponentToFront(UIComponent uiComponent) {
+        children.add(0, uiComponent);
         uiComponent.setParent(this);
     }
 

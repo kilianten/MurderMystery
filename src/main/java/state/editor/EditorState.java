@@ -13,9 +13,11 @@ import state.editor.ui.*;
 
 public class EditorState extends State {
 
-    public EditorState(Size windowSize, Input input, GameSettings settings) {
+    private UIRenderingSettings renderSettings;
+
+    public EditorState(Size windowSize, Input input, GameSettings settings, Size mapSize) {
         super(windowSize, input, settings);
-        gameMap = new GameMap(new Size(32, 32), spriteLibrary);
+        gameMap = new GameMap(mapSize, spriteLibrary);
         setupMouseActions();
         setupUI(windowSize, settings);
     }
@@ -28,12 +30,19 @@ public class EditorState extends State {
 
     private void setupUI(Size windowSize, GameSettings settings) {
         uiContainers.add(new UIEditorMenu(windowSize));
-        uiContainers.add(new UIRenderingSettings(windowSize, settings.getRenderSettings(), gameMap));
+        renderSettings = new UIRenderingSettings(windowSize, settings.getRenderSettings(), gameMap);
+        uiContainers.add(renderSettings);
         uiContainers.add(new UIObjectMenu(windowSize, spriteLibrary));
     }
 
     @Override
     public void setDefaultSettings() {
         settings.getRenderSettings().getShouldRenderGrid().setValue(true);
+    }
+
+    @Override
+    public void loadGameMap() {
+        super.loadGameMap();
+        renderSettings.resetMiniMap(gameMap);
     }
 }
