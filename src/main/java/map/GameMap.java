@@ -1,5 +1,6 @@
 package map;
 
+import core.CollisionBox;
 import core.Position;
 import core.Size;
 import display.Camera;
@@ -8,6 +9,7 @@ import game.Game;
 import graphics.SpriteLibrary;
 import io.Persistable;
 
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -84,6 +86,29 @@ public class GameMap implements Persistable {
 
     public void setTile(int gridX, int gridY, Tile tile) {
         tiles[gridX][gridY] = tile;
+    }
+
+    public List<CollisionBox> getCollidingUnWalkableTileBoxes(CollisionBox collisionBox){
+        int gridX = (int) (collisionBox.getBounds().getX() / Game.SPRITE_SIZE);
+        int gridY = (int) (collisionBox.getBounds().getY() / Game.SPRITE_SIZE);
+
+        List<CollisionBox> collidingUnwalkableTileBoxes = new ArrayList<>();
+
+        for(int x = gridX - 1; x < gridX + 2; x++){
+            for(int y = gridY - 1; y < gridY + 2; y++){
+                if(gridWithinBounds(x, y) && !getTile(x, y).isWalkable()){
+                    CollisionBox gridCollisionBox = getGridCollisionBox(x, y);
+                }
+            }
+        }
+    }
+
+    private CollisionBox getGridCollisionBox(int x, int y) {
+        return new CollisionBox(new Rectangle(x * Game.SPRITE_SIZE, ))
+    }
+
+    public Tile getTile(int x, int y) {
+        return tiles[x][y];
     }
 
     public List<Scenery> getSceneryList() {

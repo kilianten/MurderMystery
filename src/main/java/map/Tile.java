@@ -13,26 +13,35 @@ public class Tile implements Persistable {
     public transient Image sprite;
     private String tileName;
     private int tileIndex;
+    private boolean walkable;
 
-    public Tile() {}
+    public Tile() {
+        walkable = true;
+    }
 
     public Tile(SpriteLibrary spriteLibrary){
-        this(spriteLibrary, "grass");
+        this(spriteLibrary, "grass", true);
     }
 
-    public Tile(SpriteLibrary spriteLibrary, String tileName){
+    public Tile(SpriteLibrary spriteLibrary, String tileName, boolean walkable){
         this.sprite = spriteLibrary.getTile(tileName);
         this.tileName = tileName;
+        this.walkable = walkable;
     }
 
-    public Tile(Image image, int tileIndex, String tileName){
+    public Tile(Image image, int tileIndex, String tileName, boolean walkable){
         this.sprite = image;
         this.tileName = tileName;
         this.tileIndex = tileIndex;
+        this.walkable = walkable;
     }
 
     public static Tile copyOf(Tile tile) {
-        return new Tile(tile.getSprite(), tile.getTileIndex(), tile.getTileName());
+        return new Tile(tile.getSprite(), tile.getTileIndex(), tile.getTileName(), tile.isWalkable());
+    }
+
+    public boolean isWalkable() {
+        return walkable;
     }
 
     public Image getSprite(){
@@ -61,6 +70,8 @@ public class Tile implements Persistable {
         stringBuilder.append(tileName);
         stringBuilder.append(DELIMITER);
         stringBuilder.append(tileIndex);
+        stringBuilder.append(DELIMITER);
+        stringBuilder.append(walkable);
         return stringBuilder.toString();
     }
 
@@ -70,6 +81,7 @@ public class Tile implements Persistable {
 
         tileName = tokens[1];
         tileIndex = Integer.parseInt(tokens[2]);
+        walkable = Boolean.parseBoolean(tokens[3]);
     }
 
     public String getTileName() {
