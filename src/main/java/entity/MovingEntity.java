@@ -33,10 +33,17 @@ public abstract class MovingEntity extends GameObject {
         animationManager.update(direction);
 
         handleCollisions(state);
+        handleTileCollision(state);
+        
         manageDirection();
         animationManager.playAnimation(decideAnimation());
 
         position.apply(motion);
+    }
+
+    protected void handleTileCollision(State state){
+        state.getGameMap().getCollidingUnWalkableTileBoxes(getCollisionBox())
+                .forEach(tileCollisionBox -> motion.stop(willCollideX(tileCollisionBox), willCollideY(tileCollisionBox)));
     }
 
     private void handleCollisions(State state) {
@@ -81,8 +88,7 @@ public abstract class MovingEntity extends GameObject {
         return controller;
     }
 
-    public boolean willCollideX(GameObject other){
-        CollisionBox otherBox = other.getCollisionBox();
+    public boolean willCollideX(CollisionBox otherBox){
         Position positionWithXApplied = Position.copyOf(position);
         positionWithXApplied.applyX(motion);
         positionWithXApplied.subtract(collisionBoxOffset);
@@ -90,8 +96,7 @@ public abstract class MovingEntity extends GameObject {
         return CollisionBox.of(positionWithXApplied, collisionBoxSize).collidesWith(otherBox);
     }
 
-    public boolean willCollideY(GameObject other){
-        CollisionBox otherBox = other.getCollisionBox();
+    public boolean willCollideY(CollisionBox otherBox){
         Position positionWithYApplied = Position.copyOf(position);
         positionWithYApplied.applyY(motion);
         positionWithYApplied.subtract(collisionBoxOffset);

@@ -98,13 +98,17 @@ public class GameMap implements Persistable {
             for(int y = gridY - 1; y < gridY + 2; y++){
                 if(gridWithinBounds(x, y) && !getTile(x, y).isWalkable()){
                     CollisionBox gridCollisionBox = getGridCollisionBox(x, y);
+                    if(collisionBox.collidesWith(gridCollisionBox)){
+                        collidingUnwalkableTileBoxes.add(gridCollisionBox);
+                    }
                 }
             }
         }
+        return collidingUnwalkableTileBoxes;
     }
 
     private CollisionBox getGridCollisionBox(int x, int y) {
-        return new CollisionBox(new Rectangle(x * Game.SPRITE_SIZE, ))
+        return new CollisionBox(new Rectangle(x * Game.SPRITE_SIZE, y * Game.SPRITE_SIZE, Game.SPRITE_SIZE, Game.SPRITE_SIZE));
     }
 
     public Tile getTile(int x, int y) {

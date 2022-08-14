@@ -5,9 +5,8 @@ import game.settings.GameSettings;
 import input.Input;
 import input.mouse.action.CameraMovement;
 import input.mouse.action.ClearAction;
-import input.mouse.action.TilePlacer;
+import input.mouse.action.SceneryTool;
 import map.GameMap;
-import map.Tile;
 import state.State;
 import state.editor.ui.*;
 
@@ -23,7 +22,7 @@ public class EditorState extends State {
     }
 
     private void setupMouseActions() {
-        mouseHandler.switchPrimaryButtonAction(new TilePlacer(new Tile(spriteLibrary, "pathcenter")));
+        mouseHandler.switchPrimaryButtonAction(new SceneryTool());
         mouseHandler.setRightButtonAction(new ClearAction());
         mouseHandler.setMiddleButtonAction(new CameraMovement());
     }

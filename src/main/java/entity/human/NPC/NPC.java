@@ -37,7 +37,7 @@ public abstract class NPC extends Human {
     protected void handleCollision(GameObject other) {
         if(other instanceof Player ||
                 (other instanceof Scenery && !((Scenery) other).isWalkable())){
-            motion.stop(willCollideX(other), willCollideY(other));
+            motion.stop(willCollideX(other.getCollisionBox()), willCollideY(other.getCollisionBox()));
         }
     }
 

@@ -17,7 +17,7 @@ public class ImageUtils {
         try{
             Image imageFromDisk =  ImageIO.read(ImageUtils.class.getResource(filePath));
             BufferedImage compatibleImage = (BufferedImage) createCompatibleImage(
-                    new Size( imageFromDisk.getWidth(null), imageFromDisk.getHeight(null)),
+                    new Size(imageFromDisk.getWidth(null), imageFromDisk.getHeight(null)),
                     ALHPA_BIT_MASKED);
 
             Graphics2D graphics = compatibleImage.createGraphics();

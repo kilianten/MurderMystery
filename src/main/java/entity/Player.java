@@ -71,7 +71,7 @@ public class Player extends Human {
     @Override
     protected void handleCollision(GameObject other) {
         if(other instanceof Scenery && !((Scenery) other).isWalkable()){
-            motion.stop(willCollideX(other), willCollideY(other));
+            motion.stop(willCollideX(other.getCollisionBox()), willCollideY(other.getCollisionBox()));
         }
     }
 }
