@@ -4,7 +4,7 @@ import core.CollisionBox;
 import core.Position;
 import core.Size;
 import display.Camera;
-import entity.Scenery;
+import entity.scenery.Scenery;
 import game.Game;
 import graphics.SpriteLibrary;
 import io.Persistable;

@@ -2,7 +2,8 @@ package state.editor.ui;
 
 import core.Position;
 import core.Size;
-import entity.Scenery;
+import entity.scenery.InteractableScenery;
+import entity.scenery.Scenery;
 import game.Game;
 import graphics.SpriteLibrary;
 import input.mouse.action.SceneryPlacer;
@@ -66,6 +67,16 @@ public class UIObjectMenu extends HorizontalContainer {
         sceneryContainer.addUIComponent(new UIToolToggle(spriteLibrary.getSceneryImage("pinetree").getScaledInstance(Game.SPRITE_SIZE, Game.SPRITE_SIZE, Image.SCALE_SMOOTH),
                 new SceneryPlacer(new Scenery(
                         "pinetree",
+                        new Size(192, 192),
+                        new Position(96, 142),
+                        new Size(32, 32),
+                        new Position(16, 16),
+                        false,
+                        spriteLibrary
+                ))));
+        sceneryContainer.addUIComponent(new UIToolToggle(spriteLibrary.getSceneryImage("pinetree").getScaledInstance(Game.SPRITE_SIZE, Game.SPRITE_SIZE, Image.SCALE_SMOOTH),
+                new SceneryPlacer(new InteractableScenery(
+                        "bench",
                         new Size(192, 192),
                         new Position(96, 142),
                         new Size(32, 32),

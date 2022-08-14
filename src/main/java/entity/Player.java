@@ -3,6 +3,7 @@ package entity;
 import controller.Controller;
 import entity.human.Human;
 import entity.human.NPC.NPC;
+import entity.scenery.Scenery;
 import game.Game;
 import state.State;
 import graphics.SpriteLibrary;

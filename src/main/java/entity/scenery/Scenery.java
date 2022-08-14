@@ -1,8 +1,9 @@
-package entity;
+package entity.scenery;
 
 import core.CollisionBox;
 import core.Position;
 import core.Size;
+import entity.GameObject;
 import graphics.SpriteLibrary;
 import io.Persistable;
 import state.State;

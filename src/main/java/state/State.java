@@ -5,7 +5,7 @@ import core.Position;
 import core.Size;
 import display.Camera;
 import entity.GameObject;
-import entity.Scenery;
+import entity.scenery.Scenery;
 import game.Clock;
 import game.Game;
 import game.settings.GameSettings;

@@ -1,7 +1,7 @@
 package input.mouse.action;
 
 import core.Position;
-import entity.Scenery;
+import entity.scenery.Scenery;
 import entity.SelectionCircle;
 import state.State;
 import ui.UIImage;

@@ -5,7 +5,7 @@ import controller.Controller;
 import entity.ColourHandler;
 import entity.GameObject;
 import entity.Player;
-import entity.Scenery;
+import entity.scenery.Scenery;
 import entity.human.Human;
 import entity.human.effect.Effect;
 import state.State;

@@ -1,12 +1,9 @@
 package input.mouse.action;
 
 import core.Position;
-import entity.Scenery;
-import game.Game;
+import entity.scenery.Scenery;
 import state.State;
 import ui.UIImage;
-
-import java.awt.*;
 
 public class SceneryPlacer extends MouseAction {
 

@@ -28,6 +28,7 @@ public class SpriteLibrary {
 
     private Map<String, SpriteSet> units;
     private Map<String, Image> sceneryObjects;
+    private Map<String, Image> interactableObjects;
     private Map<String, Image> tiles;
 
     public SpriteLibrary(){
@@ -41,6 +42,7 @@ public class SpriteLibrary {
         loadUnits("/sprites/units");
         loadImages("/sprites/tiles", tiles);
         loadImages("/sprites/scenery", sceneryObjects);
+        loadImages("/sprites/interactableScenery", sceneryObjects);
     }
 
     private void loadImages(String path, Map<String, Image> images) {
