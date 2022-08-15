@@ -21,6 +21,7 @@ public abstract class GameObject {
     protected Position renderOffset;
     protected Position collisionBoxOffset;
     protected Size collisionBoxSize;
+    protected Position selectionCircleOffset;
 
     protected  GameObject parent;
 
@@ -38,6 +39,7 @@ public abstract class GameObject {
         this.collisionBoxSize = new Size(size.getWidth(), size.getHeight());
         attachments = new ArrayList<>();
         renderLevelOffset = 0;
+        selectionCircleOffset = new Position(0, 0);
     }
 
     public abstract CollisionBox getCollisionBox();

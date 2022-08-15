@@ -15,9 +15,8 @@ public class Scenery extends GameObject implements Persistable {
     private Image sprite;
     private String name;
     private boolean walkable;
-    protected Position selectionCircleOffset;
 
-    public Scenery() { }
+    public Scenery() {}
 
     public Scenery(String name,
                    Size size,
@@ -61,7 +60,7 @@ public class Scenery extends GameObject implements Persistable {
         copy.sprite = scenery.sprite;
         copy.walkable = scenery.walkable;
         copy.renderLevelOffset = scenery.renderLevelOffset;
-        copy.selectionCircleOffset = scenery.selectionCircleOffset;
+        copy.selectionCircleOffset = Position.copyOf(scenery.selectionCircleOffset);;
 
         return copy;
     }
@@ -114,7 +113,7 @@ public class Scenery extends GameObject implements Persistable {
         stringBuilder.append(DELIMITER);
         stringBuilder.append(renderLevelOffset);
         stringBuilder.append(DELIMITER);
-        stringBuilder.append(selectionCircleOffset);
+        stringBuilder.append(selectionCircleOffset.serialise());
         stringBuilder.append(DELIMITER);
 
         return stringBuilder.toString();
@@ -132,9 +131,7 @@ public class Scenery extends GameObject implements Persistable {
         collisionBoxSize.applySerialisedData(tokens[6]);
         walkable = Boolean.parseBoolean(tokens[7]);
         renderLevelOffset = Integer.parseInt(tokens[8]);
-        if(tokens.length > 9){
-            renderLevelOffset = Integer.parseInt(tokens[9]);
-        }
+        selectionCircleOffset.applySerialisedData(tokens[9]);
     }
 
     public boolean isWalkable(){

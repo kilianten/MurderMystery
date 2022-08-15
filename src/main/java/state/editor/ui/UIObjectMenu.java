@@ -83,7 +83,7 @@ public class UIObjectMenu extends HorizontalContainer {
                         new Position(37, 7),
                         false,
                         spriteLibrary,
-                        68,
+                        19,
                         new Position(40, -5)
                 ))));
     }

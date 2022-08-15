@@ -15,6 +15,7 @@ public class GameController {
     public void update(Game game){
         if(input.isPressed(KeyEvent.VK_SLASH)){
             game.getSettings().toggleDebugMode();
+            game.getSettings().getRenderSettings().getCollisionBox().setValue(!game.getSettings().getRenderSettings().getCollisionBox().getValue());
         }
     }
 }

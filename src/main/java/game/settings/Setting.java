@@ -15,4 +15,9 @@ public class Setting<T> {
     public Setting(T value) {
         this.value = value;
     }
+
+    public void toggleValue(){
+
+
+    }
 }

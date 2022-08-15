@@ -2,6 +2,7 @@ package display;
 
 import core.CollisionBox;
 import core.Position;
+import entity.GameObject;
 import game.Game;
 import state.State;
 import map.GameMap;
@@ -45,6 +46,7 @@ public class Renderer {
                     renderGameObject(graphics, camera, gameObject);
                     if(state.getSettings().getRenderSettings().getCollisionBox().getValue()){
                         drawCollisionBox(gameObject.getCollisionBox(), graphics, camera);
+                        drawRenderLines(gameObject, graphics, camera);
                     }
                 });
     }
@@ -92,5 +94,14 @@ public class Renderer {
                 (int) collisionBox.getBounds().getY() - camera.getPosition().getIntY(),
                 (int) collisionBox.getBounds().getWidth(),
                 (int) collisionBox.getBounds().getHeight());
+    }
+
+    private void drawRenderLines(GameObject object, Graphics graphics, Camera camera) {
+        graphics.setColor(Color.GREEN);
+        graphics.drawRect(
+                object.getPosition().getIntX() - (object.getSize().getWidth() / 2) - camera.getPosition().getIntX(),
+                object.getRenderLevel() - camera.getPosition().getIntY(),
+                object.getSize().getWidth(),
+                1);
     }
 }
