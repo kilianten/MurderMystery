@@ -1,0 +1,37 @@
+package entity.scenery;
+
+import core.Direction;
+import core.Position;
+import core.Size;
+import entity.human.Player;
+import graphics.SpriteLibrary;
+
+public class Bench extends InteractableScenery {
+
+    boolean inUse;
+
+    public Bench(){
+        interactable = true;
+        inUse = false;
+    }
+    public Bench(String name,
+                               Size size,
+                               Position renderOffset,
+                               Size collisionBoxSize,
+                               Position collisionBoxOffset,
+                               boolean walkable,
+                               SpriteLibrary spriteLibrary,
+                               int renderLevelOffset,
+                               Position selectionCircleOffset){
+        super(name, size, renderOffset, collisionBoxSize, collisionBoxOffset, walkable, spriteLibrary, renderLevelOffset, selectionCircleOffset);
+    }
+
+    @Override
+    public void interact(Player player){
+        if(!inUse){
+            player.setDirection(Direction.S);
+            player.setPosition(new Position(position.getX(), position.getY() + 20));
+            inUse = true;
+        }
+    }
+}

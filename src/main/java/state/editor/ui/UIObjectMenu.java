@@ -2,6 +2,7 @@ package state.editor.ui;
 
 import core.Position;
 import core.Size;
+import entity.scenery.Bench;
 import entity.scenery.InteractableScenery;
 import entity.scenery.Scenery;
 import game.Game;
@@ -75,7 +76,7 @@ public class UIObjectMenu extends HorizontalContainer {
                         spriteLibrary
                 ))));
         sceneryContainer.addUIComponent(new UIToolToggle(spriteLibrary.getSceneryImage("bench").getScaledInstance(Game.SPRITE_SIZE, Game.SPRITE_SIZE, Image.SCALE_SMOOTH),
-                new SceneryPlacer(new InteractableScenery(
+                new SceneryPlacer(new Bench(
                         "bench",
                         new Size(80, 82),
                         new Position(40, 40),

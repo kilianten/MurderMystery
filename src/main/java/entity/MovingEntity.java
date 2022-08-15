@@ -111,4 +111,7 @@ public abstract class MovingEntity extends GameObject {
         return dotProduct > 0;
     }
 
+    public void setDirection(Direction direction) {
+        this.direction = direction;
+    }
 }

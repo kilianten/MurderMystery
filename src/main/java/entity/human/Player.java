@@ -3,6 +3,7 @@ package entity.human;
 import controller.Controller;
 import entity.GameObject;
 import entity.SelectionCircle;
+import entity.scenery.InteractableScenery;
 import entity.scenery.Scenery;
 import game.Game;
 import state.State;
@@ -36,23 +37,23 @@ public class Player extends Human {
     private void handleInput(State state) {
         if(controller.isRequestingAction()){
             if(target != null){
-                ((GameState) state).startConversation();
+                target.interact(this);
             }
         }
     }
 
     private void handleTarget(State state) {
-        Optional<GameObject> nearestNPC = findNearestNPC(state);
+        Optional<GameObject> nearestObject = findNearestNPC(state);
 
-        if(nearestNPC.isPresent()){
-            GameObject npc = nearestNPC.get();
-            if(!npc.equals(target)){
+        if(nearestObject.isPresent()){
+            GameObject nearObj = nearestObject.get();
+            if(!nearObj.equals(target)){
                 if(target != null){
                     target.detach(selectionCircle);
                 }
-                selectionCircle.resize(npc.getSelectionCircleSize(), npc.getSelectionCircleOffset());
-                npc.attach(selectionCircle);
-                target = npc;
+                selectionCircle.resize(nearObj.getSelectionCircleSize(), nearObj.getSelectionCircleOffset());
+                nearObj.attach(selectionCircle);
+                target = nearObj;
             }
         } else {
             if(target != null){

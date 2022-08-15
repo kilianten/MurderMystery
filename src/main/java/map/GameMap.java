@@ -4,6 +4,7 @@ import core.CollisionBox;
 import core.Position;
 import core.Size;
 import display.Camera;
+import entity.scenery.Bench;
 import entity.scenery.InteractableScenery;
 import entity.scenery.Scenery;
 import game.Game;
@@ -177,7 +178,7 @@ public class GameMap implements Persistable {
                 boolean interactive = Boolean.parseBoolean(serializedScenery.split(DELIMITER)[1]);
                 Scenery scenery;
                 if(interactive){
-                    scenery = new InteractableScenery();
+                    scenery = loadIneractableScenery(serializedScenery.split(DELIMITER)[2]);
                 } else {
                     scenery = new Scenery();
                 }
@@ -185,5 +186,18 @@ public class GameMap implements Persistable {
                 sceneryList.add(scenery);
             }
         }
+    }
+
+    private Scenery loadIneractableScenery(String sceneryName) {
+        Scenery scenery;
+        switch (sceneryName){
+            case "bench":
+                scenery = new Bench();
+                break;
+            default:
+                scenery = new Scenery();
+                break;
+        }
+        return scenery;
     }
 }

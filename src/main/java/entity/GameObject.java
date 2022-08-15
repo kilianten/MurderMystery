@@ -4,7 +4,7 @@ import core.CollisionBox;
 import core.Position;
 import core.Size;
 import display.Camera;
-import entity.scenery.Scenery;
+import entity.human.Player;
 import state.State;
 
 import java.awt.*;
@@ -152,4 +152,6 @@ public abstract class GameObject {
     public Position getSelectionCircleOffset() {
         return selectionCircleOffset;
     }
+
+    public void interact(Player player){}
 }
