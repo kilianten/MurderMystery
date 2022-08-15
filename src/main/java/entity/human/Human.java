@@ -46,6 +46,7 @@ public abstract class Human extends MovingEntity {
                 .forEach(effects::remove);
 
         if(action.isPresent() && action.get().isDone()){
+            action.get().cleanUp();
             action = Optional.empty();
         }
     }

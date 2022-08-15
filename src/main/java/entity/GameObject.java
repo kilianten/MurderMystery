@@ -154,4 +154,5 @@ public abstract class GameObject {
     }
 
     public void interact(Player player){}
+
 }

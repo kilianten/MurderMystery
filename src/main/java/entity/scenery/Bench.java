@@ -4,6 +4,7 @@ import core.Direction;
 import core.Position;
 import core.Size;
 import entity.human.Player;
+import entity.human.action.Sit;
 import graphics.SpriteLibrary;
 
 public class Bench extends InteractableScenery {
@@ -30,8 +31,13 @@ public class Bench extends InteractableScenery {
     public void interact(Player player){
         if(!inUse){
             player.setDirection(Direction.S);
+            player.perform(new Sit(player, this));
             player.setPosition(new Position(position.getX(), position.getY() + 20));
             inUse = true;
         }
+    }
+
+    public void setInUse(boolean inUse){
+        this.inUse = inUse;
     }
 }

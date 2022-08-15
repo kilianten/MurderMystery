@@ -26,4 +26,8 @@ public class Smoke extends Action {
     public String getAnimationName() {
         return "smoke";
     }
+
+    @Override
+    public void cleanUp() {}
+
 }

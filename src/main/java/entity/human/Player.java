@@ -10,6 +10,7 @@ import state.State;
 import graphics.SpriteLibrary;
 import state.game.GameState;
 
+import java.awt.event.KeyEvent;
 import java.util.Comparator;
 import java.util.Optional;
 
@@ -35,7 +36,7 @@ public class Player extends Human {
     }
 
     private void handleInput(State state) {
-        if(controller.isRequestingAction()){
+        if(state.getInput().isPressed(KeyEvent.VK_SPACE)){
             if(target != null){
                 target.interact(this);
             }
