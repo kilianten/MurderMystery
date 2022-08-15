@@ -12,9 +12,8 @@ public class MenuState extends State {
     public MenuState(Size windowSize, Input input, GameSettings settings) {
         super(windowSize, input, settings);
         loadGameMap();
-
+        settings.getRenderSettings().getCollisionBox().setValue(false);
         uiContainers.add(new UIMainMenu(windowSize));
-
         audioPlayer.playMusic("metal.wav");
     }
 

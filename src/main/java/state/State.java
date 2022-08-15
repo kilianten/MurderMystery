@@ -79,7 +79,7 @@ public abstract class State {
     public void handleKeyInput(){}
 
     public void sortObjectsByPosition() {
-        gameObjects.sort(Comparator.comparing(GameObject::getRenderOrder).thenComparing(gameObject -> gameObject.getPosition().getY()));
+        gameObjects.sort(Comparator.comparing(GameObject::getRenderOrder).thenComparing(gameObject -> gameObject.getRenderLevel()));
     }
 
     public List<GameObject> getGameObjects() {

@@ -4,6 +4,7 @@ import core.CollisionBox;
 import core.Position;
 import core.Size;
 import display.Camera;
+import entity.scenery.Scenery;
 import state.State;
 
 import java.awt.*;
@@ -25,6 +26,8 @@ public abstract class GameObject {
 
     protected List<GameObject> attachments;
 
+    protected int renderLevelOffset;
+
     public GameObject(){
         Random random = new Random();
         position = new Position(random.nextInt(1000), random.nextInt(1000));
@@ -34,6 +37,7 @@ public abstract class GameObject {
         collisionBoxOffset = new Position(0, 0);
         this.collisionBoxSize = new Size(size.getWidth(), size.getHeight());
         attachments = new ArrayList<>();
+        renderLevelOffset = 0;
     }
 
     public abstract CollisionBox getCollisionBox();
@@ -106,5 +110,26 @@ public abstract class GameObject {
 
     public Position getRenderOffset() {
         return renderOffset;
+    }
+
+    public int getRenderLevel(){
+        int offset = position.getIntY() + renderLevelOffset;
+        return offset;
+    }
+
+    public void moveCollisionBoxRight(){
+        collisionBoxOffset.setX(collisionBoxOffset.getIntX() - 1);
+    }
+
+    public void moveCollisionBoxLeft(){
+        collisionBoxOffset.setX(collisionBoxOffset.getIntX() + 1);
+    }
+
+    public void moveCollisionBoxDown(){
+        collisionBoxOffset.setY(collisionBoxOffset.getIntY() - 1);
+    }
+
+    public void moveCollisionBoxUp(){
+        collisionBoxOffset.setY(collisionBoxOffset.getIntY() - 1);
     }
 }

@@ -22,8 +22,8 @@ public class Display extends JFrame {
 
         this.renderer = new Renderer();
         this.debugRenderer = new DebugRenderer();
-
         canvas = new Canvas();
+
         canvas.setPreferredSize(new Dimension(width, height));
         canvas.setFocusable(false);
         canvas.addMouseListener(input);
@@ -31,14 +31,13 @@ public class Display extends JFrame {
         add(canvas);
         addKeyListener(input);
         pack();
-
         canvas.createBufferStrategy(2);
 
         setLocationRelativeTo(null);
         setVisible(true);
     }
 
-    public void render(State state, boolean debugMode){
+    public synchronized void render(State state, boolean debugMode){
         BufferStrategy bufferStrategy = canvas.getBufferStrategy();
         Graphics graphics  = bufferStrategy.getDrawGraphics();
 
@@ -49,7 +48,6 @@ public class Display extends JFrame {
         if(debugMode){
             debugRenderer.render(state, graphics);
         }
-
         graphics.dispose();
         bufferStrategy.show();
     }

@@ -25,6 +25,18 @@ public class SceneryTool extends MouseAction {
         if(state.getInput().isPressed(KeyEvent.VK_DELETE)) {
             selectedScenery.forEach(state::despawn);
         }
+        if(state.getInput().isPressed(KeyEvent.VK_RIGHT)){
+            selectedScenery.forEach(scenery -> {scenery.moveCollisionBoxRight();});
+        }
+        if(state.getInput().isPressed(KeyEvent.VK_UP)){
+            selectedScenery.forEach(scenery -> {scenery.moveCollisionBoxUp();});
+        }
+        if(state.getInput().isPressed(KeyEvent.VK_LEFT)){
+            selectedScenery.forEach(scenery -> {scenery.moveCollisionBoxLeft();});
+        }
+        if(state.getInput().isPressed(KeyEvent.VK_DOWN)){
+            selectedScenery.forEach(scenery -> {scenery.moveCollisionBoxDown();});
+        }
         if(state.getInput().isRightMousePressed()){
             cleanup();
         }
@@ -32,7 +44,12 @@ public class SceneryTool extends MouseAction {
 
     private void select(Scenery scenery) {
         if(!selectedScenery.contains(scenery)){
-            scenery.attach(new SelectionCircle(4));
+            if(scenery.getName().equals("bench")){
+                scenery.attach(new SelectionCircle(scenery));
+            }
+            else {
+                scenery.attach(new SelectionCircle(4));
+            }
             selectedScenery.add(scenery);
         }
     }

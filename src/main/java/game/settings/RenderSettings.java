@@ -7,6 +7,7 @@ public class RenderSettings {
 
     public RenderSettings() {
         this.grid = new Setting<>(false);
+
         collisionBox = new Setting<>(false);
     }
 

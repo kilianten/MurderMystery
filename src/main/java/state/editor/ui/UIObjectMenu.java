@@ -74,15 +74,17 @@ public class UIObjectMenu extends HorizontalContainer {
                         false,
                         spriteLibrary
                 ))));
-        sceneryContainer.addUIComponent(new UIToolToggle(spriteLibrary.getSceneryImage("pinetree").getScaledInstance(Game.SPRITE_SIZE, Game.SPRITE_SIZE, Image.SCALE_SMOOTH),
+        sceneryContainer.addUIComponent(new UIToolToggle(spriteLibrary.getSceneryImage("bench").getScaledInstance(Game.SPRITE_SIZE, Game.SPRITE_SIZE, Image.SCALE_SMOOTH),
                 new SceneryPlacer(new InteractableScenery(
                         "bench",
-                        new Size(192, 192),
-                        new Position(96, 142),
-                        new Size(32, 32),
-                        new Position(16, 16),
+                        new Size(80, 82),
+                        new Position(40, 40),
+                        new Size(75, 25),
+                        new Position(37, 7),
                         false,
-                        spriteLibrary
+                        spriteLibrary,
+                        68,
+                        new Position(40, -5)
                 ))));
     }
 }

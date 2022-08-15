@@ -12,9 +12,10 @@ public class InteractableScenery extends Scenery {
                    Size collisionBoxSize,
                    Position collisionBoxOffset,
                    boolean walkable,
-                   SpriteLibrary spriteLibrary){
-        super(name, size, renderOffset, collisionBoxSize, collisionBoxOffset, walkable, spriteLibrary);
-
+                   SpriteLibrary spriteLibrary,
+                               int renderLevelOffset,
+                               Position selectionCircleOffset){
+        super(name, size, renderOffset, collisionBoxSize, collisionBoxOffset, walkable, spriteLibrary, renderLevelOffset, selectionCircleOffset);
         loadGraphics(spriteLibrary);
     }
 

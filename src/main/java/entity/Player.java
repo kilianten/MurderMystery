@@ -30,7 +30,6 @@ public class Player extends Human {
     public void update(State state){
         super.update(state);
         handleTarget(state);
-
         handleInput(state);
     }
 

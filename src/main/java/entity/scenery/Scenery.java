@@ -15,6 +15,7 @@ public class Scenery extends GameObject implements Persistable {
     private Image sprite;
     private String name;
     private boolean walkable;
+    protected Position selectionCircleOffset;
 
     public Scenery() { }
 
@@ -24,15 +25,29 @@ public class Scenery extends GameObject implements Persistable {
                    Size collisionBoxSize,
                    Position collisionBoxOffset,
                    boolean walkable,
-                   SpriteLibrary spriteLibrary){
+                   SpriteLibrary spriteLibrary,
+                   int renderLevelOffset,
+                   Position selectionCircleOffset){
         this.name = name;
         this.size = size;
         this.renderOffset = renderOffset;
         this.collisionBoxSize = collisionBoxSize;
         this.collisionBoxOffset = collisionBoxOffset;
         this.walkable = walkable;
+        this.renderLevelOffset = renderLevelOffset;
+        this.selectionCircleOffset = selectionCircleOffset;
 
         loadGraphics(spriteLibrary);
+    }
+
+    public Scenery(String name,
+                   Size size,
+                   Position renderOffset,
+                   Size collisionBoxSize,
+                   Position collisionBoxOffset,
+                   boolean walkable,
+                   SpriteLibrary spriteLibrary){
+        this(name, size, renderOffset, collisionBoxSize, collisionBoxOffset, walkable, spriteLibrary, 0, new Position(0, 0));
     }
 
     public static Scenery copyOf(Scenery scenery){
@@ -45,6 +60,8 @@ public class Scenery extends GameObject implements Persistable {
         copy.collisionBoxSize = Size.copyOf(scenery.collisionBoxSize);
         copy.sprite = scenery.sprite;
         copy.walkable = scenery.walkable;
+        copy.renderLevelOffset = scenery.renderLevelOffset;
+        copy.selectionCircleOffset = scenery.selectionCircleOffset;
 
         return copy;
     }
@@ -95,6 +112,10 @@ public class Scenery extends GameObject implements Persistable {
         stringBuilder.append(DELIMITER);
         stringBuilder.append(walkable);
         stringBuilder.append(DELIMITER);
+        stringBuilder.append(renderLevelOffset);
+        stringBuilder.append(DELIMITER);
+        stringBuilder.append(selectionCircleOffset);
+        stringBuilder.append(DELIMITER);
 
         return stringBuilder.toString();
     }
@@ -110,9 +131,21 @@ public class Scenery extends GameObject implements Persistable {
 
         collisionBoxSize.applySerialisedData(tokens[6]);
         walkable = Boolean.parseBoolean(tokens[7]);
+        renderLevelOffset = Integer.parseInt(tokens[8]);
+        if(tokens.length > 9){
+            renderLevelOffset = Integer.parseInt(tokens[9]);
+        }
     }
 
     public boolean isWalkable(){
         return walkable;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public Position getSelectionCircleOffset() {
+        return selectionCircleOffset;
     }
 }

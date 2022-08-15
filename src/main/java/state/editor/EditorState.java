@@ -19,6 +19,7 @@ public class EditorState extends State {
         gameMap = new GameMap(mapSize, spriteLibrary);
         setupMouseActions();
         setupUI(windowSize, settings);
+        settings.getRenderSettings().getCollisionBox().setValue(true);
     }
 
     private void setupMouseActions() {

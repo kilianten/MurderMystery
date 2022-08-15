@@ -3,6 +3,7 @@ package entity;
 import core.CollisionBox;
 import core.Position;
 import core.Size;
+import entity.scenery.Scenery;
 import state.State;
 import graphics.ImageUtils;
 
@@ -16,6 +17,15 @@ public class SelectionCircle  extends GameObject {
 
     public SelectionCircle() {
         this(1);
+    }
+
+    public SelectionCircle(Scenery scenery) {
+        this.color = new Color(255, 255, 255, 150);
+        this.size = new Size(scenery.getSprite().getWidth(null), (int) scenery.getSprite().getHeight(null) / 6);
+        renderOffset = scenery.getSelectionCircleOffset();
+        collisionBoxOffset = renderOffset;
+        renderOrder = 4;
+        initialiseSprite();
     }
 
     public SelectionCircle(double scale) {
