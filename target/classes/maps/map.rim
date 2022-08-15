@@ -22,4 +22,4 @@ Tile:grass:0:true, Tile:grass:0:true, Tile:grass:0:true, Tile:grass:0:true, Tile
 Tile:grass:0:true, Tile:grass:0:true, Tile:grass:0:true, Tile:grass:0:true, Tile:grass:0:true, Tile:grass:0:true, Tile:grass:0:true, Tile:grass:0:true, Tile:grass:0:true, Tile:grass:0:true, Tile:grass:0:true, Tile:grass:0:true, Tile:grass:0:true, Tile:grass:0:true, Tile:grass:0:true, Tile:grass:0:true, Tile:grass:0:true, Tile:grass:0:true, Tile:grass:0:true, Tile:grass:0:true, 
 
 ###
-Scenery:bench:239|306:80|82:40|40:37|7:75|25:false:19:40|-5:
+Scenery:true:bench:299|271:80|82:40|40:37|7:75|25:false:19:40|-5:

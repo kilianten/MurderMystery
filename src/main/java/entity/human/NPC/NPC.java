@@ -2,9 +2,10 @@ package entity.human.NPC;
 
 import ai.AIManager;
 import controller.Controller;
+import core.Size;
 import entity.ColourHandler;
 import entity.GameObject;
-import entity.Player;
+import entity.human.Player;
 import entity.scenery.Scenery;
 import entity.human.Human;
 import entity.human.effect.Effect;
@@ -19,8 +20,9 @@ public abstract class NPC extends Human {
     public NPC(Controller controller, SpriteLibrary spriteLibrary, String spriteSheet, ColourHandler colourHandler) {
         super(controller, spriteLibrary);
         animationManager = new AnimationManager(spriteLibrary.getUnit(spriteSheet, colourHandler));
-
+        interactable = true;
         aiManager = new AIManager();
+        selectionCircleSize = new Size(32, 10);
     }
 
     @Override

@@ -6,23 +6,18 @@ import core.Size;
 import entity.human.NPC.Douglas;
 import entity.human.NPC.Karl;
 import entity.human.NPC.Nolan;
-import entity.Player;
-import entity.SelectionCircle;
+import entity.human.Player;
 import game.settings.GameSettings;
 import state.game.ui.ConversationBox;
 import state.game.ui.UIGameTime;
 import input.Input;
-import map.GameMap;
 import state.State;
 import state.menu.MenuState;
 import ui.Alignment;
-import ui.UIComponent;
 import ui.VerticalContainer;
 import ui.clickable.UIButton;
 
 import java.awt.*;
-import java.util.ArrayList;
-import java.util.List;
 import java.awt.event.KeyEvent;
 import java.util.Collections;
 

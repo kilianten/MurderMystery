@@ -6,6 +6,10 @@ import graphics.SpriteLibrary;
 
 public class InteractableScenery extends Scenery {
 
+    public InteractableScenery(){
+        interactable = true;
+    }
+
     public InteractableScenery(String name,
                    Size size,
                    Position renderOffset,
@@ -16,7 +20,7 @@ public class InteractableScenery extends Scenery {
                                int renderLevelOffset,
                                Position selectionCircleOffset){
         super(name, size, renderOffset, collisionBoxSize, collisionBoxOffset, walkable, spriteLibrary, renderLevelOffset, selectionCircleOffset);
-        loadGraphics(spriteLibrary);
+        interactable = true;
     }
 
 }

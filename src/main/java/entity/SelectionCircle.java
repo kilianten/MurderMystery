@@ -46,6 +46,12 @@ public class SelectionCircle  extends GameObject {
         graphics.dispose();
     }
 
+    public void resize(Size size, Position renderOffet){
+        this.size = new Size(size.getWidth(), size.getHeight());
+        this.renderOffset = renderOffet;
+        initialiseSprite();
+    }
+
     @Override
     public CollisionBox getCollisionBox() {
         Position position = getPosition();

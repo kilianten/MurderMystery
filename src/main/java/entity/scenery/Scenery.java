@@ -60,7 +60,8 @@ public class Scenery extends GameObject implements Persistable {
         copy.sprite = scenery.sprite;
         copy.walkable = scenery.walkable;
         copy.renderLevelOffset = scenery.renderLevelOffset;
-        copy.selectionCircleOffset = Position.copyOf(scenery.selectionCircleOffset);;
+        copy.selectionCircleOffset = Position.copyOf(scenery.selectionCircleOffset);
+        copy.interactable = scenery.isInteractable();
 
         return copy;
     }
@@ -97,6 +98,8 @@ public class Scenery extends GameObject implements Persistable {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append(this.getClass().getSimpleName());
         stringBuilder.append(DELIMITER);
+        stringBuilder.append(isInteractable());
+        stringBuilder.append(DELIMITER);
         stringBuilder.append(name);
         stringBuilder.append(DELIMITER);
         stringBuilder.append(position.serialise());
@@ -122,16 +125,16 @@ public class Scenery extends GameObject implements Persistable {
     @Override
     public void applySerialisedData(String serializedData) {
         String[] tokens = serializedData.split(DELIMITER);
-        name = tokens[1];
-        position.applySerialisedData(tokens[2]);
-        size.applySerialisedData(tokens[3]);
-        renderOffset.applySerialisedData(tokens[4]);
-        collisionBoxOffset.applySerialisedData(tokens[5]);
+        name = tokens[2];
+        position.applySerialisedData(tokens[3]);
+        size.applySerialisedData(tokens[4]);
+        renderOffset.applySerialisedData(tokens[5]);
+        collisionBoxOffset.applySerialisedData(tokens[6]);
 
-        collisionBoxSize.applySerialisedData(tokens[6]);
-        walkable = Boolean.parseBoolean(tokens[7]);
-        renderLevelOffset = Integer.parseInt(tokens[8]);
-        selectionCircleOffset.applySerialisedData(tokens[9]);
+        collisionBoxSize.applySerialisedData(tokens[7]);
+        walkable = Boolean.parseBoolean(tokens[8]);
+        renderLevelOffset = Integer.parseInt(tokens[9]);
+        selectionCircleOffset.applySerialisedData(tokens[10]);
     }
 
     public boolean isWalkable(){

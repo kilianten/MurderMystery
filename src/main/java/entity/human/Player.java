@@ -1,8 +1,8 @@
-package entity;
+package entity.human;
 
 import controller.Controller;
-import entity.human.Human;
-import entity.human.NPC.NPC;
+import entity.GameObject;
+import entity.SelectionCircle;
 import entity.scenery.Scenery;
 import game.Game;
 import state.State;
@@ -15,7 +15,7 @@ import java.util.Optional;
 
 public class Player extends Human {
 
-    private NPC target;
+    private GameObject target;
     private double targetRange;
     private SelectionCircle selectionCircle;
 
@@ -42,14 +42,15 @@ public class Player extends Human {
     }
 
     private void handleTarget(State state) {
-        Optional<NPC> nearestNPC = findNearestNPC(state);
+        Optional<GameObject> nearestNPC = findNearestNPC(state);
 
         if(nearestNPC.isPresent()){
-            NPC npc = nearestNPC.get();
+            GameObject npc = nearestNPC.get();
             if(!npc.equals(target)){
                 if(target != null){
                     target.detach(selectionCircle);
                 }
+                selectionCircle.resize(npc.getSelectionCircleSize(), npc.getSelectionCircleOffset());
                 npc.attach(selectionCircle);
                 target = npc;
             }
@@ -61,8 +62,9 @@ public class Player extends Human {
         }
     }
 
-    private Optional<NPC> findNearestNPC(State state) {
-        return state.getGameObjectsOfClass(NPC.class).stream()
+    private Optional<GameObject> findNearestNPC(State state) {
+        return state.getGameObjectsOfClass(GameObject.class).stream()
+                .filter(npc -> (npc.isInteractable()))
                 .filter(npc -> getPosition().distanceTo(npc.getPosition()) < targetRange)
                 .filter(npc -> isFacing(npc.getPosition()))
                 .min(Comparator.comparingDouble(npc -> position.distanceTo(npc.getPosition())));
@@ -74,4 +76,8 @@ public class Player extends Human {
             motion.stop(willCollideX(other.getCollisionBox()), willCollideY(other.getCollisionBox()));
         }
     }
+
+
+
+
 }

@@ -4,6 +4,7 @@ import core.CollisionBox;
 import core.Position;
 import core.Size;
 import display.Camera;
+import entity.scenery.InteractableScenery;
 import entity.scenery.Scenery;
 import game.Game;
 import graphics.SpriteLibrary;
@@ -145,6 +146,7 @@ public class GameMap implements Persistable {
         sceneryList.forEach(scenery -> {
             stringBuilder.append(scenery.serialise());
             stringBuilder.append(COLUMN_DELIMITER);
+
         });
         return stringBuilder.toString();
     }
@@ -172,7 +174,13 @@ public class GameMap implements Persistable {
             String scenerySection = sections[2];
             String[] serializedSceneries = scenerySection.split(COLUMN_DELIMITER);
             for(String serializedScenery: serializedSceneries){
-                Scenery scenery = new Scenery();
+                boolean interactive = Boolean.parseBoolean(serializedScenery.split(DELIMITER)[1]);
+                Scenery scenery;
+                if(interactive){
+                    scenery = new InteractableScenery();
+                } else {
+                    scenery = new Scenery();
+                }
                 scenery.applySerialisedData(serializedScenery);
                 sceneryList.add(scenery);
             }

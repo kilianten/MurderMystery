@@ -35,7 +35,6 @@ public class MapIO {
                 stringBuilder.append(System.lineSeparator());
                 stringBuilder.append(line);
             }
-
             map.applySerialisedData(stringBuilder.toString());
             map.reloadGraphics(spriteLibrary);
             return map;

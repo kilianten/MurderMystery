@@ -21,13 +21,17 @@ public abstract class GameObject {
     protected Position renderOffset;
     protected Position collisionBoxOffset;
     protected Size collisionBoxSize;
+
     protected Position selectionCircleOffset;
+    protected Size selectionCircleSize;
 
     protected  GameObject parent;
 
     protected List<GameObject> attachments;
 
     protected int renderLevelOffset;
+    protected boolean interactable;
+
 
     public GameObject(){
         Random random = new Random();
@@ -39,7 +43,9 @@ public abstract class GameObject {
         this.collisionBoxSize = new Size(size.getWidth(), size.getHeight());
         attachments = new ArrayList<>();
         renderLevelOffset = 0;
-        selectionCircleOffset = new Position(0, 0);
+        selectionCircleOffset = new Position(16, 10);
+        interactable = false;
+        selectionCircleSize = new Size(size.getWidth(), size.getHeight() / 6);
     }
 
     public abstract CollisionBox getCollisionBox();
@@ -133,5 +139,17 @@ public abstract class GameObject {
 
     public void moveCollisionBoxUp(){
         collisionBoxOffset.setY(collisionBoxOffset.getIntY() - 1);
+    }
+
+    public boolean isInteractable(){
+        return interactable;
+    }
+
+    public Size getSelectionCircleSize() {
+        return selectionCircleSize;
+    }
+
+    public Position getSelectionCircleOffset() {
+        return selectionCircleOffset;
     }
 }
