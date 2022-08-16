@@ -21,6 +21,7 @@ public class UIRenderingSettings extends VerticalContainer {
         addUIComponent(miniMap);
         addUIComponent(new UICheckbox("Grid", renderSettings.getShouldRenderGrid()));
         addUIComponent(new UICheckbox("Collision", renderSettings.getCollisionBox()));
+        addUIComponent(new UICheckbox("Pathable", renderSettings.getPathable()));
     }
 
     public void resetMiniMap(GameMap gameMap){

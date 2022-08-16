@@ -4,6 +4,7 @@ import ai.AITransition;
 import controller.NPCController;
 import core.Position;
 import entity.human.NPC.NPC;
+import map.Pathfinder;
 import state.State;
 
 import java.util.ArrayList;
@@ -11,11 +12,12 @@ import java.util.List;
 
 public class Wander extends AIState{
 
-    private List<Position> targets;
+    private List<Position> path;
+    private Position target;
 
     public Wander(){
         super();
-        targets = new ArrayList<>();
+        path = new ArrayList<>();
     }
 
     @Override
@@ -25,19 +27,31 @@ public class Wander extends AIState{
 
     @Override
     public void update(State state, NPC currentCharacter) {
-        if(targets.isEmpty()){
-            targets.add(state.getRandomPosition());
+        if(target == null){
+            List<Position> path = Pathfinder.findPath(currentCharacter.getPosition(), state.getRandomPosition(), state.getGameMap());
+
+            if(!path.isEmpty()){
+                target = path.get(path.size() - 1);
+                this.path.addAll(path);
+            }
         }
 
         NPCController controller = (NPCController) currentCharacter.getController();
-        controller.moveToTarget(targets.get(0), currentCharacter.getPosition());
 
         if(hasArrived(currentCharacter)){
             controller.stop();
         }
+
+        if(!path.isEmpty() && currentCharacter.getPosition().isInRangeOf(path.get(0))){
+            path.remove(0);
+        }
+
+        if(!path.isEmpty()){
+            controller.moveToTarget(path.get(0), currentCharacter.getPosition());
+        }
     }
 
     private boolean hasArrived(NPC currentCharacter){
-        return currentCharacter.getPosition().isInRangeOf(targets.get(0));
+        return target != null && currentCharacter.getPosition().isInRangeOf(target);
     }
 }

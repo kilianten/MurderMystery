@@ -57,7 +57,7 @@ public class GameMap implements Persistable {
         int gridX = (int) (x / Game.SPRITE_SIZE);
         int gridY = (int) (y / Game.SPRITE_SIZE);
 
-        if(!getTile(gridX, gridY).isWalkable() || tileHasUnwalkableScenery(gridX, gridY)){
+        if(!tileIsAvailable(gridX, gridY)){
             return getRandomAvailablePosition();
         }
         return new Position(x, y);
@@ -211,5 +211,9 @@ public class GameMap implements Persistable {
                 break;
         }
         return scenery;
+    }
+
+    public boolean tileIsAvailable(int x, int y) {
+        return getTile(x, y).isWalkable() && !tileHasUnwalkableScenery(x, y);
     }
 }

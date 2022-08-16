@@ -70,18 +70,27 @@ public class Renderer {
 
         for(int x = start.getIntX(); x < end.getIntX(); x++){
             for(int y = start.getIntY(); y < end.getIntY(); y++){
+                int drawPositionX = x * Game.SPRITE_SIZE - camera.getPosition().getIntX();
+                int drawPositionY = y * Game.SPRITE_SIZE - camera.getPosition().getIntY();
                 graphics.drawImage(map.getTiles()[x][y].getSprite(),
-                        x * Game.SPRITE_SIZE - camera.getPosition().getIntX(),
-                        y * Game.SPRITE_SIZE - camera.getPosition().getIntY(),
+                        drawPositionX,
+                        drawPositionY,
                         null
                         );
                 if(state.getSettings().getRenderSettings().getShouldRenderGrid().getValue()){
                     graphics.setColor(Color.BLACK);
                     graphics.drawRect(
-                            x * Game.SPRITE_SIZE - camera.getPosition().getIntX(),
-                            y * Game.SPRITE_SIZE - camera.getPosition().getIntY(),
+                            drawPositionX,
+                            drawPositionY,
                             Game.SPRITE_SIZE,
                             Game.SPRITE_SIZE);
+                }
+                if(state.getSettings().getRenderSettings().getPathable().getValue()){
+                    Color overlayColour = map.tileIsAvailable(x, y)
+                            ? new Color(0, 0, 0, 75)
+                            : new Color(255, 0, 0, 75);
+                    graphics.setColor(overlayColour);
+                    graphics.fillRect(drawPositionX, drawPositionY, Game.SPRITE_SIZE, Game.SPRITE_SIZE);
                 }
             }
         }

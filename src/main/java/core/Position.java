@@ -1,5 +1,6 @@
 package core;
 
+import game.Game;
 import io.Persistable;
 
 public class Position implements Persistable {
@@ -90,5 +91,17 @@ public class Position implements Persistable {
         String[] tokens = serializedData.split("\\|");
         x = Double.parseDouble(tokens[0]);
         y = Double.parseDouble(tokens[1]);
+    }
+
+    public int gridX(){
+        return (int) (x / Game.SPRITE_SIZE);
+    }
+
+    public int gridY(){
+        return (int) (y / Game.SPRITE_SIZE);
+    }
+
+    public static Position ofGridPosition(int gridX, int gridY){
+        return new Position(gridX * Game.SPRITE_SIZE + Game.SPRITE_SIZE / 2, gridY * Game.SPRITE_SIZE + Game.SPRITE_SIZE / 2);
     }
 }
