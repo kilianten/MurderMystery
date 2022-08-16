@@ -8,6 +8,7 @@ import entity.human.NPC.Karl;
 import entity.human.NPC.Nolan;
 import entity.human.Player;
 import game.settings.GameSettings;
+import graphics.SpriteLibrary;
 import state.game.ui.ConversationBox;
 import state.game.ui.UIGameTime;
 import input.Input;
@@ -58,106 +59,26 @@ public class GameState extends State {
 
     private void initialiseCharacters() {
         Player player = new Player(new PlayerController(input), spriteLibrary);
+        player.setPosition(gameMap.getRandomAvailablePosition());
         gameObjects.add(player);
         camera.focusOn(player);
 
-        initialiseNPCs();
+        initialiseNPCs(spriteLibrary);
     }
 
-    private void initialiseNPCs() {
-        Collections.addAll(
-                gameObjects,
-                new Douglas(new NPCController(), spriteLibrary),
-                new Nolan(new NPCController(), spriteLibrary),
-                new Karl(new NPCController(), spriteLibrary),
-                new Douglas(new NPCController(), spriteLibrary),
-                new Nolan(new NPCController(), spriteLibrary),
-                new Karl(new NPCController(), spriteLibrary),
-                new Douglas(new NPCController(), spriteLibrary),
-                new Nolan(new NPCController(), spriteLibrary),
-                new Karl(new NPCController(), spriteLibrary),
-                new Douglas(new NPCController(), spriteLibrary),
-                new Nolan(new NPCController(), spriteLibrary),
-                new Karl(new NPCController(), spriteLibrary),
-                new Douglas(new NPCController(), spriteLibrary),
-                new Nolan(new NPCController(), spriteLibrary),
-                new Karl(new NPCController(), spriteLibrary),
-                new Douglas(new NPCController(), spriteLibrary),
-                new Nolan(new NPCController(), spriteLibrary),
-                new Karl(new NPCController(), spriteLibrary),
-                new Douglas(new NPCController(), spriteLibrary),
-                new Nolan(new NPCController(), spriteLibrary),
-                new Karl(new NPCController(), spriteLibrary),
-                new Douglas(new NPCController(), spriteLibrary),
-                new Nolan(new NPCController(), spriteLibrary),
-                new Karl(new NPCController(), spriteLibrary),
-                new Douglas(new NPCController(), spriteLibrary),
-                new Nolan(new NPCController(), spriteLibrary),
-                new Karl(new NPCController(), spriteLibrary),
-                new Douglas(new NPCController(), spriteLibrary),
-                new Nolan(new NPCController(), spriteLibrary),
-                new Karl(new NPCController(), spriteLibrary),
-                new Douglas(new NPCController(), spriteLibrary),
-                new Nolan(new NPCController(), spriteLibrary),
-                new Karl(new NPCController(), spriteLibrary),
-                new Douglas(new NPCController(), spriteLibrary),
-                new Nolan(new NPCController(), spriteLibrary),
-                new Karl(new NPCController(), spriteLibrary),
-                new Douglas(new NPCController(), spriteLibrary),
-                new Nolan(new NPCController(), spriteLibrary),
-                new Karl(new NPCController(), spriteLibrary),
-                new Douglas(new NPCController(), spriteLibrary),
-                new Nolan(new NPCController(), spriteLibrary),
-                new Karl(new NPCController(), spriteLibrary),
-                new Douglas(new NPCController(), spriteLibrary),
-                new Nolan(new NPCController(), spriteLibrary),
-                new Karl(new NPCController(), spriteLibrary),
-                new Douglas(new NPCController(), spriteLibrary),
-                new Nolan(new NPCController(), spriteLibrary),
-                new Karl(new NPCController(), spriteLibrary),
-                new Douglas(new NPCController(), spriteLibrary),
-                new Nolan(new NPCController(), spriteLibrary),
-                new Karl(new NPCController(), spriteLibrary),
-                new Douglas(new NPCController(), spriteLibrary),
-                new Nolan(new NPCController(), spriteLibrary),
-                new Karl(new NPCController(), spriteLibrary),
-                new Douglas(new NPCController(), spriteLibrary),
-                new Nolan(new NPCController(), spriteLibrary),
-                new Karl(new NPCController(), spriteLibrary),
-                new Douglas(new NPCController(), spriteLibrary),
-                new Nolan(new NPCController(), spriteLibrary),
-                new Karl(new NPCController(), spriteLibrary),
-                new Douglas(new NPCController(), spriteLibrary),
-                new Nolan(new NPCController(), spriteLibrary),
-                new Karl(new NPCController(), spriteLibrary),
-                new Douglas(new NPCController(), spriteLibrary),
-                new Nolan(new NPCController(), spriteLibrary),
-                new Karl(new NPCController(), spriteLibrary),
-                new Douglas(new NPCController(), spriteLibrary),
-                new Nolan(new NPCController(), spriteLibrary),
-                new Karl(new NPCController(), spriteLibrary),
-                new Douglas(new NPCController(), spriteLibrary),
-                new Nolan(new NPCController(), spriteLibrary),
-                new Karl(new NPCController(), spriteLibrary),
-                new Douglas(new NPCController(), spriteLibrary),
-                new Nolan(new NPCController(), spriteLibrary),
-                new Karl(new NPCController(), spriteLibrary),
-                new Douglas(new NPCController(), spriteLibrary),
-                new Nolan(new NPCController(), spriteLibrary),
-                new Karl(new NPCController(), spriteLibrary),
-                new Douglas(new NPCController(), spriteLibrary),
-                new Nolan(new NPCController(), spriteLibrary),
-                new Karl(new NPCController(), spriteLibrary),
-                new Douglas(new NPCController(), spriteLibrary),
-                new Nolan(new NPCController(), spriteLibrary),
-                new Karl(new NPCController(), spriteLibrary),
-                new Douglas(new NPCController(), spriteLibrary),
-                new Nolan(new NPCController(), spriteLibrary),
-                new Karl(new NPCController(), spriteLibrary),
-                new Douglas(new NPCController(), spriteLibrary),
-                new Nolan(new NPCController(), spriteLibrary),
-                new Karl(new NPCController(), spriteLibrary)
-                );
+    private void initialiseNPCs(SpriteLibrary spriteLibrary) {
+        for(int i = 0;i < 33; i++){
+            Karl karl = new Karl(new NPCController(), spriteLibrary);
+            Douglas douglas = new Douglas(new NPCController(), spriteLibrary);
+            Nolan nolan = new Nolan(new NPCController(), spriteLibrary);
+            nolan.setPosition(gameMap.getRandomAvailablePosition());
+            douglas.setPosition(gameMap.getRandomAvailablePosition());
+            karl.setPosition(gameMap.getRandomAvailablePosition());
+            gameObjects.add(karl);
+            gameObjects.add(douglas);
+            gameObjects.add(nolan);
+        }
+
     }
 
     private void initializeUI(Size windowSize) {

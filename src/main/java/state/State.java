@@ -99,7 +99,7 @@ public abstract class State {
     }
 
     public Position getRandomPosition(){
-        return gameMap.getRandomPosition();
+        return gameMap.getRandomAvailablePosition();
     }
 
     public List<GameObject> getCollidingGameObjects(GameObject gameObject) {

@@ -10,7 +10,6 @@ import state.State;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 public abstract class GameObject {
 
@@ -24,18 +23,14 @@ public abstract class GameObject {
 
     protected Position selectionCircleOffset;
     protected Size selectionCircleSize;
-
     protected  GameObject parent;
 
     protected List<GameObject> attachments;
-
     protected int renderLevelOffset;
     protected boolean interactable;
 
-
     public GameObject(){
-        Random random = new Random();
-        position = new Position(random.nextInt(1000), random.nextInt(1000));
+        position = new Position(0, 0);
         size = new Size(64, 64);
         renderOffset = new Position(0, 0);
         renderOrder = 5;

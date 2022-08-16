@@ -51,11 +51,23 @@ public class GameMap implements Persistable {
         return tiles[0].length * Game.SPRITE_SIZE;
     }
 
-    public Position getRandomPosition() {
+    public Position getRandomAvailablePosition() {
         double x = Math.random() * tiles.length * Game.SPRITE_SIZE;
         double y = Math.random() * tiles[0].length * Game.SPRITE_SIZE;
+        int gridX = (int) (x / Game.SPRITE_SIZE);
+        int gridY = (int) (y / Game.SPRITE_SIZE);
 
+        if(!getTile(gridX, gridY).isWalkable() || tileHasUnwalkableScenery(gridX, gridY)){
+            return getRandomAvailablePosition();
+        }
         return new Position(x, y);
+    }
+
+    private boolean tileHasUnwalkableScenery(int gridX, int gridY) {
+        CollisionBox gridCollisionBox = getGridCollisionBox(gridX, gridY);
+        return sceneryList.stream()
+                .filter(scenery -> !scenery.isWalkable())
+                .anyMatch(scenery -> scenery.getCollisionBox().collidesWith(gridCollisionBox));
     }
 
     public void reloadGraphics(SpriteLibrary spriteLibrary) {
