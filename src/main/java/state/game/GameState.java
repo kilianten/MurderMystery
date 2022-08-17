@@ -3,6 +3,7 @@ package state.game;
 import controller.NPCController;
 import controller.PlayerController;
 import core.Size;
+import entity.GameObject;
 import entity.human.NPC.Douglas;
 import entity.human.NPC.Karl;
 import entity.human.NPC.Nolan;
@@ -10,6 +11,7 @@ import entity.human.Player;
 import game.settings.GameSettings;
 import graphics.SpriteLibrary;
 import state.game.ui.ConversationBox;
+import state.game.ui.UIGameMenu;
 import state.game.ui.UIGameTime;
 import input.Input;
 import state.State;
@@ -24,37 +26,34 @@ import java.util.Collections;
 
 public class GameState extends State {
 
-    @Override
-    public void handleKeyInput(){
-        if(input.isPressed(KeyEvent.VK_ESCAPE)){
-            paused = !paused;
-            if(paused){
-                pause();
-            }
-        }
-    }
+    protected boolean paused;
 
-    @Override
-    public void setDefaultSettings() {
-        settings.getRenderSettings().getShouldRenderGrid().setValue(false);
-    }
-
-
-    private void pause(){
-        paused = true;
-        VerticalContainer pauseContainer = new VerticalContainer(camera.getSize());
-        pauseContainer.setAlignment(new Alignment(Alignment.Position.CENTER, Alignment.Position.CENTER));
-        pauseContainer.setBackgroundColor(Color.DARK_GRAY);
-        pauseContainer.addUIComponent(new UIButton("Menu", (state) -> state.setNextState(new MenuState(windowSize, input, settings))));
-        pauseContainer.addUIComponent(new UIButton("Exit", (state) -> System.exit(0)));
-        uiContainers.add(pauseContainer);
-    }
+    private UIGameMenu gameMenu;
 
     public GameState(Size windowSize, Input input, GameSettings settings) {
         super(windowSize, input, settings);
         loadGameMap();
         initialiseCharacters();
         initializeUI(windowSize);
+        gameMenu = new UIGameMenu(windowSize, input, settings);
+    }
+
+    protected void updateGameObjects() {
+        if(!paused){
+            super.updateGameObjects();
+        }
+    }
+
+    @Override
+    public void handleKeyInput(){
+        if(input.isPressed(KeyEvent.VK_ESCAPE)){
+            togglePause(!paused);
+        }
+    }
+
+    @Override
+    public void setDefaultSettings() {
+        settings.getRenderSettings().getShouldRenderGrid().setValue(false);
     }
 
     private void initialiseCharacters() {
@@ -89,5 +88,23 @@ public class GameState extends State {
         ConversationBox conversationBox = new ConversationBox();
         conversationBox.setSize(new Size(600, 200));
         UIElements.add(conversationBox);
+    }
+
+    public void togglePause(boolean shouldPause){
+        if(shouldPause){
+            paused = true;
+            toggleMenu(true);
+        } else {
+            paused = false;
+            toggleMenu(false);
+        }
+    }
+
+    private void toggleMenu(boolean shouldShowMenu) {
+        if(shouldShowMenu && !uiContainers.contains(gameMenu)){
+            uiContainers.add(gameMenu);
+        } else if (!shouldShowMenu){
+            uiContainers.remove(gameMenu);
+        }
     }
 }

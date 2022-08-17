@@ -1,12 +1,12 @@
 package game;
 
-public class Clock {
+public class Time {
     private int updatesSinceStart;
     private int minutesInDay;
     private int day;
     private int timeSpeed = 1;
 
-    public Clock() {
+    public Time() {
         updatesSinceStart = 0;
         minutesInDay = 0;
         day = 1;

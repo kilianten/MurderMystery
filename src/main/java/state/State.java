@@ -6,7 +6,7 @@ import core.Size;
 import display.Camera;
 import entity.GameObject;
 import entity.scenery.Scenery;
-import game.Clock;
+import game.Time;
 import game.Game;
 import game.settings.GameSettings;
 import graphics.SpriteLibrary;
@@ -32,7 +32,7 @@ public abstract class State {
     protected SpriteLibrary spriteLibrary;
     protected Input input;
     protected Camera camera;
-    protected Clock clock;
+    protected Time clock;
     protected MouseHandler mouseHandler;
 
     protected Size windowSize;
@@ -40,8 +40,6 @@ public abstract class State {
 
     protected List<UIContainer> uiContainers;
     public List<UIComponent> UIElements;
-
-    protected boolean paused;
 
     public State(Size windowSize, Input input, GameSettings settings) {
         this.settings = settings;
@@ -54,7 +52,7 @@ public abstract class State {
         audioPlayer = new AudioPlayer(settings.getAudioSettings());
         mouseHandler = new MouseHandler();
         this.camera = new Camera(windowSize);
-        clock = new Clock();
+        clock = new Time();
         setDefaultSettings();
     }
 
@@ -62,9 +60,7 @@ public abstract class State {
         audioPlayer.update();
         clock.update();
         sortObjectsByPosition();
-        for(GameObject gameObject: gameObjects){
-            gameObject.update(this);
-        }
+        updateGameObjects();
         List.copyOf(uiContainers).forEach(UIContainer -> UIContainer.update(this));
         camera.update(this);
         mouseHandler.update(this);
@@ -75,6 +71,11 @@ public abstract class State {
         }
     }
 
+    protected void updateGameObjects() {
+        for(GameObject gameObject: gameObjects){
+            gameObject.update(this);
+        }
+    }
 
     public void handleKeyInput(){}
 
@@ -94,7 +95,7 @@ public abstract class State {
         return camera;
     }
 
-    public Clock getClock() {
+    public Time getClock() {
         return clock;
     }
 
@@ -162,4 +163,5 @@ public abstract class State {
     public void despawn(GameObject gameObject) {
         gameObjects.remove(gameObject);
     }
+
 }
