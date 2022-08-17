@@ -6,7 +6,6 @@ import io.Persistable;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.Serializable;
 
 public class Tile implements Persistable {
 
@@ -98,5 +97,13 @@ public class Tile implements Persistable {
 
     public void setTileIndex(int tileIndex) {
         this.tileIndex = tileIndex;
+    }
+
+    public int getMoveCost() {
+        int moveCost = switch (tileName){
+            case "pathcenter" -> 10;
+            default -> 40;
+        };
+        return moveCost;
     }
 }
