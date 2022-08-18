@@ -2,8 +2,8 @@ package state.game.ui;
 
 import core.Size;
 import graphics.ImageUtils;
-import state.State;
 import ui.*;
+import ui.clickable.UIClickableText;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -13,19 +13,22 @@ public class ConversationBox extends VerticalContainer {
     public static final int SPACE_BETWEEN_RECTS = 10;
     public static final int ARC_WIDTH = 30;
     public static final int STROKE_WIDTH = 4;
-    public UIText conversantName;
 
     public ConversationBox(Size windowSize) {
         super(windowSize);
-        this.size = new Size(600, 200);
         setAlignment(new Alignment(Alignment.Position.CENTER, Alignment.Position.START));
-        conversantName = new UIText("", 35, 35, false);
-        addUIComponent(conversantName);
-        addUIComponent(new UIImage(getConversationBox()));
+        setFixedSize(new Size(600, 200));
+        addUIComponent((new UIClickableText("Interrogation", (state) -> System.out.println("Interrogate"))));
+        addUIComponent(new UIClickableText("Friendly", (state) -> System.out.println("Interrogate")));
+        addUIComponent(new UIClickableText("Gossip", (state) -> System.out.println("Interrogate")));
+        addUIComponent(new UIClickableText("Question", (state) -> System.out.println("Interrogate")));
+        addUIComponent(new UIClickableText("Help", (state) -> System.out.println("Interrogate")));
 
+        setPadding();
     }
 
-    public Image getConversationBox() {
+    @Override
+    public Image getSprite() {
         BufferedImage image = (BufferedImage) ImageUtils.createCompatibleImage(size, ImageUtils.ALPHA_BLEND);
         Graphics2D graphics = image.createGraphics();
 
@@ -42,15 +45,24 @@ public class ConversationBox extends VerticalContainer {
                 ARC_WIDTH,
                 ARC_WIDTH);
 
+        for(UIComponent uiComponent : children) {
+            graphics.drawImage(
+                    uiComponent.getSprite(),
+                    uiComponent.getRelativePosition().getIntX(),
+                    uiComponent.getRelativePosition().getIntY(),
+                    null
+            );
+        }
 
         graphics.dispose();
         return image;
     }
 
-    public void setConversantName(String fullName){
-        conversantName.setText(fullName);
+    private void setPadding(){
+        for(UIComponent uiText: children){
+            uiText.setPadding(new Spacing(4, 0, 0, 10));
+        }
     }
-
 
 
 }

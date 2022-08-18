@@ -3,7 +3,6 @@ package state.game;
 import controller.NPCController;
 import controller.PlayerController;
 import core.Size;
-import entity.GameObject;
 import entity.human.NPC.Douglas;
 import entity.human.NPC.Eduardo;
 import entity.human.NPC.Karl;
@@ -12,26 +11,21 @@ import entity.human.Player;
 import game.settings.GameSettings;
 import graphics.SpriteLibrary;
 import state.game.ui.ConversationBox;
+import state.game.ui.ConversationBoxContainer;
 import state.game.ui.UIGameMenu;
 import state.game.ui.UIGameTime;
 import input.Input;
 import state.State;
-import state.menu.MenuState;
-import ui.Alignment;
 import ui.UIContainer;
-import ui.VerticalContainer;
-import ui.clickable.UIButton;
 
-import java.awt.*;
 import java.awt.event.KeyEvent;
-import java.util.Collections;
 
 public class GameState extends State {
 
     protected boolean paused;
 
     private UIGameMenu gameMenu;
-    private ConversationBox conversationBox;
+    private ConversationBoxContainer conversationBoxContainer;
     private boolean conversating;
 
     public GameState(Size windowSize, Input input, GameSettings settings) {
@@ -40,7 +34,8 @@ public class GameState extends State {
         initialiseCharacters();
         initializeUI(windowSize);
         gameMenu = new UIGameMenu(windowSize, input, settings);
-        conversationBox = new ConversationBox(windowSize);
+        conversationBoxContainer = new ConversationBoxContainer(windowSize);
+        //conversationTextBox = new ConversationTextBox(windowSize);
     }
 
     protected void updateGameObjects() {
@@ -100,10 +95,10 @@ public class GameState extends State {
         if(isConversating){
             paused = true;
             conversating = true;
-            toggleMenu(true, conversationBox);
+            toggleMenu(true, conversationBoxContainer);
         } else {
             paused = false;
-            toggleMenu(false, conversationBox);
+            toggleMenu(false, conversationBoxContainer);
         }
     }
 
@@ -125,7 +120,7 @@ public class GameState extends State {
         }
     }
 
-    public ConversationBox getConversationBox() {
-        return conversationBox;
+    public ConversationBoxContainer getConversationBox() {
+        return conversationBoxContainer;
     }
 }

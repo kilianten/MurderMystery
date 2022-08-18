@@ -1,44 +1,45 @@
-package ui;
+package ui.clickable;
 
 import core.Size;
-import state.State;
 import graphics.ImageUtils;
+import state.State;
+import ui.UIContainer;
+import ui.UIText;
+import ui.VerticalContainer;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.InputStream;
 
-public class UIText extends UIComponent {
+public class UIClickableText extends UIClickable {
 
     private String text;
     private int fontSize;
     private int fontStyle;
     private String fontFamily;
     private Color colour;
-
-    private boolean dropShadow;
+    private ClickAction clickAction;
     private int dropShadowOffset;
     private Color shadowColour;
-
     private Font font;
-
     int displaySize;
 
-    public UIText(String text) {
-        this(text, 40, 25, true);
+
+    public UIClickableText(String text, ClickAction clickAction) {
+        this(text, 40, 25, clickAction);
     }
 
-    public UIText(String text, int fontSize, int displaySize, boolean dropShadow) {
+    public UIClickableText(String text, int fontSize, int displaySize, ClickAction clickAction) {
         this.text = text;
         this.fontSize = fontSize;
         this.fontStyle = Font.PLAIN;
         this.fontFamily = "chai";
         this.colour = Color.WHITE;
-        this.dropShadow = dropShadow;
         this.dropShadowOffset = 2;
         this.shadowColour = new Color(29, 25, 78);
         this.displaySize = displaySize;
+        this.clickAction = clickAction;
         createFont();
     }
 
@@ -48,21 +49,11 @@ public class UIText extends UIComponent {
         Graphics2D graphics = image.createGraphics();
         graphics.setFont(font);
 
-        if(dropShadow) {
-            graphics.setColor(shadowColour);
-            graphics.drawString(text, padding.getLeft() + dropShadowOffset, displaySize + padding.getTop() + dropShadowOffset);
-        }
-
         graphics.setColor(colour);
         graphics.drawString(text, padding.getLeft(), displaySize + padding.getTop());
 
         graphics.dispose();
         return image;
-    }
-
-    @Override
-    public void update(State state) {
-        calculateSize();
     }
 
     private void calculateSize() {
@@ -71,10 +62,6 @@ public class UIText extends UIComponent {
         int width = fontMetrics.stringWidth(text) + padding.getHorizontal();
 
         int height = displaySize + padding.getVertical();
-
-        if(dropShadow){
-            width += dropShadowOffset;
-        }
 
         size = new Size(width, height);
     }
@@ -94,7 +81,41 @@ public class UIText extends UIComponent {
         this.text = text;
     }
 
-    public void setColour(Color color){
-        this.colour = color;
+    @Override
+    public void update(State state) {
+        super.update(state);
+        calculateSize();
+
+        colour = Color.WHITE;
+
+        if(hasFocus) {
+            colour = new Color(80, 180, 50);
+        }
+
+        if(isPressed) {
+            colour = Color.LIGHT_GRAY;
+        }
+    }
+
+    @Override
+    protected void onFocus(State state) {
+        state.getAudioPlayer().playSound("buttonSound.wav");
+    }
+
+    @Override
+    public void onDrag(State state) {
+
+    }
+
+    @Override
+    public void onRelease(State state) {
+
+    }
+
+    @Override
+    public void onClick(State state) {
+        if(hasFocus){
+            clickAction.execute(state);
+        }
     }
 }

@@ -10,8 +10,8 @@ import java.awt.*;
 
 public class UIButton extends UIClickable {
 
-    private UIContainer container;
-    private UIText label;
+    protected UIContainer container;
+    protected UIText label;
 
     private ClickAction clickAction;
 
@@ -27,6 +27,15 @@ public class UIButton extends UIClickable {
         container.setCenterChildren(true);
         container.addUIComponent(this.label);
         container.setFixedSize(size);
+    }
+
+    public UIButton(UIText text, ClickAction clickAction) {
+        this.label = text;
+        this.clickAction = clickAction;
+
+        container = new VerticalContainer(new Size(0, 0));
+        container.setCenterChildren(true);
+        container.addUIComponent(this.label);
     }
 
     @Override
