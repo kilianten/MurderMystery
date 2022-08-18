@@ -21,5 +21,6 @@ public class Karl extends NPC {
         super(controller, spriteLibrary, "defaultMan", colourHandler);
         perform(new Smoke());
         firstName = "Karl";
+        secondName = "Bryson";
     }
 }

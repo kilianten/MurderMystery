@@ -20,7 +20,8 @@ public abstract class Human extends MovingEntity {
     protected List<Effect> effects;
     protected Optional<Action> action;
 
-    protected String firstName = "";
+    protected String firstName;
+    protected String secondName;
 
     public Human(Controller controller, SpriteLibrary spriteLibrary) {
         super(controller, spriteLibrary);

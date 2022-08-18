@@ -20,6 +20,7 @@ public class Nolan extends NPC {
     public Nolan(Controller controller, SpriteLibrary spriteLibrary) {
         super(controller, spriteLibrary, "priest", colourHandler);
         firstName = "Fr.";
+        secondName = "Nolan";
     }
 
 }

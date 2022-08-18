@@ -124,4 +124,8 @@ public class GameState extends State {
             uiContainers.remove(container);
         }
     }
+
+    public ConversationBox getConversationBox() {
+        return conversationBox;
+    }
 }

@@ -13,12 +13,16 @@ public class ConversationBox extends VerticalContainer {
     public static final int SPACE_BETWEEN_RECTS = 10;
     public static final int ARC_WIDTH = 30;
     public static final int STROKE_WIDTH = 4;
+    public UIText conversantName;
 
     public ConversationBox(Size windowSize) {
         super(windowSize);
         this.size = new Size(600, 200);
         setAlignment(new Alignment(Alignment.Position.CENTER, Alignment.Position.START));
+        conversantName = new UIText("", 35, 35, false);
+        addUIComponent(conversantName);
         addUIComponent(new UIImage(getConversationBox()));
+
     }
 
     public Image getConversationBox() {
@@ -42,5 +46,11 @@ public class ConversationBox extends VerticalContainer {
         graphics.dispose();
         return image;
     }
+
+    public void setConversantName(String fullName){
+        conversantName.setText(fullName);
+    }
+
+
 
 }

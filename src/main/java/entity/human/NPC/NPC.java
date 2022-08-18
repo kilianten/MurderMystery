@@ -47,5 +47,6 @@ public abstract class NPC extends Human {
     @Override
     public void interact(State state, Player player) {
         ((GameState) state).toggleConversationBox(true);
+        ((GameState) state).getConversationBox().setConversantName(firstName + " " + secondName);
     }
 }
