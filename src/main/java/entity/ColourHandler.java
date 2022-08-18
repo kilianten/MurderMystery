@@ -11,6 +11,9 @@ public class ColourHandler {
     public int shoeColour;
     public int shoeShadow;
     public int primaryColour;
+    public int skinColour;
+    public int skinShadow;
+
 
     public ColourHandler(int hairColour, int shirtColour, int shirtColourDark, int shirtColourLight, int legColor, int legColorDark,int shoeColour, int shoeShadow) {
         this.hairColour = hairColour;
@@ -34,6 +37,21 @@ public class ColourHandler {
         this.shoeShadow = shoeShadow;
         this.primaryColour = primaryColour;
     }
+
+    public ColourHandler(int hairColour, int shirtColour, int shirtColourDark, int shirtColourLight, int legColor, int legColorDark,int shoeColour, int shoeShadow, int skinColor, int skinShadow) {
+        this.hairColour = hairColour;
+        this.shirtColour = shirtColour;
+        this.shirtColourDark = shirtColourDark;
+        this.shirtColourLight = shirtColourLight;
+        this.legColor = legColor;
+        this.legColorDark = legColorDark;
+        this.shoeColour = shoeColour;
+        this.shoeShadow = shoeShadow;
+        this.skinColour = skinColor;
+        this.skinShadow = skinShadow;
+    }
+
+
 
     public int getHairColour() {
         return hairColour;

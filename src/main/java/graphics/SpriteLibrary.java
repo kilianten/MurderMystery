@@ -25,6 +25,8 @@ public class SpriteLibrary {
     public static final int DEFAULT_LEG_DARK_COLOUR = 0xFF484A77;
     public static final int DEFAULT_SHOE_SHADOW = 0xFF3E3546;
     public static final int DEFAULT_EXTRA_COLOUR = 0xFFff009c;
+    public static final int DEFAULT_SKIN_COLOUR_SHADOW = 0xFFfca790;
+    public static final int DEFAULT_SKIN_COLOUR = 0xFFfdcbb0;
 
     private Map<String, SpriteSet> units;
     private Map<String, Image> sceneryObjects;
@@ -125,9 +127,11 @@ public class SpriteLibrary {
                         newImage.setRGB(i, j, colourHandler.shoeColour);
                     } else if(currentPixel == DEFAULT_EXTRA_COLOUR){
                         newImage.setRGB(i, j, colourHandler.primaryColour);
-                    } else if(currentPixel == DEFAULT_SHOE_SHADOW){
-                        newImage.setRGB(i, j, colourHandler.shoeShadow);
-                    }else {
+                    } else if(currentPixel == DEFAULT_SKIN_COLOUR && colourHandler.skinColour != 0){
+                        newImage.setRGB(i, j, colourHandler.skinColour);
+                    } else if(currentPixel == DEFAULT_SKIN_COLOUR_SHADOW && colourHandler.skinShadow != 0){
+                        newImage.setRGB(i, j, colourHandler.skinShadow);
+                    } else {
                         newImage.setRGB(i, j, currentPixel);
                     }
                 }

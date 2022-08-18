@@ -5,6 +5,7 @@ import controller.PlayerController;
 import core.Size;
 import entity.GameObject;
 import entity.human.NPC.Douglas;
+import entity.human.NPC.Eduardo;
 import entity.human.NPC.Karl;
 import entity.human.NPC.Nolan;
 import entity.human.Player;
@@ -74,16 +75,19 @@ public class GameState extends State {
     }
 
     private void initialiseNPCs(SpriteLibrary spriteLibrary) {
-        for(int i = 0;i < 33; i++){
+        for(int i = 0;i < 25; i++){
             Karl karl = new Karl(new NPCController(), spriteLibrary);
             Douglas douglas = new Douglas(new NPCController(), spriteLibrary);
             Nolan nolan = new Nolan(new NPCController(), spriteLibrary);
+            Eduardo eduardo = new Eduardo(new NPCController(), spriteLibrary);
             nolan.setPosition(gameMap.getRandomAvailablePosition());
             douglas.setPosition(gameMap.getRandomAvailablePosition());
             karl.setPosition(gameMap.getRandomAvailablePosition());
+            eduardo.setPosition(gameMap.getRandomAvailablePosition());
             gameObjects.add(karl);
             gameObjects.add(douglas);
             gameObjects.add(nolan);
+            gameObjects.add(eduardo);
         }
 
     }
