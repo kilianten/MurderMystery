@@ -6,6 +6,7 @@ import core.Size;
 import entity.human.Player;
 import entity.human.action.Sit;
 import graphics.SpriteLibrary;
+import state.State;
 
 public class Bench extends InteractableScenery {
 
@@ -28,7 +29,7 @@ public class Bench extends InteractableScenery {
     }
 
     @Override
-    public void interact(Player player){
+    public void interact(State state, Player player){
         if(!inUse){
             player.setDirection(Direction.S);
             player.perform(new Sit(player, this));

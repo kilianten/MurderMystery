@@ -148,6 +148,6 @@ public abstract class GameObject {
         return selectionCircleOffset;
     }
 
-    public void interact(Player player){}
+    public void interact(State state, Player player){}
 
 }

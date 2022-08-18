@@ -38,7 +38,7 @@ public class Player extends Human {
     private void handleInput(State state) {
         if(state.getInput().isPressed(KeyEvent.VK_SPACE)){
             if(target != null){
-                target.interact(this);
+                target.interact(state, this);
             }
         }
     }

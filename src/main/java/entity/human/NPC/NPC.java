@@ -12,6 +12,7 @@ import entity.human.effect.Effect;
 import state.State;
 import graphics.AnimationManager;
 import graphics.SpriteLibrary;
+import state.game.GameState;
 
 public abstract class NPC extends Human {
 
@@ -43,4 +44,8 @@ public abstract class NPC extends Human {
         }
     }
 
+    @Override
+    public void interact(State state, Player player) {
+        ((GameState) state).toggleConversationBox(true);
+    }
 }

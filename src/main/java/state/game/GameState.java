@@ -17,6 +17,7 @@ import input.Input;
 import state.State;
 import state.menu.MenuState;
 import ui.Alignment;
+import ui.UIContainer;
 import ui.VerticalContainer;
 import ui.clickable.UIButton;
 
@@ -29,6 +30,8 @@ public class GameState extends State {
     protected boolean paused;
 
     private UIGameMenu gameMenu;
+    private ConversationBox conversationBox;
+    private boolean conversating;
 
     public GameState(Size windowSize, Input input, GameSettings settings) {
         super(windowSize, input, settings);
@@ -36,6 +39,7 @@ public class GameState extends State {
         initialiseCharacters();
         initializeUI(windowSize);
         gameMenu = new UIGameMenu(windowSize, input, settings);
+        conversationBox = new ConversationBox(windowSize);
     }
 
     protected void updateGameObjects() {
@@ -48,6 +52,10 @@ public class GameState extends State {
     public void handleKeyInput(){
         if(input.isPressed(KeyEvent.VK_ESCAPE)){
             togglePause(!paused);
+            if(conversating){
+                toggleConversationBox(false);
+                conversating = false;
+            }
         }
     }
 
@@ -84,27 +92,32 @@ public class GameState extends State {
          uiContainers.add(new UIGameTime(windowSize));
     }
 
-    public void startConversation(){
-        ConversationBox conversationBox = new ConversationBox();
-        conversationBox.setSize(new Size(600, 200));
-        UIElements.add(conversationBox);
+    public void toggleConversationBox(boolean isConversating){
+        if(isConversating){
+            paused = true;
+            conversating = true;
+            toggleMenu(true, conversationBox);
+        } else {
+            paused = false;
+            toggleMenu(false, conversationBox);
+        }
     }
 
     public void togglePause(boolean shouldPause){
         if(shouldPause){
             paused = true;
-            toggleMenu(true);
+            toggleMenu(true, gameMenu);
         } else {
             paused = false;
-            toggleMenu(false);
+            toggleMenu(false, gameMenu);
         }
     }
 
-    private void toggleMenu(boolean shouldShowMenu) {
-        if(shouldShowMenu && !uiContainers.contains(gameMenu)){
-            uiContainers.add(gameMenu);
+    private void toggleMenu(boolean shouldShowMenu, UIContainer container) {
+        if(shouldShowMenu && !uiContainers.contains(container)){
+            uiContainers.add(container);
         } else if (!shouldShowMenu){
-            uiContainers.remove(gameMenu);
+            uiContainers.remove(container);
         }
     }
 }
