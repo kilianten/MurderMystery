@@ -28,9 +28,9 @@ public class GameState extends State {
     private ConversationBoxContainer conversationBoxContainer;
     private boolean conversating;
 
-    public GameState(Size windowSize, Input input, GameSettings settings) {
+    public GameState(Size windowSize, Input input, GameSettings settings, String gameMap) {
         super(windowSize, input, settings);
-        loadGameMap();
+        loadGameMap(gameMap);
         initialiseCharacters();
         initializeUI(windowSize);
         gameMenu = new UIGameMenu(windowSize, input, settings);
@@ -70,7 +70,7 @@ public class GameState extends State {
     }
 
     private void initialiseNPCs(SpriteLibrary spriteLibrary) {
-        for(int i = 0;i < 25; i++){
+        for(int i = 0;i < 50; i++){
             Karl karl = new Karl(new NPCController(), spriteLibrary);
             Douglas douglas = new Douglas(new NPCController(), spriteLibrary);
             Nolan nolan = new Nolan(new NPCController(), spriteLibrary);

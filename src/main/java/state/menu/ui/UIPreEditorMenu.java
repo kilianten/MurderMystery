@@ -20,6 +20,7 @@ public class UIPreEditorMenu extends VerticalContainer {
             new Size(30, 30),
             new Size(40, 40),
             new Size(50, 50),
+            new Size(128, 128)
     };
 
     public UIPreEditorMenu(Size windowSize, GameSettings settings) {

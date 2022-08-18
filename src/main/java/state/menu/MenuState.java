@@ -11,7 +11,7 @@ import ui.UIContainer;
 public class MenuState extends State {
     public MenuState(Size windowSize, Input input, GameSettings settings) {
         super(windowSize, input, settings);
-        loadGameMap();
+        loadGameMap(getClass().getResource("/maps/map.rim").getFile());
         settings.getRenderSettings().getCollisionBox().setValue(false);
         uiContainers.add(new UIMainMenu(windowSize));
         audioPlayer.playMusic("metal.wav");

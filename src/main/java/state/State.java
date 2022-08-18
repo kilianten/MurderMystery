@@ -150,14 +150,15 @@ public abstract class State {
         return mouseHandler;
     }
 
-    public void loadGameMap() {
-        gameMap = MapIO.load(spriteLibrary);
+    public void loadGameMap(String filePath) {
+        gameObjects.clear();
+        gameMap = MapIO.load(spriteLibrary, filePath);
         gameObjects.addAll(gameMap.getSceneryList());
     }
 
-    public void saveGameMap() {
+    public void saveGameMap(String filePath) {
         gameMap.setSceneryList(getGameObjectsOfClass(Scenery.class));
-        MapIO.save(gameMap);
+        MapIO.save(gameMap, filePath);
     }
 
     public void despawn(GameObject gameObject) {

@@ -41,8 +41,8 @@ public class EditorState extends State {
     }
 
     @Override
-    public void loadGameMap() {
-        super.loadGameMap();
+    public void loadGameMap(String filePath) {
+        super.loadGameMap(filePath);
         renderSettings.resetMiniMap(gameMap);
     }
 }
