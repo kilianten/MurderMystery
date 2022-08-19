@@ -143,6 +143,7 @@ public abstract class GameObject {
     }
 
     public Size getSelectionCircleSize() {
+        System.out.println(size.getWidth());
         return selectionCircleSize;
     }
 

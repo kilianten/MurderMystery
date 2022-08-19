@@ -20,6 +20,8 @@ public class MenuState extends State {
     @Override
     public void setDefaultSettings() {
         settings.getRenderSettings().getShouldRenderGrid().setValue(false);
+        settings.getRenderSettings().getCollisionBox().setValue(false);
+        settings.getRenderSettings().getPathable().setValue(false);
     }
 
     public void enterMenu(UIContainer container){

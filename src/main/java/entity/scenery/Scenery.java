@@ -65,6 +65,7 @@ public class Scenery extends GameObject implements Persistable {
         copy.renderLevelOffset = scenery.renderLevelOffset;
         copy.selectionCircleOffset = Position.copyOf(scenery.selectionCircleOffset);
         copy.interactable = scenery.isInteractable();
+        copy.selectionCircleSize = scenery.selectionCircleSize;
 
         return copy;
     }
@@ -138,6 +139,7 @@ public class Scenery extends GameObject implements Persistable {
         walkable = Boolean.parseBoolean(tokens[8]);
         renderLevelOffset = Integer.parseInt(tokens[9]);
         selectionCircleOffset.applySerialisedData(tokens[10]);
+        selectionCircleSize = new Size(size.getWidth(), size.getHeight() / 6);
     }
 
     public boolean isWalkable(){

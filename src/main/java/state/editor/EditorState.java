@@ -19,7 +19,7 @@ public class EditorState extends State {
         gameMap = new GameMap(mapSize, spriteLibrary);
         setupMouseActions();
         setupUI(windowSize, settings);
-        settings.getRenderSettings().getCollisionBox().setValue(true);
+
     }
 
     private void setupMouseActions() {
@@ -38,6 +38,7 @@ public class EditorState extends State {
     @Override
     public void setDefaultSettings() {
         settings.getRenderSettings().getShouldRenderGrid().setValue(true);
+        settings.getRenderSettings().getCollisionBox().setValue(true);
     }
 
     @Override

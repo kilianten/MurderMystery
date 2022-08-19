@@ -1,6 +1,7 @@
 package entity.human;
 
 import controller.Controller;
+import core.Size;
 import entity.GameObject;
 import entity.SelectionCircle;
 import entity.scenery.InteractableScenery;
@@ -52,9 +53,12 @@ public class Player extends Human {
                 if(target != null){
                     target.detach(selectionCircle);
                 }
-                selectionCircle.resize(nearObj.getSelectionCircleSize(), nearObj.getSelectionCircleOffset());
+                Size size = nearObj.getSelectionCircleSize();
+                System.out.println(size.getWidth());
+                selectionCircle.resize(Size.copyOf(nearObj.getSelectionCircleSize()), nearObj.getSelectionCircleOffset());
                 nearObj.attach(selectionCircle);
                 target = nearObj;
+                System.out.println(target);
             }
         } else {
             if(target != null){

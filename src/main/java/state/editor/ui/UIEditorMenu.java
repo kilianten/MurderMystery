@@ -39,8 +39,9 @@ public class UIEditorMenu extends HorizontalContainer {
 
         if(fileChosen == JFileChooser.APPROVE_OPTION){
             String mapName = fileChooser.getSelectedFile().toString();
-            if(!mapName.contains(".rim")){
-                mapName.concat(".rim");
+            System.out.println(mapName);
+            if(!mapName.endsWith(".rim")){
+                mapName = mapName.concat(".rim");
             }
             state.saveGameMap(mapName);
         }

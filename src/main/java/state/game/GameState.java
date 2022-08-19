@@ -56,9 +56,7 @@ public class GameState extends State {
     }
 
     @Override
-    public void setDefaultSettings() {
-        settings.getRenderSettings().getShouldRenderGrid().setValue(false);
-    }
+    public void setDefaultSettings() { }
 
     private void initialiseCharacters() {
         Player player = new Player(new PlayerController(input), spriteLibrary);
@@ -70,7 +68,7 @@ public class GameState extends State {
     }
 
     private void initialiseNPCs(SpriteLibrary spriteLibrary) {
-        for(int i = 0;i < 50; i++){
+        for(int i = 0;i < 20; i++){
             Karl karl = new Karl(new NPCController(), spriteLibrary);
             Douglas douglas = new Douglas(new NPCController(), spriteLibrary);
             Nolan nolan = new Nolan(new NPCController(), spriteLibrary);

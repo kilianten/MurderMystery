@@ -47,9 +47,10 @@ public class SelectionCircle  extends GameObject {
         graphics.dispose();
     }
 
-    public void resize(Size size, Position renderOffet){
+    public void resize(Size size, Position renderOffset){
+        System.out.println(size.getWidth());
         this.size = new Size(size.getWidth(), size.getHeight());
-        this.renderOffset = renderOffet;
+        this.renderOffset = renderOffset;
         initialiseSprite();
     }
 
