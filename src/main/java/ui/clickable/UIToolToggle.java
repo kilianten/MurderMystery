@@ -43,6 +43,7 @@ public class UIToolToggle extends UIClickable {
 
     @Override
     public void onClick(State state) {
+        state.getMouseHandler().getPrimaryButtonAction().cleanup();
         state.getMouseHandler().switchPrimaryButtonAction(mouseAction);
     }
 

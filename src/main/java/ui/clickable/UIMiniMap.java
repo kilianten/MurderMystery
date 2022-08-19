@@ -4,6 +4,7 @@ import core.Position;
 import core.Size;
 import display.Camera;
 import entity.GameObject;
+import entity.scenery.Scenery;
 import game.Game;
 import graphics.ImageUtils;
 import map.GameMap;
@@ -74,7 +75,9 @@ public class UIMiniMap extends UIClickable {
             }
         }
 
-        gameObjects.forEach(gameObject -> {
+        gameObjects
+                .stream().filter(gameObject -> !gameObject.shouldRenderOnMiniMap())
+                .forEach(gameObject -> {
             Position positionWithOffset = Position.copyOf(gameObject.getPosition());
             positionWithOffset.subtract(gameObject.getRenderOffset());
 

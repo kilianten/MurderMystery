@@ -16,6 +16,7 @@ public class Scenery extends GameObject implements Persistable {
     private String name;
     private boolean walkable;
 
+
     public Scenery() {}
 
     public Scenery(String name,
@@ -35,8 +36,10 @@ public class Scenery extends GameObject implements Persistable {
         this.walkable = walkable;
         this.renderLevelOffset = renderLevelOffset;
         this.selectionCircleOffset = selectionCircleOffset;
-
         loadGraphics(spriteLibrary);
+        if(size.getWidth() <= 64){
+            renderOnMiniMap = false;
+        }
     }
 
     public Scenery(String name,

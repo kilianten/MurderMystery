@@ -3,6 +3,7 @@ package state.editor.ui;
 import core.Position;
 import core.Size;
 import entity.scenery.Bench;
+import entity.scenery.Bin;
 import entity.scenery.InteractableScenery;
 import entity.scenery.Scenery;
 import game.Game;
@@ -86,6 +87,18 @@ public class UIObjectMenu extends HorizontalContainer {
                         spriteLibrary,
                         19,
                         new Position(40, -5)
+                ))));
+        sceneryContainer.addUIComponent(new UIToolToggle(spriteLibrary.getSceneryImage("bin").getScaledInstance(Game.SPRITE_SIZE, Game.SPRITE_SIZE, Image.SCALE_SMOOTH),
+                new SceneryPlacer(new Bin(
+                        "bin",
+                        new Size(32, 32),
+                        new Position(16, 16),
+                        new Size(16, 16),
+                        new Position(8, 2),
+                        false,
+                        spriteLibrary,
+                        15,
+                        new Position(16, -12)
                 ))));
     }
 }

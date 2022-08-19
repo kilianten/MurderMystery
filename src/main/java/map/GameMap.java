@@ -5,7 +5,7 @@ import core.Position;
 import core.Size;
 import display.Camera;
 import entity.scenery.Bench;
-import entity.scenery.InteractableScenery;
+import entity.scenery.Bin;
 import entity.scenery.Scenery;
 import game.Game;
 import graphics.SpriteLibrary;
@@ -190,7 +190,7 @@ public class GameMap implements Persistable {
                 boolean interactive = Boolean.parseBoolean(serializedScenery.split(DELIMITER)[1]);
                 Scenery scenery;
                 if(interactive){
-                    scenery = loadIneractableScenery(serializedScenery.split(DELIMITER)[2]);
+                    scenery = loadInteractableScenery(serializedScenery.split(DELIMITER)[2]);
                 } else {
                     scenery = new Scenery();
                 }
@@ -200,11 +200,14 @@ public class GameMap implements Persistable {
         }
     }
 
-    private Scenery loadIneractableScenery(String sceneryName) {
+    private Scenery loadInteractableScenery(String sceneryName) {
         Scenery scenery;
         switch (sceneryName){
             case "bench":
                 scenery = new Bench();
+                break;
+            case "bin":
+                scenery = new Bin();
                 break;
             default:
                 scenery = new Scenery();

@@ -29,6 +29,8 @@ public abstract class GameObject {
     protected int renderLevelOffset;
     protected boolean interactable;
 
+    protected boolean renderOnMiniMap = true;
+
     public GameObject(){
         position = new Position(0, 0);
         size = new Size(64, 64);
@@ -133,7 +135,7 @@ public abstract class GameObject {
     }
 
     public void moveCollisionBoxUp(){
-        collisionBoxOffset.setY(collisionBoxOffset.getIntY() - 1);
+        collisionBoxOffset.setY(collisionBoxOffset.getIntY() + 1);
     }
 
     public boolean isInteractable(){
@@ -150,4 +152,7 @@ public abstract class GameObject {
 
     public void interact(State state, Player player){}
 
+    public boolean shouldRenderOnMiniMap() {
+        return renderOnMiniMap;
+    }
 }

@@ -1,6 +1,7 @@
 package input.mouse.action;
 
 import core.Position;
+import entity.scenery.InteractableScenery;
 import entity.scenery.Scenery;
 import entity.SelectionCircle;
 import state.State;
@@ -44,7 +45,7 @@ public class SceneryTool extends MouseAction {
 
     private void select(Scenery scenery) {
         if(!selectedScenery.contains(scenery)){
-            if(scenery.getName().equals("bench")){
+            if(scenery.isInteractable()){
                 scenery.attach(new SelectionCircle(scenery));
             }
             else {
