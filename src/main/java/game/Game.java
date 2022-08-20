@@ -7,6 +7,8 @@ import game.settings.GameSettings;
 import state.State;
 import input.Input;
 import state.menu.MenuState;
+import story.KillerStory;
+import story.StoryManager;
 
 public class Game {
 

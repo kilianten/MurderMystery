@@ -90,4 +90,11 @@ public abstract class Human extends MovingEntity {
     public String getFirstName() {
         return firstName;
     }
+
+    public Action getAction(){
+        if(action.isPresent()){
+            return action.get();
+        }
+        return null;
+    }
 }

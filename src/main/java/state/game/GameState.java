@@ -2,6 +2,7 @@ package state.game;
 
 import controller.NPCController;
 import controller.PlayerController;
+import core.Position;
 import core.Size;
 import entity.human.NPC.Douglas;
 import entity.human.NPC.Eduardo;
@@ -16,6 +17,7 @@ import state.game.ui.UIGameMenu;
 import state.game.ui.UIGameTime;
 import input.Input;
 import state.State;
+import story.StoryManager;
 import ui.UIContainer;
 
 import java.awt.event.KeyEvent;
@@ -27,6 +29,8 @@ public class GameState extends State {
     private UIGameMenu gameMenu;
     private ConversationBoxContainer conversationBoxContainer;
     private boolean conversating;
+    private StoryManager storyManager;
+
 
     public GameState(Size windowSize, Input input, GameSettings settings, String gameMap) {
         super(windowSize, input, settings);
@@ -35,12 +39,13 @@ public class GameState extends State {
         initializeUI(windowSize);
         gameMenu = new UIGameMenu(windowSize, input, settings);
         conversationBoxContainer = new ConversationBoxContainer(windowSize);
-        //conversationTextBox = new ConversationTextBox(windowSize);
+        storyManager = new StoryManager(this);
     }
 
     protected void updateGameObjects() {
         if(!paused){
             super.updateGameObjects();
+            storyManager.update(this);
         }
     }
 
@@ -68,7 +73,7 @@ public class GameState extends State {
     }
 
     private void initialiseNPCs(SpriteLibrary spriteLibrary) {
-        for(int i = 0;i < 20; i++){
+        for(int i = 0;i < 1; i++){
             Karl karl = new Karl(new NPCController(), spriteLibrary);
             Douglas douglas = new Douglas(new NPCController(), spriteLibrary);
             Nolan nolan = new Nolan(new NPCController(), spriteLibrary);
@@ -79,9 +84,13 @@ public class GameState extends State {
             eduardo.setPosition(gameMap.getRandomAvailablePosition());
             gameObjects.add(karl);
             gameObjects.add(douglas);
-            gameObjects.add(nolan);
+            //gameObjects.add(nolan);
             gameObjects.add(eduardo);
         }
+        Nolan nolan = new Nolan(new NPCController(), spriteLibrary);
+        Position position = gameMap.getRandomAvailablePosition();
+        nolan.setPosition(position);
+        gameObjects.add(nolan);
 
     }
 

@@ -20,6 +20,7 @@ import ui.UIContainer;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 public abstract class State {
@@ -105,6 +106,7 @@ public abstract class State {
 
     public List<GameObject> getCollidingGameObjects(GameObject gameObject) {
         return gameObjects.stream()
+                .filter(other -> other.getCollisionBox() != null)
                 .filter(other -> other.collidesWith(gameObject))
                 .collect(Collectors.toList());
     }
@@ -118,6 +120,13 @@ public abstract class State {
                 .filter(clazz::isInstance)
                 .map(gameObject -> (T) gameObject)
                 .collect(Collectors.toList());
+    }
+
+    public <T extends GameObject> Optional<T> getGameObjectOfClass(Class<T> clazz){
+        return gameObjects.stream()
+                .filter(clazz::isInstance)
+                .findFirst()
+                .map(gameObject -> (T) gameObject);
     }
 
     public void spawn(GameObject gameObject) {

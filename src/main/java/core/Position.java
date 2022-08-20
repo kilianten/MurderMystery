@@ -56,6 +56,9 @@ public class Position implements Persistable {
     public boolean isInRangeOf(Position position) {
         return Math.abs(x - position.getX()) < Position.PROXIMITY_RANGE &&  Math.abs(y - position.getY()) < Position.PROXIMITY_RANGE;    }
 
+    public boolean isInRangeOf(Position position, int range) {
+        return Math.abs(x - position.getX()) < range &&  Math.abs(y - position.getY()) < range;    }
+
     public void applyX(Motion motion) {
         x += motion.getVector().getX();
     }

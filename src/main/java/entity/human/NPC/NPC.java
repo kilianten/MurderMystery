@@ -14,9 +14,16 @@ import graphics.AnimationManager;
 import graphics.SpriteLibrary;
 import state.game.GameState;
 
+import java.awt.*;
+import java.util.ArrayList;
+import java.util.stream.Collectors;
+
 public abstract class NPC extends Human {
 
     private AIManager aiManager;
+    protected boolean religious;
+    private Rectangle proximity;
+    private boolean alive = true;
 
     public NPC(Controller controller, SpriteLibrary spriteLibrary, String spriteSheet, ColourHandler colourHandler) {
         super(controller, spriteLibrary);
@@ -24,6 +31,15 @@ public abstract class NPC extends Human {
         interactable = true;
         aiManager = new AIManager();
         selectionCircleSize = new Size(32, 10);
+    }
+
+    private void calculateProximity() {
+        proximity = new Rectangle(
+                position.getIntX(),
+                position.getIntY(),
+                30,
+                30
+        );
     }
 
     @Override
@@ -48,5 +64,46 @@ public abstract class NPC extends Human {
     public void interact(State state, Player player) {
         ((GameState) state).toggleConversationBox(true);
         ((GameState) state).getConversationBox().setConversantName(firstName + " " + secondName);
+    }
+
+    public boolean isReligious() {
+        return religious;
+    }
+
+    public AIManager getAiManager() {
+        return aiManager;
+    }
+
+    public boolean isNear(GameObject gameObject) {
+        calculateProximity();
+        return proximity.intersects(
+                gameObject.getPosition().getIntX(),
+                gameObject.getPosition().getIntY(),
+                gameObject.getSize().getWidth(),
+                gameObject.getSize().getHeight());
+    }
+
+    public boolean isAloneWith(State state, NPC target){
+        ArrayList<NPC> nearNPCs = (ArrayList) state.getGameObjectsOfClass(NPC.class)
+                .stream()
+                .filter(gameObject -> isNear(gameObject))
+                .collect(Collectors.toList());
+        nearNPCs.remove(this);
+        if(nearNPCs.size() == 1 && nearNPCs.get(0) == target){
+            return true;
+        }
+        return false;
+    }
+
+    public Image getSprite(String spriteName){
+        return animationManager.getSprite(spriteName);
+    }
+
+    public void kill(){
+        alive = false;
+    }
+
+    public boolean isAlive() {
+        return alive;
     }
 }

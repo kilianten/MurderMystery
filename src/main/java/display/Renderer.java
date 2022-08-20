@@ -44,7 +44,7 @@ public class Renderer {
                 .filter(gameObject -> camera.isInView(gameObject))
                 .forEach(gameObject -> {
                     renderGameObject(graphics, camera, gameObject);
-                    if(state.getSettings().getRenderSettings().getCollisionBox().getValue()){
+                    if(state.getSettings().getRenderSettings().getCollisionBox().getValue() && gameObject.getCollisionBox() != null){
                         drawCollisionBox(gameObject.getCollisionBox(), graphics, camera);
                         drawRenderLines(gameObject, graphics, camera);
                     }

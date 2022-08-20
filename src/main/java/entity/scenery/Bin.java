@@ -27,7 +27,6 @@ public class Bin extends InteractableScenery {
 
     @Override
     public void interact(State state, Player player){
-        System.out.println(size.getWidth());
         System.out.println("searchbin");
     }
 

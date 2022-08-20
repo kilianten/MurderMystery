@@ -26,7 +26,7 @@ public class UIMainMenu extends VerticalContainer {
 
         addUIComponent(new UIText(Game.GAME_TITLE, 35, 30, true));
         addUIComponent(new UIButton("Play", this::loadMap));
-        addUIComponent(new UIButton("Level Edit",  (state) -> state.setNextState(new EditorState(windowSize, state.getInput(), state.getSettings(), new Size(70, 70)))));
+        addUIComponent(new UIButton("Level Edit",  (state) -> state.setNextState(new EditorState(windowSize, state.getInput(), state.getSettings(), new Size(20, 20)))));
         addUIComponent(new UIButton("Options", (state) -> ((MenuState) state).enterMenu(new UIOptionMenu(windowSize, state.getSettings()))));
         addUIComponent(new UIButton("Exit", (state) -> System.exit(0)));
     }
@@ -42,7 +42,6 @@ public class UIMainMenu extends VerticalContainer {
         final int fileChosen = fileChooser.showOpenDialog(new JFrame());
 
         if(fileChosen == JFileChooser.APPROVE_OPTION){
-            System.out.println(fileChooser.getSelectedFile().getPath());
             state.setNextState(new GameState(windowSize, state.getInput(), state.getSettings(), fileChooser.getSelectedFile().getPath()));
         }
     }

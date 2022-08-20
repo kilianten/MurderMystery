@@ -22,5 +22,6 @@ public class Eduardo extends NPC {
         super(controller, spriteLibrary, "defaultMan", colourHandler);
         firstName = "Eduardo";
         secondName = "Palmer";
+        religious = true;
     }
 }

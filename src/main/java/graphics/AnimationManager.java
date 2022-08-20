@@ -62,4 +62,8 @@ public class AnimationManager {
         }
     }
 
+    public Image getSprite(String spriteName){
+        return spriteSet.get(spriteName);
+    }
+
 }

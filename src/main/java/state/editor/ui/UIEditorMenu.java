@@ -39,7 +39,6 @@ public class UIEditorMenu extends HorizontalContainer {
 
         if(fileChosen == JFileChooser.APPROVE_OPTION){
             String mapName = fileChooser.getSelectedFile().toString();
-            System.out.println(mapName);
             if(!mapName.endsWith(".rim")){
                 mapName = mapName.concat(".rim");
             }
