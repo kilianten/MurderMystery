@@ -14,7 +14,7 @@ public class Corpse extends GameObject {
 
     public Corpse(Position position, Image sprite) {
         this.position = position;
-        position.subtract(new Position(16, 16));
+        position.subtract(new Position(-16, -16));
         this.sprite = sprite;
         renderOrder = 1;
     }

@@ -44,6 +44,12 @@ public class Wander extends AIState{
 
         if(!path.isEmpty() && currentCharacter.getPosition().isInRangeOf(path.get(0))){
             path.remove(0);
+            List<Position> path = Pathfinder.findPath(currentCharacter.getPosition(), state.getRandomPosition(), state.getGameMap());
+
+            if(!path.isEmpty()){
+                target = path.get(path.size() - 1);
+                this.path.addAll(path);
+            }
         }
 
         if(!path.isEmpty()){

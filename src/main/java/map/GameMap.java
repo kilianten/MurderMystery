@@ -60,7 +60,7 @@ public class GameMap implements Persistable {
         if(!tileIsAvailable(gridX, gridY)){
             return getRandomAvailablePosition();
         }
-        return new Position(x, y);
+        return new Position(gridX * Game.SPRITE_SIZE + Game.SPRITE_SIZE / 2, gridY * Game.SPRITE_SIZE  + Game.SPRITE_SIZE / 2);
     }
 
     private boolean tileHasUnwalkableScenery(int gridX, int gridY) {

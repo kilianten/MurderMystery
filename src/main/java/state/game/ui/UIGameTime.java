@@ -26,7 +26,7 @@ public class UIGameTime extends VerticalContainer {
     @Override
     public void update(State state){
         super.update(state);
-        gameTime.setText(state.getClock().getFormattedTime());
-        gameDay.setText(state.getClock().getDay());
+        gameTime.setText(state.getGameTimeManager().getFormattedTime());
+        gameDay.setText(state.getGameTimeManager().getDay());
     }
 }

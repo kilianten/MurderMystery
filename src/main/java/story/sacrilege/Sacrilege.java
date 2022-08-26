@@ -28,8 +28,6 @@ public class Sacrilege extends KillerStory {
                 .stream()
                 .filter(npc -> !npc.isReligious())
                 .collect(Collectors.toList());
-        allNPCs.remove(nolan);
-        allNPCs.remove(accomplice);
         return allNPCs.get(rand.nextInt(allNPCs.size()));
     }
 

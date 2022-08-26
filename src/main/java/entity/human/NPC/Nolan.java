@@ -1,5 +1,6 @@
 package entity.human.NPC;
 
+import ai.AIManager;
 import controller.Controller;
 import entity.ColourHandler;
 import graphics.SpriteLibrary;
@@ -21,7 +22,9 @@ public class Nolan extends NPC {
     public Nolan(Controller controller, SpriteLibrary spriteLibrary) {
         super(controller, spriteLibrary, "priest", colourHandler);
         firstName = "Fr.";
-        secondName = "Nolan"; }
+        secondName = "Nolan";
+        religious = true;
+    }
 
     @Override
     public void update(State state){

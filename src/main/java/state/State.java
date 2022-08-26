@@ -6,7 +6,7 @@ import core.Size;
 import display.Camera;
 import entity.GameObject;
 import entity.scenery.Scenery;
-import game.Time;
+import game.Clock;
 import game.Game;
 import game.settings.GameSettings;
 import graphics.SpriteLibrary;
@@ -14,6 +14,8 @@ import input.Input;
 import input.mouse.MouseHandler;
 import io.MapIO;
 import map.GameMap;
+import state.game.time.GameTime;
+import state.game.time.GameTimeManager;
 import ui.UIComponent;
 import ui.UIContainer;
 
@@ -33,7 +35,7 @@ public abstract class State {
     protected SpriteLibrary spriteLibrary;
     protected Input input;
     protected Camera camera;
-    protected Time clock;
+    protected Clock clock;
     protected MouseHandler mouseHandler;
 
     protected Size windowSize;
@@ -41,6 +43,7 @@ public abstract class State {
 
     protected List<UIContainer> uiContainers;
     public List<UIComponent> UIElements;
+    public GameTimeManager gameTimeManager;
 
     public State(Size windowSize, Input input, GameSettings settings) {
         this.settings = settings;
@@ -53,13 +56,15 @@ public abstract class State {
         audioPlayer = new AudioPlayer(settings.getAudioSettings());
         mouseHandler = new MouseHandler();
         this.camera = new Camera(windowSize);
-        clock = new Time();
+        clock = new Clock();
+        gameTimeManager = new GameTimeManager();
         setDefaultSettings();
     }
 
     public void update(Game game){
         audioPlayer.update();
         clock.update();
+        gameTimeManager.update();
         sortObjectsByPosition();
         updateGameObjects();
         List.copyOf(uiContainers).forEach(UIContainer -> UIContainer.update(this));
@@ -96,7 +101,7 @@ public abstract class State {
         return camera;
     }
 
-    public Time getClock() {
+    public Clock getClock() {
         return clock;
     }
 
@@ -174,4 +179,7 @@ public abstract class State {
         gameObjects.remove(gameObject);
     }
 
+    public GameTimeManager getGameTimeManager() {
+        return gameTimeManager;
+    }
 }

@@ -69,10 +69,10 @@ public class GameState extends State {
         gameObjects.add(player);
         camera.focusOn(player);
 
-        initialiseNPCs(spriteLibrary);
+        initialiseNPCs(spriteLibrary, player);
     }
 
-    private void initialiseNPCs(SpriteLibrary spriteLibrary) {
+    private void initialiseNPCs(SpriteLibrary spriteLibrary, Player player) {
         for(int i = 0;i < 1; i++){
             Karl karl = new Karl(new NPCController(), spriteLibrary);
             Douglas douglas = new Douglas(new NPCController(), spriteLibrary);
@@ -91,7 +91,7 @@ public class GameState extends State {
         Position position = gameMap.getRandomAvailablePosition();
         nolan.setPosition(position);
         gameObjects.add(nolan);
-
+        player.setPosition(Position.copyOf(nolan.getPosition()));
     }
 
     private void initializeUI(Size windowSize) {
