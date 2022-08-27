@@ -4,14 +4,10 @@ import controller.NPCController;
 import controller.PlayerController;
 import core.Position;
 import core.Size;
-import entity.human.NPC.Douglas;
-import entity.human.NPC.Eduardo;
-import entity.human.NPC.Karl;
-import entity.human.NPC.Nolan;
+import entity.human.NPC.*;
 import entity.human.Player;
 import game.settings.GameSettings;
 import graphics.SpriteLibrary;
-import state.game.ui.ConversationBox;
 import state.game.ui.ConversationBoxContainer;
 import state.game.ui.UIGameMenu;
 import state.game.ui.UIGameTime;
@@ -21,6 +17,8 @@ import story.StoryManager;
 import ui.UIContainer;
 
 import java.awt.event.KeyEvent;
+import java.util.List;
+import java.util.Optional;
 
 public class GameState extends State {
 
@@ -78,10 +76,13 @@ public class GameState extends State {
             Douglas douglas = new Douglas(new NPCController(), spriteLibrary);
             Nolan nolan = new Nolan(new NPCController(), spriteLibrary);
             Eduardo eduardo = new Eduardo(new NPCController(), spriteLibrary);
+            Raquel raquel = new Raquel(new NPCController(), spriteLibrary);
             nolan.setPosition(gameMap.getRandomAvailablePosition());
             douglas.setPosition(gameMap.getRandomAvailablePosition());
             karl.setPosition(gameMap.getRandomAvailablePosition());
             eduardo.setPosition(gameMap.getRandomAvailablePosition());
+            raquel.setPosition(gameMap.getRandomAvailablePosition());
+            gameObjects.add(raquel);
             gameObjects.add(karl);
             gameObjects.add(douglas);
             //gameObjects.add(nolan);
@@ -130,4 +131,10 @@ public class GameState extends State {
     public ConversationBoxContainer getConversationBox() {
         return conversationBoxContainer;
     }
+
+    @Override
+    public void cleanUp(){
+        super.cleanUp();
+    }
+
 }

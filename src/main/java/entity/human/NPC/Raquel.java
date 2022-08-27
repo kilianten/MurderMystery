@@ -8,7 +8,7 @@ import graphics.SpriteLibrary;
 public class Raquel extends NPC {
 
     private static final ColourHandler colourHandler = new ColourHandler(
-            0xffBAA393,
+            0xffBAB577,
             0xffB18E80,
             0xFFA68578,
             0xFFC29C8C,

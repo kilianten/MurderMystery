@@ -1,6 +1,7 @@
 package entity.human;
 
 import controller.Controller;
+import core.Motion;
 import core.Position;
 import core.Size;
 import entity.GameObject;
@@ -37,6 +38,10 @@ public abstract class Human extends MovingEntity {
         super.update(state);
         handleAction(state);
         effects.forEach(effect -> effect.update(state, null));
+
+        if(state.getSettings().isDebugMode()){
+            System.out.println("Player X: " + position.getIntX() + " Y: " + position.getIntY());
+        }
 
         cleanup();
     }
@@ -97,4 +102,5 @@ public abstract class Human extends MovingEntity {
         }
         return null;
     }
+
 }

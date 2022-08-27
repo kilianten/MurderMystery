@@ -4,7 +4,7 @@ import game.GameLoop;
 public class Launcher {
 
     public static void main(String[] args){
-        new Thread(new GameLoop(new Game(960, 640))).start();
+        new Thread(new GameLoop(new Game(850, 640))).start();
     }
 
 }

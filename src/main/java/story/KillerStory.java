@@ -12,15 +12,19 @@ public abstract class KillerStory {
 
     protected Queue<PlotPoint> plotPoints;
     protected List<NPC> killers;
+    protected boolean storyComplete;
 
     public KillerStory(){
         plotPoints = new LinkedList<>();
     }
 
     public void update(State state){
-        if(plotPoints.size() > 0){
+        if(!plotPoints.isEmpty()){
             if(plotPoints.peek().isDone){
                 plotPoints.remove();
+                if(!plotPoints.isEmpty()){
+                    plotPoints.peek().initialize(state);
+                }
             } else {
                 plotPoints.peek().update(state);
             }

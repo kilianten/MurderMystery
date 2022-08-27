@@ -10,54 +10,46 @@ import state.State;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Wander extends AIState{
-
+public class Wander extends AIState {
     private List<Position> path;
     private Position target;
 
-    public Wander(){
+    public Wander() {
         super();
         path = new ArrayList<>();
     }
 
     @Override
     protected AITransition initializeTransition() {
-        return new AITransition("stand", ((state, currentCharacter) -> hasArrived(currentCharacter)));
+        return new AITransition("stand", ((state, currentCharacter) -> arrived(currentCharacter)));
     }
 
     @Override
     public void update(State state, NPC currentCharacter) {
-        if(target == null){
+        if(target == null) {
             List<Position> path = Pathfinder.findPath(currentCharacter.getPosition(), state.getRandomPosition(), state.getGameMap());
-
-            if(!path.isEmpty()){
+            if(!path.isEmpty()) {
                 target = path.get(path.size() - 1);
                 this.path.addAll(path);
             }
         }
 
         NPCController controller = (NPCController) currentCharacter.getController();
-
-        if(hasArrived(currentCharacter)){
+        if(arrived(currentCharacter)) {
             controller.stop();
         }
 
-        if(!path.isEmpty() && currentCharacter.getPosition().isInRangeOf(path.get(0))){
+        if(!path.isEmpty() && currentCharacter.getPosition().isInRangeOf(path.get(0))) {
             path.remove(0);
-            List<Position> path = Pathfinder.findPath(currentCharacter.getPosition(), state.getRandomPosition(), state.getGameMap());
-
-            if(!path.isEmpty()){
-                target = path.get(path.size() - 1);
-                this.path.addAll(path);
-            }
         }
 
-        if(!path.isEmpty()){
+        if(!path.isEmpty()) {
             controller.moveToTarget(path.get(0), currentCharacter.getPosition());
         }
+
     }
 
-    private boolean hasArrived(NPC currentCharacter){
+    private boolean arrived(NPC currentCharacter) {
         return target != null && currentCharacter.getPosition().isInRangeOf(target);
     }
 }

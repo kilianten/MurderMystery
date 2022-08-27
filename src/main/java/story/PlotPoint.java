@@ -6,4 +6,8 @@ public abstract class PlotPoint {
 
     public boolean isDone;
     public void update(State state){};
+
+    public void initialize(State state) {
+    }
+
 }

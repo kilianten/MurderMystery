@@ -99,10 +99,6 @@ public abstract class NPC extends Human {
         return animationManager.getSprite(spriteName);
     }
 
-    public void kill(){
-        alive = false;
-    }
-
     public boolean isAlive() {
         return alive;
     }
