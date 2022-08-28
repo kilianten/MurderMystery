@@ -19,8 +19,8 @@ public class Raquel extends NPC {
 
     public Raquel(Controller controller, SpriteLibrary spriteLibrary) {
         super(controller, spriteLibrary, "defaultWoman", colourHandler);
-        perform(new Smoke());
         firstName = "Raquel";
         secondName = "Brown";
+        religious = true;
     }
 }

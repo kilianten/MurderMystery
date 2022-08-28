@@ -17,6 +17,9 @@ public class SacrilegeKillPlotPoint extends KillPlotPoint  {
     @Override
     public void initialize(State state){
         target = getNonReligiousCharacter(state);
+        if(target == null){
+            isDone = true;
+        }
     }
 
     private NPC getNonReligiousCharacter(State state) {

@@ -16,20 +16,23 @@ import state.game.GameState;
 
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.stream.Collectors;
 
 public abstract class NPC extends Human {
 
     private AIManager aiManager;
-    protected boolean religious;
     private Rectangle proximity;
     private boolean alive = true;
+
+    protected boolean religious;
+    protected boolean smoker;
 
     public NPC(Controller controller, SpriteLibrary spriteLibrary, String spriteSheet, ColourHandler colourHandler) {
         super(controller, spriteLibrary);
         animationManager = new AnimationManager(spriteLibrary.getUnit(spriteSheet, colourHandler));
         interactable = true;
-        aiManager = new AIManager();
+        aiManager = new AIManager(this);
         selectionCircleSize = new Size(32, 10);
     }
 
@@ -101,5 +104,13 @@ public abstract class NPC extends Human {
 
     public boolean isAlive() {
         return alive;
+    }
+
+    public List getCharacterActions(){
+        List<String> characterActions = new ArrayList<String>();
+        if(smoker){
+            characterActions.add("smoke");
+        }
+        return characterActions;
     }
 }

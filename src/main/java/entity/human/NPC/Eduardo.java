@@ -23,5 +23,6 @@ public class Eduardo extends NPC {
         firstName = "Eduardo";
         secondName = "Palmer";
         religious = true;
+        smoker = true;
     }
 }

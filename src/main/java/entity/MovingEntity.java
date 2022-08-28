@@ -2,6 +2,7 @@ package entity;
 
 import controller.Controller;
 import core.*;
+import entity.human.NPC.NPC;
 import state.State;
 import graphics.AnimationManager;
 import graphics.SpriteLibrary;
