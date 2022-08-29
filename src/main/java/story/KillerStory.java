@@ -3,10 +3,8 @@ package story;
 import entity.human.NPC.NPC;
 import state.State;
 
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Queue;
-import java.util.Random;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public abstract class KillerStory {
 
@@ -16,6 +14,7 @@ public abstract class KillerStory {
 
     public KillerStory(){
         plotPoints = new LinkedList<>();
+        killers = new ArrayList<>();
     }
 
     public void update(State state){
@@ -28,6 +27,18 @@ public abstract class KillerStory {
             } else {
                 plotPoints.peek().update(state);
             }
+        }
+    }
+
+    public void getRandomCharacter(State state){
+        Random rand = new Random();
+        List<NPC> potentialNPCs = state.getGameObjectsOfClass(NPC.class)
+                .stream()
+                .filter(npc -> !killers.contains(npc))
+                .filter(npc -> npc.isAlive())
+                .collect(Collectors.toList());
+        if(!potentialNPCs.isEmpty()){
+            killers.add(potentialNPCs.get(rand.nextInt(potentialNPCs.size())));
         }
     }
 

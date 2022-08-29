@@ -88,7 +88,6 @@ public abstract class Human extends MovingEntity {
         effects.add(effect);
     }
 
-
     @Override
     protected void handleCollision(GameObject other) {
 

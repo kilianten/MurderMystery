@@ -26,6 +26,7 @@ public class SacrilegeKillPlotPoint extends KillPlotPoint  {
         Random rand = new Random();
         List<NPC> allNPCs = state.getGameObjectsOfClass(NPC.class)
                 .stream()
+                .filter(npc -> npc.isAlive())
                 .filter(npc -> !npc.isReligious())
                 .collect(Collectors.toList());
         if(allNPCs.size() > 0){

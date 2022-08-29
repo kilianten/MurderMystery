@@ -16,7 +16,6 @@ public class Sacrilege extends KillerStory {
 
     public Sacrilege(State state){
         nolan = state.getGameObjectOfClass(Nolan.class).get();
-        getReligiousCharacter(state);
         plotPoints.add(new SacrilegeKillPlotPoint(nolan));
         plotPoints.add(new SacrilegeKillPlotPoint(nolan));
         plotPoints.peek().initialize(state);
