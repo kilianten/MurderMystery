@@ -1,7 +1,13 @@
 package state.game.ui;
 
 import core.Size;
+import entity.GameObject;
+import entity.human.NPC.NPC;
+import entity.human.NPC.NPCSpeechHandler;
 import graphics.ImageUtils;
+import speech.SpeechManager;
+import state.State;
+import state.game.GameState;
 import ui.*;
 import ui.clickable.UIClickableText;
 
@@ -13,18 +19,28 @@ public class ConversationBox extends VerticalContainer {
     public static final int SPACE_BETWEEN_RECTS = 10;
     public static final int ARC_WIDTH = 30;
     public static final int STROKE_WIDTH = 4;
+    private int startIndex = 0;
+    private int endIndex = 5;
+    protected NPC conversant;
 
     public ConversationBox(Size windowSize) {
         super(windowSize);
         setAlignment(new Alignment(Alignment.Position.CENTER, Alignment.Position.START));
         setFixedSize(new Size(600, 200));
-        addUIComponent((new UIClickableText("Interrogation", (state) -> System.out.println("Interrogate"))));
-        addUIComponent(new UIClickableText("Friendly", (state) -> System.out.println("Interrogate")));
-        addUIComponent(new UIClickableText("Gossip", (state) -> System.out.println("Interrogate")));
-        addUIComponent(new UIClickableText("Question", (state) -> System.out.println("Interrogate")));
-        addUIComponent(new UIClickableText("Help", (state) -> System.out.println("Interrogate")));
+        addUIComponent((new UIClickableText("Small Talk", (state) -> resetOptions(NPCSpeechHandler.getCategoryOptions("Small Talk")))));
+        addUIComponent(new UIClickableText("Friendly", (state) -> System.out.println("Friendly")));
+        addUIComponent(new UIClickableText("Gossip", (state) -> System.out.println("Gossip")));
+        addUIComponent(new UIClickableText("Interrogation", (state) -> System.out.println("Question")));
+        addUIComponent(new UIClickableText("Help", (state) -> System.out.println("Help")));
 
         setPadding();
+    }
+
+    private void resetOptions(String[] interrogations) {
+        clearUIComponents();
+        for(String option: interrogations){
+            addUIComponent((new UIClickableText(option, (state) -> System.out.println(NPCSpeechHandler.getSpeech(option, conversant)))));
+        }
     }
 
     @Override
@@ -64,5 +80,7 @@ public class ConversationBox extends VerticalContainer {
         }
     }
 
-
+    public void setConversant(NPC conversant) {
+        this.conversant = conversant;
+    }
 }

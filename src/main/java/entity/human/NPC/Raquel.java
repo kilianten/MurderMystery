@@ -4,6 +4,7 @@ import controller.Controller;
 import entity.ColourHandler;
 import entity.human.action.Smoke;
 import graphics.SpriteLibrary;
+import speech.RaquelSpeech;
 
 public class Raquel extends NPC {
 
@@ -19,8 +20,12 @@ public class Raquel extends NPC {
 
     public Raquel(Controller controller, SpriteLibrary spriteLibrary) {
         super(controller, spriteLibrary, "defaultWoman", colourHandler);
+
+        speech = new RaquelSpeech();
+
         firstName = "Raquel";
         secondName = "Brown";
+
         religious = true;
     }
 }

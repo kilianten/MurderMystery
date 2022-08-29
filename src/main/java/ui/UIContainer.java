@@ -2,6 +2,7 @@ package ui;
 
 import core.Position;
 import core.Size;
+import entity.human.NPC.NPC;
 import state.State;
 import graphics.ImageUtils;
 import ui.clickable.UIMiniMap;
@@ -135,6 +136,10 @@ public abstract class UIContainer extends UIComponent {
 
     public void setCenterChildren(boolean centerChildren) {
         this.centerChildren = centerChildren;
+    }
+
+    public void clearUIComponents(){
+        children.clear();
     }
 
 }

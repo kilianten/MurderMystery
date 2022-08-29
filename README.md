@@ -4,3 +4,4 @@
 | Trait | Default |
 | ----------- | ----------- |
 | Religious | False |
+| Smoker | False |

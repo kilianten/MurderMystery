@@ -3,7 +3,6 @@ package state.menu;
 import core.Size;
 import game.settings.GameSettings;
 import input.Input;
-import map.GameMap;
 import state.State;
 import state.menu.ui.UIMainMenu;
 import ui.UIContainer;

@@ -3,6 +3,7 @@ package entity.human.NPC;
 import controller.Controller;
 import entity.ColourHandler;
 import graphics.SpriteLibrary;
+import speech.DouglasSpeech;
 
 public class Douglas extends NPC {
 
@@ -18,7 +19,17 @@ public class Douglas extends NPC {
 
     public Douglas(Controller controller, SpriteLibrary spriteLibrary) {
         super(controller, spriteLibrary, "defaultMan", colourHandler);
+
+        speech = new DouglasSpeech();
+
         firstName = "Douglas";
         secondName = "McNamara";
+
     }
+
+    @Override
+    public void setTraits(){
+        smoker = randomiseTrait(0.5);
+    }
+
 }

@@ -4,6 +4,7 @@ import ai.AIManager;
 import controller.Controller;
 import entity.ColourHandler;
 import graphics.SpriteLibrary;
+import speech.NolanSpeech;
 import state.State;
 
 public class Nolan extends NPC {
@@ -21,9 +22,14 @@ public class Nolan extends NPC {
 
     public Nolan(Controller controller, SpriteLibrary spriteLibrary) {
         super(controller, spriteLibrary, "priest", colourHandler);
+
+        this.speech = new NolanSpeech();
+
         firstName = "Fr.";
         secondName = "Nolan";
+
         religious = true;
+
     }
 
     @Override

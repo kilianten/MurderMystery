@@ -3,6 +3,7 @@ package entity.human.NPC;
 import controller.Controller;
 import entity.ColourHandler;
 import graphics.SpriteLibrary;
+import speech.EduardoSpeech;
 
 public class Eduardo extends NPC {
 
@@ -20,8 +21,12 @@ public class Eduardo extends NPC {
 
     public Eduardo(Controller controller, SpriteLibrary spriteLibrary) {
         super(controller, spriteLibrary, "defaultMan", colourHandler);
+
+        speech = new EduardoSpeech();
+
         firstName = "Eduardo";
         secondName = "Palmer";
+
         religious = true;
         smoker = true;
     }

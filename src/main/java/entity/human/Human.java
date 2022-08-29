@@ -121,4 +121,5 @@ public abstract class Human extends MovingEntity {
                 .collect(Collectors.toList());
     }
 
+
 }

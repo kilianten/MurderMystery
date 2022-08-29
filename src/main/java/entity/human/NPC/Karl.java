@@ -4,6 +4,8 @@ import controller.Controller;
 import entity.ColourHandler;
 import entity.human.action.Smoke;
 import graphics.SpriteLibrary;
+import speech.KarlSpeech;
+import speech.NolanSpeech;
 
 public class Karl extends NPC {
 
@@ -19,8 +21,17 @@ public class Karl extends NPC {
 
     public Karl(Controller controller, SpriteLibrary spriteLibrary) {
         super(controller, spriteLibrary, "defaultMan", colourHandler);
+
         firstName = "Karl";
         secondName = "Bryson";
-        //smoker = true;
+
+        this.speech = new KarlSpeech();
+
+        setTraits();
+    }
+
+    @Override
+    public void setTraits(){
+        smoker = randomiseTrait(0.4);
     }
 }

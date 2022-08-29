@@ -9,6 +9,7 @@ import entity.human.Player;
 import entity.scenery.Scenery;
 import entity.human.Human;
 import entity.human.effect.Effect;
+import speech.NPCSpeech;
 import state.State;
 import graphics.AnimationManager;
 import graphics.SpriteLibrary;
@@ -28,12 +29,15 @@ public abstract class NPC extends Human {
     protected boolean religious;
     protected boolean smoker;
 
+    protected NPCSpeech speech;
+
     public NPC(Controller controller, SpriteLibrary spriteLibrary, String spriteSheet, ColourHandler colourHandler) {
         super(controller, spriteLibrary);
         animationManager = new AnimationManager(spriteLibrary.getUnit(spriteSheet, colourHandler));
         interactable = true;
         aiManager = new AIManager(this);
         selectionCircleSize = new Size(32, 10);
+        setTraits();
     }
 
     private void calculateProximity() {
@@ -66,11 +70,7 @@ public abstract class NPC extends Human {
     @Override
     public void interact(State state, Human human) {
         ((GameState) state).toggleConversationBox(true);
-        ((GameState) state).getConversationBox().setConversantName(firstName + " " + secondName);
-    }
-
-    public boolean isReligious() {
-        return religious;
+        ((GameState) state).getConversationBox().setConversant(this);
     }
 
     public AIManager getAiManager() {
@@ -112,5 +112,30 @@ public abstract class NPC extends Human {
             characterActions.add("smoke");
         }
         return characterActions;
+    }
+
+    public String getSecondName() {
+        return secondName;
+    }
+
+    public NPCSpeech getSpeech(String option) {
+        return speech;
+    }
+
+    public void setTraits(){}
+
+    protected boolean randomiseTrait(double chance) {
+        if(Math.random() <= chance){
+            return true;
+        }
+        return false;
+    }
+
+    public boolean isReligious() {
+        return religious;
+    }
+
+    public boolean isSmoker() {
+        return smoker;
     }
 }

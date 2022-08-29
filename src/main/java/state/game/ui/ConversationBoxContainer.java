@@ -1,11 +1,13 @@
 package state.game.ui;
 
 import core.Size;
+import entity.human.NPC.NPC;
 import ui.Alignment;
 import ui.UIText;
 import ui.VerticalContainer;
 
 public class ConversationBoxContainer extends VerticalContainer  {
+
     public ConversationBoxContainer(Size windowSize) {
         super(windowSize);
         new Alignment(Alignment.Position.CENTER, Alignment.Position.START);
@@ -21,4 +23,8 @@ public class ConversationBoxContainer extends VerticalContainer  {
         conversantName.setText(fullName);
     }
 
+    public void setConversant(NPC npc) {
+        setConversantName(npc.getFirstName() + " " + npc.getSecondName());
+        ((ConversationBox) children.get(1)).setConversant(npc);
+    }
 }

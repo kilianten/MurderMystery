@@ -63,7 +63,6 @@ public abstract class State {
     public void update(Game game){
         audioPlayer.update();
         clock.update();
-        gameTimeManager.update();
         sortObjectsByPosition();
         updateGameObjects();
         List.copyOf(uiContainers).forEach(UIContainer -> UIContainer.update(this));
