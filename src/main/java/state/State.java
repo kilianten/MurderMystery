@@ -5,6 +5,8 @@ import core.Position;
 import core.Size;
 import display.Camera;
 import entity.GameObject;
+import entity.human.Human;
+import entity.human.NPC.NPC;
 import entity.scenery.Scenery;
 import game.Clock;
 import game.Game;
@@ -19,10 +21,7 @@ import state.game.time.GameTimeManager;
 import ui.UIComponent;
 import ui.UIContainer;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public abstract class State {
@@ -182,4 +181,7 @@ public abstract class State {
     public GameTimeManager getGameTimeManager() {
         return gameTimeManager;
     }
+
+
+
 }

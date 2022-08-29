@@ -3,9 +3,13 @@ package ai;
 import ai.state.AIState;
 import ai.state.Stand;
 import ai.state.Wander;
+import core.Direction;
+import core.Position;
 import entity.human.Human;
 import entity.human.NPC.NPC;
+import entity.human.action.Sit;
 import entity.human.action.Smoke;
+import entity.scenery.Bench;
 import state.State;
 
 import java.util.ArrayList;
@@ -24,7 +28,7 @@ public class AIManager {
     };
 
     public AIManager(NPC npc) {
-        transitionTo(npc,"stand");
+        transitionTo(npc,"stand", null);
     }
 
     public void update(State state, NPC currentCharacter){
@@ -32,9 +36,9 @@ public class AIManager {
         if(currentAIState.shouldTransition(state, currentCharacter)){
             String nextState = currentAIState.getNextState();
             if(nextState.equals("random")){
-                transitionToRandomState(currentCharacter);
+                transitionToRandomState(state, currentCharacter);
             } else {
-                transitionTo(currentCharacter, currentAIState.getNextState());
+                transitionTo(currentCharacter, currentAIState.getNextState(), state);
             }
         }
     }
@@ -43,14 +47,17 @@ public class AIManager {
         return currentAIState;
     }
 
-    public void transitionTo(NPC npc, String nextState) {
+    public void transitionTo(NPC npc, String nextState, State state) {
         switch(nextState) {
             case "wander":
                 currentAIState = new Wander();
                 break;
             case "smoke":
-                System.out.println("SMOKING");
-                npc.perform(new Smoke());
+                npc.perform(new Smoke(npc));
+                break;
+            case "sit":
+                Bench bench = (Bench) npc.findNearObjectsOfAction(state, "sit").get(0);
+                bench.interact(state, npc);
                 break;
             default:
                 currentAIState = new Stand();
@@ -58,13 +65,14 @@ public class AIManager {
         }
     }
 
-    public void transitionToRandomState(NPC npc){
+    public void transitionToRandomState(State state, NPC npc){
         List<String> actions = new ArrayList<>();
         actions.addAll(defaultActions);
         actions.addAll(npc.getCharacterActions());
+        actions.addAll(npc.findNearObjectActionionables(state));
 
         Random random = new Random();
-        transitionTo(npc, actions.get(random.nextInt(actions.size())));
+        transitionTo(npc, actions.get(random.nextInt(actions.size())), state);
     }
 
 }

@@ -4,11 +4,13 @@ import core.CollisionBox;
 import core.Position;
 import core.Size;
 import display.Camera;
+import entity.human.Human;
 import entity.human.Player;
 import state.State;
 
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public abstract class GameObject {
@@ -150,9 +152,13 @@ public abstract class GameObject {
         return selectionCircleOffset;
     }
 
-    public void interact(State state, Player player){}
+    public void interact(State state, Human human){}
 
     public boolean shouldRenderOnMiniMap() {
         return renderOnMiniMap;
+    }
+
+    public List<String> getAssociatedActions() {
+        return null;
     }
 }

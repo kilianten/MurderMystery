@@ -1,6 +1,8 @@
 package entity.human.action;
 
+import core.Direction;
 import entity.MovingEntity;
+import entity.human.Human;
 import game.GameLoop;
 import state.State;
 
@@ -8,7 +10,8 @@ public class Smoke extends Action {
 
     private int lifeSpanInSeconds;
 
-    public Smoke() {
+    public Smoke(Human human) {
+        human.setDirection(Direction.S);
         this.lifeSpanInSeconds = GameLoop.UPDATES_PER_SECOND * 7;
     }
 

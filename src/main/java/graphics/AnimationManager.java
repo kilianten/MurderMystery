@@ -5,6 +5,7 @@ import game.Game;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.awt.image.RasterFormatException;
 
 public class AnimationManager {
     private SpriteSet spriteSet;
@@ -31,13 +32,21 @@ public class AnimationManager {
         this(spriteSet, true);
     }
 
-    public Image getSprite(){
-        return currentAnimationSheet.getSubimage(
-                frameIndex * Game.SPRITE_SIZE,
-                directionIndex * Game.SPRITE_SIZE,
-                Game.SPRITE_SIZE,
-                Game.SPRITE_SIZE
-        );
+    public Image getSprite() {
+        try {
+            return currentAnimationSheet.getSubimage(
+                    frameIndex * Game.SPRITE_SIZE,
+                    directionIndex * Game.SPRITE_SIZE,
+                    Game.SPRITE_SIZE,
+                    Game.SPRITE_SIZE
+            );
+        } catch (RasterFormatException e){
+            System.out.println(currentAnimationSheet);
+            System.out.println(frameIndex);
+            System.out.println(directionIndex);
+            return null;
+        }
+
     }
 
     public void update(Direction direction){

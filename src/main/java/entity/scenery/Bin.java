@@ -3,6 +3,7 @@ package entity.scenery;
 import core.Direction;
 import core.Position;
 import core.Size;
+import entity.human.Human;
 import entity.human.Player;
 import entity.human.action.Sit;
 import graphics.SpriteLibrary;
@@ -26,7 +27,7 @@ public class Bin extends InteractableScenery {
     }
 
     @Override
-    public void interact(State state, Player player){
+    public void interact(State state, Human human){
         System.out.println("searchbin");
     }
 

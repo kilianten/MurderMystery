@@ -8,12 +8,14 @@ import entity.GameObject;
 import entity.MovingEntity;
 import entity.human.action.Action;
 import entity.human.effect.Effect;
+import game.Game;
 import state.State;
 import graphics.SpriteLibrary;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 public abstract class Human extends MovingEntity {
 
@@ -101,6 +103,23 @@ public abstract class Human extends MovingEntity {
             return action.get();
         }
         return null;
+    }
+
+    public List<String> findNearObjectActionionables(State state) {
+        List<String> actions = new ArrayList<>();
+        state.getGameObjectsOfClass(GameObject.class).stream()
+                .filter(gameObject -> getPosition().distanceTo(gameObject.getPosition()) < 2 * Game.SPRITE_SIZE)
+                .filter(gameObject -> (gameObject.getAssociatedActions() != null))
+                .forEach(gameObject -> actions.addAll(gameObject.getAssociatedActions()));
+        return actions;
+    }
+
+    public List<GameObject> findNearObjectsOfAction(State state, String action) {
+        return state.getGameObjectsOfClass(GameObject.class).stream()
+                .filter(gameObject -> getPosition().distanceTo(gameObject.getPosition()) < 2 * Game.SPRITE_SIZE)
+                .filter(gameObject -> (gameObject.getAssociatedActions() != null))
+                .filter(gameObject -> (gameObject.getAssociatedActions().contains(action)))
+                .collect(Collectors.toList());
     }
 
 }

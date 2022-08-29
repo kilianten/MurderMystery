@@ -3,14 +3,18 @@ package entity.scenery;
 import core.Direction;
 import core.Position;
 import core.Size;
+import entity.human.Human;
 import entity.human.Player;
 import entity.human.action.Sit;
 import graphics.SpriteLibrary;
 import state.State;
 
+import java.util.Arrays;
+import java.util.List;
+
 public class Bench extends InteractableScenery {
 
-    boolean inUse;
+    public boolean inUse;
 
     public Bench(){
         interactable = true;
@@ -29,11 +33,11 @@ public class Bench extends InteractableScenery {
     }
 
     @Override
-    public void interact(State state, Player player){
+    public void interact(State state, Human human){
         if(!inUse){
-            player.setDirection(Direction.S);
-            player.perform(new Sit(player, this));
-            player.setPosition(new Position(position.getX(), position.getY() + 20));
+            human.setDirection(Direction.S);
+            human.perform(new Sit(human, this));
+            human.setPosition(new Position(position.getX(), position.getY() + 20));
             inUse = true;
         }
     }
@@ -41,4 +45,9 @@ public class Bench extends InteractableScenery {
     public void setInUse(boolean inUse){
         this.inUse = inUse;
     }
+
+    public List<String> getAssociatedActions() {
+        return Arrays.asList("sit");
+    }
+
 }
