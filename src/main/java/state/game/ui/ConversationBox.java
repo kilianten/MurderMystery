@@ -27,13 +27,17 @@ public class ConversationBox extends VerticalContainer {
         super(windowSize);
         setAlignment(new Alignment(Alignment.Position.CENTER, Alignment.Position.START));
         setFixedSize(new Size(600, 200));
+        setPadding();
+        setDefault();
+    }
+
+    public void setDefault() {
+        clearUIComponents();
         addUIComponent((new UIClickableText("Small Talk", (state) -> resetOptions(NPCSpeechHandler.getCategoryOptions("Small Talk")))));
         addUIComponent(new UIClickableText("Friendly", (state) -> System.out.println("Friendly")));
         addUIComponent(new UIClickableText("Gossip", (state) -> System.out.println("Gossip")));
         addUIComponent(new UIClickableText("Interrogation", (state) -> System.out.println("Question")));
         addUIComponent(new UIClickableText("Help", (state) -> System.out.println("Help")));
-
-        setPadding();
     }
 
     private void resetOptions(String[] interrogations) {

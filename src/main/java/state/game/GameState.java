@@ -104,6 +104,7 @@ public class GameState extends State {
         if(isConversating){
             paused = true;
             conversating = true;
+            conversationBoxContainer.reset();
             toggleMenu(true, conversationBoxContainer);
         } else {
             paused = false;
