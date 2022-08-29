@@ -8,7 +8,7 @@ public class NolanSpeech extends NPCSpeech {
 
     @Override
     public String doYouSmoke(NPC npc) {
-        return "The Bible doesn't specifically say we shouldn't smoke. If that's why you're asking";
+        return "The Bible doesn’t specifically say we shouldn’t smoke. If that’s why you’re asking";
     }
 
     @Override

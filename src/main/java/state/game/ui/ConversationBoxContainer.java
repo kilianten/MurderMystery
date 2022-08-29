@@ -16,7 +16,6 @@ public class ConversationBoxContainer extends VerticalContainer  {
         addUIComponent(new ConversationBox(windowSize));
     }
 
-
     public UIText conversantName;
 
     public void setConversantName(String fullName){

@@ -7,7 +7,7 @@ public class RaquelSpeech extends NPCSpeech {
 
     @Override
     public String doYouSmoke(NPC npc) {
-        return "Never in my life. It's repugnant.";
+        return "Never in my life. It’s repugnant.";
     }
 
     @Override

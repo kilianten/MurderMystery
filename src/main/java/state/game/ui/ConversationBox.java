@@ -21,6 +21,7 @@ public class ConversationBox extends VerticalContainer {
     public static final int STROKE_WIDTH = 4;
     private int startIndex = 0;
     private int endIndex = 5;
+    private final int MAX_CHARACTER_PER_LINE = 55;
     protected NPC conversant;
 
     public ConversationBox(Size windowSize) {
@@ -33,17 +34,44 @@ public class ConversationBox extends VerticalContainer {
 
     public void setDefault() {
         clearUIComponents();
-        addUIComponent((new UIClickableText("Small Talk", (state) -> resetOptions(NPCSpeechHandler.getCategoryOptions("Small Talk")))));
+        addUIComponent((new UIClickableText("Small Talk", (state) -> setOptions(NPCSpeechHandler.getCategoryOptions("Small Talk")))));
         addUIComponent(new UIClickableText("Friendly", (state) -> System.out.println("Friendly")));
         addUIComponent(new UIClickableText("Gossip", (state) -> System.out.println("Gossip")));
         addUIComponent(new UIClickableText("Interrogation", (state) -> System.out.println("Question")));
         addUIComponent(new UIClickableText("Help", (state) -> System.out.println("Help")));
     }
 
-    private void resetOptions(String[] interrogations) {
+    private void setOptions(String[] interrogations) {
         clearUIComponents();
         for(String option: interrogations){
-            addUIComponent((new UIClickableText(option, (state) -> System.out.println(NPCSpeechHandler.getSpeech(option, conversant)))));
+            addUIComponent(new UIClickableText(option, (state) -> setResponse(NPCSpeechHandler.getSpeech(option, conversant))));
+        }
+    }
+
+    private void setResponse(String response) {
+        clearUIComponents();
+
+        while(response.length() > 0){
+            StringBuilder currentLine = new StringBuilder();
+            if(response.length() <= MAX_CHARACTER_PER_LINE){
+                addUIComponent(new UIText(response + " ", 32, 16, false, new Spacing(5, 0, 0, 10)));
+                response = "";
+            } else {
+                String nextWord = "";
+                do {
+                    currentLine.append(nextWord);
+                    response = response.substring(nextWord.length());
+
+                    int nextSpace = response.indexOf(" ");
+                    if(nextSpace == -1){
+                        currentLine.append(response + " ");
+                        response = "";
+                    } else {
+                        nextWord = response.substring(0, nextSpace + 1);
+                    }
+                } while (currentLine.length() + nextWord.length() < MAX_CHARACTER_PER_LINE);
+                addUIComponent(new UIText(currentLine.toString(), 32, 16, false, new Spacing(5, 0, 0, 10)));
+            }
         }
     }
 

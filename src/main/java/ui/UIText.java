@@ -42,6 +42,20 @@ public class UIText extends UIComponent {
         createFont();
     }
 
+    public UIText(String text, int fontSize, int displaySize, boolean dropShadow, Spacing spacing) {
+        this.text = text;
+        this.fontSize = fontSize;
+        this.fontStyle = Font.PLAIN;
+        this.fontFamily = "chai";
+        this.colour = Color.WHITE;
+        this.dropShadow = dropShadow;
+        this.dropShadowOffset = 2;
+        this.shadowColour = new Color(29, 25, 78);
+        this.displaySize = displaySize;
+        createFont();
+        this.padding = spacing;
+    }
+
     @Override
     public Image getSprite() {
         BufferedImage image = (BufferedImage) ImageUtils.createCompatibleImage(size, ImageUtils.ALHPA_BIT_MASKED);
