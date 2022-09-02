@@ -11,12 +11,12 @@ public class GameTimeManager {
     private int day = 1;
     private int hour = 8;
     private int minute;
-    private final int TIME_SPEED = 3;
+    private final int TIME_SPEED = 10;
     private int counter = 0;
 
     public final GameTime START_DAY = new GameTime(8);
-    public final GameTime END_DAY = new GameTime(20);
-    public final GameTime EVENING_TIME = new GameTime(4);
+    public final GameTime END_DAY = new GameTime(22);
+    public final GameTime EVENING_TIME = new GameTime(16);
 
     public void update(State state){
         counter += TIME_SPEED;

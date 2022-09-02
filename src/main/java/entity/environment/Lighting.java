@@ -80,10 +80,14 @@ public class Lighting extends GameObject {
     @Override
     public void update(State state) {
         position = Position.copyOf(state.getCamera().getPosition());
-        if(lightBrightness <= 1f && evening){
+        if(evening){
             counter = 0;
-            lightBrightness += 0.0001;
+            lightBrightness += 0.0006;
+            if(lightBrightness > 1f){
+                lightBrightness = 1f;
+            }
         }
+        System.out.println(lightBrightness);
     }
 
     @Override
