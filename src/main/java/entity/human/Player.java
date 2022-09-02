@@ -56,7 +56,7 @@ public class Player extends Human {
                 if(target != null){
                     target.detach(selectionCircle);
                 }
-                Size size = nearObj.getSelectionCircleSize();
+                //Size size = nearObj.getSelectionCircleSize();
                 selectionCircle.resize(Size.copyOf(nearObj.getSelectionCircleSize()), nearObj.getSelectionCircleOffset());
                 nearObj.attach(selectionCircle);
                 target = nearObj;

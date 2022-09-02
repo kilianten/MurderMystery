@@ -4,6 +4,7 @@ import controller.NPCController;
 import controller.PlayerController;
 import core.Position;
 import core.Size;
+import entity.environment.Lighting;
 import entity.human.NPC.*;
 import entity.human.Player;
 import game.settings.GameSettings;
@@ -38,6 +39,7 @@ public class GameState extends State {
         conversationBoxContainer = new ConversationBoxContainer(windowSize);
         storyManager = new StoryManager(this);
         speechManager = new SpeechManager();
+        lighting = new Lighting(windowSize, this);
     }
 
     protected void updateGameObjects() {
@@ -142,4 +144,5 @@ public class GameState extends State {
     public SpeechManager getSpeechManager() {
         return speechManager;
     }
+
 }

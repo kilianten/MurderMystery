@@ -3,9 +3,11 @@ package display;
 import core.CollisionBox;
 import core.Position;
 import entity.GameObject;
+import entity.environment.Lighting;
 import game.Game;
 import state.State;
 import map.GameMap;
+import state.game.GameState;
 
 import java.awt.*;
 
@@ -49,6 +51,10 @@ public class Renderer {
                         drawRenderLines(gameObject, graphics, camera);
                     }
                 });
+        Lighting lighting = state.getLighting();
+        if(lighting != null){
+            renderGameObject(graphics, camera, lighting);
+        }
     }
 
     private void renderGameObject(Graphics graphics, Camera camera, entity.GameObject gameObject) {
@@ -94,6 +100,7 @@ public class Renderer {
                 }
             }
         }
+
     }
 
     public void drawCollisionBox(CollisionBox collisionBox, Graphics graphics, Camera camera){

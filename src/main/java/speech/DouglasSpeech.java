@@ -9,12 +9,12 @@ public class DouglasSpeech extends NPCSpeech {
         if(npc.isSmoker()){
             return "Yes. And like every addict, I intent to stop soon";
         } else {
-            return "Not anymore. I hope I don’t succumb to it’s temptations ever again";
+            return "Not anymore. I hope I don’t succumb to its temptations ever again";
         }
     }
 
     @Override
     public String areYouReligious(NPC npc) {
-        return null;
+        return "I came from a religious background, but I grew out of it";
     }
 }

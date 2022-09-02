@@ -5,6 +5,7 @@ import core.Position;
 import core.Size;
 import display.Camera;
 import entity.GameObject;
+import entity.environment.Lighting;
 import entity.human.Human;
 import entity.human.NPC.NPC;
 import entity.scenery.Scenery;
@@ -43,6 +44,7 @@ public abstract class State {
     protected List<UIContainer> uiContainers;
     public List<UIComponent> UIElements;
     public GameTimeManager gameTimeManager;
+    protected Lighting lighting;
 
     public State(Size windowSize, Input input, GameSettings settings) {
         this.settings = settings;
@@ -69,6 +71,9 @@ public abstract class State {
         camera.update(this);
         mouseHandler.update(this);
         handleKeyInput();
+        if(lighting != null){
+            lighting.update(this);
+        }
 
         if(nextState != null){
             game.enterState(nextState);
@@ -181,6 +186,8 @@ public abstract class State {
         return gameTimeManager;
     }
 
-
+    public Lighting getLighting() {
+        return lighting;
+    }
 
 }

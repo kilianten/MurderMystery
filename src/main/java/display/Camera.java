@@ -47,7 +47,7 @@ public class Camera {
             this.position.setX(objectPosition.getX() - windowSize.getWidth() / 2);
             this.position.setY(objectPosition.getY() - windowSize.getHeight() / 2);
 
-            clampWithinBounds(state);
+            //clampWithinBounds(state);
         }
         calculateViewBounds();
     }
@@ -88,5 +88,12 @@ public class Camera {
 
     public void setPosition(Position position) {
         this.position = position;
+    }
+
+    public Position getObjectWithFocusPosition(){
+        if(objectWithFocus.isPresent()) {
+            return objectWithFocus.get().getPosition();
+        }
+        return null;
     }
 }
