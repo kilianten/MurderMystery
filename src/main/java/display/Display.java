@@ -39,7 +39,7 @@ public class Display extends JFrame {
 
     public synchronized void render(State state, boolean debugMode){
         BufferStrategy bufferStrategy = canvas.getBufferStrategy();
-        Graphics graphics  = bufferStrategy.getDrawGraphics();
+        Graphics2D graphics  = (Graphics2D) bufferStrategy.getDrawGraphics();
 
         graphics.setColor(Color.BLACK);
         graphics.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());

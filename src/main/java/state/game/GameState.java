@@ -46,7 +46,7 @@ public class GameState extends State {
         if(!paused){
             super.updateGameObjects();
             storyManager.update(this);
-            gameTimeManager.update();
+            gameTimeManager.update(this);
         }
     }
 

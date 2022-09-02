@@ -14,7 +14,10 @@ public class Lighting extends GameObject {
 
     private BufferedImage sprite;
     private int lightWidth = 500;
-
+    private float lightBrightness = 0.0f;
+    private int counter = 0;
+    private final int UPDATE_DARKEN_RATE = 10;
+    private boolean evening;
 
     public Lighting(Size windowSize, State state){
         size = windowSize;
@@ -77,10 +80,26 @@ public class Lighting extends GameObject {
     @Override
     public void update(State state) {
         position = Position.copyOf(state.getCamera().getPosition());
+        if(lightBrightness <= 1f && evening){
+            counter = 0;
+            lightBrightness += 0.0001;
+        }
     }
 
     @Override
     public Image getSprite() {
         return sprite;
+    }
+
+    public float getLightBrightness() {
+        return lightBrightness;
+    }
+
+    public float resetLightBrightness() {
+        return lightBrightness = 0.0f;
+    }
+
+    public void setEvening(boolean isEvening){
+        evening = isEvening;
     }
 }

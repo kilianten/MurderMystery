@@ -1,6 +1,7 @@
 package state.game.time;
 
 import game.GameLoop;
+import state.State;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -15,8 +16,9 @@ public class GameTimeManager {
 
     public final GameTime START_DAY = new GameTime(8);
     public final GameTime END_DAY = new GameTime(20);
+    public final GameTime EVENING_TIME = new GameTime(4);
 
-    public void update(){
+    public void update(State state){
         counter += TIME_SPEED;
         if(counter >= GameLoop.UPDATES_PER_SECOND){
 
@@ -25,13 +27,22 @@ public class GameTimeManager {
             if(minute >= 60){
                 minute = 0;
                 hour++;
+                if(EVENING_TIME.getHour() == hour){
+                    state.getLighting().setEvening(true);
+                }
                 if(hour == END_DAY.getHour()){
-                    day++;
-                    hour = START_DAY.getHour();
-                    minute = START_DAY.getMinute();
+                    resetDay(state);
+                    state.getLighting().setEvening(false);
                 }
             }
         }
+    }
+
+    private void resetDay(State state) {
+        day++;
+        hour = START_DAY.getHour();
+        minute = START_DAY.getMinute();
+        state.getLighting().resetLightBrightness();
     }
 
     public String getDay(){

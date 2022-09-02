@@ -13,10 +13,11 @@ import java.awt.*;
 
 public class Renderer {
 
-    public void render(State state, Graphics graphics){
+    public void render(State state, Graphics2D graphics){
         renderMap(state, graphics);
         Camera camera = state.getCamera();
         renderGameObjects(state, graphics, camera);
+        drawEnvironment(state, graphics, camera);
         renderUI(state, graphics);
     }
 
@@ -41,7 +42,7 @@ public class Renderer {
         ));
     }
 
-    private void renderGameObjects(State state, Graphics graphics, Camera camera){
+    private void renderGameObjects(State state, Graphics2D graphics, Camera camera){
         state.getGameObjects().stream()
                 .filter(gameObject -> camera.isInView(gameObject))
                 .forEach(gameObject -> {
@@ -51,10 +52,6 @@ public class Renderer {
                         drawRenderLines(gameObject, graphics, camera);
                     }
                 });
-        Lighting lighting = state.getLighting();
-        if(lighting != null){
-            renderGameObject(graphics, camera, lighting);
-        }
     }
 
     private void renderGameObject(Graphics graphics, Camera camera, entity.GameObject gameObject) {
@@ -119,5 +116,19 @@ public class Renderer {
                 object.getRenderLevel() - camera.getPosition().getIntY(),
                 object.getSize().getWidth(),
                 1);
+    }
+
+    private void drawEnvironment(State state, Graphics2D graphics, Camera camera) {
+        Lighting lighting = state.getLighting();
+        if(lighting != null){
+            graphics.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, lighting.getLightBrightness()));
+            graphics.drawImage(
+                    lighting.getSprite(),
+                    lighting.getRenderPosition(camera).getIntX(),
+                    lighting.getRenderPosition(camera).getIntY(),
+                    null
+            );
+            graphics.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f));
+        }
     }
 }
