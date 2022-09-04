@@ -1,16 +1,15 @@
 package state.game.ui;
 
-import core.CollisionBox;
 import core.Position;
-import core.Size;
 import entity.human.NPC.NPC;
 import state.State;
+import state.game.GameState;
 import ui.Alignment;
 import ui.HorizontalContainer;
 import ui.UIImage;
 import ui.UIText;
 
-
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -47,6 +46,15 @@ public class UIClue extends HorizontalContainer {
         clues.add("blood" + murderer.getSecondName().charAt(0));
 
         return(clues.get(random.nextInt(clues.size())));
+    }
+
+    @Override
+    public void update(State state){
+        super.update(state);
+        if(state.getInput().isPressed(KeyEvent.VK_ESCAPE)){
+            state.removeUIComponent(this);
+            ((GameState) state).setPaused(false);
+        }
     }
 
 }

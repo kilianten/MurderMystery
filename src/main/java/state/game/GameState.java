@@ -148,4 +148,7 @@ public class GameState extends State {
         return speechManager;
     }
 
+    public void setPaused(boolean paused){
+        this.paused = paused;
+    };
 }

@@ -5,6 +5,7 @@ import core.Position;
 import entity.GameObject;
 import entity.human.Human;
 import state.State;
+import state.game.GameState;
 import state.game.ui.UIClue;
 
 import java.awt.*;
@@ -44,6 +45,7 @@ public class Corpse extends GameObject {
     @Override
     public void interact(State state, Human human){
         state.addUIComponent(clue);
+        ((GameState) state).setPaused(true);
     }
 
 }

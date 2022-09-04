@@ -207,4 +207,8 @@ public abstract class State {
     public void addUIComponent(UIContainer component) {
         uiContainers.add(component);
     }
+
+    public void removeUIComponent(UIContainer component){
+        uiContainers.remove(component);
+    }
 }
