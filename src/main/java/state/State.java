@@ -6,8 +6,6 @@ import core.Size;
 import display.Camera;
 import entity.GameObject;
 import entity.environment.Lighting;
-import entity.human.Human;
-import entity.human.NPC.NPC;
 import entity.scenery.Scenery;
 import game.Clock;
 import game.Game;
@@ -17,7 +15,6 @@ import input.Input;
 import input.mouse.MouseHandler;
 import io.MapIO;
 import map.GameMap;
-import state.game.time.GameTime;
 import state.game.time.GameTimeManager;
 import ui.UIComponent;
 import ui.UIContainer;
@@ -31,6 +28,7 @@ public abstract class State {
     protected AudioPlayer audioPlayer;
     protected GameMap gameMap;
     protected List<GameObject> gameObjects;
+    protected List<GameObject> readyToSpawn;
 
     protected SpriteLibrary spriteLibrary;
     protected Input input;
@@ -50,6 +48,7 @@ public abstract class State {
         this.settings = settings;
         this.windowSize = windowSize;
         gameObjects = new ArrayList<>();
+        readyToSpawn = new ArrayList<>();
         uiContainers = new ArrayList<>();
         UIElements = new ArrayList<>();
         spriteLibrary = new SpriteLibrary();
@@ -75,9 +74,16 @@ public abstract class State {
             lighting.update(this);
         }
 
+        spawnReadyObjects();
+
         if(nextState != null){
             game.enterState(nextState);
         }
+    }
+
+    private void spawnReadyObjects() {
+        gameObjects.addAll(readyToSpawn);
+        readyToSpawn.clear();
     }
 
     protected void updateGameObjects() {
@@ -138,7 +144,7 @@ public abstract class State {
     }
 
     public void spawn(GameObject gameObject) {
-        gameObjects.add(gameObject);
+        readyToSpawn.add(gameObject);
     }
 
     public Input getInput() {
@@ -190,4 +196,15 @@ public abstract class State {
         return lighting;
     }
 
+    public SpriteLibrary getSpriteLibrary() {
+        return spriteLibrary;
+    }
+
+    public Size getWindowSize() {
+        return windowSize;
+    }
+
+    public void addUIComponent(UIContainer component) {
+        uiContainers.add(component);
+    }
 }

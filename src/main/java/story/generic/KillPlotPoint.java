@@ -3,6 +3,7 @@ package story.generic;
 import entity.scenery.Corpse;
 import entity.human.NPC.NPC;
 import state.State;
+import state.game.ui.UIClue;
 import story.PlotPoint;
 
 import java.util.List;
@@ -23,7 +24,10 @@ public class KillPlotPoint extends PlotPoint {
     @Override
     public void update(State state){
         if(updatesSinceLastSeen >= KILL_THRESHOLD){
-            state.spawn(new Corpse(target.getPosition(), target.getSprite("corpse")));
+            Corpse corpse = new Corpse(target.getPosition(), target.getSprite("corpse"));
+            corpse.setClue(new UIClue(state, UIClue.getClue(killer)));
+            state.spawn(corpse);
+
             state.getGameObjects().remove(target);
             isDone = true;
         } else {

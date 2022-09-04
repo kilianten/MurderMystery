@@ -18,7 +18,6 @@ public class Sheriff extends NPC {
             0xFF000000,
             0xFF000000,
             0xFFf6e74b
-
     );
 
     public Sheriff(Controller controller, SpriteLibrary spriteLibrary) {
@@ -28,12 +27,11 @@ public class Sheriff extends NPC {
 
         firstName = "Sheriff";
         secondName = "Hanson";
-
-        religious = true;
     }
 
     @Override
     public void setTraits(){
+        religious = true;
         smoker = randomiseTrait(0.5);
     }
 

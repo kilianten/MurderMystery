@@ -17,20 +17,21 @@ public class SpriteLibrary {
     public static final int DEFAULT_LEG_COLOUR = 0xFF4D65B4;
     public static final int DEFAULT_SHOE_COLOUR = 0xFF625565;
     public static final int DEFAULT_LEG_DARK_COLOUR = 0xFF484A77;
-    public static final int DEFAULT_SHOE_SHADOW = 0xFF3E3546;
+
     public static final int DEFAULT_EXTRA_COLOUR = 0xFFff009c;
     public static final int DEFAULT_SKIN_COLOUR_SHADOW = 0xFFfca790;
     public static final int DEFAULT_SKIN_COLOUR = 0xFFfdcbb0;
 
     private Map<String, SpriteSet> units;
     private Map<String, Image> sceneryObjects;
-    private Map<String, Image> interactableObjects;
     private Map<String, Image> tiles;
+    private Map<String, Image> clueImages;
 
     public SpriteLibrary(){
         units = new HashMap<>();
         tiles = new HashMap<>();
         sceneryObjects = new HashMap<>();
+        clueImages = new HashMap<>();
         loadSpritesFromDisk();
     }
 
@@ -39,6 +40,7 @@ public class SpriteLibrary {
         loadImages("/sprites/tiles", tiles);
         loadImages("/sprites/scenery", sceneryObjects);
         loadImages("/sprites/interactableScenery", sceneryObjects);
+        loadImages("/sprites/clues", clueImages);
     }
 
     private void loadImages(String path, Map<String, Image> images) {
@@ -143,4 +145,7 @@ public class SpriteLibrary {
         return sceneryObjects.get(name);
     }
 
+    public Image getClueImage(String name) {
+        return clueImages.get(name);
+    }
 }

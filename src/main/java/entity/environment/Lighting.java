@@ -87,7 +87,6 @@ public class Lighting extends GameObject {
                 lightBrightness = 1f;
             }
         }
-        System.out.println(lightBrightness);
     }
 
     @Override
