@@ -81,18 +81,21 @@ public class GameState extends State {
             Eduardo eduardo = new Eduardo(new NPCController(), spriteLibrary);
             Raquel raquel = new Raquel(new NPCController(), spriteLibrary);
             Sheriff sheriff = new Sheriff(new NPCController(), spriteLibrary);
+            Vanessa vanessa = new Vanessa(new NPCController(), spriteLibrary);
             nolan.setPosition(gameMap.getRandomAvailablePosition());
             douglas.setPosition(gameMap.getRandomAvailablePosition());
             karl.setPosition(gameMap.getRandomAvailablePosition());
             eduardo.setPosition(gameMap.getRandomAvailablePosition());
             raquel.setPosition(gameMap.getRandomAvailablePosition());
             sheriff.setPosition(gameMap.getRandomAvailablePosition());
+            vanessa.setPosition(gameMap.getRandomAvailablePosition());
             gameObjects.add(raquel);
             gameObjects.add(karl);
             gameObjects.add(douglas);
             gameObjects.add(sheriff);
             //gameObjects.add(nolan);
             gameObjects.add(eduardo);
+            gameObjects.add(vanessa);
         }
         Nolan nolan = new Nolan(new NPCController(), spriteLibrary);
         Position position = gameMap.getRandomAvailablePosition();

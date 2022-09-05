@@ -28,6 +28,8 @@ public abstract class NPC extends Human {
 
     protected boolean religious;
     protected boolean smoker;
+    protected boolean interestedInGettingTattoo;
+    protected boolean hasTattoos;
 
     protected NPCSpeech speech;
 
@@ -137,5 +139,20 @@ public abstract class NPC extends Human {
 
     public boolean isSmoker() {
         return smoker;
+    }
+
+    public boolean hasTattoo(){
+        return hasTattoos;
+    }
+
+    public boolean isInterestedInGettingTattoo(){
+        return interestedInGettingTattoo;
+    }
+
+    public void randomiseTattooTraits(){
+        hasTattoos = randomiseTrait(0.3);
+        if(!hasTattoos){
+            interestedInGettingTattoo = randomiseTrait(0.2);
+        }
     }
 }

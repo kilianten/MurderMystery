@@ -31,6 +31,8 @@ public class UIClue extends HorizontalContainer {
             switch (clue){
                 case "cigarette":
                     return "Looks like our killer is a smoker";
+                case "tattooCard":
+                    return "Our killer must be into tattoos";
             }
         }
         return "";
@@ -40,6 +42,9 @@ public class UIClue extends HorizontalContainer {
         List<String> clues = new ArrayList<>();
         Random random = new Random();
         if(murderer.isSmoker()){
+            clues.add("cigarette");
+        }
+        if(murderer.hasTattoo() || murderer.isInterestedInGettingTattoo()){
             clues.add("cigarette");
         }
         clues.add("blood" + murderer.getFirstName().charAt(0));

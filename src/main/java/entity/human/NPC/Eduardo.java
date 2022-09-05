@@ -26,8 +26,12 @@ public class Eduardo extends NPC {
 
         firstName = "Eduardo";
         secondName = "Palmer";
+    }
 
+    @Override
+    public void setTraits() {
         religious = true;
         smoker = true;
+        randomiseTattooTraits();
     }
 }

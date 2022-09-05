@@ -18,7 +18,7 @@ public class Nolan extends NPC {
             0xFF000000,
             0xFF000000,
             0xFF000000,
-            0xFFFFFFF);
+            0xFFFFFFFF);
 
     public Nolan(Controller controller, SpriteLibrary spriteLibrary) {
         super(controller, spriteLibrary, "priest", colourHandler);
@@ -29,7 +29,6 @@ public class Nolan extends NPC {
         secondName = "Nolan";
 
         religious = true;
-
     }
 
     @Override

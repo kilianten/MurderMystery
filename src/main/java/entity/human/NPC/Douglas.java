@@ -24,12 +24,12 @@ public class Douglas extends NPC {
 
         firstName = "Douglas";
         secondName = "McNamara";
-
     }
 
     @Override
     public void setTraits(){
         smoker = randomiseTrait(0.5);
+        randomiseTattooTraits();
     }
 
 }

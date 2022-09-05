@@ -26,12 +26,11 @@ public class Karl extends NPC {
         secondName = "Bryson";
 
         this.speech = new KarlSpeech();
-
-        setTraits();
     }
 
     @Override
     public void setTraits(){
         smoker = randomiseTrait(0.4);
+        randomiseTattooTraits();
     }
 }
