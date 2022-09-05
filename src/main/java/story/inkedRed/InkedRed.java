@@ -1,7 +1,7 @@
-package story.sacrilege;
+package story.inkedRed;
 
 import entity.human.NPC.NPC;
-import entity.human.NPC.Nolan;
+import entity.human.NPC.Vanessa;
 import state.State;
 import story.KillerStory;
 import story.generic.KillPlotPointBasedOnTrait;
@@ -10,21 +10,19 @@ import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
 
-public class Sacrilege extends KillerStory {
+public class InkedRed extends KillerStory {
 
-    Nolan nolan;
+    Vanessa vanessa;
     NPC accomplice;
 
-    public Sacrilege(State state){
-        nolan = state.getGameObjectOfClass(Nolan.class).get();
-        killers.add(nolan);
+    public InkedRed(State state){
+        vanessa = state.getGameObjectOfClass(Vanessa.class).get();
+        killers.add(vanessa);
         killers.add(accomplice);
-        plotPoints.add(new KillPlotPointBasedOnTrait(nolan, killers, "isReligious"));
-        plotPoints.add(new KillPlotPointBasedOnTrait(nolan, killers, "isReligious"));
+        plotPoints.add(new KillPlotPointBasedOnTrait(vanessa, killers, "hasTattoo"));
+        plotPoints.add(new KillPlotPointBasedOnTrait(vanessa, killers, "hasTattoo"));
         plotPoints.peek().initialize(state);
     }
-
-
 
     public void getReligiousCharacter(State state){
         Random rand = new Random();
@@ -32,7 +30,7 @@ public class Sacrilege extends KillerStory {
                 .stream()
                 .filter(npc -> npc.isReligious())
                 .collect(Collectors.toList());
-        allNPCs.remove(nolan);
+        allNPCs.remove(vanessa);
         accomplice = allNPCs.get(rand.nextInt(allNPCs.size()));
     }
 }

@@ -22,4 +22,16 @@ public class KarlSpeech extends NPCSpeech {
     public String areYouReligious(NPC npc) {
         return "Ha. No. Complete waste of time";
     }
+
+    @Override
+    public String doYouHaveTattoos(NPC npc) {
+        if(npc.hasTattoo()){
+            return "Yes. It’s of those cool Moai human sculptures by the Rapa Nui people. They’re off Chile on Easter Island. Look it up... You’ll know them to see.";
+        } else if (npc.isInterestedInGettingTattoo()) {
+            return "Not yet. But the idea has always appealed to me. I’m gonna chat to Vanessa about it.";
+        } else {
+            return "Though I respect everyone’s right to do it, I think tattoos are stupid.";
+        }
+    }
+
 }

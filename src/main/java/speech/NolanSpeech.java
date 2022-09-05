@@ -15,4 +15,9 @@ public class NolanSpeech extends NPCSpeech {
     public String areYouReligious(NPC npc) {
         return "What gave it away?";
     }
+
+    @Override
+    public String doYouHaveTattoos(NPC npc) {
+        return "You shall not make gashes in your flesh for the dead or tattoo any marks upon you. Leviticus 19:28.";
+    }
 }

@@ -16,8 +16,11 @@ import graphics.SpriteLibrary;
 import state.game.GameState;
 
 import java.awt.*;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 public abstract class NPC extends Human {
@@ -153,6 +156,17 @@ public abstract class NPC extends Human {
         hasTattoos = randomiseTrait(0.3);
         if(!hasTattoos){
             interestedInGettingTattoo = randomiseTrait(0.2);
+        }
+    }
+
+    public boolean getTrait(String methodName, boolean negation) throws InvocationTargetException, IllegalAccessException, NoSuchMethodException {
+        Object[] parameters = new Object[1];
+        parameters[0] = parameters;
+        Method method = NPC.class.getMethod(methodName, null);
+        if(negation){
+            return (Boolean) method.invoke(this);
+        } else {
+            return !(Boolean) method.invoke(this);
         }
     }
 }

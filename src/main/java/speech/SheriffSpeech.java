@@ -22,4 +22,10 @@ public class SheriffSpeech extends NPCSpeech {
     public String areYouReligious(NPC npc) {
         return "I try to be.";
     }
+
+
+    @Override
+    public String doYouHaveTattoos(NPC npc) {
+        return "No. And I don’t regret my decision either. I doubt most people with a tattoo can say the same";
+    }
 }

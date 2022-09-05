@@ -61,4 +61,27 @@ public class KillPlotPoint extends PlotPoint {
         return null;
     }
 
+    protected NPC getCharacterBasedOnTrait(State state, String methodName, boolean negation) {
+        Random rand = new Random();
+        List<NPC> allNPCs = state.getGameObjectsOfClass(NPC.class)
+                .stream()
+                .filter(npc -> npc.isAlive())
+                .filter(npc -> {
+                    try {
+                        return npc.getTrait(methodName, negation);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                    return false;
+                })
+                .collect(Collectors.toList());
+        allNPCs.removeAll(killers);
+        for(NPC npc: allNPCs){
+            System.out.println(npc.getFirstName());
+        }
+        if(allNPCs.size() > 0){
+            return allNPCs.get(rand.nextInt(allNPCs.size()));
+        }
+        return null;
+    }
 }

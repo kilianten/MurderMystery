@@ -392,11 +392,11 @@ num_chunks_enlarged: 59.
 num_purges: 0.
 num_inconsistent_stats: 0.
 
-CodeHeap 'non-profiled nmethods': size=120000Kb used=2714Kb max_used=2714Kb free=117285Kb
+CodeHeap ’non-profiled nmethods’: size=120000Kb used=2714Kb max_used=2714Kb free=117285Kb
  bounds [0x0000020b72b90000, 0x0000020b72e40000, 0x0000020b7a0c0000]
-CodeHeap 'profiled nmethods': size=120000Kb used=6074Kb max_used=6074Kb free=113925Kb
+CodeHeap ’profiled nmethods’: size=120000Kb used=6074Kb max_used=6074Kb free=113925Kb
  bounds [0x0000020b6b660000, 0x0000020b6bc50000, 0x0000020b72b90000]
-CodeHeap 'non-nmethods': size=5760Kb used=1328Kb max_used=1419Kb free=4431Kb
+CodeHeap ’non-nmethods’: size=5760Kb used=1328Kb max_used=1419Kb free=4431Kb
  bounds [0x0000020b6b0c0000, 0x0000020b6b330000, 0x0000020b6b660000]
  total_blobs=4087 nmethods=3423 adapters=576
  compilation: enabled
@@ -596,45 +596,45 @@ Classes redefined (0 events):
 No events
 
 Internal exceptions (20 events):
-Event: 0.144 Thread 0x0000020b638bab20 Exception <a 'java/io/FileNotFoundException'{0x00000007110a8c38}> (0x00000007110a8c38) 
+Event: 0.144 Thread 0x0000020b638bab20 Exception <a ’java/io/FileNotFoundException’{0x00000007110a8c38}> (0x00000007110a8c38)
 thrown [t:\workspace\open\src\hotspot\share\prims\jni.cpp, line 516]
-Event: 0.310 Thread 0x0000020b638bab20 Exception <a 'java/lang/NoSuchMethodError'{0x0000000711170918}: 'void java.lang.invoke.DirectMethodHandle$Holder.invokeSpecial(java.lang.Object, java.lang.Object, java.lang.Object)'> (0x0000000711170918) 
+Event: 0.310 Thread 0x0000020b638bab20 Exception <a ’java/lang/NoSuchMethodError’{0x0000000711170918}: ’void java.lang.invoke.DirectMethodHandle$Holder.invokeSpecial(java.lang.Object, java.lang.Object, java.lang.Object)’> (0x0000000711170918)
 thrown [t:\workspace\open\src\hotspot\share\interpreter\linkResolver.cpp, line 766]
-Event: 0.317 Thread 0x0000020b638bab20 Exception <a 'java/lang/NoSuchMethodError'{0x000000071119add0}: 'java.lang.Object java.lang.invoke.DirectMethodHandle$Holder.newInvokeSpecial(java.lang.Object, java.lang.Object, java.lang.Object, java.lang.Object, java.lang.Object)'> (0x000000071119add0) 
+Event: 0.317 Thread 0x0000020b638bab20 Exception <a ’java/lang/NoSuchMethodError’{0x000000071119add0}: ’java.lang.Object java.lang.invoke.DirectMethodHandle$Holder.newInvokeSpecial(java.lang.Object, java.lang.Object, java.lang.Object, java.lang.Object, java.lang.Object)’> (0x000000071119add0)
 thrown [t:\workspace\open\src\hotspot\share\interpreter\linkResolver.cpp, line 766]
-Event: 0.318 Thread 0x0000020b638bab20 Exception <a 'java/lang/NoSuchMethodError'{0x00000007111a6798}: 'java.lang.Object java.lang.invoke.DirectMethodHandle$Holder.invokeStatic(java.lang.Object, int, java.lang.Object, java.lang.Object, java.lang.Object, java.lang.Object)'> (0x00000007111a6798) 
+Event: 0.318 Thread 0x0000020b638bab20 Exception <a ’java/lang/NoSuchMethodError’{0x00000007111a6798}: ’java.lang.Object java.lang.invoke.DirectMethodHandle$Holder.invokeStatic(java.lang.Object, int, java.lang.Object, java.lang.Object, java.lang.Object, java.lang.Object)’> (0x00000007111a6798)
 thrown [t:\workspace\open\src\hotspot\share\interpreter\linkResolver.cpp, line 766]
-Event: 0.322 Thread 0x0000020b638bab20 Exception <a 'java/lang/NoSuchMethodError'{0x00000007111cc1c0}: 'java.lang.Object java.lang.invoke.DirectMethodHandle$Holder.invokeStatic(java.lang.Object, int, java.lang.Object)'> (0x00000007111cc1c0) 
+Event: 0.322 Thread 0x0000020b638bab20 Exception <a ’java/lang/NoSuchMethodError’{0x00000007111cc1c0}: ’java.lang.Object java.lang.invoke.DirectMethodHandle$Holder.invokeStatic(java.lang.Object, int, java.lang.Object)’> (0x00000007111cc1c0)
 thrown [t:\workspace\open\src\hotspot\share\interpreter\linkResolver.cpp, line 766]
-Event: 0.350 Thread 0x0000020b638bab20 Exception <a 'java/lang/ClassNotFoundException'{0x0000000710e849d0}: com/sun/swing/internal/plaf/metal/resources/spi/metalProvider> (0x0000000710e849d0) 
+Event: 0.350 Thread 0x0000020b638bab20 Exception <a ’java/lang/ClassNotFoundException’{0x0000000710e849d0}: com/sun/swing/internal/plaf/metal/resources/spi/metalProvider> (0x0000000710e849d0)
 thrown [t:\workspace\open\src\hotspot\share\classfile\systemDictionary.cpp, line 256]
-Event: 0.351 Thread 0x0000020b638bab20 Exception <a 'java/lang/ClassNotFoundException'{0x0000000710e88828}: com/sun/swing/internal/plaf/basic/resources/spi/basicProvider> (0x0000000710e88828) 
+Event: 0.351 Thread 0x0000020b638bab20 Exception <a ’java/lang/ClassNotFoundException’{0x0000000710e88828}: com/sun/swing/internal/plaf/basic/resources/spi/basicProvider> (0x0000000710e88828)
 thrown [t:\workspace\open\src\hotspot\share\classfile\systemDictionary.cpp, line 256]
-Event: 0.368 Thread 0x0000020b06bebf10 Exception <a 'java/lang/NoSuchMethodError'{0x0000000711105bd0}: 'void java.lang.invoke.DirectMethodHandle$Holder.invokeVirtual(java.lang.Object, java.lang.Object)'> (0x0000000711105bd0) 
+Event: 0.368 Thread 0x0000020b06bebf10 Exception <a ’java/lang/NoSuchMethodError’{0x0000000711105bd0}: ’void java.lang.invoke.DirectMethodHandle$Holder.invokeVirtual(java.lang.Object, java.lang.Object)’> (0x0000000711105bd0)
 thrown [t:\workspace\open\src\hotspot\share\interpreter\linkResolver.cpp, line 766]
-Event: 0.381 Thread 0x0000020b638bab20 Exception <a 'java/lang/NoSuchMethodError'{0x0000000710f11f78}: 'void java.lang.invoke.DirectMethodHandle$Holder.invokeStaticInit(java.lang.Object)'> (0x0000000710f11f78) 
+Event: 0.381 Thread 0x0000020b638bab20 Exception <a ’java/lang/NoSuchMethodError’{0x0000000710f11f78}: ’void java.lang.invoke.DirectMethodHandle$Holder.invokeStaticInit(java.lang.Object)’> (0x0000000710f11f78)
 thrown [t:\workspace\open\src\hotspot\share\interpreter\linkResolver.cpp, line 766]
-Event: 0.458 Thread 0x0000020b638bab20 Exception <a 'java/lang/NoSuchMethodError'{0x0000000710fe0018}: 'java.lang.Object java.lang.invoke.DirectMethodHandle$Holder.invokeStaticInit(java.lang.Object, int, int, int, int)'> (0x0000000710fe0018) 
+Event: 0.458 Thread 0x0000020b638bab20 Exception <a ’java/lang/NoSuchMethodError’{0x0000000710fe0018}: ’java.lang.Object java.lang.invoke.DirectMethodHandle$Holder.invokeStaticInit(java.lang.Object, int, int, int, int)’> (0x0000000710fe0018)
 thrown [t:\workspace\open\src\hotspot\share\interpreter\linkResolver.cpp, line 766]
-Event: 0.626 Thread 0x0000020b638bab20 Exception <a 'java/lang/NoSuchMethodError'{0x0000000710cc6b30}: 'java.lang.Object java.lang.invoke.DirectMethodHandle$Holder.invokeStaticInit(java.lang.Object, java.lang.Object, int, int, int, int)'> (0x0000000710cc6b30) 
+Event: 0.626 Thread 0x0000020b638bab20 Exception <a ’java/lang/NoSuchMethodError’{0x0000000710cc6b30}: ’java.lang.Object java.lang.invoke.DirectMethodHandle$Holder.invokeStaticInit(java.lang.Object, java.lang.Object, int, int, int, int)’> (0x0000000710cc6b30)
 thrown [t:\workspace\open\src\hotspot\share\interpreter\linkResolver.cpp, line 766]
-Event: 0.824 Thread 0x0000020b638bab20 Exception <a 'java/lang/NoSuchMethodError'{0x0000000710a356a8}: 'void java.lang.invoke.DirectMethodHandle$Holder.invokeStatic(java.lang.Object, java.lang.Object, java.lang.Object)'> (0x0000000710a356a8) 
+Event: 0.824 Thread 0x0000020b638bab20 Exception <a ’java/lang/NoSuchMethodError’{0x0000000710a356a8}: ’void java.lang.invoke.DirectMethodHandle$Holder.invokeStatic(java.lang.Object, java.lang.Object, java.lang.Object)’> (0x0000000710a356a8)
 thrown [t:\workspace\open\src\hotspot\share\interpreter\linkResolver.cpp, line 766]
-Event: 0.852 Thread 0x0000020b0c3f2290 Exception <a 'java/lang/NoSuchMethodError'{0x0000000710a787c8}: 'java.lang.Object java.lang.invoke.DirectMethodHandle$Holder.newInvokeSpecial(java.lang.Object, java.lang.Object, java.lang.Object, int, int, int, int, int)'> (0x0000000710a787c8) 
+Event: 0.852 Thread 0x0000020b0c3f2290 Exception <a ’java/lang/NoSuchMethodError’{0x0000000710a787c8}: ’java.lang.Object java.lang.invoke.DirectMethodHandle$Holder.newInvokeSpecial(java.lang.Object, java.lang.Object, java.lang.Object, int, int, int, int, int)’> (0x0000000710a787c8)
 thrown [t:\workspace\open\src\hotspot\share\interpreter\linkResolver.cpp, line 766]
-Event: 1.597 Thread 0x0000020b07876690 Exception <a 'java/lang/NoSuchMethodError'{0x00000007106e2eb8}: 'int java.lang.invoke.DirectMethodHandle$Holder.invokeVirtual(java.lang.Object, java.lang.Object)'> (0x00000007106e2eb8) 
+Event: 1.597 Thread 0x0000020b07876690 Exception <a ’java/lang/NoSuchMethodError’{0x00000007106e2eb8}: ’int java.lang.invoke.DirectMethodHandle$Holder.invokeVirtual(java.lang.Object, java.lang.Object)’> (0x00000007106e2eb8)
 thrown [t:\workspace\open\src\hotspot\share\interpreter\linkResolver.cpp, line 766]
-Event: 1.598 Thread 0x0000020b07876690 Exception <a 'java/lang/NoSuchMethodError'{0x00000007106e98b0}: 'int java.lang.invoke.DirectMethodHandle$Holder.invokeStatic(java.lang.Object, java.lang.Object, java.lang.Object, java.lang.Object)'> (0x00000007106e98b0) 
+Event: 1.598 Thread 0x0000020b07876690 Exception <a ’java/lang/NoSuchMethodError’{0x00000007106e98b0}: ’int java.lang.invoke.DirectMethodHandle$Holder.invokeStatic(java.lang.Object, java.lang.Object, java.lang.Object, java.lang.Object)’> (0x00000007106e98b0)
 thrown [t:\workspace\open\src\hotspot\share\interpreter\linkResolver.cpp, line 766]
-Event: 1.598 Thread 0x0000020b07876690 Exception <a 'java/lang/NoSuchMethodError'{0x00000007106ed428}: 'java.lang.Object java.lang.invoke.Invokers$Holder.invokeExact_MT(java.lang.Object, java.lang.Object, java.lang.Object, java.lang.Object, java.lang.Object, java.lang.Object)'> (0x00000007106ed428) 
+Event: 1.598 Thread 0x0000020b07876690 Exception <a ’java/lang/NoSuchMethodError’{0x00000007106ed428}: ’java.lang.Object java.lang.invoke.Invokers$Holder.invokeExact_MT(java.lang.Object, java.lang.Object, java.lang.Object, java.lang.Object, java.lang.Object, java.lang.Object)’> (0x00000007106ed428)
 thrown [t:\workspace\open\src\hotspot\share\interpreter\linkResolver.cpp, line 766]
-Event: 2.470 Thread 0x0000020b07876690 Exception <a 'java/lang/NoSuchMethodError'{0x00000007107b76b0}: 'int java.lang.invoke.DirectMethodHandle$Holder.invokeStatic(java.lang.Object)'> (0x00000007107b76b0) 
+Event: 2.470 Thread 0x0000020b07876690 Exception <a ’java/lang/NoSuchMethodError’{0x00000007107b76b0}: ’int java.lang.invoke.DirectMethodHandle$Holder.invokeStatic(java.lang.Object)’> (0x00000007107b76b0)
 thrown [t:\workspace\open\src\hotspot\share\interpreter\linkResolver.cpp, line 766]
-Event: 5.675 Thread 0x0000020b07876690 Exception <a 'java/lang/NoSuchMethodError'{0x000000070de6f848}: 'int java.lang.invoke.DirectMethodHandle$Holder.invokeSpecial(java.lang.Object, java.lang.Object, java.lang.Object, java.lang.Object)'> (0x000000070de6f848) 
+Event: 5.675 Thread 0x0000020b07876690 Exception <a ’java/lang/NoSuchMethodError’{0x000000070de6f848}: ’int java.lang.invoke.DirectMethodHandle$Holder.invokeSpecial(java.lang.Object, java.lang.Object, java.lang.Object, java.lang.Object)’> (0x000000070de6f848)
 thrown [t:\workspace\open\src\hotspot\share\interpreter\linkResolver.cpp, line 766]
-Event: 6.477 Thread 0x0000020b07876690 Exception <a 'java/lang/NoSuchMethodError'{0x000000070d88d820}: 'int java.lang.invoke.DirectMethodHandle$Holder.invokeSpecial(java.lang.Object, java.lang.Object, java.lang.Object)'> (0x000000070d88d820) 
+Event: 6.477 Thread 0x0000020b07876690 Exception <a ’java/lang/NoSuchMethodError’{0x000000070d88d820}: ’int java.lang.invoke.DirectMethodHandle$Holder.invokeSpecial(java.lang.Object, java.lang.Object, java.lang.Object)’> (0x000000070d88d820)
 thrown [t:\workspace\open\src\hotspot\share\interpreter\linkResolver.cpp, line 766]
-Event: 6.550 Thread 0x0000020b07876690 Exception <a 'java/lang/NoSuchMethodError'{0x000000070d8ff788}: 'void java.lang.invoke.DirectMethodHandle$Holder.invokeSpecial(java.lang.Object, java.lang.Object, java.lang.Object, java.lang.Object, java.lang.Object)'> (0x000000070d8ff788) 
+Event: 6.550 Thread 0x0000020b07876690 Exception <a ’java/lang/NoSuchMethodError’{0x000000070d8ff788}: ’void java.lang.invoke.DirectMethodHandle$Holder.invokeSpecial(java.lang.Object, java.lang.Object, java.lang.Object, java.lang.Object, java.lang.Object)’> (0x000000070d8ff788)
 thrown [t:\workspace\open\src\hotspot\share\interpreter\linkResolver.cpp, line 766]
 
 VM Operations (20 events):

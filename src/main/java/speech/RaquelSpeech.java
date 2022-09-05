@@ -14,4 +14,9 @@ public class RaquelSpeech extends NPCSpeech {
     public String areYouReligious(NPC npc) {
         return "Yes, I believe in God.";
     }
+
+    @Override
+    public String doYouHaveTattoos(NPC npc) {
+        return "No. I never wanted one";
+    }
 }
