@@ -18,21 +18,12 @@ public class Sacrilege extends KillerStory {
     public Sacrilege(State state){
         nolan = state.getGameObjectOfClass(Nolan.class).get();
         killers.add(nolan);
+        accomplice = getKillerBasedOnTrait(state, "isReligious", true);
         killers.add(accomplice);
+        System.out.println("SACRILEGE religious accomplice: " + accomplice.getFirstName());
         plotPoints.add(new KillPlotPointBasedOnTrait(nolan, killers, "isReligious"));
-        plotPoints.add(new KillPlotPointBasedOnTrait(nolan, killers, "isReligious"));
+        plotPoints.add(new KillPlotPointBasedOnTrait(getRandomKiller(), killers, "isReligious"));
         plotPoints.peek().initialize(state);
     }
 
-
-
-    public void getReligiousCharacter(State state){
-        Random rand = new Random();
-        List<NPC> allNPCs = state.getGameObjectsOfClass(NPC.class)
-                .stream()
-                .filter(npc -> npc.isReligious())
-                .collect(Collectors.toList());
-        allNPCs.remove(nolan);
-        accomplice = allNPCs.get(rand.nextInt(allNPCs.size()));
-    }
 }

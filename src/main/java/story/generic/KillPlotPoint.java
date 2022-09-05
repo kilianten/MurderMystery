@@ -76,12 +76,10 @@ public class KillPlotPoint extends PlotPoint {
                 })
                 .collect(Collectors.toList());
         allNPCs.removeAll(killers);
-        for(NPC npc: allNPCs){
-            System.out.println(npc.getFirstName());
-        }
         if(allNPCs.size() > 0){
             return allNPCs.get(rand.nextInt(allNPCs.size()));
         }
         return null;
     }
+
 }
