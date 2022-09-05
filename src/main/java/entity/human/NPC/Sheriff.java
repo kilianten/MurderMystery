@@ -25,7 +25,8 @@ public class Sheriff extends NPC {
 
         speech = new SheriffSpeech();
 
-        firstName = "Sheriff";
+        title = "Sheriff";
+        firstName = "Tim";
         secondName = "Hanson";
     }
 

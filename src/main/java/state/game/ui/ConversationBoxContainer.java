@@ -23,7 +23,12 @@ public class ConversationBoxContainer extends VerticalContainer  {
     }
 
     public void setConversant(NPC npc) {
-        setConversantName(npc.getFirstName() + " " + npc.getSecondName());
+        if(npc.getTitle() == null){
+            setConversantName(npc.getFirstName() + " " + npc.getSecondName());
+        } else {
+            setConversantName(npc.getTitle() + " " + npc.getFirstName() + " " + npc.getSecondName());
+        }
+
         ((ConversationBox) children.get(1)).setConversant(npc);
     }
 

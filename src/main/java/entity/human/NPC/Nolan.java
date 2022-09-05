@@ -25,7 +25,8 @@ public class Nolan extends NPC {
 
         this.speech = new NolanSpeech();
 
-        firstName = "Fr.";
+        title = "Father";
+        firstName = "Bill";
         secondName = "Nolan";
 
     }

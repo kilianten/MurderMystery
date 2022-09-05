@@ -20,7 +20,6 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 import java.util.stream.Collectors;
 
 public abstract class NPC extends Human {
@@ -28,12 +27,13 @@ public abstract class NPC extends Human {
     private AIManager aiManager;
     private Rectangle proximity;
     private boolean alive = true;
+    protected String title;
 
     protected boolean religious;
     protected boolean smoker;
     protected boolean interestedInGettingTattoo;
     protected boolean hasTattoos;
-    protected  boolean drinksAlcohol = true;
+    protected boolean drinksAlcohol = true;
 
     protected NPCSpeech speech;
 
@@ -173,5 +173,9 @@ public abstract class NPC extends Human {
 
     public boolean drinksAlcohol() {
         return drinksAlcohol;
+    }
+
+    public String getTitle(){
+        return title;
     }
 }
