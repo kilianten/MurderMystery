@@ -1,13 +1,9 @@
 package state.game.ui;
 
 import core.Size;
-import entity.GameObject;
 import entity.human.NPC.NPC;
 import entity.human.NPC.NPCSpeechHandler;
 import graphics.ImageUtils;
-import speech.SpeechManager;
-import state.State;
-import state.game.GameState;
 import ui.*;
 import ui.clickable.UIClickableText;
 

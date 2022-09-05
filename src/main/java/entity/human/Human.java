@@ -40,11 +40,6 @@ public abstract class Human extends MovingEntity {
         super.update(state);
         handleAction(state);
         effects.forEach(effect -> effect.update(state, null));
-
-        if(state.getSettings().isDebugMode()){
-            System.out.println("Player X: " + position.getIntX() + " Y: " + position.getIntY());
-        }
-
         cleanup();
     }
 

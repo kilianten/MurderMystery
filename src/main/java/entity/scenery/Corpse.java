@@ -18,7 +18,7 @@ public class Corpse extends GameObject {
 
     public Corpse(Position position, Image sprite) {
         this.position = position;
-        position.subtract(new Position(-16, -16));
+        this.renderOffset = new Position(size.getWidth() / 4, size.getHeight() - 12);
         this.sprite = sprite;
         renderOrder = 1;
         interactable = true;

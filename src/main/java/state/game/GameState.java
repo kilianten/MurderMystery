@@ -9,7 +9,6 @@ import entity.human.NPC.*;
 import entity.human.Player;
 import game.settings.GameSettings;
 import graphics.SpriteLibrary;
-import speech.SpeechManager;
 import state.game.ui.ConversationBoxContainer;
 import state.game.ui.UIGameMenu;
 import state.game.ui.UIGameTime;
@@ -28,7 +27,6 @@ public class GameState extends State {
     private ConversationBoxContainer conversationBoxContainer;
     private boolean conversating;
     private StoryManager storyManager;
-    private SpeechManager speechManager;
 
     public GameState(Size windowSize, Input input, GameSettings settings, String gameMap) {
         super(windowSize, input, settings);
@@ -38,7 +36,6 @@ public class GameState extends State {
         gameMenu = new UIGameMenu(windowSize, input, settings);
         conversationBoxContainer = new ConversationBoxContainer(windowSize);
         storyManager = new StoryManager(this);
-        speechManager = new SpeechManager();
         lighting = new Lighting(windowSize, this);
     }
 
@@ -148,10 +145,6 @@ public class GameState extends State {
     @Override
     public void cleanUp(){
         super.cleanUp();
-    }
-
-    public SpeechManager getSpeechManager() {
-        return speechManager;
     }
 
     public void setPaused(boolean paused){
