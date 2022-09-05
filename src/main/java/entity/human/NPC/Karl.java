@@ -32,5 +32,6 @@ public class Karl extends NPC {
     public void setTraits(){
         smoker = randomiseTrait(0.4);
         randomiseTattooTraits();
+        drinksAlcohol = randomiseTrait(0.7);
     }
 }

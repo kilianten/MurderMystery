@@ -33,6 +33,8 @@ public class UIClue extends HorizontalContainer {
                     return "Looks like our killer is a smoker";
                 case "tattooCard":
                     return "Our killer must be into tattoos";
+                case "bottleCap":
+                    return "A bottle cap. Looks like our killer likes alcohol";
             }
         }
         return "";
@@ -46,6 +48,9 @@ public class UIClue extends HorizontalContainer {
         }
         if(murderer.hasTattoo() || murderer.isInterestedInGettingTattoo()){
             clues.add("tattooCard");
+        }
+        if(murderer.drinksAlcohol()){
+            clues.add("bottleCap");
         }
         clues.add("blood" + murderer.getFirstName().charAt(0));
         clues.add("blood" + murderer.getSecondName().charAt(0));

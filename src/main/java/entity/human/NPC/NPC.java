@@ -33,6 +33,7 @@ public abstract class NPC extends Human {
     protected boolean smoker;
     protected boolean interestedInGettingTattoo;
     protected boolean hasTattoos;
+    protected  boolean drinksAlcohol = true;
 
     protected NPCSpeech speech;
 
@@ -168,5 +169,9 @@ public abstract class NPC extends Human {
         } else {
             return !(Boolean) method.invoke(this);
         }
+    }
+
+    public boolean drinksAlcohol() {
+        return drinksAlcohol;
     }
 }

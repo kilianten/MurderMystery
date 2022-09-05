@@ -33,6 +33,7 @@ public class Sheriff extends NPC {
     public void setTraits(){
         religious = true;
         smoker = randomiseTrait(0.5);
+        drinksAlcohol = randomiseTrait(0.7);
     }
 
 }

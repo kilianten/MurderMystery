@@ -33,4 +33,13 @@ public class DouglasSpeech extends NPCSpeech {
             return "No. I didn’t have any idea of what to get that wasn’t trite or cringe";
         }
     }
+
+    @Override
+    public String doYouDrink(NPC npc) {
+        if(npc.drinksAlcohol()){
+            return "Only when I’m feeling melancholic. Which translates to a 6-pack a day";
+        } else {
+            return "Not anymore";
+        }
+    }
 }

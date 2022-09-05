@@ -30,6 +30,7 @@ public class Douglas extends NPC {
     public void setTraits(){
         smoker = randomiseTrait(0.5);
         randomiseTattooTraits();
+        drinksAlcohol = randomiseTrait(0.7);
     }
 
 }

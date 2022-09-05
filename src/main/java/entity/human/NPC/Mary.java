@@ -4,6 +4,7 @@ import controller.Controller;
 import entity.ColourHandler;
 import graphics.SpriteLibrary;
 import speech.KarlSpeech;
+import speech.MarySpeech;
 
 public class Mary extends NPC {
 
@@ -23,11 +24,12 @@ public class Mary extends NPC {
         firstName = "Mary";
         secondName = "Greene";
 
-        this.speech = new KarlSpeech();
+        this.speech = new MarySpeech();
     }
 
     @Override
     public void setTraits(){
         religious = true;
+        drinksAlcohol = randomiseTrait(0.4);
     }
 }

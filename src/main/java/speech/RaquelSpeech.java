@@ -19,4 +19,9 @@ public class RaquelSpeech extends NPCSpeech {
     public String doYouHaveTattoos(NPC npc) {
         return "No. I never wanted one";
     }
+
+    @Override
+    public String doYouDrink(NPC npc) {
+        return "Yes, though I don’t have a problem like some of the people round here";
+    }
 }

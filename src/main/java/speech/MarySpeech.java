@@ -19,4 +19,13 @@ public class MarySpeech extends NPCSpeech {
     public String doYouHaveTattoos(NPC npc) {
         return "Lord no.";
     }
+
+    @Override
+    public String doYouDrink(NPC npc) {
+        if(npc.drinksAlcohol()){
+            return "Yes. The doctor says I should cut back but, I’ve made it this far haven’t I?";
+        }  else {
+            return "I used to but the doctor said I had to stop.";
+        }
+    }
 }

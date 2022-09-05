@@ -26,6 +26,10 @@ public class Raquel extends NPC {
         firstName = "Raquel";
         secondName = "Brown";
 
+    }
+
+    @Override
+    public void setTraits(){
         religious = true;
     }
 }

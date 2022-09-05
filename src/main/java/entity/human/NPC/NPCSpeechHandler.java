@@ -5,6 +5,8 @@ public class NPCSpeechHandler {
     public static final String DO_YOU_SMOKE = "Do you smoke?";
     public static final String ARE_YOU_RELIGIOUS = "Are you religious?";
     public static final String DO_YOU_HAVE_TATTOOS = "Do you have tattoos?";
+    public static final String DO_YOU_DRINK_ALCOHOL = "Do you drink alcohol?";
+
 
     public static String[] getCategoryOptions(String category) {
         switch (category){
@@ -12,7 +14,8 @@ public class NPCSpeechHandler {
                 return new String[]{
                         DO_YOU_SMOKE,
                         ARE_YOU_RELIGIOUS,
-                        DO_YOU_HAVE_TATTOOS};
+                        DO_YOU_HAVE_TATTOOS,
+                        DO_YOU_DRINK_ALCOHOL};
             default:
                 return new String[]{"Hi"};
         }
@@ -26,6 +29,8 @@ public class NPCSpeechHandler {
                 return npc.getSpeech(speech).doYouSmoke(npc);
             case DO_YOU_HAVE_TATTOOS:
                 return npc.getSpeech(speech).doYouHaveTattoos(npc);
+            case DO_YOU_DRINK_ALCOHOL:
+                return npc.getSpeech(speech).doYouDrink(npc);
             default:
                 System.out.print("Speech not found for " + npc.getFirstName() + " :" + speech);
                 return null;

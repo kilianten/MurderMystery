@@ -23,4 +23,9 @@ public class VanessaSpeech extends NPCSpeech {
     public String doYouHaveTattoos(NPC npc) {
         return "They really sent us their best guy, didn’t they? Did the conspicuous tattoos on my arms give it away? If you like what you see, I have a tattoo shop.";
     }
+
+    @Override
+    public String doYouDrink(NPC npc) {
+        return "I wouldn’t be the quintessential punk rock chic if I didn’t";
+    }
 }

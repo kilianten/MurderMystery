@@ -34,4 +34,13 @@ public class KarlSpeech extends NPCSpeech {
         }
     }
 
+    @Override
+    public String doYouDrink(NPC npc) {
+        if(npc.drinksAlcohol()){
+            return "Yes. It’s a lot of fun and makes life less boring. YAY";
+        }  else {
+            return "No. Im a workaholic and the thought of wasting a day with a hangover is more painful than the hangover itself";
+        }
+    }
+
 }

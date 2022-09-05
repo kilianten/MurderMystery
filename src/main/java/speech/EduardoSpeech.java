@@ -28,4 +28,9 @@ public class EduardoSpeech extends NPCSpeech {
             return "No. Odio las agujas";
         }
     }
+
+    @Override
+    public String doYouDrink(NPC npc) {
+        return "Yes.";
+    }
 }

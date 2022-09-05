@@ -3,7 +3,8 @@
 ### Character Traits
 | Trait | Default | Description | 
 | ----------- | ----------- | ----------- |
-| Religious | False | Used in sacrilege storyline
-| Smoker | False | Has smoking action |
-| hasTattoos | False | Used in inkedRed storyline |
-| interestedInGettingTattoo | False | |
+| religious | False | Used in sacrilege storyline
+| smoker | False | Has smoking action. Cigarette clue |
+| hasTattoos | False | Used in inkedRed storyline. Tattoo card clue |
+| interestedInGettingTattoo | False | Tattoo card clue |
+| drinksAlcohol | True | Beer cap clue |

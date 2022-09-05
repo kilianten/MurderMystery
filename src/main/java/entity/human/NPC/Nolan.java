@@ -28,7 +28,6 @@ public class Nolan extends NPC {
         firstName = "Fr.";
         secondName = "Nolan";
 
-        religious = true;
     }
 
     @Override
@@ -36,4 +35,9 @@ public class Nolan extends NPC {
         super.update(state);
     }
 
+    @Override
+    public void setTraits(){
+        religious = true;
+        drinksAlcohol = randomiseTrait(0.5);
+    }
 }

@@ -28,4 +28,13 @@ public class SheriffSpeech extends NPCSpeech {
     public String doYouHaveTattoos(NPC npc) {
         return "No. And I don’t regret my decision either. I doubt most people with a tattoo can say the same";
     }
+
+    @Override
+    public String doYouDrink(NPC npc) {
+        if(npc.drinksAlcohol()){
+            return "Sometimes this job demands it";
+        }  else {
+            return "Not anymore. That stays in the past with a lot of other demons";
+        }
+    }
 }
