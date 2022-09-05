@@ -16,9 +16,11 @@ public class KillPlotPoint extends PlotPoint {
     private NPC killer;
     private int updatesSinceLastSeen = 0;
     private final int KILL_THRESHOLD = 200;
+    private List<NPC> killers;
 
-    public KillPlotPoint(NPC killer) {
+    public KillPlotPoint(NPC killer, List<NPC> killers) {
         this.killer = killer;
+        this.killers = killers;
     }
 
     @Override
@@ -52,7 +54,7 @@ public class KillPlotPoint extends PlotPoint {
                 .stream()
                 .filter(npc -> npc.isAlive())
                 .collect(Collectors.toList());
-        allNPCs.remove(killer);
+        allNPCs.removeAll(killers);
         if(allNPCs.size() > 0){
             return allNPCs.get(rand.nextInt(allNPCs.size()));
         }

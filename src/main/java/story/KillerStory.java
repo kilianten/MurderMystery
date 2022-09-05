@@ -30,7 +30,7 @@ public abstract class KillerStory {
         }
     }
 
-    public void getRandomCharacter(State state){
+    public void addRandomKiller(State state){
         Random rand = new Random();
         List<NPC> potentialNPCs = state.getGameObjectsOfClass(NPC.class)
                 .stream()

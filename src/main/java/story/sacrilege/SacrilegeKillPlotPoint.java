@@ -10,8 +10,8 @@ import java.util.stream.Collectors;
 
 public class SacrilegeKillPlotPoint extends KillPlotPoint  {
 
-    public SacrilegeKillPlotPoint(NPC killer) {
-        super(killer);
+    public SacrilegeKillPlotPoint(NPC killer, List<NPC> killers) {
+        super(killer, killers);
     }
 
     @Override

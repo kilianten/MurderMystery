@@ -45,7 +45,7 @@ public class UIClue extends HorizontalContainer {
             clues.add("cigarette");
         }
         if(murderer.hasTattoo() || murderer.isInterestedInGettingTattoo()){
-            clues.add("cigarette");
+            clues.add("tattooCard");
         }
         clues.add("blood" + murderer.getFirstName().charAt(0));
         clues.add("blood" + murderer.getSecondName().charAt(0));
