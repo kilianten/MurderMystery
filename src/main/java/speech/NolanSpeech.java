@@ -29,4 +29,9 @@ public class NolanSpeech extends NPCSpeech {
             return "No. I don’t indulge in alcohol these days";
         }
     }
+
+    @Override
+    public String whatBringsYouHere(){
+        return null;
+    }
 }

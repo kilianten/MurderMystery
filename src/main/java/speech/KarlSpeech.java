@@ -43,4 +43,9 @@ public class KarlSpeech extends NPCSpeech {
         }
     }
 
+    @Override
+    public String whatBringsYouHere(){
+        return null;
+    }
+
 }

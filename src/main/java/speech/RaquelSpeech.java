@@ -24,4 +24,9 @@ public class RaquelSpeech extends NPCSpeech {
     public String doYouDrink(NPC npc) {
         return "Yes, though I don’t have a problem like some of the people round here";
     }
+
+    @Override
+    public String whatBringsYouHere(){
+        return null;
+    }
 }

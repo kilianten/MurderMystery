@@ -28,4 +28,9 @@ public class VanessaSpeech extends NPCSpeech {
     public String doYouDrink(NPC npc) {
         return "I wouldn’t be the quintessential punk rock chic if I didn’t";
     }
+
+    @Override
+    public String whatBringsYouHere(){
+        return null;
+    }
 }

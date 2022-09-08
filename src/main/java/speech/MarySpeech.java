@@ -28,4 +28,9 @@ public class MarySpeech extends NPCSpeech {
             return "I used to but the doctor said I had to stop.";
         }
     }
+
+    @Override
+    public String whatBringsYouHere(){
+        return null;
+    }
 }

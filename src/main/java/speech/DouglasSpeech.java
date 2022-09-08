@@ -42,4 +42,9 @@ public class DouglasSpeech extends NPCSpeech {
             return "Not anymore";
         }
     }
+
+    @Override
+    public String whatBringsYouHere(){
+        return null;
+    }
 }

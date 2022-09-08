@@ -1,24 +1,35 @@
 package entity.human.NPC;
 
+import game.Game;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class NPCSpeechHandler {
 
     public static final String DO_YOU_SMOKE = "Do you smoke?";
     public static final String ARE_YOU_RELIGIOUS = "Are you religious?";
     public static final String DO_YOU_HAVE_TATTOOS = "Do you have tattoos?";
     public static final String DO_YOU_DRINK_ALCOHOL = "Do you drink alcohol?";
+    public static final String ARE_YOU_LOCAL = "What brings you to " + Game.GAME_TITLE + "?";
 
 
-    public static String[] getCategoryOptions(String category) {
+    public static ArrayList<String> getCategoryOptions(String category, NPC npc) {
+        ArrayList<String> options = new ArrayList<>();
         switch (category){
             case "Small Talk":
-                return new String[]{
-                        DO_YOU_SMOKE,
-                        ARE_YOU_RELIGIOUS,
-                        DO_YOU_HAVE_TATTOOS,
-                        DO_YOU_DRINK_ALCOHOL};
+                options.add(DO_YOU_SMOKE);
+                options.add(DO_YOU_DRINK_ALCOHOL);
+                options.add(ARE_YOU_RELIGIOUS);
+                options.add(DO_YOU_HAVE_TATTOOS);
+                if(!npc.isLocal()){
+                    options.add(ARE_YOU_LOCAL);
+                }
+                break;
             default:
-                return new String[]{"Hi"};
+                return options;
         }
+        return options;
     }
 
     public static String getSpeech(String speech, NPC npc) {
@@ -31,6 +42,8 @@ public class NPCSpeechHandler {
                 return npc.getSpeech(speech).doYouHaveTattoos(npc);
             case DO_YOU_DRINK_ALCOHOL:
                 return npc.getSpeech(speech).doYouDrink(npc);
+            case ARE_YOU_LOCAL:
+                return npc.getSpeech(speech).whatBringsYouHere();
             default:
                 System.out.print("Speech not found for " + npc.getFirstName() + " :" + speech);
                 return null;

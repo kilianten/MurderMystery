@@ -8,3 +8,4 @@
 | hasTattoos | False | Used in inkedRed storyline. Tattoo card clue |
 | interestedInGettingTattoo | False | Tattoo card clue |
 | drinksAlcohol | True | Beer cap clue |
+| isLocal | True | Determines certainSpeech |

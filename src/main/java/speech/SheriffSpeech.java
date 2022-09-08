@@ -37,4 +37,9 @@ public class SheriffSpeech extends NPCSpeech {
             return "Not anymore. That stays in the past with a lot of other demons";
         }
     }
+
+    @Override
+    public String whatBringsYouHere(){
+        return null;
+    }
 }

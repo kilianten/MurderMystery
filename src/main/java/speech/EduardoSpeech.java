@@ -33,4 +33,9 @@ public class EduardoSpeech extends NPCSpeech {
     public String doYouDrink(NPC npc) {
         return "Yes.";
     }
+
+    @Override
+    public String whatBringsYouHere(){
+        return null;
+    }
 }

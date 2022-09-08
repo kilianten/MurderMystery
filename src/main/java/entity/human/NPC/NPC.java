@@ -35,6 +35,8 @@ public abstract class NPC extends Human {
     protected boolean hasTattoos;
     protected boolean drinksAlcohol = true;
 
+    protected boolean isLocal = true;
+
     protected NPCSpeech speech;
 
     public NPC(Controller controller, SpriteLibrary spriteLibrary, String spriteSheet, ColourHandler colourHandler) {
@@ -177,5 +179,9 @@ public abstract class NPC extends Human {
 
     public String getTitle(){
         return title;
+    }
+
+    public boolean isLocal(){
+        return isLocal;
     }
 }

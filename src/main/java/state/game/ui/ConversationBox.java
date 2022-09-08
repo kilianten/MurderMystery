@@ -9,6 +9,7 @@ import ui.clickable.UIClickableText;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
 
 public class ConversationBox extends VerticalContainer {
 
@@ -30,14 +31,14 @@ public class ConversationBox extends VerticalContainer {
 
     public void setDefault() {
         clearUIComponents();
-        addUIComponent((new UIClickableText("Small Talk", (state) -> setOptions(NPCSpeechHandler.getCategoryOptions("Small Talk")))));
+        addUIComponent((new UIClickableText("Small Talk", (state) -> setOptions(NPCSpeechHandler.getCategoryOptions("Small Talk", conversant)))));
         addUIComponent(new UIClickableText("Friendly", (state) -> System.out.println("Friendly")));
         addUIComponent(new UIClickableText("Gossip", (state) -> System.out.println("Gossip")));
         addUIComponent(new UIClickableText("Interrogation", (state) -> System.out.println("Question")));
         addUIComponent(new UIClickableText("Help", (state) -> System.out.println("Help")));
     }
 
-    private void setOptions(String[] interrogations) {
+    private void setOptions(ArrayList<String> interrogations) {
         clearUIComponents();
         for(String option: interrogations){
             addUIComponent(new UIClickableText(option, (state) -> setResponse(NPCSpeechHandler.getSpeech(option, conversant))));
