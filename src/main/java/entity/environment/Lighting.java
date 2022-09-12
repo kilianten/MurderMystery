@@ -4,72 +4,45 @@ import core.CollisionBox;
 import core.Position;
 import core.Size;
 import entity.GameObject;
+import entity.scenery.Bench;
+import entity.scenery.LampPost;
+import game.Game;
 import graphics.ImageUtils;
 import state.State;
+import state.game.GameState;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
 
 public class Lighting extends GameObject {
 
     private BufferedImage sprite;
-    private int lightWidth = 500;
+    private int lightWidth = 175;
     private float lightBrightness = 0.0f;
-    private int counter = 0;
-    private final int UPDATE_DARKEN_RATE = 10;
     private boolean evening;
+    private int SAFE_SPACE = 2 * Game.SPRITE_SIZE;
+    private BufferedImage lightMap;
+    private ArrayList<Light> lights;
 
-    public Lighting(Size windowSize, State state){
-        size = windowSize;
+    public Lighting(State state){
+        size = new Size(state.getGameMap().getWidth() + SAFE_SPACE * 2, state.getGameMap().getHeight() + SAFE_SPACE * 2);
         renderOrder = 9;
-        drawSprite(windowSize, state);
+
+        lightMap = new BufferedImage(state.getGameMap().getWidth() + SAFE_SPACE * 2, state.getGameMap().getHeight() + SAFE_SPACE * 2, BufferedImage.TYPE_INT_ARGB);
+        position = new Position(-SAFE_SPACE, -SAFE_SPACE);
+
+        lights = new ArrayList<>();
+        for(LampPost lamp: state.getGameObjectsOfClass(LampPost.class)){
+
+            lights.add(new Light(SAFE_SPACE + lamp.getPosition().getIntX() + 32, SAFE_SPACE + lamp.getPosition().getIntY(), lightWidth, 0.6f));
+        }
+        drawSprite(state);
     }
 
-    private void drawSprite(Size windowSize, State state) {
+    private void drawSprite(State state) {
         sprite = (BufferedImage) ImageUtils.createCompatibleImage(size, ImageUtils.ALPHA_BLEND);
-        Graphics2D graphics = sprite.createGraphics();
-
-        Color color[] = new Color[12];
-        float fraction[] = new float[12];
-
-        color[0] = new Color(0,0,0,0.1f);
-        color[1] = new Color(0,0,0,0.42f);
-        color[2] = new Color(0,0,0,0.52f);
-        color[3] = new Color(0,0,0,0.61f);
-        color[4] = new Color(0,0,0,0.69f);
-        color[5] = new Color(0,0,0,0.76f);
-        color[6] = new Color(0,0,0,0.82f);
-        color[7] = new Color(0,0,0,0.87f);
-        color[8] = new Color(0,0,0,0.91f);
-        color[9] = new Color(0,0,0,0.94f);
-        color[10] = new Color(0,0,0,0.96f);
-        color[11] = new Color(0,0,0,0.98f);
-
-        fraction[0] = 0f;
-        fraction[1] = 0.4f;
-        fraction[2] = 0.5f;
-        fraction[3] = 0.6f;
-        fraction[4] = 0.65f;
-        fraction[5] = 0.7f;
-        fraction[6] = 0.75f;
-        fraction[7] = 0.8f;
-        fraction[8] = 0.85f;
-        fraction[9] = 0.9f;
-        fraction[10] = 0.95f;
-        fraction[11] = 1f;
-
-        RadialGradientPaint gPaint = new RadialGradientPaint(
-                state.getCamera().getPosition().getIntX() + windowSize.getWidth() / 2,
-                state.getCamera().getPosition().getIntY() + windowSize.getHeight() / 2,
-                (lightWidth/2),
-                fraction,
-                color);
-
-        graphics.setPaint(gPaint);
-
-        graphics.fillRect(0, 0, windowSize.getWidth(), windowSize.getHeight());
-
-        graphics.dispose();
+        paintLightMap(state);
     }
 
     @Override
@@ -79,12 +52,12 @@ public class Lighting extends GameObject {
 
     @Override
     public void update(State state) {
-        position = Position.copyOf(state.getCamera().getPosition());
-        if(evening){
-            counter = 0;
-            lightBrightness += 0.0006;
-            if(lightBrightness > 1f){
-                lightBrightness = 1f;
+        if(!((GameState) state).isPaused()){
+            if(evening){
+                lightBrightness += 0.0006;
+                if(lightBrightness > .96f){
+                    lightBrightness = .96f;
+                }
             }
         }
     }
@@ -105,4 +78,20 @@ public class Lighting extends GameObject {
     public void setEvening(boolean isEvening){
         evening = isEvening;
     }
+
+    private void paintLightMap(State state) {
+        Graphics2D graphics = sprite.createGraphics();
+        graphics.setColor(new Color(0, 0, 0, 255));
+        graphics.fillRect(0, 0, state.getGameMap().getWidth() + SAFE_SPACE * 2, state.getGameMap().getHeight() + SAFE_SPACE * 2);
+        Composite oldComp = graphics.getComposite();
+        graphics.setComposite(AlphaComposite.DstOut);
+
+        for(Light light : lights) light.render(graphics);
+
+        graphics.setComposite(oldComp);
+        graphics.dispose();
+    }
+
+
+
 }

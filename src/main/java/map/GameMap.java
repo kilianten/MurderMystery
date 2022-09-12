@@ -6,6 +6,7 @@ import core.Size;
 import display.Camera;
 import entity.scenery.Bench;
 import entity.scenery.Bin;
+import entity.scenery.LampPost;
 import entity.scenery.Scenery;
 import game.Game;
 import graphics.SpriteLibrary;
@@ -191,7 +192,11 @@ public class GameMap implements Persistable {
                 Scenery scenery;
                 if(interactive){
                     scenery = loadInteractableScenery(serializedScenery.split(DELIMITER)[2]);
-                } else {
+                }
+                else if(serializedScenery.split(DELIMITER)[2].equals("lampPost")){
+                    scenery = new LampPost();
+                }
+                else {
                     scenery = new Scenery();
                 }
                 scenery.applySerialisedData(serializedScenery);

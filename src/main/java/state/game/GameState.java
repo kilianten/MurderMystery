@@ -36,7 +36,7 @@ public class GameState extends State {
         gameMenu = new UIGameMenu(windowSize, input, settings);
         conversationBoxContainer = new ConversationBoxContainer(windowSize);
         storyManager = new StoryManager(this);
-        lighting = new Lighting(windowSize, this);
+        lighting = new Lighting(this);
     }
 
     protected void updateGameObjects() {
@@ -153,4 +153,8 @@ public class GameState extends State {
     public void setPaused(boolean paused){
         this.paused = paused;
     };
+
+    public boolean isPaused(){
+        return paused;
+    }
 }
