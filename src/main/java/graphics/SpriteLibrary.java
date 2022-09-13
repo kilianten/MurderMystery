@@ -1,9 +1,13 @@
 package graphics;
 
 import entity.ColourHandler;
+import game.Game;
+
+import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
@@ -33,6 +37,26 @@ public class SpriteLibrary {
         sceneryObjects = new HashMap<>();
         clueImages = new HashMap<>();
         loadSpritesFromDisk();
+        clueImages.put("boatReceipt", drawTextOnImage((BufferedImage) clueImages.get("boatReceipt")));
+    }
+
+    private Image drawTextOnImage(BufferedImage image) {
+        Graphics graphics = image.getGraphics();
+        graphics.setColor(Color.BLACK);
+        graphics.drawString(
+                String.format(
+                        "DATE: %d/%d/%d",
+                        Game.gameCreationDate.getDayOfMonth(),
+                        Game.gameCreationDate.getMonthValue(),
+                        Game.gameCreationDate.getYear()),
+                image.getWidth() / 2,
+                image.getHeight() / 2);
+        graphics.drawString(
+                "ISSUER: TIM",
+                image.getWidth() / 2,
+                image.getHeight() / 2 + 20);
+        graphics.dispose();
+        return image;
     }
 
     private void loadSpritesFromDisk() {

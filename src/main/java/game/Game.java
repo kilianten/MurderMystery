@@ -10,6 +10,10 @@ import state.menu.MenuState;
 import story.KillerStory;
 import story.StoryManager;
 
+import java.time.LocalDateTime;
+import java.util.Calendar;
+import java.util.Date;
+
 public class Game {
 
     private Display display;
@@ -18,10 +22,12 @@ public class Game {
     private GameSettings settings;
     private GameController gameController;
     public static final String GAME_TITLE = "Roaten Island";
+    public static LocalDateTime gameCreationDate;
 
     public static int SPRITE_SIZE = 64;
 
     public Game(int width, int height){
+        gameCreationDate = LocalDateTime.now();
         input = new Input();
         display = new Display(width, height, input);
         settings = new GameSettings();

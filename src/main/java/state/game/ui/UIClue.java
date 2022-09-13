@@ -35,6 +35,8 @@ public class UIClue extends HorizontalContainer {
                     return "Our killer must be into tattoos";
                 case "bottleCap":
                     return "A bottle cap. Looks like our killer likes alcohol";
+                case "boatReceipt":
+                    return "A non-local. Someone who arrived the same day as me";
             }
         }
         return "";
@@ -51,6 +53,9 @@ public class UIClue extends HorizontalContainer {
         }
         if(murderer.drinksAlcohol()){
             clues.add("bottleCap");
+        }
+        if(murderer.isLocal()){
+            clues.add("boatReceipt");
         }
         clues.add("blood" + murderer.getFirstName().charAt(0));
         clues.add("blood" + murderer.getSecondName().charAt(0));

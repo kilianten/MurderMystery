@@ -29,6 +29,10 @@ public class UIText extends UIComponent {
         this(text, 40, 25, true);
     }
 
+    public UIText(String text, boolean dropShadow) {
+        this(text, 40, 25, dropShadow);
+    }
+
     public UIText(String text, int fontSize, int displaySize, boolean dropShadow) {
         this.text = text;
         this.fontSize = fontSize;

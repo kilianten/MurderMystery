@@ -35,7 +35,7 @@ public class Lighting extends GameObject {
         lights = new ArrayList<>();
         for(LampPost lamp: state.getGameObjectsOfClass(LampPost.class)){
 
-            lights.add(new Light(SAFE_SPACE + lamp.getPosition().getIntX() - 32, SAFE_SPACE + lamp.getPosition().getIntY(), lightWidth, 0.6f));
+            lights.add(new Light(SAFE_SPACE + lamp.getPosition().getIntX() - 4, SAFE_SPACE + lamp.getPosition().getIntY(), lightWidth, 0.6f));
         }
         drawSprite(state);
     }
@@ -55,8 +55,8 @@ public class Lighting extends GameObject {
         if(!((GameState) state).isPaused()){
             if(evening){
                 lightBrightness += 0.0006;
-                if(lightBrightness > .96f){
-                    lightBrightness = .96f;
+                if(lightBrightness > .97f){
+                    lightBrightness = .97f;
                 }
             }
         }
@@ -81,7 +81,7 @@ public class Lighting extends GameObject {
 
     private void paintLightMap(State state) {
         Graphics2D graphics = sprite.createGraphics();
-        graphics.setColor(new Color(0, 0, 0, 255));
+        graphics.setColor(new Color(15, 15, 19, 255));
         graphics.fillRect(0, 0, state.getGameMap().getWidth() + SAFE_SPACE * 2, state.getGameMap().getHeight() + SAFE_SPACE * 2);
         Composite oldComp = graphics.getComposite();
         graphics.setComposite(AlphaComposite.DstOut);
