@@ -14,7 +14,6 @@ public class StoryManager {
 
     public StoryManager(State state){
         killerStory = getRandomStory(state);
-        System.out.println(killerStory);
     }
 
     private KillerStory getRandomStory(State state) {

@@ -75,9 +75,22 @@ public abstract class State {
         }
 
         spawnReadyObjects();
+        despawnObjects();
 
         if(nextState != null){
             game.enterState(nextState);
+        }
+    }
+
+    protected void despawnObjects(){
+        Iterator iterator = gameObjects.iterator();
+
+        while (iterator.hasNext()) {
+            GameObject object = (GameObject) iterator.next();
+            if (object.shouldDelete()) {
+                iterator.remove();
+                break;
+            }
         }
     }
 

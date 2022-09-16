@@ -31,6 +31,8 @@ public abstract class GameObject {
     protected int renderLevelOffset;
     protected boolean interactable;
 
+    protected boolean shouldDelete = false;
+
     protected boolean renderOnMiniMap = true;
 
     public GameObject(){
@@ -160,5 +162,9 @@ public abstract class GameObject {
 
     public List<String> getAssociatedActions() {
         return null;
+    }
+
+    public boolean shouldDelete() {
+        return shouldDelete;
     }
 }

@@ -54,7 +54,7 @@ public class UIClue extends HorizontalContainer {
         if(murderer.drinksAlcohol()){
             clues.add("bottleCap");
         }
-        if(murderer.isLocal()){
+        if(!murderer.isLocal()){
             clues.add("boatReceipt");
         }
         clues.add("blood" + murderer.getFirstName().charAt(0));

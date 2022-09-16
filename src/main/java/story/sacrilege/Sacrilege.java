@@ -20,7 +20,6 @@ public class Sacrilege extends KillerStory {
         killers.add(nolan);
         accomplice = getKillerBasedOnTrait(state, "isReligious", true);
         killers.add(accomplice);
-        System.out.println("SACRILEGE religious accomplice: " + accomplice.getFirstName());
         plotPoints.add(new KillPlotPointBasedOnTrait(nolan, killers, "isReligious"));
         plotPoints.add(new KillPlotPointBasedOnTrait(getRandomKiller(), killers, "isReligious"));
         plotPoints.peek().initialize(state);

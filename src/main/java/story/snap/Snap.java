@@ -12,10 +12,6 @@ public class Snap extends KillerStory {
         addRandomKiller(state);
         addRandomKiller(state);
 
-        for(NPC killer: killers){
-            System.out.println(killer.getFirstName());
-        }
-
         plotPoints.add(new KillPlotPoint(getRandomKiller(), killers));
         plotPoints.add(new KillPlotPoint(getRandomKiller(), killers));
         plotPoints.peek().initialize(state);
