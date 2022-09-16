@@ -3,7 +3,9 @@ package entity.scenery;
 import core.CollisionBox;
 import core.Position;
 import entity.GameObject;
+import entity.MovingEntity;
 import entity.human.Human;
+import entity.human.NPC.NPC;
 import state.State;
 import state.game.GameState;
 import state.game.ui.UIClue;
@@ -15,13 +17,15 @@ public class Corpse extends GameObject {
 
     private Image sprite;
     private UIClue clue;
+    private String name;
 
-    public Corpse(Position position, Image sprite) {
-        this.position = position;
+    public Corpse(NPC entity) {
+        position = entity.getPosition();
+        sprite = entity.getSprite("corpse");
         this.renderOffset = new Position(size.getWidth() / 4, size.getHeight() - 12);
-        this.sprite = sprite;
         renderOrder = 1;
         interactable = true;
+        this.name = entity.getFirstName();
     }
 
     @Override
@@ -48,4 +52,7 @@ public class Corpse extends GameObject {
         ((GameState) state).setPaused(true);
     }
 
+    public String getName() {
+        return name;
+    }
 }

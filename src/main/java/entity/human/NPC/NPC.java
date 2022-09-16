@@ -2,10 +2,14 @@ package entity.human.NPC;
 
 import ai.AIManager;
 import controller.Controller;
+import core.Direction;
+import core.Position;
 import core.Size;
 import entity.ColourHandler;
 import entity.GameObject;
 import entity.human.Player;
+import entity.human.action.Speaking;
+import entity.human.memory.WitnessedEventHandler;
 import entity.scenery.Scenery;
 import entity.human.Human;
 import entity.human.effect.Effect;
@@ -34,10 +38,13 @@ public abstract class NPC extends Human {
     protected boolean interestedInGettingTattoo;
     protected boolean hasTattoos;
     protected boolean drinksAlcohol = true;
+    protected ReactionManager reactionManager;
 
     protected boolean isLocal = true;
 
     protected NPCSpeech speech;
+
+    protected WitnessedEventHandler witnessedEventHandler;
 
     public NPC(Controller controller, SpriteLibrary spriteLibrary, String spriteSheet, ColourHandler colourHandler) {
         super(controller, spriteLibrary);
@@ -46,6 +53,8 @@ public abstract class NPC extends Human {
         aiManager = new AIManager(this);
         selectionCircleSize = new Size(32, 10);
         setTraits();
+        reactionManager = new ReactionManager();
+        witnessedEventHandler = new WitnessedEventHandler();
     }
 
     private void calculateProximity() {
@@ -61,6 +70,18 @@ public abstract class NPC extends Human {
     public void update(State state){
         super.update(state);
         aiManager.update(state, this);
+        for(GameObject gameObject : getNearViewableObjects(state)){
+            String thought = reactionManager.getReaction(gameObject);
+            if(thought != null){
+                if(witnessedEventHandler.insertWitnessedEvent(state, gameObject)
+                        && (!action.isPresent()
+                        || !(action.get() instanceof Speaking))){
+                    System.out.println("performing speech");
+                    perform(new Speaking(thought, state, this));
+                }
+
+            }
+        }
     }
 
     public void addEffect(Effect effect){
@@ -184,4 +205,20 @@ public abstract class NPC extends Human {
     public boolean isLocal(){
         return isLocal;
     }
+
+    private List<GameObject> getNearObjects(State state){
+        return state.getGameObjects()
+                .stream()
+                .filter(gameObject -> isNear(gameObject))
+                .collect(Collectors.toList());
+    }
+
+    private List<GameObject> getNearViewableObjects(State state){
+        return state.getGameObjects()
+                .stream()
+                .filter(gameObject -> isNear(gameObject))
+                .filter(gameObject -> isFacing(gameObject.getPosition()))
+                .collect(Collectors.toList());
+    }
 }
+

@@ -1,7 +1,9 @@
 package entity.human.action;
 
+import core.Direction;
 import core.Position;
 import entity.MovingEntity;
+import entity.abstractObjects.SpeechBubble;
 import entity.human.Player;
 import entity.scenery.Bench;
 import game.GameLoop;
@@ -12,9 +14,15 @@ import java.awt.event.KeyEvent;
 public class Speaking extends Action {
 
     private boolean done;
-    private MovingEntity movingEntity;
+    private SpeechBubble speechBubble;
 
-    private int lifeSpanInSeconds;
+    private int lifeSpanInSeconds = 500;
+
+    public Speaking(String speech, State state, MovingEntity movingEntity){
+        speechBubble = new SpeechBubble(speech, movingEntity.getPosition());
+        System.out.println("spawned speech");
+        state.spawn(speechBubble);
+    }
 
     @Override
     public void update(State state, MovingEntity movingEntity) {
@@ -28,12 +36,12 @@ public class Speaking extends Action {
 
     @Override
     public String getAnimationName() {
-        return "smoke";
+        return "stand";
     }
 
     @Override
     public void cleanUp() {
-
+        speechBubble.delete();
     }
 
 }

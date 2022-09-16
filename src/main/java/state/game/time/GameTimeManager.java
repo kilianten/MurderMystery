@@ -78,4 +78,7 @@ public class GameTimeManager {
         return stringBuilder.toString();
     }
 
+    public GameTime getCurrentTime() {
+        return new GameTime(day, hour, minute);
+    }
 }

@@ -5,12 +5,10 @@ import core.Position;
 import core.Size;
 import display.Camera;
 import entity.human.Human;
-import entity.human.Player;
 import state.State;
 
 import java.awt.*;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public abstract class GameObject {
@@ -166,5 +164,9 @@ public abstract class GameObject {
 
     public boolean shouldDelete() {
         return shouldDelete;
+    }
+
+    public void delete(){
+        shouldDelete = true;
     }
 }
