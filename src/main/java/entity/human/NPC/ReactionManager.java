@@ -7,7 +7,7 @@ public class ReactionManager {
 
     public String getReaction(GameObject gameObject){
         if(gameObject instanceof Corpse){
-            return "Oh a body";
+            return "My God " + ((Corpse) gameObject).getName() + " is dead";
         }
         return null;
     }
