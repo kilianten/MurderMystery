@@ -21,7 +21,6 @@ public class InteractableScenery extends Scenery {
                                Position selectionCircleOffset){
         super(name, size, renderOffset, collisionBoxSize, collisionBoxOffset, walkable, spriteLibrary, renderLevelOffset, selectionCircleOffset);
         interactable = true;
-
     }
 
 }

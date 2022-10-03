@@ -3,6 +3,8 @@ package entity.scenery.building;
 import audio.SoundClip;
 import core.Position;
 import core.Size;
+import entity.human.Human;
+import entity.scenery.InteractableScenery;
 import entity.scenery.Scenery;
 import graphics.SpriteLibrary;
 import state.State;
@@ -10,16 +12,16 @@ import state.game.GameState;
 
 import java.awt.*;
 
-public class Building extends Scenery {
+public class Building extends InteractableScenery {
 
-    private String buildingName;
     private boolean isOpen = false;
 
     public Building(){
-
+        super();
     }
 
     public Building(SpriteLibrary spriteLibrary, String buildingName){
+        super();
         this.name = buildingName;
         loadGraphics(spriteLibrary, buildingName);
         this.size = new Size(sprite.getWidth(null), sprite.getHeight(null));
@@ -36,11 +38,11 @@ public class Building extends Scenery {
     @Override
     public void update(State state) {
         if(state instanceof GameState){
-            if(((GameState) state).getPlayer().isNear(this) && !isOpen){
+            if(((GameState) state).getPlayer().isNear(this) && ((GameState) state).getPlayer().isFacing(position) && !isOpen){
                 isOpen = true;
                 loadGraphics(state.getSpriteLibrary(), name + "Open");
                 state.getAudioPlayer().playSound("doorOpen.wav");
-            } else if (isOpen && !((GameState) state).getPlayer().isNear(this)){
+            } else if (isOpen && (!((GameState) state).getPlayer().isNear(this) || !((GameState) state).getPlayer().isFacing(position))){
                 isOpen = false;
                 loadGraphics(state.getSpriteLibrary(), name);
             }
@@ -61,4 +63,10 @@ public class Building extends Scenery {
         sprite = spriteLibrary.getBuildingImage(name);
     }
 
+    @Override
+    public void interact(State state, Human human){
+        if(isOpen){
+            System.out.println("Enter building");
+        }
+    }
 }

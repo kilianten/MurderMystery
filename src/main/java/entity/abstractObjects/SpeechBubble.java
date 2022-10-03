@@ -53,11 +53,11 @@ public class SpeechBubble extends GameObject {
 
         graphics.setColor(new Color(255, 255, 255, 200));
         graphics.setStroke(new BasicStroke(2));
-        size = new Size(fontMetrics.stringWidth(speech) * 2, size.getHeight());
+        size = new Size(fontMetrics.stringWidth(speech) * 2 + 10, size.getHeight());
         graphics.fillRoundRect(
                 0,
                 0,
-                fontMetrics.stringWidth(speech) * 2,
+                fontMetrics.stringWidth(speech) * 2 + 10,
                 size.getHeight(),
                 10,
                 10);
