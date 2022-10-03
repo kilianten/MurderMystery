@@ -30,11 +30,13 @@ public class SpriteLibrary {
     private Map<String, Image> sceneryObjects;
     private Map<String, Image> tiles;
     private Map<String, Image> clueImages;
+    private Map<String, Image> buildingObjects;
 
     public SpriteLibrary(){
         units = new HashMap<>();
         tiles = new HashMap<>();
         sceneryObjects = new HashMap<>();
+        buildingObjects = new HashMap<>();
         clueImages = new HashMap<>();
         loadSpritesFromDisk();
         clueImages.put("boatReceipt", drawTextOnImage((BufferedImage) clueImages.get("boatReceipt")));
@@ -65,6 +67,7 @@ public class SpriteLibrary {
         loadImages("/sprites/scenery", sceneryObjects);
         loadImages("/sprites/interactableScenery", sceneryObjects);
         loadImages("/sprites/clues", clueImages);
+        loadImages("/sprites/buildings", buildingObjects);
     }
 
     private void loadImages(String path, Map<String, Image> images) {
@@ -171,5 +174,9 @@ public class SpriteLibrary {
 
     public Image getClueImage(String name) {
         return clueImages.get(name);
+    }
+
+    public Image getBuildingImage(String name) {
+        return buildingObjects.get(name);
     }
 }

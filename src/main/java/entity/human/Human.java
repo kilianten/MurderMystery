@@ -12,6 +12,7 @@ import game.Game;
 import state.State;
 import graphics.SpriteLibrary;
 
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -22,6 +23,8 @@ public abstract class Human extends MovingEntity {
 
     protected List<Effect> effects;
     protected Optional<Action> action;
+
+    private Rectangle proximity;
 
     protected String firstName;
     protected String secondName;
@@ -114,6 +117,24 @@ public abstract class Human extends MovingEntity {
                 .filter(gameObject -> (gameObject.getAssociatedActions() != null))
                 .filter(gameObject -> (gameObject.getAssociatedActions().contains(action)))
                 .collect(Collectors.toList());
+    }
+
+    public boolean isNear(GameObject gameObject) {
+        calculateProximity();
+        return proximity.intersects(
+                gameObject.getPosition().getIntX(),
+                gameObject.getPosition().getIntY(),
+                gameObject.getSize().getWidth(),
+                gameObject.getSize().getHeight());
+    }
+
+    private void calculateProximity() {
+        proximity = new Rectangle(
+                position.getIntX(),
+                position.getIntY(),
+                30,
+                30
+        );
     }
 
 

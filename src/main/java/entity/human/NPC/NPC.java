@@ -29,7 +29,6 @@ import java.util.stream.Collectors;
 public abstract class NPC extends Human {
 
     private AIManager aiManager;
-    private Rectangle proximity;
     private boolean alive = true;
     protected String title;
 
@@ -57,14 +56,7 @@ public abstract class NPC extends Human {
         witnessedEventHandler = new WitnessedEventHandler();
     }
 
-    private void calculateProximity() {
-        proximity = new Rectangle(
-                position.getIntX(),
-                position.getIntY(),
-                30,
-                30
-        );
-    }
+
 
     @Override
     public void update(State state){
@@ -104,15 +96,6 @@ public abstract class NPC extends Human {
 
     public AIManager getAiManager() {
         return aiManager;
-    }
-
-    public boolean isNear(GameObject gameObject) {
-        calculateProximity();
-        return proximity.intersects(
-                gameObject.getPosition().getIntX(),
-                gameObject.getPosition().getIntY(),
-                gameObject.getSize().getWidth(),
-                gameObject.getSize().getHeight());
     }
 
     public boolean isAloneWith(State state, NPC target){

@@ -4,6 +4,7 @@ import controller.NPCController;
 import controller.PlayerController;
 import core.Position;
 import core.Size;
+import entity.GameObject;
 import entity.environment.Lighting;
 import entity.human.NPC.*;
 import entity.human.Player;
@@ -18,6 +19,7 @@ import story.StoryManager;
 import ui.UIContainer;
 
 import java.awt.event.KeyEvent;
+import java.util.Optional;
 
 public class GameState extends State {
 
@@ -160,4 +162,11 @@ public class GameState extends State {
     public boolean isPaused(){
         return paused;
     }
+
+    public Player getPlayer() {
+        return (Player) gameObjects.stream()
+                .filter(object -> object instanceof Player)
+                .findFirst().get();
+    }
+
 }

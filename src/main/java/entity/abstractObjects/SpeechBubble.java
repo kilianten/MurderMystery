@@ -46,7 +46,6 @@ public class SpeechBubble extends GameObject {
 
     @Override
     public Image getSprite() {
-        System.out.println(speech);
         BufferedImage image = (BufferedImage) ImageUtils.createCompatibleImage(size, ImageUtils.ALPHA_BLEND);
         Graphics2D graphics = image.createGraphics();
 

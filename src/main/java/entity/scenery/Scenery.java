@@ -4,6 +4,7 @@ import core.CollisionBox;
 import core.Position;
 import core.Size;
 import entity.GameObject;
+import entity.scenery.building.Building;
 import graphics.SpriteLibrary;
 import io.Persistable;
 import state.State;
@@ -12,8 +13,8 @@ import java.awt.*;
 
 public class Scenery extends GameObject implements Persistable {
 
-    private Image sprite;
-    private String name;
+    protected Image sprite;
+    protected String name;
     private boolean walkable;
 
     public Scenery() {}
@@ -52,14 +53,21 @@ public class Scenery extends GameObject implements Persistable {
     }
 
     public static Scenery copyOf(Scenery scenery){
-        Scenery copy = new Scenery();
+        Scenery copy;
+
+        if(scenery instanceof Building){
+            copy = new Building();
+        } else {
+            copy = new Scenery();
+        }
         copy.name = scenery.name;
         copy.position = Position.copyOf(scenery.position);
+
         copy.size = Size.copyOf(scenery.size);
         copy.renderOffset = Position.copyOf(scenery.renderOffset);
         copy.collisionBoxOffset = Position.copyOf(scenery.collisionBoxOffset);
         copy.collisionBoxSize = Size.copyOf(scenery.collisionBoxSize);
-        copy.sprite = scenery.sprite;
+        copy.sprite = scenery.getSprite();
         copy.walkable = scenery.walkable;
         copy.renderLevelOffset = scenery.renderLevelOffset;
         copy.selectionCircleOffset = Position.copyOf(scenery.selectionCircleOffset);

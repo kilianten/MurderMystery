@@ -3,6 +3,7 @@ package state.editor.ui;
 import core.Position;
 import core.Size;
 import entity.scenery.*;
+import entity.scenery.building.Building;
 import game.Game;
 import graphics.SpriteLibrary;
 import input.mouse.action.SceneryPlacer;
@@ -34,9 +35,8 @@ public class UIObjectMenu extends HorizontalContainer {
         ObjectTypeMenu.addUIComponent(new UIButton("Scenery", state -> {setCurrentContainer(sceneryContainer);}, new Size(150, 30)));
         addUIComponent(ObjectTypeMenu);
 
-
-        buildingContainer = new HorizontalContainer(windowSize);
         createTileContainer(spriteLibrary);
+        createBuildingContainer(spriteLibrary);
         createSceneryContainer(spriteLibrary);
         currentContainer = tileContainer;
         addUIComponent(tileContainer);
@@ -59,6 +59,15 @@ public class UIObjectMenu extends HorizontalContainer {
             }
             tileContainer.addUIComponent(new UIToolToggle(tile.getSprite(), new TilePlacer(tile)));
         }
+    }
+
+    private void createBuildingContainer(SpriteLibrary spriteLibrary){
+        buildingContainer = new HorizontalContainer(windowSize);
+        buildingContainer.addUIComponent(new UIToolToggle(spriteLibrary.getBuildingImage("church").getScaledInstance(Game.SPRITE_SIZE, Game.SPRITE_SIZE, Image.SCALE_SMOOTH),
+                new SceneryPlacer(new Building(
+                        spriteLibrary,
+                        "church"
+                ))));
     }
 
     private void createSceneryContainer(SpriteLibrary spriteLibrary){

@@ -8,6 +8,7 @@ import entity.scenery.Bench;
 import entity.scenery.Bin;
 import entity.scenery.LampPost;
 import entity.scenery.Scenery;
+import entity.scenery.building.Building;
 import game.Game;
 import graphics.SpriteLibrary;
 import io.Persistable;
@@ -192,6 +193,9 @@ public class GameMap implements Persistable {
                 Scenery scenery;
                 if(interactive){
                     scenery = loadInteractableScenery(serializedScenery.split(DELIMITER)[2]);
+                }
+                else if(serializedScenery.split(DELIMITER)[0].equals("Building")){
+                    scenery = new Building();
                 }
                 else if(serializedScenery.split(DELIMITER)[2].equals("lampPost")){
                     scenery = new LampPost();
