@@ -33,4 +33,9 @@ public class MarySpeech extends NPCSpeech {
     public String whatBringsYouHere(){
         return null;
     }
+
+    @Override
+    public String howLongHaveYouLivedHere() {
+        return "All my life and I’m proud to say I’m the oldest resident left. Many have come and gone, lot of changes. Especially recently";
+    }
 }

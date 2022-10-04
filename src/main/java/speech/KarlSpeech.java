@@ -48,4 +48,8 @@ public class KarlSpeech extends NPCSpeech {
         return null;
     }
 
+    @Override
+    public String howLongHaveYouLivedHere() {
+        return "My whole life. I like it. It’s a bit of a shit show lately, but home is home";
+    }
 }

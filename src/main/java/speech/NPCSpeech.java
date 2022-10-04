@@ -10,5 +10,6 @@ public abstract class NPCSpeech {
     public abstract String doYouHaveTattoos(NPC npc);
     public abstract String doYouDrink(NPC npc);
     public abstract String whatBringsYouHere();
+    public abstract String howLongHaveYouLivedHere();
 
 }

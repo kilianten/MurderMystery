@@ -42,4 +42,9 @@ public class EricSpeech extends NPCSpeech {
     public String whatBringsYouHere(){
         return "Strictly business";
     }
+
+    @Override
+    public String howLongHaveYouLivedHere() {
+        return null;
+    }
 }

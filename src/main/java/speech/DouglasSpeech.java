@@ -47,4 +47,9 @@ public class DouglasSpeech extends NPCSpeech {
     public String whatBringsYouHere(){
         return null;
     }
+
+    @Override
+    public String howLongHaveYouLivedHere() {
+        return "I was born and raised here. The place has been tumultuous my whole life";
+    }
 }

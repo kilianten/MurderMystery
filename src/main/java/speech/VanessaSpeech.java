@@ -33,4 +33,9 @@ public class VanessaSpeech extends NPCSpeech {
     public String whatBringsYouHere(){
         return null;
     }
+
+    @Override
+    public String howLongHaveYouLivedHere() {
+        return "My whole life. I visit the city often. I like to pretend I’m more cosmopolitan than I am. I love this place. It’s a damn shame what’s become of it";
+    }
 }

@@ -42,4 +42,9 @@ public class SheriffSpeech extends NPCSpeech {
     public String whatBringsYouHere(){
         return null;
     }
+
+    @Override
+    public String howLongHaveYouLivedHere() {
+        return "My whole life. I don’t want the excitement of a big city that other folks flourish in. I like the insularity of this place";
+    }
 }
