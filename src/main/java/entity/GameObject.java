@@ -33,6 +33,8 @@ public abstract class GameObject {
 
     protected boolean renderOnMiniMap = true;
 
+    private String location = "Outside";
+
     public GameObject(){
         position = new Position(0, 0);
         size = new Size(64, 64);
@@ -168,5 +170,13 @@ public abstract class GameObject {
 
     public void delete(){
         shouldDelete = true;
+    }
+
+    public String getLocation(){
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
     }
 }

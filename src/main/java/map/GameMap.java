@@ -192,7 +192,7 @@ public class GameMap implements Persistable {
                 boolean interactive = Boolean.parseBoolean(serializedScenery.split(DELIMITER)[1]);
                 Scenery scenery;
                 if(interactive){
-                    scenery = loadInteractableScenery(serializedScenery.split(DELIMITER)[0]);
+                    scenery = loadInteractableScenery(serializedScenery.split(DELIMITER)[2]);
                 }
                 else if(serializedScenery.split(DELIMITER)[2].equals("lampPost")){
                     scenery = new LampPost();
@@ -209,17 +209,14 @@ public class GameMap implements Persistable {
     private Scenery loadInteractableScenery(String sceneryName) {
         Scenery scenery;
         switch (sceneryName){
-            case "Bench":
+            case "bench":
                 scenery = new Bench();
                 break;
-            case "Bin":
+            case "bin":
                 scenery = new Bin();
                 break;
-            case "Building":
-                scenery = new Building();
-                break;
             default:
-                scenery = new Scenery();
+                scenery = new Building();
                 break;
         }
         return scenery;

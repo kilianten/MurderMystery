@@ -10,6 +10,8 @@ import entity.human.NPC.*;
 import entity.human.Player;
 import game.settings.GameSettings;
 import graphics.SpriteLibrary;
+import map.GameMap;
+import map.location.Location;
 import state.game.ui.ConversationBoxContainer;
 import state.game.ui.UIGameMenu;
 import state.game.ui.UIGameTime;
@@ -19,7 +21,7 @@ import story.StoryManager;
 import ui.UIContainer;
 
 import java.awt.event.KeyEvent;
-import java.util.Optional;
+import java.util.List;
 
 public class GameState extends State {
 
@@ -32,6 +34,7 @@ public class GameState extends State {
 
     public GameState(Size windowSize, Input input, GameSettings settings, String gameMap) {
         super(windowSize, input, settings);
+
         loadGameMap(gameMap);
         initialiseCharacters();
         initializeUI(windowSize);
@@ -39,6 +42,7 @@ public class GameState extends State {
         conversationBoxContainer = new ConversationBoxContainer(windowSize);
         storyManager = new StoryManager(this);
         lighting = new Lighting(this);
+        locations.get("Outside").setGameMap(this.gameMap);
     }
 
     protected void updateGameObjects() {
@@ -66,7 +70,7 @@ public class GameState extends State {
     private void initialiseCharacters() {
         Player player = new Player(new PlayerController(input), spriteLibrary);
         player.setPosition(gameMap.getRandomAvailablePosition());
-        gameObjects.add(player);
+        getCurrentLocation().getGameObjects().add(player);
         camera.focusOn(player);
 
         initialiseNPCs(spriteLibrary, player);
@@ -94,21 +98,21 @@ public class GameState extends State {
             mary.setPosition(gameMap.getRandomAvailablePosition());
             eric.setPosition(gameMap.getRandomAvailablePosition());
             tim.setPosition(gameMap.getRandomAvailablePosition());
-            gameObjects.add(raquel);
-            gameObjects.add(karl);
-            gameObjects.add(douglas);
-            gameObjects.add(sheriff);
-            //gameObjects.add(nolan);
-            gameObjects.add(eduardo);
-            gameObjects.add(vanessa);
-            gameObjects.add(mary);
-            gameObjects.add(eric);
-            gameObjects.add(tim);
+            getCurrentLocation().getGameObjects().add(raquel);
+            getCurrentLocation().getGameObjects().add(karl);
+            getCurrentLocation().getGameObjects().add(douglas);
+            getCurrentLocation().getGameObjects().add(sheriff);
+            //getCurrentLocation().getGameObjects().add(nolan);
+            getCurrentLocation().getGameObjects().add(eduardo);
+            getCurrentLocation().getGameObjects().add(vanessa);
+            getCurrentLocation().getGameObjects().add(mary);
+            getCurrentLocation().getGameObjects().add(eric);
+            getCurrentLocation().getGameObjects().add(tim);
         }
         Nolan nolan = new Nolan(new NPCController(), spriteLibrary);
         Position position = gameMap.getRandomAvailablePosition();
         nolan.setPosition(position);
-        gameObjects.add(nolan);
+        getCurrentLocation().getGameObjects().add(nolan);
         player.setPosition(Position.copyOf(nolan.getPosition()));
     }
 
@@ -164,9 +168,17 @@ public class GameState extends State {
     }
 
     public Player getPlayer() {
-        return (Player) gameObjects.stream()
+        return (Player) getCurrentLocation().getGameObjects().stream()
                 .filter(object -> object instanceof Player)
                 .findFirst().get();
+    }
+
+    public void changeLocation(String name) {
+        Player player = getPlayer();
+        player.delete();
+        player.setLocation(name);
+        currentLocation = name;
+        getCurrentLocation().getGameObjects().add(player);
     }
 
 }

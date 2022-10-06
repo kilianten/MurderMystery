@@ -2,8 +2,6 @@ package entity.human.NPC;
 
 import ai.AIManager;
 import controller.Controller;
-import core.Direction;
-import core.Position;
 import core.Size;
 import entity.ColourHandler;
 import entity.GameObject;
@@ -190,15 +188,17 @@ public abstract class NPC extends Human {
     }
 
     private List<GameObject> getNearObjects(State state){
-        return state.getGameObjects()
+        return state.getAllGameObjects()
                 .stream()
+                .filter(gameObject -> gameObject.getLocation().equals(getLocation()))
                 .filter(gameObject -> isNear(gameObject))
                 .collect(Collectors.toList());
     }
 
     private List<GameObject> getNearViewableObjects(State state){
-        return state.getGameObjects()
+        return state.getAllGameObjects()
                 .stream()
+                .filter(gameObject -> gameObject.getLocation().equals(getLocation()))
                 .filter(gameObject -> isNear(gameObject))
                 .filter(gameObject -> isFacing(gameObject.getPosition()))
                 .collect(Collectors.toList());

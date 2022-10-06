@@ -33,6 +33,11 @@ public class AudioPlayer {
         final Clip clip = getClip(fileName);
         final MusicClip musicClip = new MusicClip(clip);
         musicClip.setVolume(audioSettings);
+        try {
+            Thread.sleep(500);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         audioClips.add(musicClip);
     }
 

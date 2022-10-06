@@ -15,6 +15,7 @@ import input.Input;
 import input.mouse.MouseHandler;
 import io.MapIO;
 import map.GameMap;
+import map.location.Location;
 import state.game.time.GameTimeManager;
 import ui.UIComponent;
 import ui.UIContainer;
@@ -27,6 +28,9 @@ public abstract class State {
     protected GameSettings settings;
     protected AudioPlayer audioPlayer;
     protected GameMap gameMap;
+
+    protected Map<String, Location> locations;
+
     protected List<GameObject> gameObjects;
     protected List<GameObject> readyToSpawn;
 
@@ -44,10 +48,11 @@ public abstract class State {
     public GameTimeManager gameTimeManager;
     protected Lighting lighting;
 
+    protected String currentLocation =  "Outside";
+
     public State(Size windowSize, Input input, GameSettings settings) {
         this.settings = settings;
         this.windowSize = windowSize;
-        gameObjects = new ArrayList<>();
         readyToSpawn = new ArrayList<>();
         uiContainers = new ArrayList<>();
         UIElements = new ArrayList<>();
@@ -59,6 +64,9 @@ public abstract class State {
         clock = new Clock();
         gameTimeManager = new GameTimeManager();
         setDefaultSettings();
+        locations = new HashMap<>();
+        locations.put("Outside", new Location());
+        locations.put("church", new Location());
     }
 
     public void update(Game game){
@@ -83,7 +91,9 @@ public abstract class State {
     }
 
     protected void despawnObjects(){
-        Iterator iterator = gameObjects.iterator();
+        //allLocations
+
+        Iterator iterator = locations.get("Outside").getGameObjects().iterator();
 
         while (iterator.hasNext()) {
             GameObject object = (GameObject) iterator.next();
@@ -95,24 +105,27 @@ public abstract class State {
     }
 
     private void spawnReadyObjects() {
-        gameObjects.addAll(readyToSpawn);
+        locations.get("Outside").getGameObjects().addAll(readyToSpawn);
         readyToSpawn.clear();
     }
 
     protected void updateGameObjects() {
-        for(GameObject gameObject: gameObjects){
-            gameObject.update(this);
+        for(Location location: locations.values()){
+            for(GameObject gameObject: location.getGameObjects()){
+                gameObject.update(this);
+            }
         }
+
     }
 
     public void handleKeyInput(){}
 
     public void sortObjectsByPosition() {
-        gameObjects.sort(Comparator.comparing(GameObject::getRenderOrder).thenComparing(gameObject -> gameObject.getRenderLevel()));
+        getCurrentGameObjects().sort(Comparator.comparing(GameObject::getRenderOrder).thenComparing(gameObject -> gameObject.getRenderLevel()));
     }
 
-    public List<GameObject> getGameObjects() {
-        return gameObjects;
+    public List<GameObject> getCurrentGameObjects() {
+        return locations.get(currentLocation).getGameObjects();
     }
 
     public GameMap getGameMap() {
@@ -132,7 +145,7 @@ public abstract class State {
     }
 
     public List<GameObject> getCollidingGameObjects(GameObject gameObject) {
-        return gameObjects.stream()
+        return getCurrentGameObjects().stream()
                 .filter(other -> other.getCollisionBox() != null)
                 .filter(other -> other.collidesWith(gameObject))
                 .collect(Collectors.toList());
@@ -143,14 +156,21 @@ public abstract class State {
     }
 
     public <T extends GameObject> List<T> getGameObjectsOfClass(Class<T> clazz){
-        return gameObjects.stream()
+        return getAllGameObjects().stream()
+                .filter(clazz::isInstance)
+                .map(gameObject -> (T) gameObject)
+                .collect(Collectors.toList());
+    }
+
+    public <T extends GameObject> List<T> getGameObjectsOfClassInLocation(Class<T> clazz){
+        return getCurrentLocation().getGameObjects().stream()
                 .filter(clazz::isInstance)
                 .map(gameObject -> (T) gameObject)
                 .collect(Collectors.toList());
     }
 
     public <T extends GameObject> Optional<T> getGameObjectOfClass(Class<T> clazz){
-        return gameObjects.stream()
+        return getAllGameObjects().stream()
                 .filter(clazz::isInstance)
                 .findFirst()
                 .map(gameObject -> (T) gameObject);
@@ -187,9 +207,9 @@ public abstract class State {
     }
 
     public void loadGameMap(String filePath) {
-        gameObjects.clear();
+        getCurrentLocation().getGameObjects().clear();
         gameMap = MapIO.load(spriteLibrary, filePath);
-        gameObjects.addAll(gameMap.getSceneryList());
+        getCurrentLocation().getGameObjects().addAll(gameMap.getSceneryList());
     }
 
     public void saveGameMap(String filePath) {
@@ -224,4 +244,21 @@ public abstract class State {
     public void removeUIComponent(UIContainer component){
         uiContainers.remove(component);
     }
+
+    public List<GameObject> getAllGameObjects(){
+        List<GameObject> allGameObjects = new ArrayList<>();
+        for(Location location: locations.values()){
+            allGameObjects.addAll(location.getGameObjects());
+        }
+        return allGameObjects;
+    }
+
+    public Location getCurrentLocation(){
+        return locations.get(currentLocation);
+    }
+
+    public Location getLocation(String location){
+        return locations.get(location);
+    }
+
 }

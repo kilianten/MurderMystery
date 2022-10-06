@@ -7,6 +7,7 @@ import input.mouse.action.CameraMovement;
 import input.mouse.action.ClearAction;
 import input.mouse.action.SceneryTool;
 import map.GameMap;
+import map.location.Location;
 import state.State;
 import state.editor.ui.*;
 
@@ -19,7 +20,7 @@ public class EditorState extends State {
         gameMap = new GameMap(mapSize, spriteLibrary);
         setupMouseActions();
         setupUI(windowSize, settings);
-
+        locations.get("Outside").setGameMap(this.gameMap);
     }
 
     private void setupMouseActions() {

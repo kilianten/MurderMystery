@@ -66,7 +66,7 @@ public class Building extends InteractableScenery {
     @Override
     public void interact(State state, Human human){
         if(isOpen){
-            System.out.println("Enter building");
+            ((GameState) state).changeLocation(name);
         }
     }
 }

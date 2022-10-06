@@ -30,7 +30,7 @@ public class KillPlotPoint extends PlotPoint {
             corpse.setClue(new UIClue(state, UIClue.getClue(killer)));
             state.spawn(corpse);
 
-            state.getGameObjects().remove(target);
+            state.getLocation(corpse.getLocation()).getGameObjects().remove(target);
             isDone = true;
         } else {
             if(!state.getCamera().isInView(killer) && !state.getCamera().isInView(target)){

@@ -3,6 +3,7 @@ package state.menu;
 import core.Size;
 import game.settings.GameSettings;
 import input.Input;
+import map.location.Location;
 import state.State;
 import state.menu.ui.UIMainMenu;
 import ui.UIContainer;
@@ -14,6 +15,7 @@ public class MenuState extends State {
         settings.getRenderSettings().getCollisionBox().setValue(false);
         uiContainers.add(new UIMainMenu(windowSize));
         audioPlayer.playMusic("metal.wav");
+        locations.get("Outside").setGameMap(this.gameMap);
     }
 
     @Override

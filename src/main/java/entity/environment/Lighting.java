@@ -34,7 +34,6 @@ public class Lighting extends GameObject {
 
         lights = new ArrayList<>();
         for(LampPost lamp: state.getGameObjectsOfClass(LampPost.class)){
-
             lights.add(new Light(SAFE_SPACE + lamp.getPosition().getIntX() - 4, SAFE_SPACE + lamp.getPosition().getIntY(), lightWidth, 0.6f));
         }
         drawSprite(state);

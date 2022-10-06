@@ -48,7 +48,7 @@ public class Player extends Human {
     }
 
     private void handleTarget(State state) {
-        Optional<GameObject> nearestObject = findNearestNPC(state);
+        Optional<GameObject> nearestObject =  findNearestGameObject(state);
 
         if(nearestObject.isPresent()){
             GameObject nearObj = nearestObject.get();
@@ -56,7 +56,6 @@ public class Player extends Human {
                 if(target != null){
                     target.detach(selectionCircle);
                 }
-                //Size size = nearObj.getSelectionCircleSize();
                 selectionCircle.resize(Size.copyOf(nearObj.getSelectionCircleSize()), nearObj.getSelectionCircleOffset());
                 nearObj.attach(selectionCircle);
                 target = nearObj;
@@ -69,12 +68,12 @@ public class Player extends Human {
         }
     }
 
-    private Optional<GameObject> findNearestNPC(State state) {
-        return state.getGameObjectsOfClass(GameObject.class).stream()
-                .filter(npc -> (npc.isInteractable()))
-                .filter(npc -> getPosition().distanceTo(npc.getPosition()) < targetRange)
-                .filter(npc -> isFacing(npc.getPosition()))
-                .min(Comparator.comparingDouble(npc -> position.distanceTo(npc.getPosition())));
+    private Optional<GameObject> findNearestGameObject(State state) {
+        return state.getGameObjectsOfClassInLocation(GameObject.class).stream()
+                .filter(gameObject -> (gameObject.isInteractable()))
+                .filter(gameObject -> getPosition().distanceTo(gameObject.getPosition()) < targetRange)
+                .filter(gameObject -> isFacing(gameObject.getPosition()))
+                .min(Comparator.comparingDouble(gameObject -> position.distanceTo(gameObject.getPosition())));
     }
 
     @Override

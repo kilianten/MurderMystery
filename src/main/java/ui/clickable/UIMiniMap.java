@@ -43,7 +43,7 @@ public class UIMiniMap extends UIClickable {
         super.update(state);
 
         if(state.getClock().secondsDividableBy(0.25)) {
-            generateMap(state.getGameMap(), state.getGameObjects());
+            generateMap(state.getGameMap(), state.getCurrentLocation().getGameObjects());
         }
 
         Camera camera = state.getCamera();

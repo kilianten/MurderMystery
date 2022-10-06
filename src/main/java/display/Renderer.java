@@ -43,7 +43,7 @@ public class Renderer {
     }
 
     private void renderGameObjects(State state, Graphics2D graphics, Camera camera){
-        state.getGameObjects().stream()
+        state.getCurrentLocation().getGameObjects().stream()
                 .filter(gameObject -> camera.isInView(gameObject))
                 .forEach(gameObject -> {
                     renderGameObject(graphics, camera, gameObject);
