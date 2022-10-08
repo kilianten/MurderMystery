@@ -29,15 +29,21 @@ public class GameMap implements Persistable {
         sceneryList = new ArrayList<>();
     }
 
+    public GameMap(Size size, SpriteLibrary spriteLibrary, String tileName){
+        tiles = new Tile[size.getWidth()][size.getHeight()];
+        sceneryList = new ArrayList<>();
+        initializeTiles(spriteLibrary, tileName);
+    }
+
     public GameMap(Size size, SpriteLibrary spriteLibrary) {
         tiles = new Tile[size.getWidth()][size.getHeight()];
         sceneryList = new ArrayList<>();
-        initializeTiles(spriteLibrary);
+        initializeTiles(spriteLibrary, "grass");
     }
 
-    private void initializeTiles(SpriteLibrary spriteLibrary) {
+    private void initializeTiles(SpriteLibrary spriteLibrary, String tileName) {
         for(Tile[] row: tiles) {
-            Arrays.fill(row, new Tile(spriteLibrary));
+            Arrays.fill(row, new Tile(spriteLibrary, tileName));
         }
     }
 

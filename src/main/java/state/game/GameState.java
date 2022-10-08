@@ -6,6 +6,7 @@ import core.Position;
 import core.Size;
 import entity.GameObject;
 import entity.environment.Lighting;
+import entity.human.Human;
 import entity.human.NPC.*;
 import entity.human.Player;
 import game.settings.GameSettings;
@@ -41,8 +42,8 @@ public class GameState extends State {
         gameMenu = new UIGameMenu(windowSize, input, settings);
         conversationBoxContainer = new ConversationBoxContainer(windowSize);
         storyManager = new StoryManager(this);
-        lighting = new Lighting(this);
         locations.get("Outside").setGameMap(this.gameMap);
+        lighting = new Lighting(this);
     }
 
     protected void updateGameObjects() {
@@ -179,6 +180,10 @@ public class GameState extends State {
         player.setLocation(name);
         currentLocation = name;
         getCurrentLocation().getGameObjects().add(player);
+    }
+
+    public GameMap getGameMapOfObject(GameObject gameObject){
+        return locations.get(gameObject.getLocation()).getGameMap();
     }
 
 }

@@ -121,7 +121,8 @@ public abstract class Human extends MovingEntity {
 
     public boolean isNear(GameObject gameObject) {
         calculateProximity();
-        return proximity.intersects(
+        return getLocation().equals(gameObject.getLocation()) &&
+                proximity.intersects(
                 gameObject.getPosition().getIntX(),
                 gameObject.getPosition().getIntY(),
                 gameObject.getSize().getWidth(),

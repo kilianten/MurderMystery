@@ -20,7 +20,7 @@ public class Speaking extends Action {
 
     public Speaking(String speech, State state, MovingEntity movingEntity){
         speechBubble = new SpeechBubble(speech, movingEntity.getPosition());
-        state.spawn(speechBubble);
+        state.spawn(movingEntity.getLocation(),speechBubble);
     }
 
     @Override

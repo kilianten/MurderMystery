@@ -17,7 +17,7 @@ public class SceneryPlacer extends MouseAction {
 
     @Override
     public void onClick(State state) {
-        state.spawn(Scenery.copyOf(scenery));
+        state.spawn("Outside", Scenery.copyOf(scenery));
     }
 
     @Override

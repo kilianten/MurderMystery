@@ -28,7 +28,7 @@ public class KillPlotPoint extends PlotPoint {
         if(updatesSinceLastSeen >= KILL_THRESHOLD){
             Corpse corpse = new Corpse(target);
             corpse.setClue(new UIClue(state, UIClue.getClue(killer)));
-            state.spawn(corpse);
+            state.spawn(killer.getLocation(), corpse);
 
             state.getLocation(corpse.getLocation()).getGameObjects().remove(target);
             isDone = true;

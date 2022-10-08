@@ -1,5 +1,6 @@
 package map.location;
 
+import core.Position;
 import entity.GameObject;
 import map.GameMap;
 
@@ -10,6 +11,7 @@ public class Location {
 
     protected GameMap gameMap;
     protected List<GameObject> gameObjects;
+    protected Position entrance;
 
     public Location(){
         gameObjects = new ArrayList<>();

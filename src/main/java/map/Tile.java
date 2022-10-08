@@ -18,8 +18,8 @@ public class Tile implements Persistable {
         walkable = true;
     }
 
-    public Tile(SpriteLibrary spriteLibrary){
-        this(spriteLibrary, "grass", true);
+    public Tile(SpriteLibrary spriteLibrary, String tileName){
+        this(spriteLibrary, tileName, true);
     }
 
     public Tile(SpriteLibrary spriteLibrary, String tileName, boolean walkable){

@@ -3,9 +3,11 @@ package ai.state;
 import ai.AITransition;
 import controller.NPCController;
 import core.Position;
+import entity.GameObject;
 import entity.human.NPC.NPC;
 import map.Pathfinder;
 import state.State;
+import state.game.GameState;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,7 +29,7 @@ public class Wander extends AIState {
     @Override
     public void update(State state, NPC currentCharacter) {
         if(target == null) {
-            List<Position> path = Pathfinder.findPath(currentCharacter.getPosition(), state.getRandomPosition(), state.getGameMap());
+            List<Position> path = Pathfinder.findPath(currentCharacter.getPosition(), state.getRandomPosition(), ((GameState) state).getGameMapOfObject(currentCharacter));
             if(!path.isEmpty()) {
                 target = path.get(path.size() - 1);
                 this.path.addAll(path);

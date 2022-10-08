@@ -190,7 +190,6 @@ public abstract class NPC extends Human {
     private List<GameObject> getNearObjects(State state){
         return state.getAllGameObjects()
                 .stream()
-                .filter(gameObject -> gameObject.getLocation().equals(getLocation()))
                 .filter(gameObject -> isNear(gameObject))
                 .collect(Collectors.toList());
     }
@@ -198,7 +197,6 @@ public abstract class NPC extends Human {
     private List<GameObject> getNearViewableObjects(State state){
         return state.getAllGameObjects()
                 .stream()
-                .filter(gameObject -> gameObject.getLocation().equals(getLocation()))
                 .filter(gameObject -> isNear(gameObject))
                 .filter(gameObject -> isFacing(gameObject.getPosition()))
                 .collect(Collectors.toList());

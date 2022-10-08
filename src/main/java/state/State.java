@@ -15,11 +15,14 @@ import input.Input;
 import input.mouse.MouseHandler;
 import io.MapIO;
 import map.GameMap;
+import map.location.Church;
 import map.location.Location;
 import state.game.time.GameTimeManager;
 import ui.UIComponent;
 import ui.UIContainer;
 
+import javax.xml.crypto.dsig.keyinfo.KeyValue;
+import java.security.Key;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -32,7 +35,7 @@ public abstract class State {
     protected Map<String, Location> locations;
 
     protected List<GameObject> gameObjects;
-    protected List<GameObject> readyToSpawn;
+    protected Map<String, GameObject> readyToSpawn;
 
     protected SpriteLibrary spriteLibrary;
     protected Input input;
@@ -53,7 +56,7 @@ public abstract class State {
     public State(Size windowSize, Input input, GameSettings settings) {
         this.settings = settings;
         this.windowSize = windowSize;
-        readyToSpawn = new ArrayList<>();
+        readyToSpawn = new HashMap<>();
         uiContainers = new ArrayList<>();
         UIElements = new ArrayList<>();
         spriteLibrary = new SpriteLibrary();
@@ -66,7 +69,7 @@ public abstract class State {
         setDefaultSettings();
         locations = new HashMap<>();
         locations.put("Outside", new Location());
-        locations.put("church", new Location());
+        locations.put("church", new Church(this, spriteLibrary));
     }
 
     public void update(Game game){
@@ -105,7 +108,7 @@ public abstract class State {
     }
 
     private void spawnReadyObjects() {
-        locations.get("Outside").getGameObjects().addAll(readyToSpawn);
+        readyToSpawn.forEach((locationName, location) -> locations.get(locationName).getGameObjects().add(location));
         readyToSpawn.clear();
     }
 
@@ -129,7 +132,7 @@ public abstract class State {
     }
 
     public GameMap getGameMap() {
-        return gameMap;
+        return getCurrentLocation().getGameMap();
     }
 
     public Camera getCamera() {
@@ -176,8 +179,8 @@ public abstract class State {
                 .map(gameObject -> (T) gameObject);
     }
 
-    public void spawn(GameObject gameObject) {
-        readyToSpawn.add(gameObject);
+    public void spawn(String location,GameObject gameObject) {
+        readyToSpawn.put(location, gameObject);
     }
 
     public Input getInput() {
