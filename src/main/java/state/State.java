@@ -69,10 +69,10 @@ public abstract class State {
         setDefaultSettings();
         locations = new HashMap<>();
         locations.put("Outside", new Location());
-        locations.put("church", new Church(this, spriteLibrary));
     }
 
     public void update(Game game){
+        spawnReadyObjects();
         audioPlayer.update();
         clock.update();
         sortObjectsByPosition();
@@ -85,7 +85,6 @@ public abstract class State {
             lighting.update(this);
         }
 
-        spawnReadyObjects();
         despawnObjects();
 
         if(nextState != null){
@@ -96,13 +95,15 @@ public abstract class State {
     protected void despawnObjects(){
         //allLocations
 
-        Iterator iterator = locations.get("Outside").getGameObjects().iterator();
+        for(Map.Entry<String, Location> entry: locations.entrySet()){
+            Iterator iterator = entry.getValue().getGameObjects().iterator();
 
-        while (iterator.hasNext()) {
-            GameObject object = (GameObject) iterator.next();
-            if (object.shouldDelete()) {
-                iterator.remove();
-                break;
+            while (iterator.hasNext()) {
+                GameObject object = (GameObject) iterator.next();
+                if (object.shouldDelete() != null && object.shouldDelete().equals(entry.getKey())) {
+                    iterator.remove();
+                    break;
+                }
             }
         }
     }
@@ -165,8 +166,15 @@ public abstract class State {
                 .collect(Collectors.toList());
     }
 
-    public <T extends GameObject> List<T> getGameObjectsOfClassInLocation(Class<T> clazz){
+    public <T extends GameObject> List<T> getGameObjectsOfClassInCurrentLocation(Class<T> clazz){
         return getCurrentLocation().getGameObjects().stream()
+                .filter(clazz::isInstance)
+                .map(gameObject -> (T) gameObject)
+                .collect(Collectors.toList());
+    }
+
+    public <T extends GameObject> List<T> getGameObjectsOfClassInLocation(Class<T> clazz, String location){
+        return getLocation(location).getGameObjects().stream()
                 .filter(clazz::isInstance)
                 .map(gameObject -> (T) gameObject)
                 .collect(Collectors.toList());
@@ -180,6 +188,7 @@ public abstract class State {
     }
 
     public void spawn(String location,GameObject gameObject) {
+        gameObject.setLocation(location);
         readyToSpawn.put(location, gameObject);
     }
 
@@ -264,4 +273,7 @@ public abstract class State {
         return locations.get(location);
     }
 
+    public void setCurrentLocation(String currentLocation) {
+        this.currentLocation = currentLocation;
+    }
 }

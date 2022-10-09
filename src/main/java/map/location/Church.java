@@ -12,8 +12,9 @@ public class Church extends Location {
     public Church(State state, SpriteLibrary spriteLibrary){
         super();
         gameMap = new GameMap(new Size(10, 10), spriteLibrary, "woodFloor");
-        entrance = new Position(0, 0);
-        state.spawn("church", new Door(spriteLibrary, "churchDoor"));
+        entrancePosition = new Position(0, 0);
+        door = new Door(spriteLibrary, "churchDoor");
+        state.spawn("church", door);
     }
 
 }

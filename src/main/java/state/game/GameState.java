@@ -9,9 +9,11 @@ import entity.environment.Lighting;
 import entity.human.Human;
 import entity.human.NPC.*;
 import entity.human.Player;
+import entity.scenery.building.Building;
 import game.settings.GameSettings;
 import graphics.SpriteLibrary;
 import map.GameMap;
+import map.location.Church;
 import map.location.Location;
 import state.game.ui.ConversationBoxContainer;
 import state.game.ui.UIGameMenu;
@@ -22,6 +24,7 @@ import story.StoryManager;
 import ui.UIContainer;
 
 import java.awt.event.KeyEvent;
+import java.util.HashMap;
 import java.util.List;
 
 public class GameState extends State {
@@ -44,6 +47,20 @@ public class GameState extends State {
         storyManager = new StoryManager(this);
         locations.get("Outside").setGameMap(this.gameMap);
         lighting = new Lighting(this);
+        createLocations();
+    }
+
+    private void createLocations() {
+        locations.put("church", new Church(this, spriteLibrary));
+        syncBuildingLocationsPositions();
+    }
+
+    private void syncBuildingLocationsPositions() {
+        for(Building building:getGameObjectsOfClassInLocation(Building.class, "Outside")){
+            Position buildingPosition = Position.copyOf(building.getPosition());
+            buildingPosition.add(new Position(0, building.getSprite().getHeight(null)));
+            locations.get(building.getName()).setOutsidePosition(buildingPosition);
+        }
     }
 
     protected void updateGameObjects() {
@@ -169,21 +186,22 @@ public class GameState extends State {
     }
 
     public Player getPlayer() {
-        return (Player) getCurrentLocation().getGameObjects().stream()
+        return (Player) getAllGameObjects().stream()
                 .filter(object -> object instanceof Player)
                 .findFirst().get();
     }
 
-    public void changeLocation(String name) {
-        Player player = getPlayer();
-        player.delete();
-        player.setLocation(name);
-        currentLocation = name;
-        getCurrentLocation().getGameObjects().add(player);
+    public void changeObjectLocation(GameObject gameObject, String name, Position entrancePosition) {
+        gameObject.delete(gameObject.getLocation());
+        gameObject.setLocation(name);
+        gameObject.setPosition(entrancePosition);
+        spawn(name, gameObject);
     }
 
     public GameMap getGameMapOfObject(GameObject gameObject){
         return locations.get(gameObject.getLocation()).getGameMap();
     }
+
+
 
 }

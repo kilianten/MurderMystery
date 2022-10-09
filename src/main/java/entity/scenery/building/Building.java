@@ -1,11 +1,9 @@
 package entity.scenery.building;
 
-import audio.SoundClip;
 import core.Position;
 import core.Size;
 import entity.human.Human;
 import entity.scenery.InteractableScenery;
-import entity.scenery.Scenery;
 import graphics.SpriteLibrary;
 import state.State;
 import state.game.GameState;
@@ -15,6 +13,7 @@ import java.awt.*;
 public class Building extends InteractableScenery {
 
     private boolean isOpen = false;
+    private Position entrance = new Position(0, 0);
 
     public Building(){
         super();
@@ -66,7 +65,8 @@ public class Building extends InteractableScenery {
     @Override
     public void interact(State state, Human human){
         if(isOpen){
-            ((GameState) state).changeLocation(name);
+            state.setCurrentLocation(name);
+            ((GameState) state).changeObjectLocation(human, name, entrance);
         }
     }
 }

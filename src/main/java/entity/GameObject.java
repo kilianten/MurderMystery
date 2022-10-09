@@ -29,7 +29,7 @@ public abstract class GameObject {
     protected int renderLevelOffset;
     protected boolean interactable;
 
-    protected boolean shouldDelete = false;
+    protected String shouldDelete = null;
 
     protected boolean renderOnMiniMap = true;
 
@@ -164,12 +164,16 @@ public abstract class GameObject {
         return null;
     }
 
-    public boolean shouldDelete() {
+    public String shouldDelete() {
         return shouldDelete;
     }
 
     public void delete(){
-        shouldDelete = true;
+        shouldDelete = getLocation();
+    }
+
+    public void delete(String deleteFrom){
+        shouldDelete = deleteFrom;
     }
 
     public String getLocation(){

@@ -37,6 +37,9 @@ public class Player extends Human {
         super.update(state);
         handleTarget(state);
         handleInput(state);
+//        System.out.println(position.getX() + " :: " + position.getY());
+//        System.out.println(getLocation());
+//        System.out.println(getSprite());
     }
 
     private void handleInput(State state) {
@@ -69,7 +72,7 @@ public class Player extends Human {
     }
 
     private Optional<GameObject> findNearestGameObject(State state) {
-        return state.getGameObjectsOfClassInLocation(GameObject.class).stream()
+        return state.getGameObjectsOfClassInCurrentLocation(GameObject.class).stream()
                 .filter(gameObject -> (gameObject.isInteractable()))
                 .filter(gameObject -> getPosition().distanceTo(gameObject.getPosition()) < targetRange)
                 .filter(gameObject -> isFacing(gameObject.getPosition()))

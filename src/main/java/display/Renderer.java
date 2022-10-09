@@ -4,6 +4,7 @@ import core.CollisionBox;
 import core.Position;
 import entity.GameObject;
 import entity.environment.Lighting;
+import entity.human.Player;
 import game.Game;
 import state.State;
 import map.GameMap;
@@ -43,10 +44,15 @@ public class Renderer {
     }
 
     private void renderGameObjects(State state, Graphics2D graphics, Camera camera){
+//        if(state instanceof GameState) {
+//            System.out.println(state.getCurrentGameObjects().contains(((GameState) state).getPlayer()));
+//        }
         state.getCurrentLocation().getGameObjects().stream()
                 .filter(gameObject -> camera.isInView(gameObject))
                 .forEach(gameObject -> {
+
                     renderGameObject(graphics, camera, gameObject);
+
                     if(state.getSettings().getRenderSettings().getCollisionBox().getValue() && gameObject.getCollisionBox() != null){
                         drawCollisionBox(gameObject.getCollisionBox(), graphics, camera);
                         drawRenderLines(gameObject, graphics, camera);
