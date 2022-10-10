@@ -12,6 +12,7 @@ import map.GameMap;
 import map.location.Location;
 import state.State;
 import state.editor.ui.*;
+import ui.UIText;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,6 +21,7 @@ public class EditorState extends State {
 
     private UIRenderingSettings renderSettings;
     private boolean hasRequiredElements = false;
+    private String[] requiredBuildings = {"church"};
 
     public EditorState(Size windowSize, Input input, GameSettings settings, Size mapSize) {
         super(windowSize, input, settings);
@@ -65,14 +67,22 @@ public class EditorState extends State {
     }
 
     private void checkRequiredElements() {
-
         List<Building> buildings = getGameObjectsOfClass(Building.class);
         List<String> buildingNames = new ArrayList<>();
         for(Building building: buildings){
             buildingNames.add(building.getName());
         }
-        if(buildingNames.contains("church")){
-            hasRequiredElements = true;
+        for(String building: requiredBuildings){
+            if(buildingNames.contains(building)){
+                hasRequiredElements = true;
+                renderSettings.setMissingBuilding("");
+            } else {
+                renderSettings.setMissingBuilding("Missing: " + building);
+                hasRequiredElements = false;
+                break;
+            }
         }
+
     }
+
 }

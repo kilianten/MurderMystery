@@ -9,6 +9,8 @@ import ui.VerticalContainer;
 import ui.clickable.UICheckbox;
 import ui.clickable.UIMiniMap;
 
+import java.awt.*;
+
 public class UIRenderingSettings extends VerticalContainer {
 
     private UIMiniMap miniMap;
@@ -22,6 +24,9 @@ public class UIRenderingSettings extends VerticalContainer {
         addUIComponent(new UICheckbox("Grid", renderSettings.getShouldRenderGrid()));
         addUIComponent(new UICheckbox("Collision", renderSettings.getCollisionBox()));
         addUIComponent(new UICheckbox("Pathable", renderSettings.getPathable()));
+        UIText warningText = new UIText("", false);
+        warningText.setColour(new Color(182, 53, 53));
+        addUIComponent(warningText);
     }
 
     public void resetMiniMap(GameMap gameMap){
@@ -30,4 +35,7 @@ public class UIRenderingSettings extends VerticalContainer {
         addUIComponentToFront(miniMap);
     }
 
+    public void setMissingBuilding(String message) {
+        ((UIText) children.get(children.size() - 1)).setText(message);
+    }
 }
