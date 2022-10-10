@@ -125,16 +125,18 @@ public class Renderer {
     }
 
     private void drawEnvironment(State state, Graphics2D graphics, Camera camera) {
-        Lighting lighting = state.getLighting();
-        if(lighting != null){
-            graphics.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, lighting.getLightBrightness()));
-            graphics.drawImage(
-                    lighting.getSprite(),
-                    lighting.getRenderPosition(camera).getIntX(),
-                    lighting.getRenderPosition(camera).getIntY(),
-                    null
-            );
-            graphics.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f));
+        if(state.getCurrentLocation().equals("Outside")){
+            Lighting lighting = state.getLighting();
+            if(lighting != null){
+                graphics.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, lighting.getLightBrightness()));
+                graphics.drawImage(
+                        lighting.getSprite(),
+                        lighting.getRenderPosition(camera).getIntX(),
+                        lighting.getRenderPosition(camera).getIntY(),
+                        null
+                );
+                graphics.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f));
+            }
         }
     }
 }

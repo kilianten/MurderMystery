@@ -15,7 +15,6 @@ import input.Input;
 import input.mouse.MouseHandler;
 import io.MapIO;
 import map.GameMap;
-import map.location.Church;
 import map.location.Location;
 import state.game.time.GameTimeManager;
 import ui.UIComponent;

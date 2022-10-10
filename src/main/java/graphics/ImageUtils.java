@@ -24,8 +24,8 @@ public class ImageUtils {
             graphics.drawImage(imageFromDisk, 0,0, null);
             graphics.dispose();
             return compatibleImage;
-        } catch (IOException e){
-            System.out.println("Could not load image from path: " + filePath);
+        } catch (Exception e){
+            System.out.println("Error loading image from filepath: " + filePath);
         }
         return null;
     }

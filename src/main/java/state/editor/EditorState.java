@@ -21,7 +21,7 @@ public class EditorState extends State {
 
     private UIRenderingSettings renderSettings;
     private boolean hasRequiredElements = false;
-    private String[] requiredBuildings = {"church"};
+    private String[] requiredBuildings = {"church", "policeStation"};
 
     public EditorState(Size windowSize, Input input, GameSettings settings, Size mapSize) {
         super(windowSize, input, settings);

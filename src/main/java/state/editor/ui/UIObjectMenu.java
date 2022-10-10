@@ -68,6 +68,11 @@ public class UIObjectMenu extends HorizontalContainer {
                         spriteLibrary,
                         "church"
                 ))));
+        buildingContainer.addUIComponent(new UIToolToggle(spriteLibrary.getBuildingImage("policeStation").getScaledInstance(Game.SPRITE_SIZE, Game.SPRITE_SIZE, Image.SCALE_SMOOTH),
+                new SceneryPlacer(new Building(
+                        spriteLibrary,
+                        "policeStation"
+                ))));
     }
 
     private void createSceneryContainer(SpriteLibrary spriteLibrary){

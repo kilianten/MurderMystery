@@ -14,7 +14,7 @@ import game.settings.GameSettings;
 import graphics.SpriteLibrary;
 import map.GameMap;
 import map.location.Church;
-import map.location.Location;
+import map.location.PoliceStation;
 import state.game.ui.ConversationBoxContainer;
 import state.game.ui.UIGameMenu;
 import state.game.ui.UIGameTime;
@@ -52,6 +52,7 @@ public class GameState extends State {
 
     private void createLocations() {
         locations.put("church", new Church(this, spriteLibrary));
+        locations.put("policeStation", new PoliceStation(this, spriteLibrary));
         syncBuildingLocationsPositions();
     }
 

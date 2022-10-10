@@ -24,7 +24,7 @@ public class UIRenderingSettings extends VerticalContainer {
         addUIComponent(new UICheckbox("Grid", renderSettings.getShouldRenderGrid()));
         addUIComponent(new UICheckbox("Collision", renderSettings.getCollisionBox()));
         addUIComponent(new UICheckbox("Pathable", renderSettings.getPathable()));
-        UIText warningText = new UIText("", false);
+        UIText warningText = new UIText("", 30, 30, false);
         warningText.setColour(new Color(182, 53, 53));
         addUIComponent(warningText);
     }
