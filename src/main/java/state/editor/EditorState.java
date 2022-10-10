@@ -1,6 +1,8 @@
 package state.editor;
 
 import core.Size;
+import entity.scenery.building.Building;
+import game.Game;
 import game.settings.GameSettings;
 import input.Input;
 import input.mouse.action.CameraMovement;
@@ -11,9 +13,13 @@ import map.location.Location;
 import state.State;
 import state.editor.ui.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class EditorState extends State {
 
     private UIRenderingSettings renderSettings;
+    private boolean hasRequiredElements = false;
 
     public EditorState(Size windowSize, Input input, GameSettings settings, Size mapSize) {
         super(windowSize, input, settings);
@@ -46,5 +52,27 @@ public class EditorState extends State {
     public void loadGameMap(String filePath) {
         super.loadGameMap(filePath);
         renderSettings.resetMiniMap(gameMap);
+    }
+
+    public boolean hasRequiredElements() {
+        return hasRequiredElements;
+    }
+
+    @Override
+    public void update(Game game){
+        super.update(game);
+        checkRequiredElements();
+    }
+
+    private void checkRequiredElements() {
+
+        List<Building> buildings = getGameObjectsOfClass(Building.class);
+        List<String> buildingNames = new ArrayList<>();
+        for(Building building: buildings){
+            buildingNames.add(building.getName());
+        }
+        if(buildingNames.contains("church")){
+            hasRequiredElements = true;
+        }
     }
 }

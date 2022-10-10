@@ -230,7 +230,7 @@ public abstract class State {
     }
 
     public void despawn(GameObject gameObject) {
-        gameObjects.remove(gameObject);
+        getCurrentLocation().getGameObjects().remove(gameObject);
     }
 
     public GameTimeManager getGameTimeManager() {
