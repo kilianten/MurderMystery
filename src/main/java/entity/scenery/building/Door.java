@@ -18,10 +18,11 @@ public class Door extends InteractableScenery {
     private boolean isOpen = false;
     private Position outsidePosition;
 
-    public Door(SpriteLibrary spriteLibrary, String doorName){
+    public Door(SpriteLibrary spriteLibrary, String doorName, String location){
         super();
         sprite = spriteLibrary.getBuildingImage(doorName);
         this.doorName = doorName;
+        this.location = location;
     }
 
     @Override

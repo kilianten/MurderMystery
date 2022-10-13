@@ -4,6 +4,7 @@ import core.Position;
 import entity.GameObject;
 import entity.scenery.building.Door;
 import map.GameMap;
+import state.State;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,9 +15,17 @@ public class Location {
     protected List<GameObject> gameObjects;
     protected Position entrancePosition;
     protected Door door;
+    protected String name;
 
-    public Location(){
+    public Location(State state){
+        this(state, "Outside");
+
+    }
+
+    public Location(State state, String name){
+        this.name = name;
         gameObjects = new ArrayList<>();
+        createObjects(state);
     }
 
     public Location(GameMap gameMap){
@@ -39,4 +48,16 @@ public class Location {
     public void setOutsidePosition(Position position) {
         door.setOutsidePosition(position);
     }
+
+    public void createObjects(State state){
+
+    }
+
+    public void spawn(State state, GameObject gameObject){
+        gameObject.setLocation(name);
+
+        state.spawn(name, gameObject);
+    }
+
+
 }

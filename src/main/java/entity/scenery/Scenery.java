@@ -19,6 +19,17 @@ public class Scenery extends GameObject implements Persistable {
 
     public Scenery() {}
 
+    public Scenery(String name, SpriteLibrary spriteLibrary, Position position){
+        this.name = name;
+        loadGraphics(spriteLibrary);
+        size = new Size(sprite.getHeight(null), sprite.getHeight(null));
+        renderOffset = new Position(size.getWidth()/2, size.getHeight()/2);
+        this.position = position;
+        renderLevelOffset = 5;
+        walkable = false;
+        collisionBoxOffset = new Position(0, 0);
+    }
+
     public Scenery(String name,
                    Size size,
                    Position renderOffset,

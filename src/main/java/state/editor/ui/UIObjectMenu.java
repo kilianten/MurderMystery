@@ -52,7 +52,7 @@ public class UIObjectMenu extends HorizontalContainer {
         tileContainer = new HorizontalContainer(windowSize);
         for(String tileName: spriteLibrary.getAllTiles().keySet()){
             Tile tile;
-            if(tileName.equals("water")){
+            if(tileName.equals("water") || tileName.equals("brickWall")){
                 tile = new Tile(spriteLibrary, tileName, false);
             } else {
                 tile = new Tile(spriteLibrary, tileName, true);

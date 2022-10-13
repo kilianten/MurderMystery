@@ -67,7 +67,7 @@ public abstract class State {
         gameTimeManager = new GameTimeManager();
         setDefaultSettings();
         locations = new HashMap<>();
-        locations.put("Outside", new Location());
+        locations.put("Outside", new Location(this));
     }
 
     public void update(Game game){
@@ -274,5 +274,9 @@ public abstract class State {
 
     public void setCurrentLocation(String currentLocation) {
         this.currentLocation = currentLocation;
+    }
+
+    public List<GameObject> getObjectsOfLocation(String location){
+        return locations.get(location).getGameObjects();
     }
 }

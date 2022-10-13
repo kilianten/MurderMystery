@@ -26,14 +26,14 @@ public abstract class GameObject {
     protected  GameObject parent;
 
     protected List<GameObject> attachments;
-    protected int renderLevelOffset;
+    protected int renderLevelOffset = 5;
     protected boolean interactable;
 
     protected String shouldDelete = null;
 
     protected boolean renderOnMiniMap = true;
 
-    private String location = "Outside";
+    protected String location = "Outside";
 
     public GameObject(){
         position = new Position(0, 0);

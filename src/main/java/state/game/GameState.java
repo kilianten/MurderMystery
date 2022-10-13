@@ -51,8 +51,8 @@ public class GameState extends State {
     }
 
     private void createLocations() {
-        locations.put("church", new Church(this, spriteLibrary));
-        locations.put("policeStation", new PoliceStation(this, spriteLibrary));
+        locations.put("church", new Church(this));
+        locations.put("policeStation", new PoliceStation(this));
         syncBuildingLocationsPositions();
     }
 

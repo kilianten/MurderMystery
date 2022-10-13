@@ -9,11 +9,12 @@ import state.State;
 
 public class Church extends Location {
 
-    public Church(State state, SpriteLibrary spriteLibrary){
-        super();
-        gameMap = new GameMap(new Size(10, 10), spriteLibrary, "woodFloor");
+    public Church(State state){
+        super(state, "church");
+        gameMap = new GameMap(new Size(10, 10), state.getSpriteLibrary(), "woodFloor");
         entrancePosition = new Position(0, 0);
-        door = new Door(spriteLibrary, "churchDoor");
+        this.name = "church";
+        door = new Door(state.getSpriteLibrary(), "churchDoor", name);
         state.spawn("church", door);
     }
 

@@ -37,9 +37,6 @@ public class Player extends Human {
         super.update(state);
         handleTarget(state);
         handleInput(state);
-//        System.out.println(position.getX() + " :: " + position.getY());
-//        System.out.println(getLocation());
-//        System.out.println(getSprite());
     }
 
     private void handleInput(State state) {
