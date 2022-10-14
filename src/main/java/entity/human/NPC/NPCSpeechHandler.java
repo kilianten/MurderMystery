@@ -13,6 +13,7 @@ public class NPCSpeechHandler {
     public static final String DO_YOU_DRINK_ALCOHOL = "Do you drink alcohol?";
     public static final String ARE_YOU_LOCAL = "What brings you to " + Game.GAME_TITLE + "?";
     public static final String HOW_LONG_HAVE_YOU_LIVED_HERE = "How long have you lived here?";
+    public static final String WHAT_ARE_YOU_IN_FOR = "What are you in for?";
 
 
     public static ArrayList<String> getCategoryOptions(String category, NPC npc) {
@@ -27,6 +28,13 @@ public class NPCSpeechHandler {
                     options.add(ARE_YOU_LOCAL);
                 } else {
                     options.add(HOW_LONG_HAVE_YOU_LIVED_HERE);
+                }
+                break;
+            case "Interrogation":
+                if(npc.isJailed()){
+                    options.add(WHAT_ARE_YOU_IN_FOR);
+                } else {
+                    options.add("test");
                 }
                 break;
             default:
@@ -49,6 +57,8 @@ public class NPCSpeechHandler {
                 return npc.getSpeech(speech).whatBringsYouHere();
             case HOW_LONG_HAVE_YOU_LIVED_HERE:
                 return npc.getSpeech(speech).howLongHaveYouLivedHere();
+            case WHAT_ARE_YOU_IN_FOR:
+                return npc.getSpeech(speech).whatAreYouInFor(npc);
             default:
                 System.out.print("Speech not found for " + npc.getFirstName() + " :" + speech);
                 return null;

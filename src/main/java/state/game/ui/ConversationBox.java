@@ -34,7 +34,7 @@ public class ConversationBox extends VerticalContainer {
         addUIComponent((new UIClickableText("Small Talk", (state) -> setOptions(NPCSpeechHandler.getCategoryOptions("Small Talk", conversant)))));
         addUIComponent(new UIClickableText("Friendly", (state) -> System.out.println("Friendly")));
         addUIComponent(new UIClickableText("Gossip", (state) -> System.out.println("Gossip")));
-        addUIComponent(new UIClickableText("Interrogation", (state) -> System.out.println("Question")));
+        addUIComponent(new UIClickableText("Interrogation", (state) -> setOptions(NPCSpeechHandler.getCategoryOptions("Interrogation", conversant))));
         addUIComponent(new UIClickableText("Help", (state) -> System.out.println("Help")));
     }
 

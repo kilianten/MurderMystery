@@ -43,6 +43,10 @@ public abstract class NPC extends Human {
 
     protected WitnessedEventHandler witnessedEventHandler;
 
+    private boolean isJailed;
+
+    private String jailedReason = "";
+
     public NPC(Controller controller, SpriteLibrary spriteLibrary, String spriteSheet, ColourHandler colourHandler) {
         super(controller, spriteLibrary);
         animationManager = new AnimationManager(spriteLibrary.getUnit(spriteSheet, colourHandler));
@@ -54,8 +58,6 @@ public abstract class NPC extends Human {
         witnessedEventHandler = new WitnessedEventHandler();
     }
 
-
-
     @Override
     public void update(State state){
         super.update(state);
@@ -66,7 +68,6 @@ public abstract class NPC extends Human {
                 if(witnessedEventHandler.insertWitnessedEvent(state, gameObject)
                         && (!action.isPresent()
                         || !(action.get() instanceof Speaking))){
-                    System.out.println("performing speech");
                     perform(new Speaking(thought, state, this));
                 }
 
@@ -200,6 +201,22 @@ public abstract class NPC extends Human {
                 .filter(gameObject -> isNear(gameObject))
                 .filter(gameObject -> isFacing(gameObject.getPosition()))
                 .collect(Collectors.toList());
+    }
+
+    public boolean isJailed() {
+        return isJailed;
+    }
+
+    public void setJailed(boolean jailed) {
+        isJailed = jailed;
+    }
+
+    public void setJailedReason(String reason) {
+        this.jailedReason = reason;
+    }
+
+    public String getJailedReason() {
+        return jailedReason;
     }
 }
 

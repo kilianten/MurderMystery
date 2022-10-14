@@ -41,7 +41,7 @@ public class PoliceStation extends Location {
         for(int i = 0; i < cells.length; i++){
             if(cells[i] == null){
                 Position spawnPosition = Position.copyOf(position);
-                spawnPosition.add(new Position(96, 0));
+                spawnPosition.add(new Position(32, 24));
                 cells[i] = new CellArea(spawnPosition);
             }
         }
@@ -64,7 +64,25 @@ public class PoliceStation extends Location {
         public CellArea(Position spawnPosition){
             this.spawnPosition = spawnPosition;
         }
+
+        public Position getSpawnPosition() {
+            return spawnPosition;
+        }
+
+        public void setOccupied(boolean occupied) {
+            isOccupied = occupied;
+        }
     }
+
+    public CellArea getEmptyCell(){
+
+        for(CellArea cell: cells){
+            if(!cell.isOccupied) return cell;
+        }
+
+        return null;
+    }
+
 
 
 }

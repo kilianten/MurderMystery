@@ -40,14 +40,14 @@ public class GameState extends State {
         super(windowSize, input, settings);
 
         loadGameMap(gameMap);
-        initialiseCharacters();
         initializeUI(windowSize);
         gameMenu = new UIGameMenu(windowSize, input, settings);
         conversationBoxContainer = new ConversationBoxContainer(windowSize);
-        storyManager = new StoryManager(this);
         locations.get("Outside").setGameMap(this.gameMap);
         lighting = new Lighting(this);
         createLocations();
+        initialiseCharacters();
+        storyManager = new StoryManager(this);
     }
 
     private void createLocations() {
@@ -116,7 +116,7 @@ public class GameState extends State {
             vanessa.setPosition(gameMap.getRandomAvailablePosition());
             mary.setPosition(gameMap.getRandomAvailablePosition());
             eric.setPosition(gameMap.getRandomAvailablePosition());
-            tim.setPosition(gameMap.getRandomAvailablePosition());
+            jail(tim, "Beatin the shit out of Karl. No fucking regrets");
             getCurrentLocation().getGameObjects().add(raquel);
             getCurrentLocation().getGameObjects().add(karl);
             getCurrentLocation().getGameObjects().add(douglas);
@@ -203,6 +203,15 @@ public class GameState extends State {
         return locations.get(gameObject.getLocation()).getGameMap();
     }
 
+    public void jail(NPC npc, String reason){
+        PoliceStation.CellArea cell = ((PoliceStation) locations.get("policeStation")).getEmptyCell();
+        if(cell != null){
+            changeObjectLocation(npc, "policeStation", Position.copyOf(cell.getSpawnPosition()));
+            npc.setJailed(true);
+            cell.setOccupied(true);
+            npc.setJailedReason(reason);
+        }
 
+    }
 
 }

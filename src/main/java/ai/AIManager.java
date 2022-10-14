@@ -67,8 +67,14 @@ public class AIManager {
 
     public void transitionToRandomState(State state, NPC npc){
         List<String> actions = new ArrayList<>();
+
         actions.addAll(defaultActions);
         actions.addAll(npc.getCharacterActions());
+
+        if(npc.isJailed()){
+            actions.remove("wander");
+        }
+
         actions.addAll(npc.findNearObjectActionionables(state));
 
         Random random = new Random();
