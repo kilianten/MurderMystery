@@ -9,3 +9,4 @@
 | interestedInGettingTattoo | False | Tattoo card clue |
 | drinksAlcohol | True | Beer cap clue |
 | isLocal | True | Determines certainSpeech |
+| isJailed | False | Limits actions, adds 'what are you in for speech' |
