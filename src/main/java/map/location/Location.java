@@ -25,7 +25,6 @@ public class Location {
     public Location(State state, String name){
         this.name = name;
         gameObjects = new ArrayList<>();
-        createObjects(state);
     }
 
     public Location(GameMap gameMap){

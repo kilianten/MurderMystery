@@ -15,6 +15,7 @@ public class DebugRenderer {
 
         Camera camera = state.getCamera();
         state.getGameObjectsOfClass(NPC.class).stream()
+                .filter(gameObject -> !state.getCurrentLocation().equals(gameObject.getLocation()))
                 .filter(gameObject -> camera.isInView(gameObject))
                 .forEach(npc ->
                 {   UIText nameText = new UIText(npc.getFirstName(), 30, 25, false);

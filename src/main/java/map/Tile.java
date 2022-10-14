@@ -12,14 +12,18 @@ public class Tile implements Persistable {
     public transient Image sprite;
     private String tileName;
     private int tileIndex;
-    private boolean walkable;
+    private boolean walkable = true;
 
     public Tile() {
         walkable = true;
     }
 
     public Tile(SpriteLibrary spriteLibrary, String tileName){
-        this(spriteLibrary, tileName, true);
+        this.sprite = spriteLibrary.getTile(tileName);
+        this.tileName = tileName;
+        if(tileName.equals("water") || tileName.equals("brickWall")) {
+            this.walkable = false;
+        }
     }
 
     public Tile(SpriteLibrary spriteLibrary, String tileName, boolean walkable){

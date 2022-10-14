@@ -5,6 +5,7 @@ import core.Position;
 import core.Size;
 import display.Camera;
 import entity.human.Human;
+import entity.scenery.Scenery;
 import state.State;
 
 import java.awt.*;
@@ -182,5 +183,16 @@ public abstract class GameObject {
 
     public void setLocation(String location) {
         this.location = location;
+    }
+
+    public void alterCollisionBoxSize(Size size) {
+        this.collisionBoxSize = new Size(
+                collisionBoxSize.getWidth() + size.getWidth(),
+                collisionBoxSize.getHeight() + size.getHeight());
+        resetCollisionBoxOffset();
+    }
+
+    public void resetCollisionBoxOffset(){
+        collisionBoxOffset = new Position(size.getWidth()/2, -size.getHeight()/2 + collisionBoxSize.getHeight());
     }
 }
