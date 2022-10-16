@@ -5,6 +5,7 @@ import controller.NPCController;
 import core.Position;
 import entity.GameObject;
 import entity.human.NPC.NPC;
+import entity.human.NPC.Nolan;
 import map.Pathfinder;
 import state.State;
 import state.game.GameState;

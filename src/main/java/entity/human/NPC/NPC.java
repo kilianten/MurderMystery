@@ -218,5 +218,13 @@ public abstract class NPC extends Human {
     public String getJailedReason() {
         return jailedReason;
     }
+
+    public void setStanding(State state){
+        aiManager.setState(this, "stand", state);
+    }
+
+    public void stopMotion(){
+
+    }
 }
 

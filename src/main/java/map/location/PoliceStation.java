@@ -19,14 +19,15 @@ public class PoliceStation extends Location {
         door = new Door(state.getSpriteLibrary(), "policeStationDoor", name);
         gameObjects.add(door);
         setBrickTiles(state);
-        cells = new CellArea[2];
+        cells = new CellArea[3];
         createObjects(state);
     }
 
     @Override
     public void createObjects(State state){
-        createCell(state, new Position(192, 80));
-        createCell(state, new Position(384, 80));
+        createCell(state, new Position(192 * 1, 80));
+        createCell(state, new Position(192 * 2, 80));
+        createCell(state, new Position(192 * 3, 80));
         gameObjects.forEach(gameObject -> gameObject.setLocation(name));
     }
 
@@ -43,6 +44,7 @@ public class PoliceStation extends Location {
                 Position spawnPosition = Position.copyOf(position);
                 spawnPosition.add(new Position(32, 24));
                 cells[i] = new CellArea(spawnPosition);
+                break;
             }
         }
     }
@@ -54,6 +56,8 @@ public class PoliceStation extends Location {
         gameMap.setTile(4, 1, new Tile(state.getSpriteLibrary(), "brickWall"));
         gameMap.setTile(7, 0, new Tile(state.getSpriteLibrary(), "brickWall"));
         gameMap.setTile(7, 1, new Tile(state.getSpriteLibrary(), "brickWall"));
+        gameMap.setTile(10, 0, new Tile(state.getSpriteLibrary(), "brickWall"));
+        gameMap.setTile(10, 1, new Tile(state.getSpriteLibrary(), "brickWall"));
     }
 
     public class CellArea{
@@ -75,9 +79,10 @@ public class PoliceStation extends Location {
     }
 
     public CellArea getEmptyCell(){
-
         for(CellArea cell: cells){
-            if(!cell.isOccupied) return cell;
+            if(!cell.isOccupied){
+                return cell;
+            }
         }
 
         return null;

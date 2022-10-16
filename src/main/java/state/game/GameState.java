@@ -2,6 +2,7 @@ package state.game;
 
 import controller.NPCController;
 import controller.PlayerController;
+import core.Direction;
 import core.Position;
 import core.Size;
 import entity.GameObject;
@@ -81,6 +82,12 @@ public class GameState extends State {
                 conversating = false;
             }
         }
+    }
+
+    public void endConversation(){
+        togglePause(!paused);
+        toggleConversationBox(false);
+        conversating = false;
     }
 
     @Override
@@ -208,6 +215,8 @@ public class GameState extends State {
         if(cell != null){
             changeObjectLocation(npc, "policeStation", Position.copyOf(cell.getSpawnPosition()));
             npc.setJailed(true);
+            npc.setStanding(this);
+            npc.setDirection(Direction.S);
             cell.setOccupied(true);
             npc.setJailedReason(reason);
         }

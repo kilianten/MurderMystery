@@ -3,11 +3,8 @@ package ai;
 import ai.state.AIState;
 import ai.state.Stand;
 import ai.state.Wander;
-import core.Direction;
-import core.Position;
-import entity.human.Human;
+import controller.NPCController;
 import entity.human.NPC.NPC;
-import entity.human.action.Sit;
 import entity.human.action.Smoke;
 import entity.scenery.Bench;
 import state.State;
@@ -81,4 +78,8 @@ public class AIManager {
         transitionTo(npc, actions.get(random.nextInt(actions.size())), state);
     }
 
+    public void setState(NPC npc, String nextState, State state){
+        ((NPCController) npc.getController()).stop();
+        transitionTo(npc, nextState, state);
+    }
 }

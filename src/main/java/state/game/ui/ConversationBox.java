@@ -4,6 +4,8 @@ import core.Size;
 import entity.human.NPC.NPC;
 import entity.human.NPC.NPCSpeechHandler;
 import graphics.ImageUtils;
+import state.State;
+import state.game.GameState;
 import ui.*;
 import ui.clickable.UIClickableText;
 
@@ -35,7 +37,25 @@ public class ConversationBox extends VerticalContainer {
         addUIComponent(new UIClickableText("Friendly", (state) -> System.out.println("Friendly")));
         addUIComponent(new UIClickableText("Gossip", (state) -> System.out.println("Gossip")));
         addUIComponent(new UIClickableText("Interrogation", (state) -> setOptions(NPCSpeechHandler.getCategoryOptions("Interrogation", conversant))));
-        addUIComponent(new UIClickableText("Help", (state) -> System.out.println("Help")));
+        addUIComponent(new UIClickableText("Actions", (state) -> setActions(NPCSpeechHandler.getCategoryOptions("Actions", conversant))));
+    }
+
+    private void setActions(ArrayList<String> interrogations) {
+        clearUIComponents();
+        for(String option: interrogations){
+            addUIComponent(new UIClickableText(option, (state) -> setAction(state, option)));
+        }
+    }
+
+    private void setAction(State state, String option) {
+        switch (option){
+            case "Jail":
+                ((GameState) state).jail(conversant, "You tell me! YOU PUT ME HERE");
+                ((GameState) state).endConversation();
+                break;
+            default:
+                break;
+        }
     }
 
     private void setOptions(ArrayList<String> interrogations) {
