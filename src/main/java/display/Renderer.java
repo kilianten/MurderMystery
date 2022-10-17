@@ -6,6 +6,7 @@ import entity.GameObject;
 import entity.environment.Lighting;
 import entity.human.Player;
 import game.Game;
+import map.location.Location;
 import state.State;
 import map.GameMap;
 import state.game.GameState;
@@ -125,7 +126,7 @@ public class Renderer {
     }
 
     private void drawEnvironment(State state, Graphics2D graphics, Camera camera) {
-        if(state.getCurrentLocation().equals("Outside")){
+        if(state.getCurrentLocation().getClass().getName().equals("map.location.Location")){
             Lighting lighting = state.getLighting();
             if(lighting != null){
                 graphics.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, lighting.getLightBrightness()));
