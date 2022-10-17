@@ -52,4 +52,9 @@ public class KarlSpeech extends NPCSpeech {
     public String howLongHaveYouLivedHere() {
         return "My whole life. I like it. It’s a bit of a shit show lately, but home is home";
     }
+
+    @Override
+    public String youJailedMe() {
+        return "You don’t remember putting me in here? Let me out";
+    }
 }

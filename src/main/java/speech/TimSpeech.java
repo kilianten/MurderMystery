@@ -46,4 +46,9 @@ public class TimSpeech extends NPCSpeech {
     public String howLongHaveYouLivedHere() {
         return "My whole life. I was supposed to be transferred out of here. This kip couldn’t handle me anymore.";
     }
+
+    @Override
+    public String youJailedMe() {
+        return "You stuck me in here you piece of shit";
+    }
 }

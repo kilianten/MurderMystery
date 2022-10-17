@@ -39,4 +39,9 @@ public class NolanSpeech extends NPCSpeech {
     public String howLongHaveYouLivedHere() {
         return "This island has always been my home, son.";
     }
+
+    @Override
+    public String youJailedMe() {
+        return "My patience is wearing thin, detective";
+    }
 }

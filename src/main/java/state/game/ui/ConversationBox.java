@@ -50,7 +50,7 @@ public class ConversationBox extends VerticalContainer {
     private void setAction(State state, String option) {
         switch (option){
             case "Jail":
-                ((GameState) state).jail(conversant, "You tell me! YOU PUT ME HERE");
+                ((GameState) state).jail(conversant, conversant.getSpeech().youJailedMe(), true);
                 ((GameState) state).endConversation();
                 break;
             default:

@@ -123,7 +123,7 @@ public class GameState extends State {
             vanessa.setPosition(gameMap.getRandomAvailablePosition());
             mary.setPosition(gameMap.getRandomAvailablePosition());
             eric.setPosition(gameMap.getRandomAvailablePosition());
-            jail(tim, "Beatin the shit out of Karl. No fucking regrets");
+            jail(tim, "Beatin the shit out of Karl. No fucking regrets", false);
             getCurrentLocation().getGameObjects().add(raquel);
             getCurrentLocation().getGameObjects().add(karl);
             getCurrentLocation().getGameObjects().add(douglas);
@@ -210,9 +210,12 @@ public class GameState extends State {
         return locations.get(gameObject.getLocation()).getGameMap();
     }
 
-    public void jail(NPC npc, String reason){
+    public void jail(NPC npc, String reason, boolean playSound){
         PoliceStation.CellArea cell = ((PoliceStation) locations.get("policeStation")).getEmptyCell();
         if(cell != null){
+            if(playSound){
+                getAudioPlayer().playSound("jail.wav");
+            }
             changeObjectLocation(npc, "policeStation", Position.copyOf(cell.getSpawnPosition()));
             npc.setJailed(true);
             npc.setStanding(this);

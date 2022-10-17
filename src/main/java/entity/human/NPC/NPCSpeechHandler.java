@@ -51,19 +51,19 @@ public class NPCSpeechHandler {
     public static String getSpeech(String speech, NPC npc) {
         switch(speech){
             case ARE_YOU_RELIGIOUS:
-                return npc.getSpeech(speech).areYouReligious(npc);
+                return npc.getSpeech().areYouReligious(npc);
             case DO_YOU_SMOKE:
-                return npc.getSpeech(speech).doYouSmoke(npc);
+                return npc.getSpeech().doYouSmoke(npc);
             case DO_YOU_HAVE_TATTOOS:
-                return npc.getSpeech(speech).doYouHaveTattoos(npc);
+                return npc.getSpeech().doYouHaveTattoos(npc);
             case DO_YOU_DRINK_ALCOHOL:
-                return npc.getSpeech(speech).doYouDrink(npc);
+                return npc.getSpeech().doYouDrink(npc);
             case ARE_YOU_LOCAL:
-                return npc.getSpeech(speech).whatBringsYouHere();
+                return npc.getSpeech().whatBringsYouHere();
             case HOW_LONG_HAVE_YOU_LIVED_HERE:
-                return npc.getSpeech(speech).howLongHaveYouLivedHere();
+                return npc.getSpeech().howLongHaveYouLivedHere();
             case WHAT_ARE_YOU_IN_FOR:
-                return npc.getSpeech(speech).whatAreYouInFor(npc);
+                return npc.getSpeech().whatAreYouInFor(npc);
             default:
                 System.out.print("Speech not found for " + npc.getFirstName() + " :" + speech);
                 return null;

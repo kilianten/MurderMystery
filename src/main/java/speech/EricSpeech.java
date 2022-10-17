@@ -47,4 +47,9 @@ public class EricSpeech extends NPCSpeech {
     public String howLongHaveYouLivedHere() {
         return null;
     }
+
+    @Override
+    public String youJailedMe() {
+        return "You put me here. Please, let me out";
+    }
 }

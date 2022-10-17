@@ -52,4 +52,10 @@ public class DouglasSpeech extends NPCSpeech {
     public String howLongHaveYouLivedHere() {
         return "I was born and raised here. The place has been tumultuous my whole life";
     }
+
+    @Override
+    public String youJailedMe() {
+        return "I seem to recall, some bovine detective putting me here. He looked a lot like you on second thought";
+    }
+
 }

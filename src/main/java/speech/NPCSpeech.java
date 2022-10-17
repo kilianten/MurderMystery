@@ -14,5 +14,6 @@ public abstract class NPCSpeech {
     public String whatAreYouInFor(NPC npc){
         return npc.getJailedReason();
     }
+    public abstract String youJailedMe();
 
 }

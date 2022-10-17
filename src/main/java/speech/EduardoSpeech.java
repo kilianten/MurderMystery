@@ -43,4 +43,9 @@ public class EduardoSpeech extends NPCSpeech {
     public String howLongHaveYouLivedHere() {
         return "I was raised in Mexico. I have been here for 4 years now. Most of the locals accept me... most";
     }
+
+    @Override
+    public String youJailedMe() {
+        return "... It was you...";
+    }
 }

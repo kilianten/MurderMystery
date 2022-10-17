@@ -47,4 +47,9 @@ public class SheriffSpeech extends NPCSpeech {
     public String howLongHaveYouLivedHere() {
         return "My whole life. I don’t want the excitement of a big city that other folks flourish in. I like the insularity of this place";
     }
+
+    @Override
+    public String youJailedMe() {
+        return "As if a detective jailing me in my own town isn’t humiliating enough";
+    }
 }

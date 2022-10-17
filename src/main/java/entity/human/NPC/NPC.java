@@ -129,7 +129,7 @@ public abstract class NPC extends Human {
         return secondName;
     }
 
-    public NPCSpeech getSpeech(String option) {
+    public NPCSpeech getSpeech() {
         return speech;
     }
 

@@ -34,4 +34,9 @@ public class RaquelSpeech extends NPCSpeech {
     public String howLongHaveYouLivedHere() {
         return "I was born here";
     }
+
+    @Override
+    public String youJailedMe() {
+        return "Is that a joke? You should know";
+    }
 }
