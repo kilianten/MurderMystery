@@ -21,6 +21,7 @@ public class InkedRed extends KillerStory {
         killers.add(accomplice);
         plotPoints.add(new KillPlotPointBasedOnTrait(vanessa, killers, "hasTattoo"));
         plotPoints.add(new KillPlotPointBasedOnTrait(vanessa, killers, "hasTattoo"));
+        plotPoints.add(new KillPlotPointBasedOnTrait(vanessa, killers, "hasTattoo"));
         plotPoints.peek().initialize(state);
     }
 

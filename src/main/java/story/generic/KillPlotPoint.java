@@ -32,8 +32,9 @@ public class KillPlotPoint extends PlotPoint {
 
             state.getLocation(corpse.getLocation()).getGameObjects().remove(target);
             isDone = true;
+            updatesSinceLastSeen = 0;
         } else {
-            if(!state.getCamera().isInView(killer) && !state.getCamera().isInView(target)){
+            if(!killer.isJailed() && !state.getCamera().isInView(killer) && !state.getCamera().isInView(target)){
                 updatesSinceLastSeen++;
             } else {
                 updatesSinceLastSeen = 0;

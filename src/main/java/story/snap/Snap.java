@@ -14,6 +14,9 @@ public class Snap extends KillerStory {
 
         plotPoints.add(new KillPlotPoint(getRandomKiller(), killers));
         plotPoints.add(new KillPlotPoint(getRandomKiller(), killers));
+        plotPoints.add(new KillPlotPoint(getRandomKiller(), killers));
+        plotPoints.add(new KillPlotPoint(getRandomKiller(), killers));
+        plotPoints.add(new KillPlotPoint(getRandomKiller(), killers));
         plotPoints.peek().initialize(state);
     }
 
