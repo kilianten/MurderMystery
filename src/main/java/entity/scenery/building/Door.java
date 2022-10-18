@@ -18,11 +18,12 @@ public class Door extends InteractableScenery {
     private boolean isOpen = false;
     private Position outsidePosition;
 
-    public Door(SpriteLibrary spriteLibrary, String doorName, String location){
+    public Door(SpriteLibrary spriteLibrary, String doorName, String location, Position position){
         super();
         sprite = spriteLibrary.getBuildingImage(doorName);
         this.doorName = doorName;
         this.location = location;
+        this.position = new Position(position.getX(), position.getIntY() - sprite.getHeight(null));
     }
 
     @Override
@@ -57,7 +58,7 @@ public class Door extends InteractableScenery {
     public void interact(State state, Human human){
         if(isOpen){
             state.setCurrentLocation("Outside");
-            ((GameState) state).changeObjectLocation(human, "Outside", outsidePosition);
+            ((GameState) state).changeObjectLocation(human, "Outside");
         }
     }
 

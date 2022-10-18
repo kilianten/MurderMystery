@@ -13,7 +13,6 @@ import java.awt.*;
 public class Building extends InteractableScenery {
 
     private boolean isOpen = false;
-    private Position entrance = new Position(0, 0);
 
     public Building(){
         super();
@@ -66,7 +65,7 @@ public class Building extends InteractableScenery {
     public void interact(State state, Human human){
         if(isOpen){
             state.setCurrentLocation(name);
-            ((GameState) state).changeObjectLocation(human, name, entrance);
+            ((GameState) state).changeObjectLocation(human, name);
         }
     }
 }

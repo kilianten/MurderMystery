@@ -58,5 +58,9 @@ public class Location {
         state.spawn(name, gameObject);
     }
 
+    public Position getEntrancePosition(){
+        return entrancePosition;
+    }
+
 
 }

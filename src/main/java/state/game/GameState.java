@@ -199,11 +199,18 @@ public class GameState extends State {
                 .findFirst().get();
     }
 
-    public void changeObjectLocation(GameObject gameObject, String name, Position entrancePosition) {
+    public void changeObjectLocation(GameObject gameObject, String locationName) {
         gameObject.delete(gameObject.getLocation());
-        gameObject.setLocation(name);
-        gameObject.setPosition(entrancePosition);
-        spawn(name, gameObject);
+        gameObject.setLocation(locationName);
+        gameObject.setPosition(Position.copyOf(getLocation(locationName).getEntrancePosition()));
+        spawn(locationName, gameObject);
+    }
+
+    public void changeObjectLocation(GameObject gameObject, String locationName, Position position) {
+        gameObject.delete(gameObject.getLocation());
+        gameObject.setLocation(locationName);
+        gameObject.setPosition(position);
+        spawn(locationName, gameObject);
     }
 
     public GameMap getGameMapOfObject(GameObject gameObject){
