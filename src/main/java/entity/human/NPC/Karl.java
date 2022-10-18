@@ -30,6 +30,7 @@ public class Karl extends NPC {
 
     @Override
     public void setTraits(){
+        super.setTraits();
         smoker = randomiseTrait(0.4);
         randomiseTattooTraits();
         drinksAlcohol = randomiseTrait(0.7);

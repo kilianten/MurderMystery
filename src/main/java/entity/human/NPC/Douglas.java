@@ -28,6 +28,7 @@ public class Douglas extends NPC {
 
     @Override
     public void setTraits(){
+        super.setTraits();
         smoker = randomiseTrait(0.5);
         randomiseTattooTraits();
         drinksAlcohol = randomiseTrait(0.7);

@@ -30,6 +30,7 @@ public class Raquel extends NPC {
 
     @Override
     public void setTraits(){
+        super.setTraits();
         religious = true;
     }
 }

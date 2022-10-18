@@ -10,3 +10,4 @@
 | drinksAlcohol | True | Beer cap clue |
 | isLocal | True | Determines certainSpeech |
 | isJailed | False | Limits actions, adds 'what are you in for speech' |
+| hasHayFever | null | Red Pills Clue |

@@ -114,6 +114,7 @@ public class GameState extends State {
             Eric eric = new Eric(new NPCController(), spriteLibrary);
             Mary mary = new Mary(new NPCController(), spriteLibrary);
             Tim tim = new Tim(new NPCController(), spriteLibrary);
+            Kate kate = new Kate(new NPCController(), spriteLibrary);
             nolan.setPosition(gameMap.getRandomAvailablePosition());
             douglas.setPosition(gameMap.getRandomAvailablePosition());
             karl.setPosition(gameMap.getRandomAvailablePosition());
@@ -123,6 +124,7 @@ public class GameState extends State {
             vanessa.setPosition(gameMap.getRandomAvailablePosition());
             mary.setPosition(gameMap.getRandomAvailablePosition());
             eric.setPosition(gameMap.getRandomAvailablePosition());
+            kate.setPosition(gameMap.getRandomAvailablePosition());
             jail(tim, "Beatin the shit out of Karl. No fucking regrets", false);
             getCurrentLocation().getGameObjects().add(raquel);
             getCurrentLocation().getGameObjects().add(karl);
@@ -134,6 +136,7 @@ public class GameState extends State {
             getCurrentLocation().getGameObjects().add(mary);
             getCurrentLocation().getGameObjects().add(eric);
             getCurrentLocation().getGameObjects().add(tim);
+            getCurrentLocation().getGameObjects().add(kate);
         }
         Nolan nolan = new Nolan(new NPCController(), spriteLibrary);
         Position position = gameMap.getRandomAvailablePosition();

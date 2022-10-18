@@ -30,6 +30,7 @@ public class Eduardo extends NPC {
 
     @Override
     public void setTraits() {
+        super.setTraits();
         religious = true;
         smoker = true;
         randomiseTattooTraits();

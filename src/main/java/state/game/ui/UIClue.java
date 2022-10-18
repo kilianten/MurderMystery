@@ -1,6 +1,7 @@
 package state.game.ui;
 
 import core.Position;
+import entity.human.NPC.Kate;
 import entity.human.NPC.NPC;
 import state.State;
 import state.game.GameState;
@@ -20,10 +21,10 @@ public class UIClue extends HorizontalContainer {
         super(state.getWindowSize());
         setAlignment(new Alignment(Alignment.Position.CENTER, Alignment.Position.CENTER));
         addUIComponent(new UIImage(state.getSpriteLibrary().getClueImage(name), new Position(0, 0)));
-        addUIComponent(new UIText(getClueHint(name)));
+        addUIComponent(new UIText(getClueHint(state, name)));
     }
 
-    private String getClueHint(String clue) {
+    private String getClueHint(State state, String clue) {
         if(clue.startsWith("blood")){
             return  "The victim tried to write his killer’s name. ’ " + clue.charAt(5) + " ’";
         }
@@ -37,6 +38,18 @@ public class UIClue extends HorizontalContainer {
                     return "A bottle cap. Looks like our killer likes alcohol";
                 case "boatReceipt":
                     return "A non-local. Someone who arrived the same day as me";
+                case "pillsRed":
+                    if(state.getGameObjectsOfClass(Kate.class).size() == 1){
+                        return "Antihistamine tables. Maybe the doctor knows more";
+                    } else {
+                        return "Antihistamine tablets. Dr. Kate would have known more";
+                    }
+                case "pillsBlue":
+                    if(state.getGameObjectsOfClass(Kate.class).size() == 1){
+                        return "Statin tables. Maybe the doctor knows more";
+                    } else {
+                        return "Statin tablets. Dr. Kate would have known more";
+                    }
             }
         }
         return "";

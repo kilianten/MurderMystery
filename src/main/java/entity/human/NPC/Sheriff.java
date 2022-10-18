@@ -32,6 +32,7 @@ public class Sheriff extends NPC {
 
     @Override
     public void setTraits(){
+        super.setTraits();
         religious = true;
         smoker = randomiseTrait(0.5);
         drinksAlcohol = randomiseTrait(0.7);

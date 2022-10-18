@@ -31,6 +31,7 @@ public class Vanessa extends NPC {
 
     @Override
     public void setTraits(){
+        super.setTraits();
         smoker = true;
         hasTattoos = true;
     }

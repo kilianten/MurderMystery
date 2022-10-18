@@ -28,6 +28,7 @@ public class Eric extends NPC {
 
     @Override
     public void setTraits(){
+        super.setTraits();
         smoker = randomiseTrait(0.4);
         drinksAlcohol = randomiseTrait(0.5);
         isLocal = false;

@@ -38,6 +38,7 @@ public class Nolan extends NPC {
 
     @Override
     public void setTraits(){
+        super.setTraits();
         religious = true;
         drinksAlcohol = randomiseTrait(0.5);
     }

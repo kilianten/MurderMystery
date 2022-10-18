@@ -29,6 +29,7 @@ public class Tim extends NPC {
 
     @Override
     public void setTraits(){
+        super.setTraits();
         smoker = randomiseTrait(0.8);
         hasTattoos = true;
         drinksAlcohol = randomiseTrait(0.9);

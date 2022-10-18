@@ -35,6 +35,8 @@ public abstract class NPC extends Human {
     protected boolean interestedInGettingTattoo;
     protected boolean hasTattoos;
     protected boolean drinksAlcohol = true;
+    protected boolean hasHayFever;
+
     protected ReactionManager reactionManager;
 
     protected boolean isLocal = true;
@@ -133,7 +135,9 @@ public abstract class NPC extends Human {
         return speech;
     }
 
-    public void setTraits(){}
+    public void setTraits(){
+        hasHayFever = randomiseTrait(.65);
+    }
 
     protected boolean randomiseTrait(double chance) {
         if(Math.random() <= chance){
