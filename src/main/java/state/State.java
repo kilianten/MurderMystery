@@ -6,6 +6,7 @@ import core.Size;
 import display.Camera;
 import entity.GameObject;
 import entity.environment.Lighting;
+import entity.human.NPC.NPC;
 import entity.scenery.Scenery;
 import game.Clock;
 import game.Game;
@@ -161,6 +162,13 @@ public abstract class State {
     public <T extends GameObject> List<T> getGameObjectsOfClass(Class<T> clazz){
         return getAllGameObjects().stream()
                 .filter(clazz::isInstance)
+                .map(gameObject -> (T) gameObject)
+                .collect(Collectors.toList());
+    }
+
+    public <T extends GameObject> List<T> getAntiHistamineUsers(){
+        return getAllGameObjects().stream()
+                .filter(NPC.class::isInstance)
                 .map(gameObject -> (T) gameObject)
                 .collect(Collectors.toList());
     }

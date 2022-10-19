@@ -1,5 +1,6 @@
 package speech;
 
+import entity.human.NPC.Kate;
 import entity.human.NPC.NPC;
 import entity.human.action.Smoke;
 
@@ -64,6 +65,24 @@ public class KateSpeech extends NPCSpeech {
     @Override
     public String youJailedMe() {
         return "You tell me. Now, please, let me out.";
+    }
+
+    @Override
+    public String whoTakesAntihistamines(NPC npc) {
+        String antiHistamineUsers = ((Kate) npc).getListOfAntiHistamineUsers();
+        if(!npc.isJailed()){
+            if(antiHistamineUsers == null){
+                if(((Kate) npc).isCompilingListRed() == false){
+                    return "It’s that time of year. Half the town takes them. I’ll compile a list of people who are taking them. I should have it by tomorrow";
+                } else {
+                    return "I told you I’d make a list of the people. I haven’t finished yet.";
+                }
+            } else {
+                return antiHistamineUsers;
+            }
+        } else {
+            return "You lock me up and then ask for my help? Really?";
+        }
     }
 
 }

@@ -228,7 +228,13 @@ public abstract class NPC extends Human {
     }
 
     public void stopMotion(){
+    }
 
+    public void newDayTasks(State state){
+    }
+
+    public boolean hasHayFever() {
+        return hasHayFever;
     }
 }
 

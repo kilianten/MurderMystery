@@ -58,7 +58,7 @@ public class Door extends InteractableScenery {
     public void interact(State state, Human human){
         if(isOpen){
             state.setCurrentLocation("Outside");
-            ((GameState) state).changeObjectLocation(human, "Outside");
+            ((GameState) state).changeObjectLocation(human, "Outside", outsidePosition);
         }
     }
 

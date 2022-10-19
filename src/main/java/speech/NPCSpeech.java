@@ -16,4 +16,7 @@ public abstract class NPCSpeech {
     }
     public abstract String youJailedMe();
 
+    public String whoTakesAntihistamines(NPC npc) {
+        return null;
+    }
 }

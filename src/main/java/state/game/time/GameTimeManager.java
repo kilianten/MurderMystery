@@ -1,5 +1,6 @@
 package state.game.time;
 
+import entity.human.NPC.NPC;
 import game.GameLoop;
 import state.State;
 
@@ -43,6 +44,9 @@ public class GameTimeManager {
         hour = START_DAY.getHour();
         minute = START_DAY.getMinute();
         state.getLighting().resetLightBrightness();
+        for(NPC npc: state.getGameObjectsOfClass(NPC.class)){
+            npc.newDayTasks(state);
+        }
     }
 
     public String getDay(){

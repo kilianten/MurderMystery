@@ -25,8 +25,6 @@ import story.StoryManager;
 import ui.UIContainer;
 
 import java.awt.event.KeyEvent;
-import java.util.HashMap;
-import java.util.List;
 
 public class GameState extends State {
 

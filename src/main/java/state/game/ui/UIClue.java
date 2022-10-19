@@ -58,22 +58,26 @@ public class UIClue extends HorizontalContainer {
     public static String getClue(NPC murderer){
         List<String> clues = new ArrayList<>();
         Random random = new Random();
-        if(murderer.isSmoker()){
-            clues.add("cigarette");
-        }
-        if(murderer.hasTattoo() || murderer.isInterestedInGettingTattoo()){
-            clues.add("tattooCard");
-        }
-        if(murderer.drinksAlcohol()){
-            clues.add("bottleCap");
-        }
-        if(!murderer.isLocal()){
-            clues.add("boatReceipt");
-        }
-        clues.add("blood" + murderer.getFirstName().charAt(0));
-        clues.add("blood" + murderer.getSecondName().charAt(0));
-
-        return(clues.get(random.nextInt(clues.size())));
+//        if(murderer.isSmoker()){
+//            clues.add("cigarette");
+//        }
+//        if(murderer.hasTattoo() || murderer.isInterestedInGettingTattoo()){
+//            clues.add("tattooCard");
+//        }
+//        if(murderer.drinksAlcohol()){
+//            clues.add("bottleCap");
+//        }
+//        if(!murderer.isLocal()){
+//            clues.add("boatReceipt");
+//        }
+//        if(murderer.hasHayFever()){
+//            clues.add("pillsRed");
+//        }
+//        clues.add("blood" + murderer.getFirstName().charAt(0));
+//        clues.add("blood" + murderer.getSecondName().charAt(0));
+//
+//        return(clues.get(random.nextInt(clues.size())));
+        return "pillsRed";
     }
 
     @Override

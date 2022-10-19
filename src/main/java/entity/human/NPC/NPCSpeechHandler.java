@@ -14,7 +14,7 @@ public class NPCSpeechHandler {
     public static final String ARE_YOU_LOCAL = "What brings you to " + Game.GAME_TITLE + "?";
     public static final String HOW_LONG_HAVE_YOU_LIVED_HERE = "How long have you lived here?";
     public static final String WHAT_ARE_YOU_IN_FOR = "What are you in for?";
-
+    public static final String WHO_TAKES_ANTIHISTAMINES = "Who in this town takes antihistamines?";
 
     public static ArrayList<String> getCategoryOptions(String category, NPC npc) {
         ArrayList<String> options = new ArrayList<>();
@@ -30,11 +30,14 @@ public class NPCSpeechHandler {
                     options.add(HOW_LONG_HAVE_YOU_LIVED_HERE);
                 }
                 break;
-            case "Interrogation":
+            case "Investigate":
                 if(npc.isJailed()){
                     options.add(WHAT_ARE_YOU_IN_FOR);
                 } else {
-                    options.add("test");
+                    options.add(" ");
+                }
+                if(npc instanceof Kate){
+                    options.add(WHO_TAKES_ANTIHISTAMINES);
                 }
                 break;
             case "Actions":
@@ -64,6 +67,8 @@ public class NPCSpeechHandler {
                 return npc.getSpeech().howLongHaveYouLivedHere();
             case WHAT_ARE_YOU_IN_FOR:
                 return npc.getSpeech().whatAreYouInFor(npc);
+            case WHO_TAKES_ANTIHISTAMINES:
+                return npc.getSpeech().whoTakesAntihistamines(npc);
             default:
                 System.out.print("Speech not found for " + npc.getFirstName() + " :" + speech);
                 return null;
