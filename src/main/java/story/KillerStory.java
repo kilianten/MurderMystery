@@ -67,4 +67,7 @@ public abstract class KillerStory {
         return null;
     }
 
+    public List<NPC> getKillers() {
+        return killers;
+    }
 }

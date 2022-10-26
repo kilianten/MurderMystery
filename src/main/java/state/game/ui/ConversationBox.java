@@ -53,6 +53,21 @@ public class ConversationBox extends VerticalContainer {
                 ((GameState) state).jail(conversant, conversant.getSpeech().youJailedMe(), true);
                 ((GameState) state).endConversation();
                 break;
+            case "Accuse":
+                if(((GameState) state).getStoryManager().getKillers().contains(conversant)){
+                    for(NPC npc: ((GameState) state).getStoryManager().getKillers()){
+                        System.out.println(npc.getFirstName());
+                    }
+                    System.out.println("KILLER FOUND");
+                    ((GameState) state).jail(conversant, conversant.getSpeech().youJailedMe(), true);
+                    ((GameState) state).endConversation();
+                } else {
+                    for(NPC npc: ((GameState) state).getStoryManager().getKillers()){
+                        System.out.println(npc.getFirstName());
+                    }
+                    System.exit(1);
+                }
+                break;
             default:
                 break;
         }

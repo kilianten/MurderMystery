@@ -1,10 +1,12 @@
 package story;
 
+import entity.human.NPC.NPC;
 import state.State;
 import story.inkedRed.InkedRed;
 import story.sacrilege.Sacrilege;
 import story.snap.Snap;
 
+import java.util.List;
 import java.util.Random;
 
 public class StoryManager {
@@ -31,6 +33,10 @@ public class StoryManager {
 
     public void update(State state){
         killerStory.update(state);
+    }
+
+    public List<NPC> getKillers(){
+        return killerStory.getKillers();
     }
 
 }

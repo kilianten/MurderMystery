@@ -40,9 +40,9 @@ public class UIClue extends HorizontalContainer {
                     return "A non-local. Someone who arrived the same day as me";
                 case "pillsRed":
                     if(state.getGameObjectsOfClass(Kate.class).size() == 1){
-                        return "Antihistamine tables. Maybe the doctor knows more";
+                        return "Antihistamine. Maybe the doctor knows more";
                     } else {
-                        return "Antihistamine tablets. Dr. Kate would have known more";
+                        return "Antihistamine. Dr. Kate would have known more";
                     }
                 case "pillsBlue":
                     if(state.getGameObjectsOfClass(Kate.class).size() == 1){

@@ -44,6 +44,7 @@ public class NPCSpeechHandler {
                 if(!npc.isJailed()){
                     options.add("Jail");
                 }
+                options.add("Accuse");
                 break;
             default:
                 return options;

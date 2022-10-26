@@ -231,7 +231,9 @@ public class GameState extends State {
             cell.setOccupied(true);
             npc.setJailedReason(reason);
         }
-
     }
 
+    public StoryManager getStoryManager() {
+        return storyManager;
+    }
 }
