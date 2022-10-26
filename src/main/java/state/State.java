@@ -276,6 +276,10 @@ public abstract class State {
         return locations.get(currentLocation);
     }
 
+    public String getCurrentLocationName(){
+        return currentLocation;
+    }
+
     public Location getLocation(String location){
         return locations.get(location);
     }

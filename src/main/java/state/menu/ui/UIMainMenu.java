@@ -26,7 +26,7 @@ public class UIMainMenu extends VerticalContainer {
 
         addUIComponent(new UIText(Game.GAME_TITLE, 35, 30, true));
         addUIComponent(new UIButton("Play", this::loadMap));
-        addUIComponent(new UIButton("Level Edit",  (state) -> state.setNextState(new EditorState(windowSize, state.getInput(), state.getSettings(), new Size(40, 40)))));
+        addUIComponent(new UIButton("Level Edit",  (state) -> state.setNextState(new EditorState(windowSize, state.getInput(), state.getSettings(), new Size(150, 150)))));
         addUIComponent(new UIButton("Options", (state) -> ((MenuState) state).enterMenu(new UIOptionMenu(windowSize, state.getSettings()))));
         addUIComponent(new UIButton("Exit", (state) -> System.exit(0)));
     }
