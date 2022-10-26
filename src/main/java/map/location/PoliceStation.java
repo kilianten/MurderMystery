@@ -14,7 +14,7 @@ public class PoliceStation extends Location {
 
     public PoliceStation(State state){
         super(state, "policeStation");
-        gameMap = new GameMap(new Size(10, 5), state.getSpriteLibrary(), "tile");
+        gameMap = new GameMap(new Size(20, 10), state.getSpriteLibrary(), "tile");
         entrancePosition = new Position(gameMap.getWidth() / 2, gameMap.getHeight());
         door = new Door(state.getSpriteLibrary(), "policeStationDoor", name, entrancePosition);
         gameObjects.add(door);
@@ -25,9 +25,9 @@ public class PoliceStation extends Location {
 
     @Override
     public void createObjects(State state){
-        createCell(state, new Position(128, 80));
-        createCell(state, new Position(320, 80));
-        createCell(state, new Position(512, 80));
+        createCell(state, new Position(96, 80));
+        createCell(state, new Position(256, 80));
+        createCell(state, new Position(416, 80));
         gameObjects.forEach(gameObject -> gameObject.setLocation(name));
     }
 
@@ -52,12 +52,20 @@ public class PoliceStation extends Location {
     public void setBrickTiles(State state){
         gameMap.setTile(0, 0, new Tile(state.getSpriteLibrary(), "brickWall"));
         gameMap.setTile(0, 1, new Tile(state.getSpriteLibrary(), "brickWall"));
-        gameMap.setTile(3, 0, new Tile(state.getSpriteLibrary(), "brickWall"));
-        gameMap.setTile(3, 1, new Tile(state.getSpriteLibrary(), "brickWall"));
-        gameMap.setTile(6, 0, new Tile(state.getSpriteLibrary(), "brickWall"));
-        gameMap.setTile(6, 1, new Tile(state.getSpriteLibrary(), "brickWall"));
-        gameMap.setTile(9, 0, new Tile(state.getSpriteLibrary(), "brickWall"));
-        gameMap.setTile(9, 1, new Tile(state.getSpriteLibrary(), "brickWall"));
+        gameMap.setTile(0, 2, new Tile(state.getSpriteLibrary(), "brickWall"));
+        gameMap.setTile(0, 3, new Tile(state.getSpriteLibrary(), "brickWall"));
+        gameMap.setTile(5, 0, new Tile(state.getSpriteLibrary(), "brickWall"));
+        gameMap.setTile(5, 1, new Tile(state.getSpriteLibrary(), "brickWall"));
+        gameMap.setTile(5, 2, new Tile(state.getSpriteLibrary(), "brickWall"));
+        gameMap.setTile(5, 3, new Tile(state.getSpriteLibrary(), "brickWall"));
+        gameMap.setTile(10, 0, new Tile(state.getSpriteLibrary(), "brickWall"));
+        gameMap.setTile(10, 1, new Tile(state.getSpriteLibrary(), "brickWall"));
+        gameMap.setTile(10, 2, new Tile(state.getSpriteLibrary(), "brickWall"));
+        gameMap.setTile(10, 3, new Tile(state.getSpriteLibrary(), "brickWall"));
+        gameMap.setTile(15, 0, new Tile(state.getSpriteLibrary(), "brickWall"));
+        gameMap.setTile(15, 1, new Tile(state.getSpriteLibrary(), "brickWall"));
+        gameMap.setTile(15, 2, new Tile(state.getSpriteLibrary(), "brickWall"));
+        gameMap.setTile(15, 3, new Tile(state.getSpriteLibrary(), "brickWall"));
     }
 
     public class CellArea{

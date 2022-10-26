@@ -11,7 +11,7 @@ public class Church extends Location {
 
     public Church(State state){
         super(state, "church");
-        gameMap = new GameMap(new Size(10, 10), state.getSpriteLibrary(), "woodFloor");
+        gameMap = new GameMap(new Size(20, 20), state.getSpriteLibrary(), "woodFloor");
         entrancePosition = new Position(gameMap.getWidth() / 2, gameMap.getHeight());
         this.name = "church";
         door = new Door(state.getSpriteLibrary(), "churchDoor", name, entrancePosition);

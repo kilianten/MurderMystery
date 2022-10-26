@@ -52,23 +52,23 @@ public class GameMap implements Persistable {
     }
 
     public int getWidth() {
-        return tiles.length * Game.SPRITE_SIZE;
+        return tiles.length * Game.TILE_SIZE;
     }
 
     public int getHeight() {
-        return tiles[0].length * Game.SPRITE_SIZE;
+        return tiles[0].length * Game.TILE_SIZE;
     }
 
     public Position getRandomAvailablePosition() {
-        double x = Math.random() * tiles.length * Game.SPRITE_SIZE;
-        double y = Math.random() * tiles[0].length * Game.SPRITE_SIZE;
-        int gridX = (int) (x / Game.SPRITE_SIZE);
-        int gridY = (int) (y / Game.SPRITE_SIZE);
+        double x = Math.random() * tiles.length * Game.TILE_SIZE;
+        double y = Math.random() * tiles[0].length * Game.TILE_SIZE;
+        int gridX = (int) (x / Game.TILE_SIZE);
+        int gridY = (int) (y / Game.TILE_SIZE);
 
         if(!tileIsAvailable(gridX, gridY)){
             return getRandomAvailablePosition();
         }
-        return new Position(gridX * Game.SPRITE_SIZE + Game.SPRITE_SIZE / 2, gridY * Game.SPRITE_SIZE  + Game.SPRITE_SIZE / 2);
+        return new Position(gridX * Game.TILE_SIZE + Game.TILE_SIZE / 2, gridY * Game.TILE_SIZE  + Game.TILE_SIZE / 2);
     }
 
     private boolean tileHasUnwalkableScenery(int gridX, int gridY) {
@@ -89,15 +89,15 @@ public class GameMap implements Persistable {
 
     public Position getViewableStartingGridPosition(Camera camera) {
         return new Position(
-                Math.max(0, camera.getPosition().getX() / Game.SPRITE_SIZE - SAFETY_SPACE),
-                Math.max(0, camera.getPosition().getY() / Game.SPRITE_SIZE - SAFETY_SPACE)
+                Math.max(0, camera.getPosition().getX() / Game.TILE_SIZE - SAFETY_SPACE),
+                Math.max(0, camera.getPosition().getY() / Game.TILE_SIZE - SAFETY_SPACE)
         );
     }
 
     public Position getViewableEndingGridPosition(Camera camera) {
         return new Position(
-                Math.min(tiles.length, camera.getPosition().getX() / Game.SPRITE_SIZE + camera.getSize().getWidth() / Game.SPRITE_SIZE + SAFETY_SPACE),
-                Math.min(tiles[0].length, camera.getPosition().getY() / Game.SPRITE_SIZE + camera.getSize().getHeight() / Game.SPRITE_SIZE + SAFETY_SPACE)
+                Math.min(tiles.length, camera.getPosition().getX() / Game.TILE_SIZE + camera.getSize().getWidth() / Game.TILE_SIZE + SAFETY_SPACE),
+                Math.min(tiles[0].length, camera.getPosition().getY() / Game.TILE_SIZE + camera.getSize().getHeight() / Game.TILE_SIZE + SAFETY_SPACE)
         );
     }
 
@@ -111,8 +111,8 @@ public class GameMap implements Persistable {
     }
 
     public List<CollisionBox> getCollidingUnWalkableTileBoxes(CollisionBox collisionBox){
-        int gridX = (int) (collisionBox.getBounds().getX() / Game.SPRITE_SIZE);
-        int gridY = (int) (collisionBox.getBounds().getY() / Game.SPRITE_SIZE);
+        int gridX = (int) (collisionBox.getBounds().getX() / Game.TILE_SIZE);
+        int gridY = (int) (collisionBox.getBounds().getY() / Game.TILE_SIZE);
 
         List<CollisionBox> collidingUnwalkableTileBoxes = new ArrayList<>();
 
@@ -130,7 +130,7 @@ public class GameMap implements Persistable {
     }
 
     private CollisionBox getGridCollisionBox(int x, int y) {
-        return new CollisionBox(new Rectangle(x * Game.SPRITE_SIZE, y * Game.SPRITE_SIZE, Game.SPRITE_SIZE, Game.SPRITE_SIZE));
+        return new CollisionBox(new Rectangle(x * Game.TILE_SIZE, y * Game.TILE_SIZE, Game.TILE_SIZE, Game.TILE_SIZE));
     }
 
     public Tile getTile(int x, int y) {

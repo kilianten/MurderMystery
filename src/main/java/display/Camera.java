@@ -11,7 +11,7 @@ import java.util.Optional;
 
 public class Camera {
 
-    private static final int SAFETY_SPACE = 2 * Game.SPRITE_SIZE;
+    private static final int SAFETY_SPACE = 2 * Game.TILE_SIZE;
 
     private Position position;
     private Size windowSize;

@@ -97,14 +97,14 @@ public class Position implements Persistable {
     }
 
     public int gridX(){
-        return (int) (x / Game.SPRITE_SIZE);
+        return (int) (x / Game.TILE_SIZE);
     }
 
     public int gridY(){
-        return (int) (y / Game.SPRITE_SIZE);
+        return (int) (y / Game.TILE_SIZE);
     }
 
     public static Position ofGridPosition(int gridX, int gridY){
-        return new Position(gridX * Game.SPRITE_SIZE + Game.SPRITE_SIZE / 2, gridY * Game.SPRITE_SIZE + Game.SPRITE_SIZE / 2);
+        return new Position(gridX * Game.TILE_SIZE + Game.TILE_SIZE / 2, gridY * Game.TILE_SIZE + Game.TILE_SIZE / 2);
     }
 }

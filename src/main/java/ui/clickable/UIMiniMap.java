@@ -83,8 +83,8 @@ public class UIMiniMap extends UIClickable {
 
             graphics.drawImage(
                     getScaledSprite(gameObject.getSprite()),
-                    (int) Math.round(positionWithOffset.getX() / Game.SPRITE_SIZE * pixelsPerGrid),
-                    (int) Math.round(positionWithOffset.getY() / Game.SPRITE_SIZE * pixelsPerGrid),
+                    (int) Math.round(positionWithOffset.getX() / Game.TILE_SIZE * pixelsPerGrid),
+                    (int) Math.round(positionWithOffset.getY() / Game.TILE_SIZE * pixelsPerGrid),
                     null
             );
         });
@@ -96,8 +96,8 @@ public class UIMiniMap extends UIClickable {
         }
 
         Size scaledSize = new Size(
-                (sprite.getWidth(null) / Game.SPRITE_SIZE) * pixelsPerGrid,
-                (sprite.getHeight(null) / Game.SPRITE_SIZE) * pixelsPerGrid
+                (sprite.getWidth(null) / Game.TILE_SIZE) * pixelsPerGrid,
+                (sprite.getHeight(null) / Game.TILE_SIZE) * pixelsPerGrid
         );
 
         Image scaledSprite = sprite.getScaledInstance(scaledSize.getWidth(), scaledSize.getHeight(), Image.SCALE_AREA_AVERAGING);
@@ -111,7 +111,7 @@ public class UIMiniMap extends UIClickable {
                 size.getHeight() / (double) gameMap.getHeight()
         );
 
-        pixelsPerGrid = (int) Math.round(Game.SPRITE_SIZE * ratio);
+        pixelsPerGrid = (int) Math.round(Game.TILE_SIZE * ratio);
 
         pixelOffset = new Position(
                 (size.getWidth() - gameMap.getTiles().length * pixelsPerGrid) / 2,

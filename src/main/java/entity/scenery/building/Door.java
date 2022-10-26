@@ -23,7 +23,7 @@ public class Door extends InteractableScenery {
         sprite = spriteLibrary.getBuildingImage(doorName);
         this.doorName = doorName;
         this.location = location;
-        this.position = new Position(position.getX(), position.getIntY() - sprite.getHeight(null));
+        this.position = new Position(position.getX(), position.getIntY());
     }
 
     @Override

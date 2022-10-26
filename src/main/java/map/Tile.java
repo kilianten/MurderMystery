@@ -58,10 +58,10 @@ public class Tile implements Persistable {
 
     private void generateSprite() {
         sprite = ((BufferedImage) sprite).getSubimage(
-                (tileIndex / (sprite.getWidth(null) / Game.SPRITE_SIZE)) * Game.SPRITE_SIZE,
-                (tileIndex % (sprite.getWidth(null) / Game.SPRITE_SIZE)) * Game.SPRITE_SIZE,
-                Game.SPRITE_SIZE,
-                Game.SPRITE_SIZE
+                (tileIndex / (sprite.getWidth(null) / Game.TILE_SIZE)) * Game.TILE_SIZE,
+                (tileIndex % (sprite.getWidth(null) / Game.TILE_SIZE)) * Game.TILE_SIZE,
+                Game.TILE_SIZE,
+                Game.TILE_SIZE
         );
     }
 

@@ -23,10 +23,10 @@ public class TilePlacer extends MouseAction {
         Position position = Position.copyOf(state.getInput().getMousePosition());
         position.add(state.getCamera().getPosition());
 
-        gridX = position.getIntX() / Game.SPRITE_SIZE;
-        gridY = position.getIntY() / Game.SPRITE_SIZE;
+        gridX = position.getIntX() / Game.TILE_SIZE;
+        gridY = position.getIntY() / Game.TILE_SIZE;
 
-        position.subtract(new Position(position.getIntX() % Game.SPRITE_SIZE, position.getIntY() % Game.SPRITE_SIZE));
+        position.subtract(new Position(position.getIntX() % Game.TILE_SIZE, position.getIntY() % Game.TILE_SIZE));
         position.subtract(state.getCamera().getPosition());
 
         preview.setAbsolutePosition(position);

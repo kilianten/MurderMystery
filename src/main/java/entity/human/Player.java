@@ -28,7 +28,7 @@ public class Player extends Human {
     public Player(Controller controller, SpriteLibrary spriteLibrary){
         super(controller, spriteLibrary);
         this.selectionCircle = new SelectionCircle();
-        this.targetRange = 2 * Game.SPRITE_SIZE;
+        this.targetRange = 4 * Game.TILE_SIZE;
         motion.setSpeed(3);
     }
 

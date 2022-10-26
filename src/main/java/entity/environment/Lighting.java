@@ -21,7 +21,7 @@ public class Lighting extends GameObject {
     private int lightWidth = 175;
     private float lightBrightness = 0.0f;
     private boolean evening;
-    private int SAFE_SPACE = 2 * Game.SPRITE_SIZE;
+    private int SAFE_SPACE = 2 * Game.TILE_SIZE;
     private BufferedImage lightMap;
     private ArrayList<Light> lights;
 

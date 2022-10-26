@@ -105,7 +105,7 @@ public abstract class Human extends MovingEntity {
     public List<String> findNearObjectActionionables(State state) {
         List<String> actions = new ArrayList<>();
         state.getGameObjectsOfClass(GameObject.class).stream()
-                .filter(gameObject -> getPosition().distanceTo(gameObject.getPosition()) < 2 * Game.SPRITE_SIZE)
+                .filter(gameObject -> getPosition().distanceTo(gameObject.getPosition()) < 2 * Game.TILE_SIZE)
                 .filter(gameObject -> (gameObject.getAssociatedActions() != null))
                 .forEach(gameObject -> actions.addAll(gameObject.getAssociatedActions()));
         return actions;
@@ -113,7 +113,7 @@ public abstract class Human extends MovingEntity {
 
     public List<GameObject> findNearObjectsOfAction(State state, String action) {
         return state.getGameObjectsOfClass(GameObject.class).stream()
-                .filter(gameObject -> getPosition().distanceTo(gameObject.getPosition()) < 2 * Game.SPRITE_SIZE)
+                .filter(gameObject -> getPosition().distanceTo(gameObject.getPosition()) < 2 * Game.TILE_SIZE)
                 .filter(gameObject -> (gameObject.getAssociatedActions() != null))
                 .filter(gameObject -> (gameObject.getAssociatedActions().contains(action)))
                 .collect(Collectors.toList());

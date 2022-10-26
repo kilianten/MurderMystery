@@ -10,6 +10,7 @@ import state.menu.MenuState;
 import story.KillerStory;
 import story.StoryManager;
 
+import java.awt.*;
 import java.time.LocalDateTime;
 import java.util.Calendar;
 import java.util.Date;
@@ -25,6 +26,7 @@ public class Game {
     public static LocalDateTime gameCreationDate;
 
     public static int SPRITE_SIZE = 64;
+    public static int TILE_SIZE = 32;
 
     public Game(int width, int height){
         gameCreationDate = LocalDateTime.now();
