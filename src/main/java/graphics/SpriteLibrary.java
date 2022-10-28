@@ -173,7 +173,13 @@ public class SpriteLibrary {
     }
 
     public Image getClueImage(String name) {
-        return clueImages.get(name);
+        if(clueImages.get(name) == null){
+            System.out.println(name + "CLUE DOESNT EXIST");
+            return null;
+        } else {
+            return clueImages.get(name);
+        }
+
     }
 
     public Image getBuildingImage(String name) {

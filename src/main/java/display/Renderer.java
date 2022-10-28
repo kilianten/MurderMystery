@@ -4,6 +4,7 @@ import core.CollisionBox;
 import core.Position;
 import entity.GameObject;
 import entity.environment.Lighting;
+import entity.human.AcquiredItemText;
 import entity.human.Player;
 import game.Game;
 import map.location.Location;
@@ -51,9 +52,7 @@ public class Renderer {
         state.getCurrentLocation().getGameObjects().stream()
                 .filter(gameObject -> camera.isInView(gameObject))
                 .forEach(gameObject -> {
-
                     renderGameObject(graphics, camera, gameObject);
-
                     if(state.getSettings().getRenderSettings().getCollisionBox().getValue() && gameObject.getCollisionBox() != null){
                         drawCollisionBox(gameObject.getCollisionBox(), graphics, camera);
                         drawRenderLines(gameObject, graphics, camera);

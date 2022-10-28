@@ -12,7 +12,6 @@ public class DebugRenderer {
     }
 
     private void drawNames(State state, Graphics graphics){
-
         Camera camera = state.getCamera();
         state.getGameObjectsOfClass(NPC.class).stream()
                 .filter(gameObject -> state.getCurrentLocationName().equals(gameObject.getLocation()))
@@ -26,6 +25,5 @@ public class DebugRenderer {
                             npc.getPosition().getIntY() - camera.getPosition().getIntY(),
                             null);
                 });
-
     }
 }

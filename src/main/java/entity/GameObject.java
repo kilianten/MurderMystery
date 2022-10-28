@@ -4,11 +4,13 @@ import core.CollisionBox;
 import core.Position;
 import core.Size;
 import display.Camera;
+import entity.human.AcquiredItemText;
 import entity.human.Human;
 import entity.scenery.Scenery;
 import state.State;
 
 import java.awt.*;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
