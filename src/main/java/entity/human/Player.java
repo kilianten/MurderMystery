@@ -24,6 +24,7 @@ public class Player extends Human {
     private GameObject target;
     private double targetRange;
     private SelectionCircle selectionCircle;
+    private int money;
 
     public Player(Controller controller, SpriteLibrary spriteLibrary){
         super(controller, spriteLibrary);
@@ -83,5 +84,11 @@ public class Player extends Human {
         }
     }
 
+    public int getMoney() {
+        return money;
+    }
 
+    public void addMoney(int amount){
+        money+= amount;
+    }
 }

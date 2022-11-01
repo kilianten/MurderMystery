@@ -21,6 +21,7 @@ import state.game.ui.UIGameMenu;
 import state.game.ui.UIGameTime;
 import input.Input;
 import state.State;
+import state.game.ui.UIMoney;
 import story.StoryManager;
 import ui.UIContainer;
 
@@ -144,7 +145,8 @@ public class GameState extends State {
     }
 
     private void initializeUI(Size windowSize) {
-         uiContainers.add(new UIGameTime(windowSize));
+        uiContainers.add(new UIGameTime(windowSize));
+        uiContainers.add(new UIMoney(windowSize));
     }
 
     public void toggleConversationBox(boolean isConversating){
@@ -236,4 +238,5 @@ public class GameState extends State {
     public StoryManager getStoryManager() {
         return storyManager;
     }
+
 }

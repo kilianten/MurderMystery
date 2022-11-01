@@ -24,7 +24,8 @@ public class AcquiredItemText extends GameObject {
     public AcquiredItemText(String text, Position position){
         this.text = text;
         this.position = position;
-        position.setY(position.getY() - 60);
+        position.setY(position.getY() - 80);
+        position.setX(position.getX() - 20);
         renderOrder = 10;
         renderOffset = new Position(0, 0);
         currentFont = 20;

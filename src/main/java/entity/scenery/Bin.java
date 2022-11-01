@@ -6,6 +6,7 @@ import entity.human.AcquiredItemText;
 import entity.human.Human;
 import graphics.SpriteLibrary;
 import state.State;
+import state.game.GameState;
 
 public class Bin extends InteractableScenery {
 
@@ -27,6 +28,7 @@ public class Bin extends InteractableScenery {
     @Override
     public void interact(State state, Human human){
         state.spawn(state.getCurrentLocationName(), new AcquiredItemText("+$10", human.getPosition()));
+        ((GameState) state).getPlayer().addMoney(10);
     }
 
 }
