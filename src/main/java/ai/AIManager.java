@@ -7,6 +7,7 @@ import controller.NPCController;
 import entity.human.NPC.NPC;
 import entity.human.action.Smoke;
 import entity.scenery.Bench;
+import entity.scenery.prison.CellBed;
 import state.State;
 
 import java.util.ArrayList;
@@ -55,6 +56,10 @@ public class AIManager {
             case "sit":
                 Bench bench = (Bench) npc.findNearObjectsOfAction(state, "sit").get(0);
                 bench.interact(state, npc);
+                break;
+            case "sleep":
+                CellBed cellBed = (CellBed) npc.findNearObjectsOfAction(state, "sleep").get(0);
+                cellBed.interact(state, npc);
                 break;
             default:
                 currentAIState = new Stand();

@@ -23,4 +23,17 @@ public class InteractableScenery extends Scenery {
         interactable = true;
     }
 
+    public InteractableScenery(String name, SpriteLibrary spriteLibrary, Position position){
+        this.name = name;
+        loadGraphics(spriteLibrary);
+        size = new Size(sprite.getWidth(null), sprite.getHeight(null));
+        renderOffset = new Position(size.getWidth()/2, size.getHeight()/2);
+        this.position = position;
+        renderLevelOffset = 5;
+        this.collisionBoxSize = new Size(size.getWidth(), size.getHeight()/4);
+        resetCollisionBoxOffset();
+        renderLevelOffset = size.getHeight()/2;
+        interactable = true;
+    }
+
 }

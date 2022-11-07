@@ -4,6 +4,7 @@ import core.Position;
 import core.Size;
 import entity.scenery.Scenery;
 import entity.scenery.building.Door;
+import entity.scenery.prison.CellBed;
 import map.GameMap;
 import map.Tile;
 import state.State;
@@ -16,7 +17,7 @@ public class PoliceStation extends Location {
         super(state, "policeStation");
         gameMap = new GameMap(new Size(20, 10), state.getSpriteLibrary(), "tile");
         entrancePosition = new Position(gameMap.getWidth() / 2, gameMap.getHeight());
-        door = new Door(state.getSpriteLibrary(), "policeStationDoor", name, entrancePosition);
+        door = new Door(state.getSpriteLibrary(), "genericDoor", name, entrancePosition);
         gameObjects.add(door);
         setBrickTiles(state);
         cells = new CellArea[3];
@@ -47,6 +48,9 @@ public class PoliceStation extends Location {
                 break;
             }
         }
+        Position bedPosition = Position.copyOf(position);
+        bedPosition.subtract(new Position(48, 58));
+        gameObjects.add(new CellBed(state.getSpriteLibrary(), bedPosition));
     }
 
     public void setBrickTiles(State state){

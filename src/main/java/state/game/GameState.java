@@ -94,7 +94,7 @@ public class GameState extends State {
 
     private void initialiseCharacters() {
         Player player = new Player(new PlayerController(input), spriteLibrary);
-        player.setPosition(gameMap.getRandomAvailablePosition());
+
         getCurrentLocation().getGameObjects().add(player);
         camera.focusOn(player);
 
@@ -138,10 +138,9 @@ public class GameState extends State {
             getCurrentLocation().getGameObjects().add(kate);
         }
         Nolan nolan = new Nolan(new NPCController(), spriteLibrary);
-        Position position = gameMap.getRandomAvailablePosition();
-        nolan.setPosition(position);
+        nolan.setPosition(new Position(100, 100));
         getCurrentLocation().getGameObjects().add(nolan);
-        player.setPosition(Position.copyOf(nolan.getPosition()));
+
     }
 
     private void initializeUI(Size windowSize) {

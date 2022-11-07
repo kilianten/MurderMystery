@@ -19,7 +19,7 @@ public class Lighting extends GameObject {
 
     private BufferedImage sprite;
     private int lightWidth = 175;
-    private float lightBrightness = 0.0f;
+    private float lightBrightness = 0.1f;
     private boolean evening;
     private int SAFE_SPACE = 2 * Game.TILE_SIZE;
     private BufferedImage lightMap;
@@ -71,7 +71,7 @@ public class Lighting extends GameObject {
     }
 
     public float resetLightBrightness() {
-        return lightBrightness = 0.0f;
+        return lightBrightness = 0.1f;
     }
 
     public void setEvening(boolean isEvening){
