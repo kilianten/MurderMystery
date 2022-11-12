@@ -32,6 +32,7 @@ public class WalkTowards extends AIState {
         if(targetLocation == null) {
             List<Position> path = Pathfinder.findPath(currentCharacter.getPosition(), target.getPosition(), ((GameState) state).getGameMapOfObject(currentCharacter));
             System.out.println(target.getPosition().getX() + "targetPos Y:" + target.getPosition().getY());
+            System.out.println("Target:" + target.getFirstName());
             if(!path.isEmpty()) {
                 targetLocation = path.get(path.size() - 1);
                 this.path.addAll(path);

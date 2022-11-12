@@ -1,6 +1,7 @@
 package story.generic;
 
 import ai.state.WalkTowards;
+import ai.state.Wander;
 import entity.scenery.Corpse;
 import entity.human.NPC.NPC;
 import state.State;
@@ -26,13 +27,23 @@ public class KillPlotPoint extends PlotPoint {
 
     @Override
     public void update(State state){
-        if(killer.getAiManager().getState() instanceof WalkTowards){
-
-        } else {
-            if(killer.isNear(target) && !state.getCamera().isInView(killer)){
-                killTarget(state);
+        if(!(killer.getAiManager().getState() instanceof Wander)){
+            if(killer.getAiManager().getState() instanceof WalkTowards){
+                if(!state.getCamera().isInView(killer)){
+                    killer.setSpeed(3);
+                } else {
+                    killer.setSpeed(2.0);
+                }
             } else {
-                killer.getAiManager().setState(target, "walkToward", state);
+                if(killer.isNear(target)){
+                    if(!state.getCamera().isInView(killer)){
+                        killTarget(state);
+                        killer.setSpeed(2.0);
+                    }
+                    killer.getAiManager().setState(target, "wander", state);
+                } else {
+                    killer.getAiManager().setState(target, "walkToward", state);
+                }
             }
         }
     }

@@ -119,4 +119,8 @@ public abstract class MovingEntity extends GameObject {
     public AnimationManager getAnimationManager() {
         return animationManager;
     }
+
+    public void setSpeed(double speed){
+        motion.setSpeed(speed);
+    }
 }
