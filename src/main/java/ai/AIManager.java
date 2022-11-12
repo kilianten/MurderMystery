@@ -2,6 +2,7 @@ package ai;
 
 import ai.state.AIState;
 import ai.state.Stand;
+import ai.state.WalkTowards;
 import ai.state.Wander;
 import controller.NPCController;
 import entity.human.NPC.NPC;
@@ -49,6 +50,9 @@ public class AIManager {
         switch(nextState) {
             case "wander":
                 currentAIState = new Wander();
+                break;
+            case "walkToward":
+                currentAIState = new WalkTowards(npc);
                 break;
             case "smoke":
                 npc.perform(new Smoke(npc));

@@ -34,6 +34,7 @@ public class InteractableScenery extends Scenery {
         resetCollisionBoxOffset();
         renderLevelOffset = size.getHeight()/2;
         interactable = true;
+        selectionCircleSize = new Size(sprite.getWidth(null), sprite.getHeight(null));
     }
 
 }

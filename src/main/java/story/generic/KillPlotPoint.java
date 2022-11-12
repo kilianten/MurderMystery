@@ -1,5 +1,6 @@
 package story.generic;
 
+import ai.state.WalkTowards;
 import entity.scenery.Corpse;
 import entity.human.NPC.NPC;
 import state.State;
@@ -25,19 +26,13 @@ public class KillPlotPoint extends PlotPoint {
 
     @Override
     public void update(State state){
-        if(updatesSinceLastSeen >= KILL_THRESHOLD){
-            Corpse corpse = new Corpse(target);
-            corpse.setClue(new UIClue(state, UIClue.getClue(killer)));
-            state.spawn(target.getLocation(), corpse);
+        if(killer.getAiManager().getState() instanceof WalkTowards){
 
-            state.getLocation(corpse.getLocation()).getGameObjects().remove(target);
-            isDone = true;
-            updatesSinceLastSeen = 0;
         } else {
-            if(!killer.isJailed() && !state.getCamera().isInView(killer) && !state.getCamera().isInView(target)){
-                updatesSinceLastSeen++;
+            if(killer.isNear(target) && !state.getCamera().isInView(killer)){
+                killTarget(state);
             } else {
-                updatesSinceLastSeen = 0;
+                killer.getAiManager().setState(target, "walkToward", state);
             }
         }
     }
@@ -81,6 +76,15 @@ public class KillPlotPoint extends PlotPoint {
             return allNPCs.get(rand.nextInt(allNPCs.size()));
         }
         return null;
+    }
+
+    public void killTarget(State state){
+        Corpse corpse = new Corpse(target);
+        corpse.setClue(new UIClue(state, UIClue.getClue(killer)));
+        state.spawn(target.getLocation(), corpse);
+
+        state.getLocation(corpse.getLocation()).getGameObjects().remove(target);
+        isDone = true;
     }
 
 }
