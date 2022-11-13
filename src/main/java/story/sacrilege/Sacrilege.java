@@ -18,8 +18,8 @@ public class Sacrilege extends KillerStory {
     public Sacrilege(State state){
         nolan = state.getGameObjectOfClass(Nolan.class).get();
         killers.add(nolan);
-        //accomplice = getKillerBasedOnTrait(state, "isReligious", true);
-        //killers.add(accomplice);
+        accomplice = getKillerBasedOnTrait(state, "isReligious", true);
+        killers.add(accomplice);
         plotPoints.add(new KillPlotPointBasedOnTrait(nolan, killers, "isReligious"));
         plotPoints.add(new KillPlotPointBasedOnTrait(getRandomKiller(), killers, "isReligious"));
         plotPoints.add(new KillPlotPointBasedOnTrait(getRandomKiller(), killers, "isReligious"));

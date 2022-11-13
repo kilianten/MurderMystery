@@ -41,6 +41,7 @@ public class Kate extends NPC {
         drinksAlcohol = randomiseTrait(0.5);
         randomiseTattooTraits();
         smoker = randomiseTrait(0.2);
+        isLocal = true;
     }
 
     public void compileListOfPillUsers(){

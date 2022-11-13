@@ -12,7 +12,7 @@ import java.util.Random;
 public class StoryManager {
 
     private KillerStory killerStory;
-    private final String[] KILLER_STORIES = {"Sacrilege"};
+    private final String[] KILLER_STORIES = {"Sacrilege", "InkedRed", "Snap"};
 
     public StoryManager(State state){
         killerStory = getRandomStory(state);

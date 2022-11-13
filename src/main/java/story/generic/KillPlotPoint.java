@@ -16,8 +16,6 @@ public class KillPlotPoint extends PlotPoint {
 
     protected NPC target;
     private NPC killer;
-    private int updatesSinceLastSeen = 0;
-    private final int KILL_THRESHOLD = 200;
     private List<NPC> killers;
 
     public KillPlotPoint(NPC killer, List<NPC> killers) {
